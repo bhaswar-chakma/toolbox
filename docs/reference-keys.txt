@@ -1,3 +1,5 @@
-info
 python
 r
+sql
+pandas
+data-wrangling

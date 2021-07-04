@@ -12,7 +12,14 @@ link-citations: yes
 #description: "This a quick reference guide to my toolbox."
 ---
 
-# Info
+# {-}
 
-This is a test text!
+<center>
+    <img src="https://pbs.twimg.com/media/ELaj6MaXYAAozFy?format=jpg&name=large" width="1200" alt="rstudio lovestory logo"  />
+</center>
+
+
+
+
+
 
