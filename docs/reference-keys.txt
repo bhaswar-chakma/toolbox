@@ -1,5 +1,14 @@
 python
 pandas
 series
+dataframe
+subsetting-the-dataframe
+loc
+iloc
+assignment-with-.loc-and-.iloc
+loc-vs-.iloc-with-numeric-index
+boolean-subsetting-examples-with-.loc
+other-commonly-used-dataframe-attributes
+importing-data-with-pd.read_csv
 r
 sql

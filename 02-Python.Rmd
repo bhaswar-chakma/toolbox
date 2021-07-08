@@ -6,6 +6,10 @@
 
 ## Pandas
 
+<center>
+    <img src="https://pandas.pydata.org/static/img/pandas.svg" width="300" alt="cognitiveclass.ai logo"  />
+</center>
+
 NumPy creates ndarrays that must contain values that are of the same data type.
 Pandas creates dataframes. Each column in a dataframe is an ndarray. This allows us to have
 traditional tables of data where each column can be a different data type.
@@ -86,4 +90,358 @@ data["a"]
 data[0:2] # slicing behavior is unchanged
 data["a":"c"] # slicing using index names includes the last value
 ```
+
+**Create a series from a python dictionary**
+
+```{python}
+# remember, dictionary construction uses curly braces {}
+samp_dict = {'Tony Stark': "Robert Downey Jr.",
+'Steve Rogers': "Chris Evans",
+'Natasha Romanoff': "Scarlett Johansson",
+'Bruce Banner': "Mark Ruffalo",
+'Thor': "Chris Hemsworth",
+'Clint Barton': "Jeremy Renner"}
+samp_series = pd.Series(samp_dict)
+samp_series
+```
+```{python}
+print(samp_series.index) # dtype = object is for strings but allows mixed data types.
+samp_series.values
+```
+Another example:
+
+```{python}
+# ages during the First Avengers film (2012)
+age_dict = {'Thor': 1493,
+'Steve Rogers': 104,
+'Natasha Romanoff': 28,
+'Clint Barton': 41,
+'Tony Stark': 42,
+'Bruce Banner': 42} # note that the dictionary order is not same here
+ages = pd.Series(age_dict)
+print(ages)
+```
+
+
+**Use `np.NaN` to specify missing values.**
+
+```{python}
+# ages during the First Avengers film (2012)
+hero_dict = {'Thor': np.NaN,
+'Steve Rogers': 'Captain America',
+'Natasha Romanoff': 'Black Widow',
+'Clint Barton': 'Hawkeye',
+'Tony Stark': 'Iron Man',
+'Bruce Banner': 'Hulk'}
+hero_names = pd.Series(hero_dict)
+print(hero_names)
+```
+
+### DataFrame
+
+There are multiple ways of creating a DataFrame in Pandas:
+
+**Create a dataframe by providing a dictionary of series objects.**
+
+  - The dictionary key becomes the column name. The dictionary values become values. 
+
+  - The keys within the dictionaries become the index.
+
+```{python}
+# we previously created the following series
+type(samp_series)
+type(hero_names)
+type(ages)
+```
+
+```{python}
+# Now create data frame using those series
+avengers = pd.DataFrame({'actor': samp_series, 'hero name': hero_names, 'age': ages})
+# the DataFrame will match the indices and sort them
+print(avengers)
+print(type(avengers)) # this is a DataFrame object
+```
+The data is a list of dictionaries. Each dictionary needs to have the same set of keys,
+otherwise, NaNs will appear.
+
+
+**Data is a list of dictionaries**
+
+```{python}
+data = [{'a': 0, 'b': 0},
+{'a': 1, 'b': 2},
+{'a': 2, 'b': 5}]
+data
+```
+
+```{python}
+print(pd.DataFrame(data, index = [1, 2, 3]))
+```
+
+
+Mismatch of keys produces NaN
+
+```{python}
+data2 = [{'a': 0, 'b': 0},
+{'a': 1, 'b': 2},
+{'a': 2, 'c': 5}] # mismatch of keys. NAs will appear
+data2
+```
+```{python}
+pd.DataFrame(data2)# # if the index argument is not supplied, it defaults to integer index start at 0
+```
+
+
+**Convert a dictionary to a DataFrame.**
+
+- The keys form column names, and the values are lists/arrays of values. 
+
+- The arrays need to be of the same length.
+
+
+```{python}
+data3 = {'a': [1, 2, 3], 'b': ['x','y','z']}
+data3 
+pd.DataFrame(data3)
+```
+
+
+```{python, eval = FALSE}
+data4 = {'a': [1, 2, 3, 4], 'b': ['x','y','z']} # arrays are not of the same length
+pd.DataFrame(data4)
+```
+
+The code above will get the following error 
+
+> ValueError: arrays must all be same length
+
+**Turn a 2D Numpy array (matrix) into a DataFrame by adding column names and optionally
+index values.**
+
+```{python}
+data = np.random.randint(10, size = 10).reshape((5,2))
+print(data)
+```
+
+```{python}
+print(pd.DataFrame(data, columns = ["x","y"], index = ['a','b','c','d','e']))
+```
+
+### Subsetting the DataFrame
+
+In a DataFrame, the `.columns` attribute show the column names and the `.index` attribute
+show the row names.
+
+```{python}
+print(avengers)
+```
+
+```{python}
+print(avengers.columns)
+```
+
+```{python}
+print(avengers.index)
+```
+
+You can select a column using:
+
+- dot notation 
+
+```{python}
+avengers.actor # extracting the column
+```
+
+
+- single square brackets.
+
+```{python}
+avengers["hero name"] # if there's a space in the column name, you'll need to use square brackets
+```
+
+Single column is returned as series. For example, `avengers.actor` is a Pandas Series.
+```{python}
+type(avengers.actor)
+```
+
+
+**Subset**
+
+```{python}
+print(avengers) # just for ease of inspection
+```
+```{python}
+avengers.actor[1] # 0 based indexing
+avengers.actor[avengers.age == 42]
+avengers["hero name"]['Steve Rogers']
+avengers["hero name"]['Steve Rogers':'Tony Stark']
+```
+### `.loc` 
+
+The `.loc` attribute can be used to subset the DataFrame using the index names.
+
+```{python}
+avengers.loc['Thor'] # subset based on location to get a row
+```
+
+```{python}
+print(type(avengers.loc['Thor']))
+print(type(avengers.loc['Thor'].values))  # the values are of mixed type but is still a numpy array. 
+# this is possible because it is a structured numpy array. (covered in "Python for Data Science" chapter 2)
+```
+
+```{python}
+print(avengers.loc[ : ,'age']) # subset based on location to get a column
+```
+
+```{python}
+print(type(avengers.loc[:,'age']))  #the object is a pandas series
+print(type(avengers.loc[:,'age'].values))
+```
+
+```{python}
+avengers.loc['Steve Rogers','age']  # you can provide a pair of 'coordinates' to get a particular value
+```
+
+
+### `.iloc`
+
+The `.iloc` attribute can be used to subset the DataFrame using the index position (zero-indexed).
+
+```{python}
+print(avengers) # just for ease of inspection
+```
+
+```{python}
+avengers.iloc[3,] # subset based on index location
+```
+
+```{python}
+avengers.iloc[0, 1] # pair of coordinates
+```
+
+### Assignment with `.loc` and `.iloc`
+
+The `.loc` and `.iloc` attributes can be used in conjunction with assignment.
+
+```{python}
+# set values individually
+avengers.loc['Thor', 'age'] = 1500
+avengers.loc['Thor', 'hero name'] = 'Thor'
+avengers
+```
+
+```{python}
+# assign multiple values at once
+avengers.loc['Thor', ['hero name', 'age']] = [np.NaN, 1493]
+avengers
+```
+
+### `.loc` vs `.iloc` with numeric index
+
+The following DataFrame has a numeric index, but it starts at 1 instead of 0.
+
+```{python}
+data = [{'a': 11, 'b': 2},
+{'a': 12, 'b': 4},
+{'a': 13, 'b': 6}]
+df = pd.DataFrame(data, index = [1, 2, 3])
+df
+```
+
+<span style="color:blue">**`.loc` always uses the actual index.**</span>.
+
+```{python}
+df.loc[1, :] 
+```
+<span style="color:blue">**`.iloc` always uses the position using a 0-based index.**</span>.
+
+```{python}
+df.iloc[1, :]
+```
+```{python, eval = FALSE}
+df.iloc[3, :] # using a position that doesn't exist results in an exception. 
+```
+> IndexError: single positional indexer is out-of-bounds
+
+
+### Boolean subsetting examples with `.loc`
+
+```{python}
+print(avengers) # just for ease of inspection
+```
+
+```{python}
+# select avengers whose age is less than 50 and greater than 40
+# select the columns 'hero name' and 'age'
+avengers.loc[ (avengers.age < 50) & (avengers.age > 40), ['hero name', 'age']]
+```
+
+
+```{python}
+# Use the index of the DataFrame, treat it as a string, and select rows that start with B
+avengers.loc[ avengers.index.str.startswith('B'), : ]
+```
+```{python}
+# Use the index of the DataFrame, treat it as a string,
+# find the character capital R. Find returns -1 if it does not find the letter
+# We select rows that did not result in -1, which means it does contain a capital R
+avengers.loc[ avengers.index.str.find('R') != -1, : ]
+```
+
+`{python}avengers.loc[ avengers.index.str.find('X') != -1, : ]` gets the message 
+
+> Error: unexpected ':' in "avengers.loc[ avengers.index.str.find('X') != -1, :"
+
+
+### Other commonly used DataFrame attributes
+
+```{python}
+avengers.T # the transpose
+```
+
+```{python}
+avengers.dtypes # the data types contained in the DataFrame
+```
+
+```{python}
+avengers.shape # shape
+```
+
+
+### Importing Data with pd.read_csv()
+
+```{python}
+# Titanic Dataset
+url = 'https://assets.datacamp.com/production/course_1607/datasets/titanic_sub.csv'
+titanic = pd.read_csv(url)
+```
+
+```{python}
+titanic
+```
+
+
+```{python}
+titanic.shape
+```
+
+```{python}
+titanic.columns
+```
+
+
+```{python}
+titanic.index
+```
+
+```{python}
+titanic.info()
+```
+
+```{python}
+titanic.describe() # displays summary statistics of the numeric variables
+```
+
+
 

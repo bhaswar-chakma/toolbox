@@ -143,6 +143,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="python.html"><a href="python.html#pandas"><i class="fa fa-check"></i><b>1.1</b> Pandas</a>
 <ul>
 <li class="chapter" data-level="1.1.1" data-path="python.html"><a href="python.html#series"><i class="fa fa-check"></i><b>1.1.1</b> Series</a></li>
+<li class="chapter" data-level="1.1.2" data-path="python.html"><a href="python.html#dataframe"><i class="fa fa-check"></i><b>1.1.2</b> DataFrame</a></li>
+<li class="chapter" data-level="1.1.3" data-path="python.html"><a href="python.html#subsetting-the-dataframe"><i class="fa fa-check"></i><b>1.1.3</b> Subsetting the DataFrame</a></li>
+<li class="chapter" data-level="1.1.4" data-path="python.html"><a href="python.html#loc"><i class="fa fa-check"></i><b>1.1.4</b> <code>.loc</code></a></li>
+<li class="chapter" data-level="1.1.5" data-path="python.html"><a href="python.html#iloc"><i class="fa fa-check"></i><b>1.1.5</b> <code>.iloc</code></a></li>
+<li class="chapter" data-level="1.1.6" data-path="python.html"><a href="python.html#assignment-with-.loc-and-.iloc"><i class="fa fa-check"></i><b>1.1.6</b> Assignment with <code>.loc</code> and <code>.iloc</code></a></li>
+<li class="chapter" data-level="1.1.7" data-path="python.html"><a href="python.html#loc-vs-.iloc-with-numeric-index"><i class="fa fa-check"></i><b>1.1.7</b> <code>.loc</code> vs <code>.iloc</code> with numeric index</a></li>
+<li class="chapter" data-level="1.1.8" data-path="python.html"><a href="python.html#boolean-subsetting-examples-with-.loc"><i class="fa fa-check"></i><b>1.1.8</b> Boolean subsetting examples with <code>.loc</code></a></li>
+<li class="chapter" data-level="1.1.9" data-path="python.html"><a href="python.html#other-commonly-used-dataframe-attributes"><i class="fa fa-check"></i><b>1.1.9</b> Other commonly used DataFrame attributes</a></li>
+<li class="chapter" data-level="1.1.10" data-path="python.html"><a href="python.html#importing-data-with-pd.read_csv"><i class="fa fa-check"></i><b>1.1.10</b> Importing Data with pd.read_csv()</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
@@ -171,6 +180,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <div id="pandas" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Pandas</h2>
+<center>
+<img src="https://pandas.pydata.org/static/img/pandas.svg" width="300" alt="cognitiveclass.ai logo"  />
+</center>
 <p>NumPy creates ndarrays that must contain values that are of the same data type.
 Pandas creates dataframes. Each column in a dataframe is an ndarray. This allows us to have
 traditional tables of data where each column can be a different data type.</p>
@@ -260,6 +272,426 @@ traditional tables of data where each column can be a different data type.</p>
 ## b    0.50
 ## c    0.75
 ## dtype: float64</code></pre>
+<p><strong>Create a series from a python dictionary</strong></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="python.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remember, dictionary construction uses curly braces {}</span></span>
+<span id="cb40-2"><a href="python.html#cb40-2" aria-hidden="true" tabindex="-1"></a>samp_dict <span class="op">=</span> {<span class="st">&#39;Tony Stark&#39;</span>: <span class="st">&quot;Robert Downey Jr.&quot;</span>,</span>
+<span id="cb40-3"><a href="python.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Steve Rogers&#39;</span>: <span class="st">&quot;Chris Evans&quot;</span>,</span>
+<span id="cb40-4"><a href="python.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="st">&quot;Scarlett Johansson&quot;</span>,</span>
+<span id="cb40-5"><a href="python.html#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Bruce Banner&#39;</span>: <span class="st">&quot;Mark Ruffalo&quot;</span>,</span>
+<span id="cb40-6"><a href="python.html#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Thor&#39;</span>: <span class="st">&quot;Chris Hemsworth&quot;</span>,</span>
+<span id="cb40-7"><a href="python.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Clint Barton&#39;</span>: <span class="st">&quot;Jeremy Renner&quot;</span>}</span>
+<span id="cb40-8"><a href="python.html#cb40-8" aria-hidden="true" tabindex="-1"></a>samp_series <span class="op">=</span> pd.Series(samp_dict)</span>
+<span id="cb40-9"><a href="python.html#cb40-9" aria-hidden="true" tabindex="-1"></a>samp_series</span></code></pre></div>
+<pre><code>## Tony Stark           Robert Downey Jr.
+## Steve Rogers               Chris Evans
+## Natasha Romanoff    Scarlett Johansson
+## Bruce Banner              Mark Ruffalo
+## Thor                   Chris Hemsworth
+## Clint Barton             Jeremy Renner
+## dtype: object</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="python.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samp_series.index) <span class="co"># dtype = object is for strings but allows mixed data types.</span></span></code></pre></div>
+<pre><code>## Index([&#39;Tony Stark&#39;, &#39;Steve Rogers&#39;, &#39;Natasha Romanoff&#39;, &#39;Bruce Banner&#39;,
+##        &#39;Thor&#39;, &#39;Clint Barton&#39;],
+##       dtype=&#39;object&#39;)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="python.html#cb44-1" aria-hidden="true" tabindex="-1"></a>samp_series.values</span></code></pre></div>
+<pre><code>## array([&#39;Robert Downey Jr.&#39;, &#39;Chris Evans&#39;, &#39;Scarlett Johansson&#39;,
+##        &#39;Mark Ruffalo&#39;, &#39;Chris Hemsworth&#39;, &#39;Jeremy Renner&#39;], dtype=object)</code></pre>
+<p>Another example:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="python.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ages during the First Avengers film (2012)</span></span>
+<span id="cb46-2"><a href="python.html#cb46-2" aria-hidden="true" tabindex="-1"></a>age_dict <span class="op">=</span> {<span class="st">&#39;Thor&#39;</span>: <span class="dv">1493</span>,</span>
+<span id="cb46-3"><a href="python.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Steve Rogers&#39;</span>: <span class="dv">104</span>,</span>
+<span id="cb46-4"><a href="python.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="dv">28</span>,</span>
+<span id="cb46-5"><a href="python.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Clint Barton&#39;</span>: <span class="dv">41</span>,</span>
+<span id="cb46-6"><a href="python.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Tony Stark&#39;</span>: <span class="dv">42</span>,</span>
+<span id="cb46-7"><a href="python.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Bruce Banner&#39;</span>: <span class="dv">42</span>} <span class="co"># note that the dictionary order is not same here</span></span>
+<span id="cb46-8"><a href="python.html#cb46-8" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> pd.Series(age_dict)</span>
+<span id="cb46-9"><a href="python.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ages)</span></code></pre></div>
+<pre><code>## Thor                1493
+## Steve Rogers         104
+## Natasha Romanoff      28
+## Clint Barton          41
+## Tony Stark            42
+## Bruce Banner          42
+## dtype: int64</code></pre>
+<p><strong>Use <code>np.NaN</code> to specify missing values.</strong></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="python.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ages during the First Avengers film (2012)</span></span>
+<span id="cb48-2"><a href="python.html#cb48-2" aria-hidden="true" tabindex="-1"></a>hero_dict <span class="op">=</span> {<span class="st">&#39;Thor&#39;</span>: np.NaN,</span>
+<span id="cb48-3"><a href="python.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Steve Rogers&#39;</span>: <span class="st">&#39;Captain America&#39;</span>,</span>
+<span id="cb48-4"><a href="python.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="st">&#39;Black Widow&#39;</span>,</span>
+<span id="cb48-5"><a href="python.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Clint Barton&#39;</span>: <span class="st">&#39;Hawkeye&#39;</span>,</span>
+<span id="cb48-6"><a href="python.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Tony Stark&#39;</span>: <span class="st">&#39;Iron Man&#39;</span>,</span>
+<span id="cb48-7"><a href="python.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Bruce Banner&#39;</span>: <span class="st">&#39;Hulk&#39;</span>}</span>
+<span id="cb48-8"><a href="python.html#cb48-8" aria-hidden="true" tabindex="-1"></a>hero_names <span class="op">=</span> pd.Series(hero_dict)</span>
+<span id="cb48-9"><a href="python.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hero_names)</span></code></pre></div>
+<pre><code>## Thor                            NaN
+## Steve Rogers        Captain America
+## Natasha Romanoff        Black Widow
+## Clint Barton                Hawkeye
+## Tony Stark                 Iron Man
+## Bruce Banner                   Hulk
+## dtype: object</code></pre>
+</div>
+<div id="dataframe" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> DataFrame</h3>
+<p>There are multiple ways of creating a DataFrame in Pandas:</p>
+<p><strong>Create a dataframe by providing a dictionary of series objects.</strong></p>
+<ul>
+<li><p>The dictionary key becomes the column name. The dictionary values become values.</p></li>
+<li><p>The keys within the dictionaries become the index.</p></li>
+</ul>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="python.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we previously created the following series</span></span>
+<span id="cb50-2"><a href="python.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(samp_series)</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="python.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(hero_names)</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="python.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(ages)</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="python.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now create data frame using those series</span></span>
+<span id="cb56-2"><a href="python.html#cb56-2" aria-hidden="true" tabindex="-1"></a>avengers <span class="op">=</span> pd.DataFrame({<span class="st">&#39;actor&#39;</span>: samp_series, <span class="st">&#39;hero name&#39;</span>: hero_names, <span class="st">&#39;age&#39;</span>: ages})</span>
+<span id="cb56-3"><a href="python.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the DataFrame will match the indices and sort them</span></span>
+<span id="cb56-4"><a href="python.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers)</span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth              NaN  1493
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="python.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(avengers)) <span class="co"># this is a DataFrame object</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</code></pre>
+<p>The data is a list of dictionaries. Each dictionary needs to have the same set of keys,
+otherwise, NaNs will appear.</p>
+<p><strong>Data is a list of dictionaries</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="python.html#cb60-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [{<span class="st">&#39;a&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">0</span>},</span>
+<span id="cb60-2"><a href="python.html#cb60-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
+<span id="cb60-3"><a href="python.html#cb60-3" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">5</span>}]</span>
+<span id="cb60-4"><a href="python.html#cb60-4" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
+<pre><code>## [{&#39;a&#39;: 0, &#39;b&#39;: 0}, {&#39;a&#39;: 1, &#39;b&#39;: 2}, {&#39;a&#39;: 2, &#39;b&#39;: 5}]</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="python.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(data, index <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span></code></pre></div>
+<pre><code>##    a  b
+## 1  0  0
+## 2  1  2
+## 3  2  5</code></pre>
+<p>Mismatch of keys produces NaN</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="python.html#cb64-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> [{<span class="st">&#39;a&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">0</span>},</span>
+<span id="cb64-2"><a href="python.html#cb64-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
+<span id="cb64-3"><a href="python.html#cb64-3" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">5</span>}] <span class="co"># mismatch of keys. NAs will appear</span></span>
+<span id="cb64-4"><a href="python.html#cb64-4" aria-hidden="true" tabindex="-1"></a>data2</span></code></pre></div>
+<pre><code>## [{&#39;a&#39;: 0, &#39;b&#39;: 0}, {&#39;a&#39;: 1, &#39;b&#39;: 2}, {&#39;a&#39;: 2, &#39;c&#39;: 5}]</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="python.html#cb66-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(data2)<span class="co"># # if the index argument is not supplied, it defaults to integer index start at 0</span></span></code></pre></div>
+<pre><code>##    a    b    c
+## 0  0  0.0  NaN
+## 1  1  2.0  NaN
+## 2  2  NaN  5.0</code></pre>
+<p><strong>Convert a dictionary to a DataFrame.</strong></p>
+<ul>
+<li><p>The keys form column names, and the values are lists/arrays of values.</p></li>
+<li><p>The arrays need to be of the same length.</p></li>
+</ul>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb68-1"><a href="python.html#cb68-1" aria-hidden="true" tabindex="-1"></a>data3 <span class="op">=</span> {<span class="st">&#39;a&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], <span class="st">&#39;b&#39;</span>: [<span class="st">&#39;x&#39;</span>,<span class="st">&#39;y&#39;</span>,<span class="st">&#39;z&#39;</span>]}</span>
+<span id="cb68-2"><a href="python.html#cb68-2" aria-hidden="true" tabindex="-1"></a>data3 </span></code></pre></div>
+<pre><code>## {&#39;a&#39;: [1, 2, 3], &#39;b&#39;: [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;]}</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb70-1"><a href="python.html#cb70-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(data3)</span></code></pre></div>
+<pre><code>##    a  b
+## 0  1  x
+## 1  2  y
+## 2  3  z</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb72-1"><a href="python.html#cb72-1" aria-hidden="true" tabindex="-1"></a>data4 <span class="op">=</span> {<span class="st">&#39;a&#39;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], <span class="st">&#39;b&#39;</span>: [<span class="st">&#39;x&#39;</span>,<span class="st">&#39;y&#39;</span>,<span class="st">&#39;z&#39;</span>]} <span class="co"># arrays are not of the same length</span></span>
+<span id="cb72-2"><a href="python.html#cb72-2" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(data4)</span></code></pre></div>
+<p>The code above will get the following error</p>
+<blockquote>
+<p>ValueError: arrays must all be same length</p>
+</blockquote>
+<p><strong>Turn a 2D Numpy array (matrix) into a DataFrame by adding column names and optionally
+index values.</strong></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="python.html#cb73-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size <span class="op">=</span> <span class="dv">10</span>).reshape((<span class="dv">5</span>,<span class="dv">2</span>))</span>
+<span id="cb73-2"><a href="python.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div>
+<pre><code>## [[4 5]
+##  [4 4]
+##  [6 2]
+##  [7 3]
+##  [6 7]]</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="python.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(data, columns <span class="op">=</span> [<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>], index <span class="op">=</span> [<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;d&#39;</span>,<span class="st">&#39;e&#39;</span>]))</span></code></pre></div>
+<pre><code>##    x  y
+## a  4  5
+## b  4  4
+## c  6  2
+## d  7  3
+## e  6  7</code></pre>
+</div>
+<div id="subsetting-the-dataframe" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Subsetting the DataFrame</h3>
+<p>In a DataFrame, the <code>.columns</code> attribute show the column names and the <code>.index</code> attribute
+show the row names.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="python.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers)</span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth              NaN  1493
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="python.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers.columns)</span></code></pre></div>
+<pre><code>## Index([&#39;actor&#39;, &#39;hero name&#39;, &#39;age&#39;], dtype=&#39;object&#39;)</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="python.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers.index)</span></code></pre></div>
+<pre><code>## Index([&#39;Bruce Banner&#39;, &#39;Clint Barton&#39;, &#39;Natasha Romanoff&#39;, &#39;Steve Rogers&#39;,
+##        &#39;Thor&#39;, &#39;Tony Stark&#39;],
+##       dtype=&#39;object&#39;)</code></pre>
+<p>You can select a column using:</p>
+<ul>
+<li>dot notation</li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="python.html#cb83-1" aria-hidden="true" tabindex="-1"></a>avengers.actor <span class="co"># extracting the column</span></span></code></pre></div>
+<pre><code>## Bruce Banner              Mark Ruffalo
+## Clint Barton             Jeremy Renner
+## Natasha Romanoff    Scarlett Johansson
+## Steve Rogers               Chris Evans
+## Thor                   Chris Hemsworth
+## Tony Stark           Robert Downey Jr.
+## Name: actor, dtype: object</code></pre>
+<ul>
+<li>single square brackets.</li>
+</ul>
+<div class="sourceCode" id="cb85"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb85-1"><a href="python.html#cb85-1" aria-hidden="true" tabindex="-1"></a>avengers[<span class="st">&quot;hero name&quot;</span>] <span class="co"># if there&#39;s a space in the column name, you&#39;ll need to use square brackets</span></span></code></pre></div>
+<pre><code>## Bruce Banner                   Hulk
+## Clint Barton                Hawkeye
+## Natasha Romanoff        Black Widow
+## Steve Rogers        Captain America
+## Thor                            NaN
+## Tony Stark                 Iron Man
+## Name: hero name, dtype: object</code></pre>
+<p>Single column is returned as series. For example, <code>avengers.actor</code> is a Pandas Series.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb87-1"><a href="python.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(avengers.actor)</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<p><strong>Subset</strong></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb89-1"><a href="python.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers) <span class="co"># just for ease of inspection</span></span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth              NaN  1493
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="python.html#cb91-1" aria-hidden="true" tabindex="-1"></a>avengers.actor[<span class="dv">1</span>] <span class="co"># 0 based indexing</span></span></code></pre></div>
+<pre><code>## &#39;Jeremy Renner&#39;</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="python.html#cb93-1" aria-hidden="true" tabindex="-1"></a>avengers.actor[avengers.age <span class="op">==</span> <span class="dv">42</span>]</span></code></pre></div>
+<pre><code>## Bruce Banner         Mark Ruffalo
+## Tony Stark      Robert Downey Jr.
+## Name: actor, dtype: object</code></pre>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="python.html#cb95-1" aria-hidden="true" tabindex="-1"></a>avengers[<span class="st">&quot;hero name&quot;</span>][<span class="st">&#39;Steve Rogers&#39;</span>]</span></code></pre></div>
+<pre><code>## &#39;Captain America&#39;</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="python.html#cb97-1" aria-hidden="true" tabindex="-1"></a>avengers[<span class="st">&quot;hero name&quot;</span>][<span class="st">&#39;Steve Rogers&#39;</span>:<span class="st">&#39;Tony Stark&#39;</span>]</span></code></pre></div>
+<pre><code>## Steve Rogers    Captain America
+## Thor                        NaN
+## Tony Stark             Iron Man
+## Name: hero name, dtype: object</code></pre>
+</div>
+<div id="loc" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> <code>.loc</code></h3>
+<p>The <code>.loc</code> attribute can be used to subset the DataFrame using the index names.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="python.html#cb99-1" aria-hidden="true" tabindex="-1"></a>avengers.loc[<span class="st">&#39;Thor&#39;</span>] <span class="co"># subset based on location to get a row</span></span></code></pre></div>
+<pre><code>## actor        Chris Hemsworth
+## hero name                NaN
+## age                     1493
+## Name: Thor, dtype: object</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="python.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(avengers.loc[<span class="st">&#39;Thor&#39;</span>]))</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="python.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(avengers.loc[<span class="st">&#39;Thor&#39;</span>].values))  <span class="co"># the values are of mixed type but is still a numpy array. </span></span>
+<span id="cb103-2"><a href="python.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is possible because it is a structured numpy array. (covered in &quot;Python for Data Science&quot; chapter 2)</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="python.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers.loc[ : ,<span class="st">&#39;age&#39;</span>]) <span class="co"># subset based on location to get a column</span></span></code></pre></div>
+<pre><code>## Bruce Banner          42
+## Clint Barton          41
+## Natasha Romanoff      28
+## Steve Rogers         104
+## Thor                1493
+## Tony Stark            42
+## Name: age, dtype: int64</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="python.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(avengers.loc[:,<span class="st">&#39;age&#39;</span>]))  <span class="co">#the object is a pandas series</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb109-1"><a href="python.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(avengers.loc[:,<span class="st">&#39;age&#39;</span>].values))</span></code></pre></div>
+<pre><code>## &lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb111-1"><a href="python.html#cb111-1" aria-hidden="true" tabindex="-1"></a>avengers.loc[<span class="st">&#39;Steve Rogers&#39;</span>,<span class="st">&#39;age&#39;</span>]  <span class="co"># you can provide a pair of &#39;coordinates&#39; to get a particular value</span></span></code></pre></div>
+<pre><code>## 104</code></pre>
+</div>
+<div id="iloc" class="section level3" number="1.1.5">
+<h3><span class="header-section-number">1.1.5</span> <code>.iloc</code></h3>
+<p>The <code>.iloc</code> attribute can be used to subset the DataFrame using the index position (zero-indexed).</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb113-1"><a href="python.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers) <span class="co"># just for ease of inspection</span></span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth              NaN  1493
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+<div class="sourceCode" id="cb115"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb115-1"><a href="python.html#cb115-1" aria-hidden="true" tabindex="-1"></a>avengers.iloc[<span class="dv">3</span>,] <span class="co"># subset based on index location</span></span></code></pre></div>
+<pre><code>## actor            Chris Evans
+## hero name    Captain America
+## age                      104
+## Name: Steve Rogers, dtype: object</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb117-1"><a href="python.html#cb117-1" aria-hidden="true" tabindex="-1"></a>avengers.iloc[<span class="dv">0</span>, <span class="dv">1</span>] <span class="co"># pair of coordinates</span></span></code></pre></div>
+<pre><code>## &#39;Hulk&#39;</code></pre>
+</div>
+<div id="assignment-with-.loc-and-.iloc" class="section level3" number="1.1.6">
+<h3><span class="header-section-number">1.1.6</span> Assignment with <code>.loc</code> and <code>.iloc</code></h3>
+<p>The <code>.loc</code> and <code>.iloc</code> attributes can be used in conjunction with assignment.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb119-1"><a href="python.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set values individually</span></span>
+<span id="cb119-2"><a href="python.html#cb119-2" aria-hidden="true" tabindex="-1"></a>avengers.loc[<span class="st">&#39;Thor&#39;</span>, <span class="st">&#39;age&#39;</span>] <span class="op">=</span> <span class="dv">1500</span></span>
+<span id="cb119-3"><a href="python.html#cb119-3" aria-hidden="true" tabindex="-1"></a>avengers.loc[<span class="st">&#39;Thor&#39;</span>, <span class="st">&#39;hero name&#39;</span>] <span class="op">=</span> <span class="st">&#39;Thor&#39;</span></span>
+<span id="cb119-4"><a href="python.html#cb119-4" aria-hidden="true" tabindex="-1"></a>avengers</span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth             Thor  1500
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+<div class="sourceCode" id="cb121"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb121-1"><a href="python.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign multiple values at once</span></span>
+<span id="cb121-2"><a href="python.html#cb121-2" aria-hidden="true" tabindex="-1"></a>avengers.loc[<span class="st">&#39;Thor&#39;</span>, [<span class="st">&#39;hero name&#39;</span>, <span class="st">&#39;age&#39;</span>]] <span class="op">=</span> [np.NaN, <span class="dv">1493</span>]</span>
+<span id="cb121-3"><a href="python.html#cb121-3" aria-hidden="true" tabindex="-1"></a>avengers</span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth              NaN  1493
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+</div>
+<div id="loc-vs-.iloc-with-numeric-index" class="section level3" number="1.1.7">
+<h3><span class="header-section-number">1.1.7</span> <code>.loc</code> vs <code>.iloc</code> with numeric index</h3>
+<p>The following DataFrame has a numeric index, but it starts at 1 instead of 0.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb123-1"><a href="python.html#cb123-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [{<span class="st">&#39;a&#39;</span>: <span class="dv">11</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
+<span id="cb123-2"><a href="python.html#cb123-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">12</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">4</span>},</span>
+<span id="cb123-3"><a href="python.html#cb123-3" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">13</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">6</span>}]</span>
+<span id="cb123-4"><a href="python.html#cb123-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, index <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb123-5"><a href="python.html#cb123-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##     a  b
+## 1  11  2
+## 2  12  4
+## 3  13  6</code></pre>
+<p><span style="color:blue"><strong><code>.loc</code> always uses the actual index.</strong></span>.</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb125-1"><a href="python.html#cb125-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="dv">1</span>, :] </span></code></pre></div>
+<pre><code>## a    11
+## b     2
+## Name: 1, dtype: int64</code></pre>
+<p><span style="color:blue"><strong><code>.iloc</code> always uses the position using a 0-based index.</strong></span>.</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb127-1"><a href="python.html#cb127-1" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">1</span>, :]</span></code></pre></div>
+<pre><code>## a    12
+## b     4
+## Name: 2, dtype: int64</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb129-1"><a href="python.html#cb129-1" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">3</span>, :] <span class="co"># using a position that doesn&#39;t exist results in an exception. </span></span></code></pre></div>
+<blockquote>
+<p>IndexError: single positional indexer is out-of-bounds</p>
+</blockquote>
+</div>
+<div id="boolean-subsetting-examples-with-.loc" class="section level3" number="1.1.8">
+<h3><span class="header-section-number">1.1.8</span> Boolean subsetting examples with <code>.loc</code></h3>
+<div class="sourceCode" id="cb130"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb130-1"><a href="python.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(avengers) <span class="co"># just for ease of inspection</span></span></code></pre></div>
+<pre><code>##                                actor        hero name   age
+## Bruce Banner            Mark Ruffalo             Hulk    42
+## Clint Barton           Jeremy Renner          Hawkeye    41
+## Natasha Romanoff  Scarlett Johansson      Black Widow    28
+## Steve Rogers             Chris Evans  Captain America   104
+## Thor                 Chris Hemsworth              NaN  1493
+## Tony Stark         Robert Downey Jr.         Iron Man    42</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb132-1"><a href="python.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select avengers whose age is less than 50 and greater than 40</span></span>
+<span id="cb132-2"><a href="python.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="co"># select the columns &#39;hero name&#39; and &#39;age&#39;</span></span>
+<span id="cb132-3"><a href="python.html#cb132-3" aria-hidden="true" tabindex="-1"></a>avengers.loc[ (avengers.age <span class="op">&lt;</span> <span class="dv">50</span>) <span class="op">&amp;</span> (avengers.age <span class="op">&gt;</span> <span class="dv">40</span>), [<span class="st">&#39;hero name&#39;</span>, <span class="st">&#39;age&#39;</span>]]</span></code></pre></div>
+<pre><code>##              hero name  age
+## Bruce Banner      Hulk   42
+## Clint Barton   Hawkeye   41
+## Tony Stark    Iron Man   42</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb134-1"><a href="python.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the index of the DataFrame, treat it as a string, and select rows that start with B</span></span>
+<span id="cb134-2"><a href="python.html#cb134-2" aria-hidden="true" tabindex="-1"></a>avengers.loc[ avengers.index.<span class="bu">str</span>.startswith(<span class="st">&#39;B&#39;</span>), : ]</span></code></pre></div>
+<pre><code>##                      actor hero name  age
+## Bruce Banner  Mark Ruffalo      Hulk   42</code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb136-1"><a href="python.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the index of the DataFrame, treat it as a string,</span></span>
+<span id="cb136-2"><a href="python.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="co"># find the character capital R. Find returns -1 if it does not find the letter</span></span>
+<span id="cb136-3"><a href="python.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We select rows that did not result in -1, which means it does contain a capital R</span></span>
+<span id="cb136-4"><a href="python.html#cb136-4" aria-hidden="true" tabindex="-1"></a>avengers.loc[ avengers.index.<span class="bu">str</span>.find(<span class="st">&#39;R&#39;</span>) <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span>, : ]</span></code></pre></div>
+<pre><code>##                                actor        hero name  age
+## Natasha Romanoff  Scarlett Johansson      Black Widow   28
+## Steve Rogers             Chris Evans  Captain America  104</code></pre>
+<p><code>{python}avengers.loc[ avengers.index.str.find('X') != -1, : ]</code> gets the message</p>
+<blockquote>
+<p>Error: unexpected ‘:’ in “avengers.loc[ avengers.index.str.find(‘X’) != -1, :”</p>
+</blockquote>
+</div>
+<div id="other-commonly-used-dataframe-attributes" class="section level3" number="1.1.9">
+<h3><span class="header-section-number">1.1.9</span> Other commonly used DataFrame attributes</h3>
+<div class="sourceCode" id="cb138"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb138-1"><a href="python.html#cb138-1" aria-hidden="true" tabindex="-1"></a>avengers.T <span class="co"># the transpose</span></span></code></pre></div>
+<pre><code>##            Bruce Banner   Clint Barton  ...             Thor         Tony Stark
+## actor      Mark Ruffalo  Jeremy Renner  ...  Chris Hemsworth  Robert Downey Jr.
+## hero name          Hulk        Hawkeye  ...              NaN           Iron Man
+## age                  42             41  ...             1493                 42
+## 
+## [3 rows x 6 columns]</code></pre>
+<div class="sourceCode" id="cb140"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb140-1"><a href="python.html#cb140-1" aria-hidden="true" tabindex="-1"></a>avengers.dtypes <span class="co"># the data types contained in the DataFrame</span></span></code></pre></div>
+<pre><code>## actor        object
+## hero name    object
+## age           int64
+## dtype: object</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb142-1"><a href="python.html#cb142-1" aria-hidden="true" tabindex="-1"></a>avengers.shape <span class="co"># shape</span></span></code></pre></div>
+<pre><code>## (6, 3)</code></pre>
+</div>
+<div id="importing-data-with-pd.read_csv" class="section level3" number="1.1.10">
+<h3><span class="header-section-number">1.1.10</span> Importing Data with pd.read_csv()</h3>
+<div class="sourceCode" id="cb144"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb144-1"><a href="python.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Titanic Dataset</span></span>
+<span id="cb144-2"><a href="python.html#cb144-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&#39;https://assets.datacamp.com/production/course_1607/datasets/titanic_sub.csv&#39;</span></span>
+<span id="cb144-3"><a href="python.html#cb144-3" aria-hidden="true" tabindex="-1"></a>titanic <span class="op">=</span> pd.read_csv(url)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb145-1"><a href="python.html#cb145-1" aria-hidden="true" tabindex="-1"></a>titanic</span></code></pre></div>
+<pre><code>##      PassengerId  Survived  Pclass  ...     Fare  Cabin  Embarked
+## 0              1         0       3  ...   7.2500    NaN         S
+## 1              2         1       1  ...  71.2833    C85         C
+## 2              3         1       3  ...   7.9250    NaN         S
+## 3              4         1       1  ...  53.1000   C123         S
+## 4              5         0       3  ...   8.0500    NaN         S
+## ..           ...       ...     ...  ...      ...    ...       ...
+## 886          887         0       2  ...  13.0000    NaN         S
+## 887          888         1       1  ...  30.0000    B42         S
+## 888          889         0       3  ...  23.4500    NaN         S
+## 889          890         1       1  ...  30.0000   C148         C
+## 890          891         0       3  ...   7.7500    NaN         Q
+## 
+## [891 rows x 11 columns]</code></pre>
+<div class="sourceCode" id="cb147"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb147-1"><a href="python.html#cb147-1" aria-hidden="true" tabindex="-1"></a>titanic.shape</span></code></pre></div>
+<pre><code>## (891, 11)</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb149-1"><a href="python.html#cb149-1" aria-hidden="true" tabindex="-1"></a>titanic.columns</span></code></pre></div>
+<pre><code>## Index([&#39;PassengerId&#39;, &#39;Survived&#39;, &#39;Pclass&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;SibSp&#39;, &#39;Parch&#39;,
+##        &#39;Ticket&#39;, &#39;Fare&#39;, &#39;Cabin&#39;, &#39;Embarked&#39;],
+##       dtype=&#39;object&#39;)</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb151-1"><a href="python.html#cb151-1" aria-hidden="true" tabindex="-1"></a>titanic.index</span></code></pre></div>
+<pre><code>## RangeIndex(start=0, stop=891, step=1)</code></pre>
+<div class="sourceCode" id="cb153"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb153-1"><a href="python.html#cb153-1" aria-hidden="true" tabindex="-1"></a>titanic.info()</span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+## RangeIndex: 891 entries, 0 to 890
+## Data columns (total 11 columns):
+## PassengerId    891 non-null int64
+## Survived       891 non-null int64
+## Pclass         891 non-null int64
+## Sex            891 non-null object
+## Age            714 non-null float64
+## SibSp          891 non-null int64
+## Parch          891 non-null int64
+## Ticket         891 non-null object
+## Fare           891 non-null float64
+## Cabin          204 non-null object
+## Embarked       889 non-null object
+## dtypes: float64(2), int64(5), object(4)
+## memory usage: 76.7+ KB</code></pre>
+<div class="sourceCode" id="cb155"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb155-1"><a href="python.html#cb155-1" aria-hidden="true" tabindex="-1"></a>titanic.describe() <span class="co"># displays summary statistics of the numeric variables</span></span></code></pre></div>
+<pre><code>##        PassengerId    Survived      Pclass  ...       SibSp       Parch        Fare
+## count   891.000000  891.000000  891.000000  ...  891.000000  891.000000  891.000000
+## mean    446.000000    0.383838    2.308642  ...    0.523008    0.381594   32.204208
+## std     257.353842    0.486592    0.836071  ...    1.102743    0.806057   49.693429
+## min       1.000000    0.000000    1.000000  ...    0.000000    0.000000    0.000000
+## 25%     223.500000    0.000000    2.000000  ...    0.000000    0.000000    7.910400
+## 50%     446.000000    0.000000    3.000000  ...    0.000000    0.000000   14.454200
+## 75%     668.500000    1.000000    3.000000  ...    1.000000    0.000000   31.000000
+## max     891.000000    1.000000    3.000000  ...    8.000000    6.000000  512.329200
+## 
+## [8 rows x 7 columns]</code></pre>
 
 </div>
 </div>
@@ -315,7 +747,8 @@ gitbook.start({
 },
 "download": ["Toolbox.pdf", "Toolbox.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "subsection",
+"scroll_highlight": true
 }
 });
 });

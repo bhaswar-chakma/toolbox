@@ -1,8 +1,9 @@
 bookdown::gitbook:
-  toc_depth: 3
   css: style.css
   config:
     toc:
+      collapse: subsection
+      scroll_highlight: yes
       before: |
         <li><a href="./">Toolbox</a></li>
 
@@ -14,3 +15,5 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
+
+
