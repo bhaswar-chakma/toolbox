@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-07-05" />
+<meta name="date" content="2021-07-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="index.html#section"></a></li>
 <li class="chapter" data-level="1" data-path="python.html"><a href="python.html"><i class="fa fa-check"></i><b>1</b> Python</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="python.html"><a href="python.html#data-wrangling"><i class="fa fa-check"></i><b>1.1</b> Data Wrangling</a></li>
+<li class="chapter" data-level="1.1" data-path="python.html"><a href="python.html#pandas"><i class="fa fa-check"></i><b>1.1</b> Pandas</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="python.html"><a href="python.html#series"><i class="fa fa-check"></i><b>1.1.1</b> Series</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
 <li class="chapter" data-level="3" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>3</b> SQL</a></li>
@@ -166,20 +169,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="https://www.python.org/static/img/python-logo@2x.png" width="300" alt="cognitiveclass.ai logo"  />
 </center>
-<div id="data-wrangling" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Data Wrangling</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="python.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="python.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Toy Data</span></span>
-<span id="cb1-3"><a href="python.html#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&#39;name&#39;</span>: [<span class="st">&#39;Ted&#39;</span>, <span class="st">&#39;Barney&#39;</span>, <span class="st">&#39;Marshall&#39;</span>,<span class="st">&#39;Robin&#39;</span>, <span class="st">&#39;Lily&#39;</span>],</span>
-<span id="cb1-4"><a href="python.html#cb1-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">&#39;gender&#39;</span>:[<span class="st">&#39;Male&#39;</span>,<span class="st">&#39;Male&#39;</span>,<span class="st">&#39;Male&#39;</span>, <span class="st">&#39;Female&#39;</span>, <span class="st">&#39;Female&#39;</span>]})</span>
-<span id="cb1-5"><a href="python.html#cb1-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
-<pre><code>##        name  gender
-## 0       Ted    Male
-## 1    Barney    Male
-## 2  Marshall    Male
-## 3     Robin  Female
-## 4      Lily  Female</code></pre>
+<div id="pandas" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Pandas</h2>
+<p>NumPy creates ndarrays that must contain values that are of the same data type.
+Pandas creates dataframes. Each column in a dataframe is an ndarray. This allows us to have
+traditional tables of data where each column can be a different data type.</p>
+<p>Important References:</p>
+<ul>
+<li><p>Series: <a href="https://pandas.pydata.org/pandas-docs/stable/reference/series.html" class="uri">https://pandas.pydata.org/pandas-docs/stable/reference/series.html</a></p></li>
+<li><p>DataFrame: <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html" class="uri">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html</a></p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="python.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="python.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div id="series" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Series</h3>
+<p>The basic data structure in pandas is the series. You can construct it in a similar fashion to making a numpy array. The command to make a Series object is
+<code>pd.Series(data, index=index)</code>. Note that the <code>index</code> argument is optional.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="python.html#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>])</span>
+<span id="cb2-2"><a href="python.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div>
+<pre><code>## 0    0.25
+## 1    0.50
+## 2    0.75
+## 3    1.00
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="python.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data)) <span class="co"># data type</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="python.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.values) <span class="co"># data values</span></span></code></pre></div>
+<pre><code>## [0.25 0.5  0.75 1.  ]</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="python.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data.values)) <span class="co"># The values attribute of the series is a numpy array.</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;numpy.ndarray&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="python.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.index) </span></code></pre></div>
+<pre><code>## RangeIndex(start=0, stop=4, step=1)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="python.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data.index)) <span class="co"># the row names are known as the index</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.indexes.range.RangeIndex&#39;&gt;</code></pre>
+<p><strong>You can subset a pandas series like other python objects.</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="python.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data) <span class="co"># example data</span></span></code></pre></div>
+<pre><code>## 0    0.25
+## 1    0.50
+## 2    0.75
+## 3    1.00
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="python.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">1</span>]) <span class="co"># select the 2nd value</span></span></code></pre></div>
+<pre><code>## 0.5</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="python.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data[<span class="dv">1</span>])) <span class="co"># when you select only one value, it simplifies the object</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;numpy.float64&#39;&gt;</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="python.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="dv">1</span>:<span class="dv">3</span>])</span></code></pre></div>
+<pre><code>## 1    0.50
+## 2    0.75
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="python.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(data[<span class="dv">1</span>:<span class="dv">3</span>])) <span class="co"># slicing / selecting multiple values returns a series</span></span></code></pre></div>
+<pre><code>## &lt;class &#39;pandas.core.series.Series&#39;&gt;</code></pre>
+<p><strong>You can also do fancy indexing by subsetting w/a numpy array e.g. repeat observations.</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="python.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[np.array([<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>])])</span></code></pre></div>
+<pre><code>## 1    0.50
+## 0    0.25
+## 1    0.50
+## 2    0.75
+## dtype: float64</code></pre>
+<p><strong>Pandas uses a 0-based index by default. You may also specify the index values.</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="python.html#cb26-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>],</span>
+<span id="cb26-2"><a href="python.html#cb26-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> [<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>])</span>
+<span id="cb26-3"><a href="python.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div>
+<pre><code>## a    0.25
+## b    0.50
+## c    0.75
+## d    1.00
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="python.html#cb28-1" aria-hidden="true" tabindex="-1"></a>data.values</span></code></pre></div>
+<pre><code>## array([0.25, 0.5 , 0.75, 1.  ])</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="python.html#cb30-1" aria-hidden="true" tabindex="-1"></a>data.index</span></code></pre></div>
+<pre><code>## Index([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;], dtype=&#39;object&#39;)</code></pre>
+<p><strong>Subset with index position or name</strong></p>
+<ul>
+<li>subset with index position</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="python.html#cb32-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## 0.5</code></pre>
+<ul>
+<li>subset with index name</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="python.html#cb34-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;a&quot;</span>]</span></code></pre></div>
+<pre><code>## 0.25</code></pre>
+<p><strong>Slicing with <code>:</code></strong></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="python.html#cb36-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">0</span>:<span class="dv">2</span>] <span class="co"># slicing behavior is unchanged</span></span></code></pre></div>
+<pre><code>## a    0.25
+## b    0.50
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="python.html#cb38-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">&quot;a&quot;</span>:<span class="st">&quot;c&quot;</span>] <span class="co"># slicing using index names includes the last value</span></span></code></pre></div>
+<pre><code>## a    0.25
+## b    0.50
+## c    0.75
+## dtype: float64</code></pre>
 
+</div>
 </div>
 </div>
             </section>

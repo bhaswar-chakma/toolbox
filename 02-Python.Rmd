@@ -4,13 +4,86 @@
     <img src="https://www.python.org/static/img/python-logo@2x.png" width="300" alt="cognitiveclass.ai logo"  />
 </center>
 
-## Data Wrangling
+## Pandas
+
+NumPy creates ndarrays that must contain values that are of the same data type.
+Pandas creates dataframes. Each column in a dataframe is an ndarray. This allows us to have
+traditional tables of data where each column can be a different data type.
+
+Important References:
+
+- Series: <https://pandas.pydata.org/pandas-docs/stable/reference/series.html>
+
+- DataFrame: <https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html>
+
 
 ```{python}
+import numpy as np
 import pandas as pd
-# Toy Data
-df = pd.DataFrame({'name': ['Ted', 'Barney', 'Marshall','Robin', 'Lily'],
-                    'gender':['Male','Male','Male', 'Female', 'Female']})
-df.head()
+```
+
+### Series
+
+The basic data structure in pandas is the series. You can construct it in a similar fashion to making a numpy array. The command to make a Series object is
+`pd.Series(data, index=index)`. Note that the `index` argument is optional.
+
+```{python}
+data = pd.Series([0.25, 0.5, 0.75, 1.0])
+print(data)
+print(type(data)) # data type
+print(data.values) # data values
+print(type(data.values)) # The values attribute of the series is a numpy array.
+print(data.index) 
+print(type(data.index)) # the row names are known as the index
+```
+
+**You can subset a pandas series like other python objects.**
+```{python}
+print(data) # example data
+print(data[1]) # select the 2nd value
+print(type(data[1])) # when you select only one value, it simplifies the object
+print(data[1:3])
+print(type(data[1:3])) # slicing / selecting multiple values returns a series
+```
+**You can also do fancy indexing by subsetting w/a numpy array e.g. repeat observations.**
+
+```{python}
+print(data[np.array([1, 0, 1, 2])])
+```
+
+
+**Pandas uses a 0-based index by default. You may also specify the index values.**
+```{python}
+data = pd.Series([0.25, 0.5, 0.75, 1.0],
+index = ['a', 'b', 'c', 'd'])
+print(data)
+```
+
+```{python}
+data.values
+data.index
+```
+
+**Subset with index position or name**
+
+
+ - subset with index position
+ 
+```{python}
+data[1]
+```
+
+
+ - subset with index name
+ 
+```{python}
+data["a"]
+```
+
+**Slicing with `:`**
+
+```{python}
+data[0:2] # slicing behavior is unchanged
+data["a":"c"] # slicing using index names includes the last value
 ```
 

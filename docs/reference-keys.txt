@@ -1,5 +1,5 @@
 python
+pandas
+series
 r
 sql
-pandas
-data-wrangling
