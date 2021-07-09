@@ -1,5 +1,5 @@
 h1:python Python
-h2:pandas Pandas
+h2:pandas-i-basics Pandas I: Basics
 h3:series Series
 h3:dataframe DataFrame
 h3:subsetting-the-dataframe Subsetting the DataFrame
@@ -10,4 +10,6 @@ h3:loc-vs-.iloc-with-numeric-index  vs  with numeric index
 h3:boolean-subsetting-examples-with-.loc Boolean subsetting examples with 
 h3:other-commonly-used-dataframe-attributes Other commonly used DataFrame attributes
 h3:importing-data-with-pd.read_csv Importing Data with pd.read_csv()
+h2:pandas-ii-indexing-arithmetic-missing-values Pandas II: Indexing, Arithmetic, Missing Values
+h3:indexing Indexing
 

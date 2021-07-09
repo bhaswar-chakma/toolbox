@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-07-08" />
+<meta name="date" content="2021-07-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="index.html#section"></a></li>
 <li class="chapter" data-level="1" data-path="python.html"><a href="python.html"><i class="fa fa-check"></i><b>1</b> Python</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="python.html"><a href="python.html#pandas"><i class="fa fa-check"></i><b>1.1</b> Pandas</a>
+<li class="chapter" data-level="1.1" data-path="python.html"><a href="python.html#pandas-i-basics"><i class="fa fa-check"></i><b>1.1</b> Pandas I: Basics</a>
 <ul>
 <li class="chapter" data-level="1.1.1" data-path="python.html"><a href="python.html#series"><i class="fa fa-check"></i><b>1.1.1</b> Series</a></li>
 <li class="chapter" data-level="1.1.2" data-path="python.html"><a href="python.html#dataframe"><i class="fa fa-check"></i><b>1.1.2</b> DataFrame</a></li>
@@ -152,6 +152,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.8" data-path="python.html"><a href="python.html#boolean-subsetting-examples-with-.loc"><i class="fa fa-check"></i><b>1.1.8</b> Boolean subsetting examples with <code>.loc</code></a></li>
 <li class="chapter" data-level="1.1.9" data-path="python.html"><a href="python.html#other-commonly-used-dataframe-attributes"><i class="fa fa-check"></i><b>1.1.9</b> Other commonly used DataFrame attributes</a></li>
 <li class="chapter" data-level="1.1.10" data-path="python.html"><a href="python.html#importing-data-with-pd.read_csv"><i class="fa fa-check"></i><b>1.1.10</b> Importing Data with pd.read_csv()</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="python.html"><a href="python.html#pandas-ii-indexing-arithmetic-missing-values"><i class="fa fa-check"></i><b>1.2</b> Pandas II: Indexing, Arithmetic, Missing Values</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="python.html"><a href="python.html#indexing"><i class="fa fa-check"></i><b>1.2.1</b> Indexing</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="r.html"><a href="r.html"><i class="fa fa-check"></i><b>2</b> R</a></li>
@@ -178,8 +182,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <center>
 <img src="https://www.python.org/static/img/python-logo@2x.png" width="300" alt="cognitiveclass.ai logo"  />
 </center>
-<div id="pandas" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Pandas</h2>
+<div id="pandas-i-basics" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Pandas I: Basics</h2>
 <center>
 <img src="https://pandas.pydata.org/static/img/pandas.svg" width="300" alt="cognitiveclass.ai logo"  />
 </center>
@@ -239,9 +243,8 @@ traditional tables of data where each column can be a different data type.</p>
 ## 2    0.75
 ## dtype: float64</code></pre>
 <p><strong>Pandas uses a 0-based index by default. You may also specify the index values.</strong></p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="python.html#cb26-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>],</span>
-<span id="cb26-2"><a href="python.html#cb26-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> [<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>])</span>
-<span id="cb26-3"><a href="python.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="python.html#cb26-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="fl">1.0</span>], index <span class="op">=</span> [<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>])</span>
+<span id="cb26-2"><a href="python.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div>
 <pre><code>## a    0.25
 ## b    0.50
 ## c    0.75
@@ -275,11 +278,11 @@ traditional tables of data where each column can be a different data type.</p>
 <p><strong>Create a series from a python dictionary</strong></p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="python.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remember, dictionary construction uses curly braces {}</span></span>
 <span id="cb40-2"><a href="python.html#cb40-2" aria-hidden="true" tabindex="-1"></a>samp_dict <span class="op">=</span> {<span class="st">&#39;Tony Stark&#39;</span>: <span class="st">&quot;Robert Downey Jr.&quot;</span>,</span>
-<span id="cb40-3"><a href="python.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Steve Rogers&#39;</span>: <span class="st">&quot;Chris Evans&quot;</span>,</span>
-<span id="cb40-4"><a href="python.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="st">&quot;Scarlett Johansson&quot;</span>,</span>
-<span id="cb40-5"><a href="python.html#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Bruce Banner&#39;</span>: <span class="st">&quot;Mark Ruffalo&quot;</span>,</span>
-<span id="cb40-6"><a href="python.html#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Thor&#39;</span>: <span class="st">&quot;Chris Hemsworth&quot;</span>,</span>
-<span id="cb40-7"><a href="python.html#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Clint Barton&#39;</span>: <span class="st">&quot;Jeremy Renner&quot;</span>}</span>
+<span id="cb40-3"><a href="python.html#cb40-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Steve Rogers&#39;</span>: <span class="st">&quot;Chris Evans&quot;</span>,</span>
+<span id="cb40-4"><a href="python.html#cb40-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="st">&quot;Scarlett Johansson&quot;</span>,</span>
+<span id="cb40-5"><a href="python.html#cb40-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Bruce Banner&#39;</span>: <span class="st">&quot;Mark Ruffalo&quot;</span>,</span>
+<span id="cb40-6"><a href="python.html#cb40-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Thor&#39;</span>: <span class="st">&quot;Chris Hemsworth&quot;</span>,</span>
+<span id="cb40-7"><a href="python.html#cb40-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Clint Barton&#39;</span>: <span class="st">&quot;Jeremy Renner&quot;</span>}</span>
 <span id="cb40-8"><a href="python.html#cb40-8" aria-hidden="true" tabindex="-1"></a>samp_series <span class="op">=</span> pd.Series(samp_dict)</span>
 <span id="cb40-9"><a href="python.html#cb40-9" aria-hidden="true" tabindex="-1"></a>samp_series</span></code></pre></div>
 <pre><code>## Tony Stark           Robert Downey Jr.
@@ -299,11 +302,11 @@ traditional tables of data where each column can be a different data type.</p>
 <p>Another example:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="python.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ages during the First Avengers film (2012)</span></span>
 <span id="cb46-2"><a href="python.html#cb46-2" aria-hidden="true" tabindex="-1"></a>age_dict <span class="op">=</span> {<span class="st">&#39;Thor&#39;</span>: <span class="dv">1493</span>,</span>
-<span id="cb46-3"><a href="python.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Steve Rogers&#39;</span>: <span class="dv">104</span>,</span>
-<span id="cb46-4"><a href="python.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="dv">28</span>,</span>
-<span id="cb46-5"><a href="python.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Clint Barton&#39;</span>: <span class="dv">41</span>,</span>
-<span id="cb46-6"><a href="python.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Tony Stark&#39;</span>: <span class="dv">42</span>,</span>
-<span id="cb46-7"><a href="python.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Bruce Banner&#39;</span>: <span class="dv">42</span>} <span class="co"># note that the dictionary order is not same here</span></span>
+<span id="cb46-3"><a href="python.html#cb46-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Steve Rogers&#39;</span>: <span class="dv">104</span>,</span>
+<span id="cb46-4"><a href="python.html#cb46-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="dv">28</span>,</span>
+<span id="cb46-5"><a href="python.html#cb46-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Clint Barton&#39;</span>: <span class="dv">41</span>,</span>
+<span id="cb46-6"><a href="python.html#cb46-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Tony Stark&#39;</span>: <span class="dv">42</span>,</span>
+<span id="cb46-7"><a href="python.html#cb46-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;Bruce Banner&#39;</span>: <span class="dv">42</span>} <span class="co"># note that the dictionary order is not same here</span></span>
 <span id="cb46-8"><a href="python.html#cb46-8" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> pd.Series(age_dict)</span>
 <span id="cb46-9"><a href="python.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ages)</span></code></pre></div>
 <pre><code>## Thor                1493
@@ -316,11 +319,11 @@ traditional tables of data where each column can be a different data type.</p>
 <p><strong>Use <code>np.NaN</code> to specify missing values.</strong></p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="python.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ages during the First Avengers film (2012)</span></span>
 <span id="cb48-2"><a href="python.html#cb48-2" aria-hidden="true" tabindex="-1"></a>hero_dict <span class="op">=</span> {<span class="st">&#39;Thor&#39;</span>: np.NaN,</span>
-<span id="cb48-3"><a href="python.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Steve Rogers&#39;</span>: <span class="st">&#39;Captain America&#39;</span>,</span>
-<span id="cb48-4"><a href="python.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="st">&#39;Black Widow&#39;</span>,</span>
-<span id="cb48-5"><a href="python.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Clint Barton&#39;</span>: <span class="st">&#39;Hawkeye&#39;</span>,</span>
-<span id="cb48-6"><a href="python.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Tony Stark&#39;</span>: <span class="st">&#39;Iron Man&#39;</span>,</span>
-<span id="cb48-7"><a href="python.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;Bruce Banner&#39;</span>: <span class="st">&#39;Hulk&#39;</span>}</span>
+<span id="cb48-3"><a href="python.html#cb48-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Steve Rogers&#39;</span>: <span class="st">&#39;Captain America&#39;</span>,</span>
+<span id="cb48-4"><a href="python.html#cb48-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Natasha Romanoff&#39;</span>: <span class="st">&#39;Black Widow&#39;</span>,</span>
+<span id="cb48-5"><a href="python.html#cb48-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Clint Barton&#39;</span>: <span class="st">&#39;Hawkeye&#39;</span>,</span>
+<span id="cb48-6"><a href="python.html#cb48-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Tony Stark&#39;</span>: <span class="st">&#39;Iron Man&#39;</span>,</span>
+<span id="cb48-7"><a href="python.html#cb48-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;Bruce Banner&#39;</span>: <span class="st">&#39;Hulk&#39;</span>}</span>
 <span id="cb48-8"><a href="python.html#cb48-8" aria-hidden="true" tabindex="-1"></a>hero_names <span class="op">=</span> pd.Series(hero_dict)</span>
 <span id="cb48-9"><a href="python.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hero_names)</span></code></pre></div>
 <pre><code>## Thor                            NaN
@@ -360,11 +363,11 @@ traditional tables of data where each column can be a different data type.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="python.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(avengers)) <span class="co"># this is a DataFrame object</span></span></code></pre></div>
 <pre><code>## &lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</code></pre>
 <p>The data is a list of dictionaries. Each dictionary needs to have the same set of keys,
-otherwise, NaNs will appear.</p>
+otherwise, <code>NaN</code>s will appear.</p>
 <p><strong>Data is a list of dictionaries</strong></p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="python.html#cb60-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [{<span class="st">&#39;a&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">0</span>},</span>
-<span id="cb60-2"><a href="python.html#cb60-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
-<span id="cb60-3"><a href="python.html#cb60-3" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">5</span>}]</span>
+<span id="cb60-2"><a href="python.html#cb60-2" aria-hidden="true" tabindex="-1"></a>        {<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
+<span id="cb60-3"><a href="python.html#cb60-3" aria-hidden="true" tabindex="-1"></a>        {<span class="st">&#39;a&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">5</span>}]</span>
 <span id="cb60-4"><a href="python.html#cb60-4" aria-hidden="true" tabindex="-1"></a>data</span></code></pre></div>
 <pre><code>## [{&#39;a&#39;: 0, &#39;b&#39;: 0}, {&#39;a&#39;: 1, &#39;b&#39;: 2}, {&#39;a&#39;: 2, &#39;b&#39;: 5}]</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="python.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(data, index <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]))</span></code></pre></div>
@@ -374,8 +377,8 @@ otherwise, NaNs will appear.</p>
 ## 3  2  5</code></pre>
 <p>Mismatch of keys produces NaN</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="python.html#cb64-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> [{<span class="st">&#39;a&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">0</span>},</span>
-<span id="cb64-2"><a href="python.html#cb64-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
-<span id="cb64-3"><a href="python.html#cb64-3" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">5</span>}] <span class="co"># mismatch of keys. NAs will appear</span></span>
+<span id="cb64-2"><a href="python.html#cb64-2" aria-hidden="true" tabindex="-1"></a>         {<span class="st">&#39;a&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
+<span id="cb64-3"><a href="python.html#cb64-3" aria-hidden="true" tabindex="-1"></a>         {<span class="st">&#39;a&#39;</span>: <span class="dv">2</span>, <span class="st">&#39;c&#39;</span>: <span class="dv">5</span>}] <span class="co"># mismatch of keys. NAs will appear</span></span>
 <span id="cb64-4"><a href="python.html#cb64-4" aria-hidden="true" tabindex="-1"></a>data2</span></code></pre></div>
 <pre><code>## [{&#39;a&#39;: 0, &#39;b&#39;: 0}, {&#39;a&#39;: 1, &#39;b&#39;: 2}, {&#39;a&#39;: 2, &#39;c&#39;: 5}]</code></pre>
 <div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="python.html#cb66-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(data2)<span class="co"># # if the index argument is not supplied, it defaults to integer index start at 0</span></span></code></pre></div>
@@ -406,18 +409,18 @@ otherwise, NaNs will appear.</p>
 index values.</strong></p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb73-1"><a href="python.html#cb73-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size <span class="op">=</span> <span class="dv">10</span>).reshape((<span class="dv">5</span>,<span class="dv">2</span>))</span>
 <span id="cb73-2"><a href="python.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div>
-<pre><code>## [[4 5]
-##  [4 4]
-##  [6 2]
-##  [7 3]
-##  [6 7]]</code></pre>
+<pre><code>## [[7 1]
+##  [7 2]
+##  [9 5]
+##  [6 6]
+##  [9 6]]</code></pre>
 <div class="sourceCode" id="cb75"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb75-1"><a href="python.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame(data, columns <span class="op">=</span> [<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>], index <span class="op">=</span> [<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;d&#39;</span>,<span class="st">&#39;e&#39;</span>]))</span></code></pre></div>
 <pre><code>##    x  y
-## a  4  5
-## b  4  4
-## c  6  2
-## d  7  3
-## e  6  7</code></pre>
+## a  7  1
+## b  7  2
+## c  9  5
+## d  6  6
+## e  9  6</code></pre>
 </div>
 <div id="subsetting-the-dataframe" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Subsetting the DataFrame</h3>
@@ -562,8 +565,8 @@ show the row names.</p>
 <h3><span class="header-section-number">1.1.7</span> <code>.loc</code> vs <code>.iloc</code> with numeric index</h3>
 <p>The following DataFrame has a numeric index, but it starts at 1 instead of 0.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb123-1"><a href="python.html#cb123-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [{<span class="st">&#39;a&#39;</span>: <span class="dv">11</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">2</span>},</span>
-<span id="cb123-2"><a href="python.html#cb123-2" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">12</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">4</span>},</span>
-<span id="cb123-3"><a href="python.html#cb123-3" aria-hidden="true" tabindex="-1"></a>{<span class="st">&#39;a&#39;</span>: <span class="dv">13</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">6</span>}]</span>
+<span id="cb123-2"><a href="python.html#cb123-2" aria-hidden="true" tabindex="-1"></a>        {<span class="st">&#39;a&#39;</span>: <span class="dv">12</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">4</span>},</span>
+<span id="cb123-3"><a href="python.html#cb123-3" aria-hidden="true" tabindex="-1"></a>        {<span class="st">&#39;a&#39;</span>: <span class="dv">13</span>, <span class="st">&#39;b&#39;</span>: <span class="dv">6</span>}]</span>
 <span id="cb123-4"><a href="python.html#cb123-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data, index <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb123-5"><a href="python.html#cb123-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##     a  b
@@ -613,7 +616,7 @@ show the row names.</p>
 <pre><code>##                                actor        hero name  age
 ## Natasha Romanoff  Scarlett Johansson      Black Widow   28
 ## Steve Rogers             Chris Evans  Captain America  104</code></pre>
-<p><code>{python}avengers.loc[ avengers.index.str.find('X') != -1, : ]</code> gets the message</p>
+<p><code>python avengers.loc[ avengers.index.str.find('X') != -1, : ]</code> gets the message</p>
 <blockquote>
 <p>Error: unexpected ‘:’ in “avengers.loc[ avengers.index.str.find(‘X’) != -1, :”</p>
 </blockquote>
@@ -692,6 +695,146 @@ show the row names.</p>
 ## max     891.000000    1.000000    3.000000  ...    8.000000    6.000000  512.329200
 ## 
 ## [8 rows x 7 columns]</code></pre>
+</div>
+</div>
+<div id="pandas-ii-indexing-arithmetic-missing-values" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Pandas II: Indexing, Arithmetic, Missing Values</h2>
+<div id="indexing" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Indexing</h3>
+<p><strong>Series that we will use as examples</strong></p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb157-1"><a href="python.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note that the value after the decimal place corresponds to the letter position.</span></span>
+<span id="cb157-2"><a href="python.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="co"># i.e. 1.4 corresponds to d, the fourth letter.</span></span>
+<span id="cb157-3"><a href="python.html#cb157-3" aria-hidden="true" tabindex="-1"></a>original1 <span class="op">=</span> pd.Series([<span class="fl">1.4</span>, <span class="fl">2.3</span>, <span class="fl">3.1</span>, <span class="fl">4.2</span>], index <span class="op">=</span> [<span class="st">&#39;d&#39;</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>])</span>
+<span id="cb157-4"><a href="python.html#cb157-4" aria-hidden="true" tabindex="-1"></a>original2 <span class="op">=</span> pd.Series([<span class="fl">2.2</span>, <span class="fl">3.1</span>, <span class="fl">1.3</span>, <span class="fl">4.4</span>], index <span class="op">=</span> [<span class="st">&#39;b&#39;</span>,<span class="st">&#39;a&#39;</span>,<span class="st">&#39;c&#39;</span>,<span class="st">&#39;d&#39;</span>])</span></code></pre></div>
+<p><span style="color:blue"><strong>When you create a series, the original order of the index is preserved.</strong></span>.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb158-1"><a href="python.html#cb158-1" aria-hidden="true" tabindex="-1"></a>original1</span></code></pre></div>
+<pre><code>## d    1.4
+## c    2.3
+## a    3.1
+## b    4.2
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb160-1"><a href="python.html#cb160-1" aria-hidden="true" tabindex="-1"></a>original2</span></code></pre></div>
+<pre><code>## b    2.2
+## a    3.1
+## c    1.3
+## d    4.4
+## dtype: float64</code></pre>
+<p><span style="color:blue"><strong>Making a DataFrame with multiple series with the same index preserves the index order.</strong></span>.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb162-1"><a href="python.html#cb162-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame({<span class="st">&quot;x&quot;</span>:original1, <span class="st">&quot;x2&quot;</span>: original1 <span class="op">*</span> <span class="dv">2</span>})</span></code></pre></div>
+<pre><code>##      x   x2
+## d  1.4  2.8
+## c  2.3  4.6
+## a  3.1  6.2
+## b  4.2  8.4</code></pre>
+<p><span style="color:blue"><strong>Note that original1 and original2 have different index orders. Because original1 and original2 have index in different order, Pandas will sort the index before putting them together</strong></span>.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb164-1"><a href="python.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&quot;x&quot;</span>:original1, <span class="st">&quot;y&quot;</span>: original2})</span>
+<span id="cb164-2"><a href="python.html#cb164-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+## d  1.4  4.4</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb166-1"><a href="python.html#cb166-1" aria-hidden="true" tabindex="-1"></a>original1.index <span class="co"># the index of original1 is the letters d, c, a, b in a tuple-like object</span></span></code></pre></div>
+<pre><code>## Index([&#39;d&#39;, &#39;c&#39;, &#39;a&#39;, &#39;b&#39;], dtype=&#39;object&#39;)</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb168-1"><a href="python.html#cb168-1" aria-hidden="true" tabindex="-1"></a>original1[<span class="st">&#39;d&#39;</span>:<span class="st">&#39;a&#39;</span>] <span class="co"># when slicing pandas uses the index order or original1</span></span></code></pre></div>
+<pre><code>## d    1.4
+## c    2.3
+## a    3.1
+## dtype: float64</code></pre>
+<p><span style="color:blue"><strong>When slicing Pandas uses the index order of the DataFrame, which has been sorted.</strong></span></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb170-1"><a href="python.html#cb170-1" aria-hidden="true" tabindex="-1"></a>df.index </span></code></pre></div>
+<pre><code>## Index([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;], dtype=&#39;object&#39;)</code></pre>
+<div class="sourceCode" id="cb172"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb172-1"><a href="python.html#cb172-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;a&#39;</span>:<span class="st">&#39;c&#39;</span>]</span></code></pre></div>
+<pre><code>##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3</code></pre>
+<p><strong>Rearranging value</strong></p>
+<p><span style="color:blue"><strong>Both Series and DataFrames have the .sort_index() and .sort_values() methods which can be used to rearrange the value.</strong></span></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb174-1"><a href="python.html#cb174-1" aria-hidden="true" tabindex="-1"></a>original2</span></code></pre></div>
+<pre><code>## b    2.2
+## a    3.1
+## c    1.3
+## d    4.4
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb176-1"><a href="python.html#cb176-1" aria-hidden="true" tabindex="-1"></a>original2.sort_index()</span></code></pre></div>
+<pre><code>## a    3.1
+## b    2.2
+## c    1.3
+## d    4.4
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb178"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb178-1"><a href="python.html#cb178-1" aria-hidden="true" tabindex="-1"></a>original2.sort_values()</span></code></pre></div>
+<pre><code>## c    1.3
+## b    2.2
+## a    3.1
+## d    4.4
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb180-1"><a href="python.html#cb180-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+## d  1.4  4.4</code></pre>
+<div class="sourceCode" id="cb182"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb182-1"><a href="python.html#cb182-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(by <span class="op">=</span> <span class="st">&quot;x&quot;</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+<pre><code>##      x    y
+## b  4.2  2.2
+## a  3.1  3.1
+## c  2.3  1.3
+## d  1.4  4.4</code></pre>
+<p><strong>Changing the Index</strong></p>
+<p><span style="color:blue"><strong>The index of a Pandas Series or Pandas DataFrame is immutable and cannot be modified.</strong></span> However, if you want to change the index of a series or dataframe, you can define a new index and replace the existing index of the series/DataFrame.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb184-1"><a href="python.html#cb184-1" aria-hidden="true" tabindex="-1"></a>original1</span></code></pre></div>
+<pre><code>## d    1.4
+## c    2.3
+## a    3.1
+## b    4.2
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb186"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb186-1"><a href="python.html#cb186-1" aria-hidden="true" tabindex="-1"></a>original1.index <span class="op">=</span> <span class="bu">range</span>(<span class="dv">4</span>) <span class="co"># I replace the index of the series with this range object.</span></span>
+<span id="cb186-2"><a href="python.html#cb186-2" aria-hidden="true" tabindex="-1"></a>original1</span></code></pre></div>
+<pre><code>## 0    1.4
+## 1    2.3
+## 2    3.1
+## 3    4.2
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb188-1"><a href="python.html#cb188-1" aria-hidden="true" tabindex="-1"></a>original1.index <span class="co"># We can see this has automatically become a RangeIndex object</span></span></code></pre></div>
+<pre><code>## RangeIndex(start=0, stop=4, step=1)</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb190-1"><a href="python.html#cb190-1" aria-hidden="true" tabindex="-1"></a>original1[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## 2.3</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb192-1"><a href="python.html#cb192-1" aria-hidden="true" tabindex="-1"></a>original1.loc[<span class="dv">1</span>] <span class="co"># behaves the same as above</span></span></code></pre></div>
+<pre><code>## 2.3</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb194-1"><a href="python.html#cb194-1" aria-hidden="true" tabindex="-1"></a>original1.iloc[<span class="dv">1</span>] <span class="co"># behaves the same as above because the range index starts at 0</span></span></code></pre></div>
+<pre><code>## 2.3</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb196-1"><a href="python.html#cb196-1" aria-hidden="true" tabindex="-1"></a>original1.index <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>)</span>
+<span id="cb196-2"><a href="python.html#cb196-2" aria-hidden="true" tabindex="-1"></a>original1</span></code></pre></div>
+<pre><code>## 1    1.4
+## 2    2.3
+## 3    3.1
+## 4    4.2
+## dtype: float64</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb198-1"><a href="python.html#cb198-1" aria-hidden="true" tabindex="-1"></a>original1[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## 1.4</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb200-1"><a href="python.html#cb200-1" aria-hidden="true" tabindex="-1"></a>original1.loc[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## 1.4</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb202-1"><a href="python.html#cb202-1" aria-hidden="true" tabindex="-1"></a>original1.iloc[<span class="dv">1</span>] <span class="co"># behavior is different because range index starts at 1</span></span></code></pre></div>
+<pre><code>## 2.3</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb204-1"><a href="python.html#cb204-1" aria-hidden="true" tabindex="-1"></a>original1[<span class="st">&#39;a&#39;</span>] <span class="co"># throws an error because &#39;a&#39; is no longer part of the index and cannot be used to select values</span></span></code></pre></div>
+<blockquote>
+<p>KeyError: ‘a’</p>
+</blockquote>
+<p>You can change the index of a DataFrame by defining a new object and assigning it to the index.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb205-1"><a href="python.html#cb205-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+## d  1.4  4.4</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb207-1"><a href="python.html#cb207-1" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">&#39;j&#39;</span>,<span class="st">&#39;k&#39;</span>,<span class="st">&#39;l&#39;</span>,<span class="st">&#39;m&#39;</span>]</span>
+<span id="cb207-2"><a href="python.html#cb207-2" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##      x    y
+## j  3.1  3.1
+## k  4.2  2.2
+## l  2.3  1.3
+## m  1.4  4.4</code></pre>
 
 </div>
 </div>

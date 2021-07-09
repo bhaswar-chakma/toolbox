@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-07-08}
+\date{2021-07-09}
 
 \begin{document}
 \maketitle
@@ -140,8 +140,8 @@
 \hypertarget{python}{%
 \chapter{Python}\label{python}}
 
-\hypertarget{pandas}{%
-\section{Pandas}\label{pandas}}
+\hypertarget{pandas-i-basics}{%
+\section{Pandas I: Basics}\label{pandas-i-basics}}
 
 NumPy creates ndarrays that must contain values that are of the same data type.
 Pandas creates dataframes. Each column in a dataframe is an ndarray. This allows us to have
@@ -312,8 +312,7 @@ The basic data structure in pandas is the series. You can construct it in a simi
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\FloatTok{1.0}\NormalTok{],}
-\NormalTok{index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{])}
+\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\FloatTok{1.0}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{])}
 \BuiltInTok{print}\NormalTok{(data)}
 \end{Highlighting}
 \end{Shaded}
@@ -413,11 +412,11 @@ The basic data structure in pandas is the series. You can construct it in a simi
 \begin{Highlighting}[]
 \CommentTok{\# remember, dictionary construction uses curly braces \{\}}
 \NormalTok{samp\_dict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\StringTok{"Robert Downey Jr."}\NormalTok{,}
-\StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\StringTok{"Chris Evans"}\NormalTok{,}
-\StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\StringTok{"Scarlett Johansson"}\NormalTok{,}
-\StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\StringTok{"Mark Ruffalo"}\NormalTok{,}
-\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: }\StringTok{"Chris Hemsworth"}\NormalTok{,}
-\StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\StringTok{"Jeremy Renner"}\NormalTok{\}}
+             \StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\StringTok{"Chris Evans"}\NormalTok{,}
+             \StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\StringTok{"Scarlett Johansson"}\NormalTok{,}
+             \StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\StringTok{"Mark Ruffalo"}\NormalTok{,}
+             \StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: }\StringTok{"Chris Hemsworth"}\NormalTok{,}
+             \StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\StringTok{"Jeremy Renner"}\NormalTok{\}}
 \NormalTok{samp\_series }\OperatorTok{=}\NormalTok{ pd.Series(samp\_dict)}
 \NormalTok{samp\_series}
 \end{Highlighting}
@@ -462,11 +461,11 @@ Another example:
 \begin{Highlighting}[]
 \CommentTok{\# ages during the First Avengers film (2012)}
 \NormalTok{age\_dict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: }\DecValTok{1493}\NormalTok{,}
-\StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\DecValTok{104}\NormalTok{,}
-\StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\DecValTok{28}\NormalTok{,}
-\StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\DecValTok{41}\NormalTok{,}
-\StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\DecValTok{42}\NormalTok{,}
-\StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\DecValTok{42}\NormalTok{\} }\CommentTok{\# note that the dictionary order is not same here}
+            \StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\DecValTok{104}\NormalTok{,}
+            \StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\DecValTok{28}\NormalTok{,}
+            \StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\DecValTok{41}\NormalTok{,}
+            \StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\DecValTok{42}\NormalTok{,}
+            \StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\DecValTok{42}\NormalTok{\} }\CommentTok{\# note that the dictionary order is not same here}
 \NormalTok{ages }\OperatorTok{=}\NormalTok{ pd.Series(age\_dict)}
 \BuiltInTok{print}\NormalTok{(ages)}
 \end{Highlighting}
@@ -488,11 +487,11 @@ Another example:
 \begin{Highlighting}[]
 \CommentTok{\# ages during the First Avengers film (2012)}
 \NormalTok{hero\_dict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: np.NaN,}
-\StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Captain America\textquotesingle{}}\NormalTok{,}
-\StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Black Widow\textquotesingle{}}\NormalTok{,}
-\StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Hawkeye\textquotesingle{}}\NormalTok{,}
-\StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Iron Man\textquotesingle{}}\NormalTok{,}
-\StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Hulk\textquotesingle{}}\NormalTok{\}}
+             \StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Captain America\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Black Widow\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Hawkeye\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Iron Man\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Hulk\textquotesingle{}}\NormalTok{\}}
 \NormalTok{hero\_names }\OperatorTok{=}\NormalTok{ pd.Series(hero\_dict)}
 \BuiltInTok{print}\NormalTok{(hero\_names)}
 \end{Highlighting}
@@ -583,15 +582,15 @@ There are multiple ways of creating a DataFrame in Pandas:
 \end{verbatim}
 
 The data is a list of dictionaries. Each dictionary needs to have the same set of keys,
-otherwise, NaNs will appear.
+otherwise, \texttt{NaN}s will appear.
 
 \textbf{Data is a list of dictionaries}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{data }\OperatorTok{=}\NormalTok{ [\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{\},}
-\NormalTok{\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
-\NormalTok{\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{\}]}
+\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
+\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{\}]}
 \NormalTok{data}
 \end{Highlighting}
 \end{Shaded}
@@ -618,8 +617,8 @@ Mismatch of keys produces NaN
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{data2 }\OperatorTok{=}\NormalTok{ [\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{\},}
-\NormalTok{\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
-\NormalTok{\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{\}] }\CommentTok{\# mismatch of keys. NAs will appear}
+\NormalTok{         \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
+\NormalTok{         \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{\}] }\CommentTok{\# mismatch of keys. NAs will appear}
 \NormalTok{data2}
 \end{Highlighting}
 \end{Shaded}
@@ -698,11 +697,11 @@ index values.}
 \end{Shaded}
 
 \begin{verbatim}
-## [[5 0]
-##  [5 6]
-##  [4 3]
-##  [0 8]
-##  [3 2]]
+## [[7 3]
+##  [8 5]
+##  [9 1]
+##  [3 3]
+##  [8 0]]
 \end{verbatim}
 
 \begin{Shaded}
@@ -713,11 +712,11 @@ index values.}
 
 \begin{verbatim}
 ##    x  y
-## a  5  0
-## b  5  6
-## c  4  3
-## d  0  8
-## e  3  2
+## a  7  3
+## b  8  5
+## c  9  1
+## d  3  3
+## e  8  0
 \end{verbatim}
 
 \hypertarget{subsetting-the-dataframe}{%
@@ -1064,8 +1063,8 @@ The following DataFrame has a numeric index, but it starts at 1 instead of 0.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{data }\OperatorTok{=}\NormalTok{ [\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{11}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
-\NormalTok{\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{12}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{4}\NormalTok{\},}
-\NormalTok{\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{13}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{6}\NormalTok{\}]}
+\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{12}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{4}\NormalTok{\},}
+\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{13}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{6}\NormalTok{\}]}
 \NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data, index }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{])}
 \NormalTok{df}
 \end{Highlighting}
@@ -1177,7 +1176,7 @@ IndexError: single positional indexer is out-of-bounds
 ## Steve Rogers             Chris Evans  Captain America  104
 \end{verbatim}
 
-\texttt{\{python\}avengers.loc{[}\ avengers.index.str.find(\textquotesingle{}X\textquotesingle{})\ !=\ -1,\ :\ {]}} gets the message
+\texttt{python\ avengers.loc{[}\ avengers.index.str.find(\textquotesingle{}X\textquotesingle{})\ !=\ -1,\ :\ {]}} gets the message
 
 \begin{quote}
 Error: unexpected `:' in ``avengers.loc{[} avengers.index.str.find(`X') != -1, :''
@@ -1333,6 +1332,367 @@ Error: unexpected `:' in ``avengers.loc{[} avengers.index.str.find(`X') != -1, :
 ## max     891.000000    1.000000    3.000000  ...    8.000000    6.000000  512.329200
 ## 
 ## [8 rows x 7 columns]
+\end{verbatim}
+
+\hypertarget{pandas-ii-indexing-arithmetic-missing-values}{%
+\section{Pandas II: Indexing, Arithmetic, Missing Values}\label{pandas-ii-indexing-arithmetic-missing-values}}
+
+\hypertarget{indexing}{%
+\subsection{Indexing}\label{indexing}}
+
+\textbf{Series that we will use as examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# note that the value after the decimal place corresponds to the letter position.}
+\CommentTok{\# i.e. 1.4 corresponds to d, the fourth letter.}
+\NormalTok{original1 }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{1.4}\NormalTok{, }\FloatTok{2.3}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{4.2}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{])}
+\NormalTok{original2 }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{2.2}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{1.3}\NormalTok{, }\FloatTok{4.4}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+{\textbf{When you create a series, the original order of the index is preserved.}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## d    1.4
+## c    2.3
+## a    3.1
+## b    4.2
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## b    2.2
+## a    3.1
+## c    1.3
+## d    4.4
+## dtype: float64
+\end{verbatim}
+
+{\textbf{Making a DataFrame with multiple series with the same index preserves the index order.}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pd.DataFrame(\{}\StringTok{"x"}\NormalTok{:original1, }\StringTok{"x2"}\NormalTok{: original1 }\OperatorTok{*} \DecValTok{2}\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x   x2
+## d  1.4  2.8
+## c  2.3  4.6
+## a  3.1  6.2
+## b  4.2  8.4
+\end{verbatim}
+
+{\textbf{Note that original1 and original2 have different index orders. Because original1 and original2 have index in different order, Pandas will sort the index before putting them together}}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{"x"}\NormalTok{:original1, }\StringTok{"y"}\NormalTok{: original2\})}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+## d  1.4  4.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.index }\CommentTok{\# the index of original1 is the letters d, c, a, b in a tuple{-}like object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Index(['d', 'c', 'a', 'b'], dtype='object')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1[}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{] }\CommentTok{\# when slicing pandas uses the index order or original1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## d    1.4
+## c    2.3
+## a    3.1
+## dtype: float64
+\end{verbatim}
+
+{\textbf{When slicing Pandas uses the index order of the DataFrame, which has been sorted.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.index }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Index(['a', 'b', 'c', 'd'], dtype='object')
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+\end{verbatim}
+
+\textbf{Rearranging value}
+
+{\textbf{Both Series and DataFrames have the .sort\_index() and .sort\_values() methods which can be used to rearrange the value.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## b    2.2
+## a    3.1
+## c    1.3
+## d    4.4
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original2.sort\_index()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## a    3.1
+## b    2.2
+## c    1.3
+## d    4.4
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original2.sort\_values()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## c    1.3
+## b    2.2
+## a    3.1
+## d    4.4
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+## d  1.4  4.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.sort\_values(by }\OperatorTok{=} \StringTok{"x"}\NormalTok{, ascending }\OperatorTok{=} \VariableTok{False}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y
+## b  4.2  2.2
+## a  3.1  3.1
+## c  2.3  1.3
+## d  1.4  4.4
+\end{verbatim}
+
+\textbf{Changing the Index}
+
+{\textbf{The index of a Pandas Series or Pandas DataFrame is immutable and cannot be modified.}} However, if you want to change the index of a series or dataframe, you can define a new index and replace the existing index of the series/DataFrame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## d    1.4
+## c    2.3
+## a    3.1
+## b    4.2
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.index }\OperatorTok{=} \BuiltInTok{range}\NormalTok{(}\DecValTok{4}\NormalTok{) }\CommentTok{\# I replace the index of the series with this range object.}
+\NormalTok{original1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 0    1.4
+## 1    2.3
+## 2    3.1
+## 3    4.2
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.index }\CommentTok{\# We can see this has automatically become a RangeIndex object}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## RangeIndex(start=0, stop=4, step=1)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.loc[}\DecValTok{1}\NormalTok{] }\CommentTok{\# behaves the same as above}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.iloc[}\DecValTok{1}\NormalTok{] }\CommentTok{\# behaves the same as above because the range index starts at 0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.index }\OperatorTok{=} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{original1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1    1.4
+## 2    2.3
+## 3    3.1
+## 4    4.2
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.loc[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 1.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1.iloc[}\DecValTok{1}\NormalTok{] }\CommentTok{\# behavior is different because range index starts at 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 2.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{original1[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{] }\CommentTok{\# throws an error because \textquotesingle{}a\textquotesingle{} is no longer part of the index and cannot be used to select values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+KeyError: `a'
+\end{quote}
+
+You can change the index of a DataFrame by defining a new object and assigning it to the index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y
+## a  3.1  3.1
+## b  4.2  2.2
+## c  2.3  1.3
+## d  1.4  4.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}j\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}m\textquotesingle{}}\NormalTok{]}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      x    y
+## j  3.1  3.1
+## k  4.2  2.2
+## l  2.3  1.3
+## m  1.4  4.4
 \end{verbatim}
 
 \hypertarget{r}{%

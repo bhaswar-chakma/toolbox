@@ -1,5 +1,5 @@
 python
-pandas
+pandas-i-basics
 series
 dataframe
 subsetting-the-dataframe
@@ -10,5 +10,7 @@ loc-vs-.iloc-with-numeric-index
 boolean-subsetting-examples-with-.loc
 other-commonly-used-dataframe-attributes
 importing-data-with-pd.read_csv
+pandas-ii-indexing-arithmetic-missing-values
+indexing
 r
 sql
