@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-07-09}
+\date{2021-07-10}
 
 \begin{document}
 \maketitle
@@ -697,11 +697,11 @@ index values.}
 \end{Shaded}
 
 \begin{verbatim}
-## [[7 3]
-##  [8 5]
-##  [9 1]
-##  [3 3]
-##  [8 0]]
+## [[4 3]
+##  [5 0]
+##  [9 3]
+##  [6 8]
+##  [9 5]]
 \end{verbatim}
 
 \begin{Shaded}
@@ -712,11 +712,11 @@ index values.}
 
 \begin{verbatim}
 ##    x  y
-## a  7  3
-## b  8  5
-## c  9  1
-## d  3  3
-## e  8  0
+## a  4  3
+## b  5  0
+## c  9  3
+## d  6  8
+## e  9  5
 \end{verbatim}
 
 \hypertarget{subsetting-the-dataframe}{%
@@ -1701,7 +1701,249 @@ You can change the index of a DataFrame by defining a new object and assigning i
 \hypertarget{sql}{%
 \chapter{SQL}\label{sql}}
 
-Coming!
+\hypertarget{create}{%
+\section{CREATE}\label{create}}
+
+The general syntax to create a table:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{create} \KeywordTok{table}\NormalTok{ TABLENAME (}
+\NormalTok{  COLUMN1 datatype, }
+\NormalTok{  COLUMN2 datatype, }
+\NormalTok{  COLUMN3 datatype, }
+  \OperatorTok{..}\NormalTok{. );}
+\end{Highlighting}
+\end{Shaded}
+
+To create a table called \texttt{TEST} with two columns - \texttt{ID} of type integer, and \texttt{NAME} of type varchar, we could create it using the following SQL statement:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{create} \KeywordTok{table}\NormalTok{ TEST(}
+  \KeywordTok{ID} \DataTypeTok{int}
+\NormalTok{  NAME }\DataTypeTok{varchar}\NormalTok{(}\DecValTok{30}\NormalTok{)}
+\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+To create a table called \texttt{COUNTRY} with an \texttt{ID} column, a two letter country code column \texttt{CCODE}, and a variable length country name column \texttt{NAME}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{create} \KeywordTok{table}\NormalTok{ COUNTRY(}
+    \KeywordTok{ID} \DataTypeTok{int}\NormalTok{,}
+\NormalTok{    CCODE }\DataTypeTok{char}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+\NormalTok{    NAME }\DataTypeTok{varchar}\NormalTok{(}\DecValTok{60}\NormalTok{)}
+\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+Sometimes you may see additional keywords in a create table statement:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{create} \KeywordTok{table}\NormalTok{ COUNTRY(}
+    \KeywordTok{ID} \DataTypeTok{int} \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    CCODE }\DataTypeTok{char}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+\NormalTok{    NAME }\DataTypeTok{varchar}\NormalTok{(}\DecValTok{60}\NormalTok{),}
+    \KeywordTok{PRIMARY} \KeywordTok{KEY}\NormalTok{(}\KeywordTok{ID}\NormalTok{)}
+\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  In the above example the \texttt{ID} column has the {\textbf{\texttt{NOT\ NULL}}} constraint added after the datatype - meaning that \emph{it cannot contain a NULL or an empty value}.
+\item
+  If you look at the last row in the create table statement above you will note that we are using \texttt{ID} as a {\textbf{Primary Key}} and the database \textbf{does not allow} Primary Keys to have \textbf{\texttt{NULL}} values. \emph{A Primary Key is a unique identifier in a table, and using Primary Keys can help speed up your queries significantly}.
+\item
+  If the table you are trying to create already exists in the database, you will get an error indicating table \texttt{XXX.YYY} already exists. To circumvent this error, either create a table with a different name or first \texttt{DROP} the existing table. It is quite common to issue a \texttt{DROP} before doing a \texttt{CREATE} in test and development scenarios.
+\end{itemize}
+
+\hypertarget{drop}{%
+\section{DROP}\label{drop}}
+
+The general syntax to drop a table:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{drop} \KeywordTok{table}\NormalTok{ TABLENAME;}
+\end{Highlighting}
+\end{Shaded}
+
+For example, to drop the table COUNTRY, we can use the following code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{drop} \KeywordTok{table}\NormalTok{ COUNTRY;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{alter}{%
+\section{ALTER}\label{alter}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ table\_name}
+\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ column\_name data\_type column\_constraint;}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ table\_name}
+\KeywordTok{DROP} \KeywordTok{COLUMN}\NormalTok{ column\_name;}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ table\_name}
+\KeywordTok{ALTER} \KeywordTok{COLUMN}\NormalTok{ column\_name }\KeywordTok{SET} \KeywordTok{DATA} \KeywordTok{TYPE}\NormalTok{ data\_type;}
+
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ table\_name}
+\KeywordTok{RENAME} \KeywordTok{COLUMN}\NormalTok{ current\_column\_name }\KeywordTok{TO}\NormalTok{ new\_column\_name;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{truncate}{%
+\section{TRUNCATE}\label{truncate}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{TRUNCATE} \KeywordTok{TABLE}\NormalTok{ table\_name;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{guided-exercise-create-table-and-insert-data}{%
+\section{Guided Exercise: Create table and insert data}\label{guided-exercise-create-table-and-insert-data}}
+
+You will to create two tables
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{PETSALE}
+\item
+  \texttt{PET}.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PETSALE (}
+    \KeywordTok{ID} \DataTypeTok{INTEGER} \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    PET }\DataTypeTok{CHAR}\NormalTok{(}\DecValTok{20}\NormalTok{),}
+\NormalTok{    SALEPRICE }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{6}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+\NormalTok{    PROFIT }\DataTypeTok{DECIMAL}\NormalTok{(}\DecValTok{6}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+\NormalTok{    SALEDATE }\DataTypeTok{DATE}
+\NormalTok{    );}
+    
+\KeywordTok{CREATE} \KeywordTok{TABLE}\NormalTok{ PET (}
+    \KeywordTok{ID} \DataTypeTok{INTEGER} \KeywordTok{NOT} \KeywordTok{NULL}\NormalTok{,}
+\NormalTok{    ANIMAL }\DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{20}\NormalTok{),}
+\NormalTok{    QUANTITY }\DataTypeTok{INTEGER}
+\NormalTok{    );}
+\end{Highlighting}
+\end{Shaded}
+
+{\emph{Now insert some records into the two newly created tables and show all the records of the two tables. }}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{INSERT} \KeywordTok{INTO}\NormalTok{ PETSALE }\KeywordTok{VALUES}
+\NormalTok{    (}\DecValTok{1}\NormalTok{,}\StringTok{\textquotesingle{}Cat\textquotesingle{}}\NormalTok{,}\FloatTok{450.09}\NormalTok{,}\FloatTok{100.47}\NormalTok{,}\StringTok{\textquotesingle{}2018{-}05{-}29\textquotesingle{}}\NormalTok{),}
+\NormalTok{    (}\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}Dog\textquotesingle{}}\NormalTok{,}\FloatTok{666.66}\NormalTok{,}\FloatTok{150.76}\NormalTok{,}\StringTok{\textquotesingle{}2018{-}06{-}01\textquotesingle{}}\NormalTok{),}
+\NormalTok{    (}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}Parrot\textquotesingle{}}\NormalTok{,}\FloatTok{50.00}\NormalTok{,}\FloatTok{8.9}\NormalTok{,}\StringTok{\textquotesingle{}2018{-}06{-}04\textquotesingle{}}\NormalTok{),}
+\NormalTok{    (}\DecValTok{4}\NormalTok{,}\StringTok{\textquotesingle{}Hamster\textquotesingle{}}\NormalTok{,}\FloatTok{60.60}\NormalTok{,}\DecValTok{12}\NormalTok{,}\StringTok{\textquotesingle{}2018{-}06{-}11\textquotesingle{}}\NormalTok{),}
+\NormalTok{    (}\DecValTok{5}\NormalTok{,}\StringTok{\textquotesingle{}Goldfish\textquotesingle{}}\NormalTok{,}\FloatTok{48.48}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\StringTok{\textquotesingle{}2018{-}06{-}14\textquotesingle{}}\NormalTok{);}
+    
+\KeywordTok{INSERT} \KeywordTok{INTO}\NormalTok{ PET }\KeywordTok{VALUES}
+\NormalTok{    (}\DecValTok{1}\NormalTok{,}\StringTok{\textquotesingle{}Cat\textquotesingle{}}\NormalTok{,}\DecValTok{3}\NormalTok{),}
+\NormalTok{    (}\DecValTok{2}\NormalTok{,}\StringTok{\textquotesingle{}Dog\textquotesingle{}}\NormalTok{,}\DecValTok{4}\NormalTok{),}
+\NormalTok{    (}\DecValTok{3}\NormalTok{,}\StringTok{\textquotesingle{}Hamster\textquotesingle{}}\NormalTok{,}\DecValTok{2}\NormalTok{);}
+    
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PETSALE;}
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PET;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise.}{%
+\section{\texorpdfstring{Guided Exercise: Use the \texttt{ALTER} statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.}{Guided Exercise: Use the ALTER statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.}}\label{guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise.}}
+
+{\emph{Add a new \texttt{QUANTITY} column to the \texttt{PETSALE} table and show the altered table.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PETSALE}
+\KeywordTok{ADD} \KeywordTok{COLUMN}\NormalTok{ QUANTITY }\DataTypeTok{INTEGER}\NormalTok{;}
+
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PETSALE;}
+\end{Highlighting}
+\end{Shaded}
+
+{\emph{Now update the newly added \texttt{QUANTITY} column of the \texttt{PETSALE} table with some values and show all the records of the table.
+}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{UPDATE}\NormalTok{ PETSALE }\KeywordTok{SET}\NormalTok{ QUANTITY }\OperatorTok{=} \DecValTok{9} \KeywordTok{WHERE} \KeywordTok{ID} \OperatorTok{=} \DecValTok{1}\NormalTok{;}
+\KeywordTok{UPDATE}\NormalTok{ PETSALE }\KeywordTok{SET}\NormalTok{ QUANTITY }\OperatorTok{=} \DecValTok{3} \KeywordTok{WHERE} \KeywordTok{ID} \OperatorTok{=} \DecValTok{2}\NormalTok{;}
+\KeywordTok{UPDATE}\NormalTok{ PETSALE }\KeywordTok{SET}\NormalTok{ QUANTITY }\OperatorTok{=} \DecValTok{2} \KeywordTok{WHERE} \KeywordTok{ID} \OperatorTok{=} \DecValTok{3}\NormalTok{;}
+\KeywordTok{UPDATE}\NormalTok{ PETSALE }\KeywordTok{SET}\NormalTok{ QUANTITY }\OperatorTok{=} \DecValTok{6} \KeywordTok{WHERE} \KeywordTok{ID} \OperatorTok{=} \DecValTok{4}\NormalTok{;}
+\KeywordTok{UPDATE}\NormalTok{ PETSALE }\KeywordTok{SET}\NormalTok{ QUANTITY }\OperatorTok{=} \DecValTok{24} \KeywordTok{WHERE} \KeywordTok{ID} \OperatorTok{=} \DecValTok{5}\NormalTok{;}
+
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PETSALE;}
+\end{Highlighting}
+\end{Shaded}
+
+{\emph{Delete the \texttt{PROFIT} column from the \texttt{PETSALE} table and show the altered table.
+}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PETSALE}
+\KeywordTok{DROP} \KeywordTok{COLUMN}\NormalTok{ PROFIT;}
+
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PETSALE;}
+\end{Highlighting}
+\end{Shaded}
+
+{\emph{Change the data type to \texttt{VARCHAR(20)} type of the column \texttt{PET} of the table \texttt{PETSALE} and show the altered table.
+}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PETSALE}
+\KeywordTok{ALTER} \KeywordTok{COLUMN}\NormalTok{ PET }\KeywordTok{SET} \KeywordTok{DATA} \KeywordTok{TYPE} \DataTypeTok{VARCHAR}\NormalTok{(}\DecValTok{20}\NormalTok{);}
+
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PETSALE;}
+\end{Highlighting}
+\end{Shaded}
+
+If you are using IBM db2:
+Now verify if the data type of the column PET of the table PETSALE changed to \texttt{VARCHAR(20)} type or not. Click on the 3 bar menu icon in the top left corner and click Explore \textgreater{} Tables. Find the \texttt{PETSALE} table from Schemas by clicking Select All. Click on the \texttt{PETSALE} table to open the Table Definition page of the table. Here, you can see all the current data type of the columns of the \texttt{PETSALE} table.
+
+{\emph{Rename the column PET to ANIMAL of the PETSALE table and show the altered table.
+}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ALTER} \KeywordTok{TABLE}\NormalTok{ PETSALE}
+\KeywordTok{RENAME} \KeywordTok{COLUMN}\NormalTok{ PET }\KeywordTok{TO}\NormalTok{ ANIMAL;}
+
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PETSALE;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{guided-exercise-truncate}{%
+\section{Guided Exercise: TRUNCATE}\label{guided-exercise-truncate}}
+
+In this exercise, you will use the TRUNCATE statement to remove all rows from an existing table created in exercise 1 without deleting the table itself.
+
+{\emph{Remove all rows from the PET table and show the empty table. Copy the code below and paste it to the textbox of the Run SQL page. Click Run all.
+}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{TRUNCATE} \KeywordTok{TABLE}\NormalTok{ PET }\KeywordTok{IMMEDIATE}\NormalTok{;}
+
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PET;}
+\end{Highlighting}
+\end{Shaded}
+
 
   \bibliography{book.bib,packages.bib}
 

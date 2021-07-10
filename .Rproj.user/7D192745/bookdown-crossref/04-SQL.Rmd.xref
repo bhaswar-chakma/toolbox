@@ -1,2 +1,10 @@
 h1:sql SQL
+h2:create CREATE
+h2:drop DROP
+h2:alter ALTER
+h2:truncate TRUNCATE
+h2:guided-exercise-create-table-and-insert-data Guided Exercise: Create table and insert data
+h2:guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise. Guided Exercise: Use the  statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.
+h2:guided-exercise-truncate Guided Exercise: TRUNCATE
+h2:guided-exercise-drop Guided Exercise: DROP
 
