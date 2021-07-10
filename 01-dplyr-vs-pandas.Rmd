@@ -1,0 +1,141 @@
+# dplyr vs pandas
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r lib-r}
+library(dplyr)
+```
+
+```{python lib-py}
+import pandas as pd
+```
+
+- `select()` picks variables based on their names.
+
+
+- `mutate()` adds new variables that are functions of existing variables
+
+
+- `filter()` picks cases based on their values.
+
+- `summarise()` reduces multiple values down to a single summary.
+
+- `arrange()` changes the ordering of the rows.
+
+See <https://dplyr.tidyverse.org/> for more details.
+
+We will use the following toy data to apply the verbs. 
+
+```{r df0-r, include = FALSE}
+df <- tibble(
+  name = c("Barney", "Ted", "Marshall",
+           "Lilly","Robin"),
+  gender = c("Male", "Male","Male",
+             "Female", "Female"),
+  grade = c(10, 11, 13, 12, 14)
+)
+df
+```
+
+```{r, echo = FALSE}
+knitr::kable(df)
+```
+
+## Create Dataframe
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+```{r df-r}
+df <- tibble(
+  name = c("Barney", "Ted", "Marshall",
+           "Lilly","Robin"),
+  gender = c("Male", "Male","Male",
+             "Female", "Female"),
+  grade = c(10, 11, 13, 12, 14)
+)
+df
+```
+
+</td>
+<td>
+```{python df-py}
+df = pd.DataFrame({
+  'name':["Barney", "Ted", "Marshall",
+          "Lilly", "Robin"],
+  'gender':["Male", "Male","Male", 
+            "Female", "Female"],
+  'grade':[10, 11, 13, 12, 14] 
+})
+df
+```
+</td>
+<tr>
+</table>
+
+
+## Data Structure
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r glimpse-r}
+glimpse(df)
+```
+</td>
+<td>
+```{python dtypes-py}
+df.dtypes
+df.shape
+df.info()
+```
+</td>
+<tr>
+</table>
+
+
+
+## select()
+
+<span style="color:blue">*Select the variables `name` and `grade`.
+*</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r select-r}
+df %>% 
+  select(name, grade)
+
+```
+
+</td>
+<td>
+```{python select-py}
+df[['name', 'grade']]
+
+```
+
+```{python}
+# or
+df.drop(columns = ['grade'])
+```
+
+```{python}
+# or
+df.drop(['grade'], axis = 1)
+```
+
+</td>
+<tr>
+</table>
+
+
+

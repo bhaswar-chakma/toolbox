@@ -137,6 +137,73 @@
 \chapter*{}\label{section}}
 \addcontentsline{toc}{chapter}{}
 
+\hypertarget{dplyr-vs-pandas}{%
+\chapter{dplyr vs pandas}\label{dplyr-vs-pandas}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{create-dataframe}{%
+\section{Create Dataframe}\label{create-dataframe}}
+
+pandas
+
+dplyr
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+  \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{:[}\StringTok{"Barney"}\NormalTok{, }\StringTok{"Ted"}\NormalTok{, }\StringTok{"Marshall"}\NormalTok{, }\StringTok{"Lilly"}\NormalTok{, }\StringTok{"Robin"}\NormalTok{],}
+  \StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{:[}\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{],}
+  \StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{:[}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{] }
+\NormalTok{\})}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        name  gender  grade
+## 0    Barney    Male     10
+## 1       Ted    Male     11
+## 2  Marshall    Male     13
+## 3     Lilly  Female     12
+## 4     Robin  Female     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{name =} \FunctionTok{c}\NormalTok{(}\StringTok{"Barney"}\NormalTok{, }\StringTok{"Ted"}\NormalTok{,}
+           \StringTok{"Marshall"}\NormalTok{,}\StringTok{"Lilly"}\NormalTok{,}
+           \StringTok{"Robin"}\NormalTok{),}
+  \AttributeTok{gender =} \FunctionTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{,}
+             \StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{),}
+  \AttributeTok{grade =} \FunctionTok{c}\NormalTok{ (}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   name     gender grade
+##   <chr>    <chr>  <dbl>
+## 1 Barney   Male      10
+## 2 Ted      Male      11
+## 3 Marshall Male      13
+## 4 Lilly    Female    12
+## 5 Robin    Female    14
+\end{verbatim}
+
 \hypertarget{python}{%
 \chapter{Python}\label{python}}
 
@@ -697,11 +764,11 @@ index values.}
 \end{Shaded}
 
 \begin{verbatim}
-## [[4 3]
-##  [5 0]
-##  [9 3]
-##  [6 8]
-##  [9 5]]
+## [[2 0]
+##  [1 8]
+##  [2 3]
+##  [4 6]
+##  [8 9]]
 \end{verbatim}
 
 \begin{Shaded}
@@ -712,11 +779,11 @@ index values.}
 
 \begin{verbatim}
 ##    x  y
-## a  4  3
-## b  5  0
-## c  9  3
-## d  6  8
-## e  9  5
+## a  2  0
+## b  1  8
+## c  2  3
+## d  4  6
+## e  8  9
 \end{verbatim}
 
 \hypertarget{subsetting-the-dataframe}{%
@@ -1931,15 +1998,29 @@ Now verify if the data type of the column PET of the table PETSALE changed to \t
 \hypertarget{guided-exercise-truncate}{%
 \section{Guided Exercise: TRUNCATE}\label{guided-exercise-truncate}}
 
-In this exercise, you will use the TRUNCATE statement to remove all rows from an existing table created in exercise 1 without deleting the table itself.
+In this exercise, you will use the \texttt{TRUNCATE} statement to remove all rows from an existing table created in exercise 1 without deleting the table itself.
 
-{\emph{Remove all rows from the PET table and show the empty table. Copy the code below and paste it to the textbox of the Run SQL page. Click Run all.
+{\emph{Remove all rows from the PET table and show the empty table.
 }}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{TRUNCATE} \KeywordTok{TABLE}\NormalTok{ PET }\KeywordTok{IMMEDIATE}\NormalTok{;}
+\KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PET;}
+\end{Highlighting}
+\end{Shaded}
 
+\hypertarget{guided-exercise-drop}{%
+\section{Guided Exercise: DROP}\label{guided-exercise-drop}}
+
+In this exercise, you will use the \texttt{DROP} statement to delete an existing table created in the previous exercise.
+
+{\emph{Delete the PET table and verify if the table still exists or not (SELECT statement won't work if a table doesn't exist).
+}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{DROP} \KeywordTok{TABLE}\NormalTok{ PET;}
 \KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PET;}
 \end{Highlighting}
 \end{Shaded}
