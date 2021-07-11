@@ -102,8 +102,8 @@ df.info()
 
 ## select()
 
-<span style="color:blue">*Select the variables `name` and `grade`.
-*</span>
+<span style="color:blue">**Task: Pick the variables `name` and `grade`.
+**</span>
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -136,6 +136,98 @@ df.drop(['grade'], axis = 1)
 </td>
 <tr>
 </table>
+
+## mutate()
+
+<span style="color:blue">**Task: Generate a variable `grade_p`, expressing grade out of 100.
+**</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r mutate-r}
+df %>% 
+  mutate(grade_p = grade/20*100)
+
+```
+
+</td>
+<td>
+```{python mutate-py}
+df['grade_p'] = df['grade']/20*100
+df
+```
+```{python}
+# now drop the newly created variable
+df.drop(columns = 'grade_p', inplace = True)
+```
+
+</td>
+<tr>
+</table>
+
+## filter()
+
+<span style="color:blue">**Task: Keep Barney or females.
+**</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r filter-r}
+df %>% 
+  filter(name == "Barney"| gender == "Female")
+
+```
+
+</td>
+<td>
+```{python filter-py}
+df[(df["name"] == "Barney") | 
+   (df["gender"] == "Female")]
+```
+
+</td>
+<tr>
+</table>
+
+
+
+
+## groupby() and summarize()
+
+<span style="color:blue">**Task: Grouped by gender, find average grade.
+**</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r grp-sum-r}
+df %>% 
+  group_by(gender) %>% 
+  summarize(avg_grade = mean(grade))
+
+```
+
+</td>
+<td>
+```{python grp-sum-py}
+df.groupby("gender")['grade'].mean()
+```
+
+</td>
+<tr>
+</table>
+
+
+
+
 
 
 

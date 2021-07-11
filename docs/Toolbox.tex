@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-07-10}
+\date{2021-07-11}
 
 \begin{document}
 \maketitle
@@ -152,18 +152,77 @@
 \end{Highlighting}
 \end{Shaded}
 
+\begin{itemize}
+\item
+  \texttt{select()} picks variables based on their names.
+\item
+  \texttt{mutate()} adds new variables that are functions of existing variables
+\item
+  \texttt{filter()} picks cases based on their values.
+\item
+  \texttt{summarise()} reduces multiple values down to a single summary.
+\item
+  \texttt{arrange()} changes the ordering of the rows.
+\end{itemize}
+
+See \url{https://dplyr.tidyverse.org/} for more details.
+
+We will use the following toy data to apply the verbs.
+
+\begin{tabular}{l|l|r}
+\hline
+name & gender & grade\\
+\hline
+Barney & Male & 10\\
+\hline
+Ted & Male & 11\\
+\hline
+Marshall & Male & 13\\
+\hline
+Lilly & Female & 12\\
+\hline
+Robin & Female & 14\\
+\hline
+\end{tabular}
+
 \hypertarget{create-dataframe}{%
 \section{Create Dataframe}\label{create-dataframe}}
 
+dplyr
+
 pandas
 
-dplyr
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{name =} \FunctionTok{c}\NormalTok{(}\StringTok{"Barney"}\NormalTok{, }\StringTok{"Ted"}\NormalTok{, }\StringTok{"Marshall"}\NormalTok{,}
+           \StringTok{"Lilly"}\NormalTok{,}\StringTok{"Robin"}\NormalTok{),}
+  \AttributeTok{gender =} \FunctionTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{,}
+             \StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{),}
+  \AttributeTok{grade =} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   name     gender grade
+##   <chr>    <chr>  <dbl>
+## 1 Barney   Male      10
+## 2 Ted      Male      11
+## 3 Marshall Male      13
+## 4 Lilly    Female    12
+## 5 Robin    Female    14
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
-  \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{:[}\StringTok{"Barney"}\NormalTok{, }\StringTok{"Ted"}\NormalTok{, }\StringTok{"Marshall"}\NormalTok{, }\StringTok{"Lilly"}\NormalTok{, }\StringTok{"Robin"}\NormalTok{],}
-  \StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{:[}\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{, }\StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{],}
+  \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{:[}\StringTok{"Barney"}\NormalTok{, }\StringTok{"Ted"}\NormalTok{, }\StringTok{"Marshall"}\NormalTok{,}
+          \StringTok{"Lilly"}\NormalTok{, }\StringTok{"Robin"}\NormalTok{],}
+  \StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{:[}\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{, }
+            \StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{],}
   \StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{:[}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{] }
 \NormalTok{\})}
 \NormalTok{df}
@@ -179,29 +238,270 @@ dplyr
 ## 4     Robin  Female     14
 \end{verbatim}
 
+\hypertarget{data-structure}{%
+\section{Data Structure}\label{data-structure}}
+
+dplyr
+
+pandas
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
-  \AttributeTok{name =} \FunctionTok{c}\NormalTok{(}\StringTok{"Barney"}\NormalTok{, }\StringTok{"Ted"}\NormalTok{,}
-           \StringTok{"Marshall"}\NormalTok{,}\StringTok{"Lilly"}\NormalTok{,}
-           \StringTok{"Robin"}\NormalTok{),}
-  \AttributeTok{gender =} \FunctionTok{c}\NormalTok{(}\StringTok{"Male"}\NormalTok{, }\StringTok{"Male"}\NormalTok{,}\StringTok{"Male"}\NormalTok{,}
-             \StringTok{"Female"}\NormalTok{, }\StringTok{"Female"}\NormalTok{),}
-  \AttributeTok{grade =} \FunctionTok{c}\NormalTok{ (}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{14}\NormalTok{)}
-\NormalTok{)}
+\FunctionTok{glimpse}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 5
+## Columns: 3
+## $ name   <chr> "Barney", "Ted", "Marshall", "Lilly", "Robin"
+## $ gender <chr> "Male", "Male", "Male", "Female", "Female"
+## $ grade  <dbl> 10, 11, 13, 12, 14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.dtypes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## name      object
+## gender    object
+## grade      int64
+## dtype: object
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.shape}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## (5, 3)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.info()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <class 'pandas.core.frame.DataFrame'>
+## RangeIndex: 5 entries, 0 to 4
+## Data columns (total 3 columns):
+## name      5 non-null object
+## gender    5 non-null object
+## grade     5 non-null int64
+## dtypes: int64(1), object(2)
+## memory usage: 248.0+ bytes
+\end{verbatim}
+
+\hypertarget{select}{%
+\section{select()}\label{select}}
+
+{\textbf{Task: Pick the variables \texttt{name} and \texttt{grade}.
+}}
+
+dplyr
+
+pandas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{select}\NormalTok{(name, grade)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   name     grade
+##   <chr>    <dbl>
+## 1 Barney      10
+## 2 Ted         11
+## 3 Marshall    13
+## 4 Lilly       12
+## 5 Robin       14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[[}\StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        name  grade
+## 0    Barney     10
+## 1       Ted     11
+## 2  Marshall     13
+## 3     Lilly     12
+## 4     Robin     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# or}
+\NormalTok{df.drop(columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        name  gender
+## 0    Barney    Male
+## 1       Ted    Male
+## 2  Marshall    Male
+## 3     Lilly  Female
+## 4     Robin  Female
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# or}
+\NormalTok{df.drop([}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{], axis }\OperatorTok{=} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        name  gender
+## 0    Barney    Male
+## 1       Ted    Male
+## 2  Marshall    Male
+## 3     Lilly  Female
+## 4     Robin  Female
+\end{verbatim}
+
+\hypertarget{mutate}{%
+\section{mutate()}\label{mutate}}
+
+{\textbf{Task: Generate a variable \texttt{grade\_p}, expressing grade out of 100.
+}}
+
+dplyr
+
+pandas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{grade\_p =}\NormalTok{ grade}\SpecialCharTok{/}\DecValTok{20}\SpecialCharTok{*}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 4
+##   name     gender grade grade_p
+##   <chr>    <chr>  <dbl>   <dbl>
+## 1 Barney   Male      10      50
+## 2 Ted      Male      11      55
+## 3 Marshall Male      13      65
+## 4 Lilly    Female    12      60
+## 5 Robin    Female    14      70
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[}\StringTok{\textquotesingle{}grade\_p\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ df[}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{]}\OperatorTok{/}\DecValTok{20}\OperatorTok{*}\DecValTok{100}
 \NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## # A tibble: 5 x 3
-##   name     gender grade
-##   <chr>    <chr>  <dbl>
-## 1 Barney   Male      10
-## 2 Ted      Male      11
-## 3 Marshall Male      13
-## 4 Lilly    Female    12
-## 5 Robin    Female    14
+##        name  gender  grade  grade_p
+## 0    Barney    Male     10     50.0
+## 1       Ted    Male     11     55.0
+## 2  Marshall    Male     13     65.0
+## 3     Lilly  Female     12     60.0
+## 4     Robin  Female     14     70.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# now drop the newly created variable}
+\NormalTok{df.drop(columns }\OperatorTok{=} \StringTok{\textquotesingle{}grade\_p\textquotesingle{}}\NormalTok{, inplace }\OperatorTok{=} \VariableTok{True}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{filter}{%
+\section{filter()}\label{filter}}
+
+{\textbf{Task: Keep Barney or females.
+}}
+
+dplyr
+
+pandas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(name }\SpecialCharTok{==} \StringTok{"Barney"}\SpecialCharTok{|}\NormalTok{ gender }\SpecialCharTok{==} \StringTok{"Female"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   name   gender grade
+##   <chr>  <chr>  <dbl>
+## 1 Barney Male      10
+## 2 Lilly  Female    12
+## 3 Robin  Female    14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[(df[}\StringTok{"name"}\NormalTok{] }\OperatorTok{==} \StringTok{"Barney"}\NormalTok{) }\OperatorTok{|} 
+\NormalTok{   (df[}\StringTok{"gender"}\NormalTok{] }\OperatorTok{==} \StringTok{"Female"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      name  gender  grade
+## 0  Barney    Male     10
+## 3   Lilly  Female     12
+## 4   Robin  Female     14
+\end{verbatim}
+
+\hypertarget{groupby-and-summarize}{%
+\section{groupby() and summarize()}\label{groupby-and-summarize}}
+
+{\textbf{Task: Grouped by gender, find average grade.
+}}
+
+dplyr
+
+pandas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(gender) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_grade =} \FunctionTok{mean}\NormalTok{(grade))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   gender avg_grade
+##   <chr>      <dbl>
+## 1 Female      13  
+## 2 Male        11.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.groupby(}\StringTok{"gender"}\NormalTok{)[}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{].mean()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## gender
+## Female    13.000000
+## Male      11.333333
+## Name: grade, dtype: float64
 \end{verbatim}
 
 \hypertarget{python}{%
@@ -764,11 +1064,11 @@ index values.}
 \end{Shaded}
 
 \begin{verbatim}
-## [[2 0]
-##  [1 8]
-##  [2 3]
-##  [4 6]
-##  [8 9]]
+## [[4 5]
+##  [6 6]
+##  [7 4]
+##  [6 1]
+##  [9 2]]
 \end{verbatim}
 
 \begin{Shaded}
@@ -779,11 +1079,11 @@ index values.}
 
 \begin{verbatim}
 ##    x  y
-## a  2  0
-## b  1  8
-## c  2  3
-## d  4  6
-## e  8  9
+## a  4  5
+## b  6  6
+## c  7  4
+## d  6  1
+## e  9  2
 \end{verbatim}
 
 \hypertarget{subsetting-the-dataframe}{%
