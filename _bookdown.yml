@@ -1,6 +1,6 @@
 book_filename: "Toolbox"
 language:
   ui:
-    chapter_name: "Tool "
+    chapter_name: ""
 delete_merged_file: true
 output_dir: docs

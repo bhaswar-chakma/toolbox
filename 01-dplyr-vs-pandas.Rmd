@@ -4,13 +4,15 @@
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r lib-r}
+```{r lib-r, echo = FALSE}
 library(dplyr)
 ```
 
-```{python lib-py}
+```{python lib-py, echo = FALSE}
 import pandas as pd
 ```
+
+We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) for comparison
 
 - `select()` picks variables based on their names.
 
@@ -24,9 +26,8 @@ import pandas as pd
 
 - `arrange()` changes the ordering of the rows.
 
-See <https://dplyr.tidyverse.org/> for more details.
 
-We will use the following toy data to apply the verbs. 
+and use the following toy data to apply the verbs. 
 
 ```{r df0-r, include = FALSE}
 df <- tibble(
@@ -43,7 +44,8 @@ df
 knitr::kable(df)
 ```
 
-## Create Dataframe
+<span style="color:blue">**Create Toy Data**</span>
+
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -77,7 +79,8 @@ df
 </table>
 
 
-## Data Structure
+
+<span style="color:blue">**Check Data Structure**</span>
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -198,9 +201,9 @@ df[(df["name"] == "Barney") |
 
 
 
-## groupby() and summarize()
+## group_by() and summarize()
 
-<span style="color:blue">**Task: Grouped by gender, find average grade.
+<span style="color:blue">**Task: Grouped by gender, find mean grade.
 **</span>
 
 <table class='table'>
@@ -208,7 +211,7 @@ df[(df["name"] == "Barney") |
 <tr>
 <td>
 
-```{r grp-sum-r}
+```{r grp-sum1-r}
 df %>% 
   group_by(gender) %>% 
   summarize(avg_grade = mean(grade))
@@ -217,17 +220,58 @@ df %>%
 
 </td>
 <td>
-```{python grp-sum-py}
+```{python grp-sum1a-py}
+# returns a series
 df.groupby("gender")['grade'].mean()
 ```
 
+```{python grp-sum1b-py}
+# returns a data frame
+df[['gender', 'grade']].groupby("gender").mean()
+```
 </td>
 <tr>
 </table>
 
 
 
+<span style="color:blue">**Task: Grouped by gender, find mean, median, minimum, and maximum grade.
+**</span>
 
 
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+
+```{r grp-sum2-r}
+df %>% 
+  group_by(gender) %>% 
+  summarize(mean = mean(grade),
+            median = median(grade),
+            min = min(grade),
+            max = max(grade))
+
+```
+
+</td>
+<td>
+```{python grp-sum2-py}
+df.groupby("gender")['grade'].agg(
+  # provide a dictionary
+  {# variable name followed by function
+    'mean': 'mean',
+    'median': 'median',
+    'min': 'min',
+    'max': 'max'
+  }
+)
+```
+
+
+</td>
+<tr>
+</table>
 
 

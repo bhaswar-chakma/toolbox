@@ -1,10 +1,8 @@
 dplyr-vs-pandas
-create-dataframe
-data-structure
 select
 mutate
 filter
-groupby-and-summarize
+group_by-and-summarize
 python
 pandas-i-basics
 series

@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-07-11}
+\date{2021-07-12}
 
 \begin{document}
 \maketitle
@@ -140,17 +140,7 @@
 \hypertarget{dplyr-vs-pandas}{%
 \chapter{dplyr vs pandas}\label{dplyr-vs-pandas}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(dplyr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
-\end{Highlighting}
-\end{Shaded}
+We will use the five \href{https://dplyr.tidyverse.org/}{dplyr verbs} for comparison
 
 \begin{itemize}
 \item
@@ -165,9 +155,7 @@
   \texttt{arrange()} changes the ordering of the rows.
 \end{itemize}
 
-See \url{https://dplyr.tidyverse.org/} for more details.
-
-We will use the following toy data to apply the verbs.
+and use the following toy data to apply the verbs.
 
 \begin{tabular}{l|l|r}
 \hline
@@ -185,8 +173,7 @@ Robin & Female & 14\\
 \hline
 \end{tabular}
 
-\hypertarget{create-dataframe}{%
-\section{Create Dataframe}\label{create-dataframe}}
+{\textbf{Create Toy Data}}
 
 dplyr
 
@@ -238,8 +225,7 @@ pandas
 ## 4     Robin  Female     14
 \end{verbatim}
 
-\hypertarget{data-structure}{%
-\section{Data Structure}\label{data-structure}}
+{\textbf{Check Data Structure}}
 
 dplyr
 
@@ -465,10 +451,10 @@ pandas
 ## 4   Robin  Female     14
 \end{verbatim}
 
-\hypertarget{groupby-and-summarize}{%
-\section{groupby() and summarize()}\label{groupby-and-summarize}}
+\hypertarget{group_by-and-summarize}{%
+\section{group\_by() and summarize()}\label{group_by-and-summarize}}
 
-{\textbf{Task: Grouped by gender, find average grade.
+{\textbf{Task: Grouped by gender, find mean grade.
 }}
 
 dplyr
@@ -493,6 +479,7 @@ pandas
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# returns a series}
 \NormalTok{df.groupby(}\StringTok{"gender"}\NormalTok{)[}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{].mean()}
 \end{Highlighting}
 \end{Shaded}
@@ -502,6 +489,72 @@ pandas
 ## Female    13.000000
 ## Male      11.333333
 ## Name: grade, dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# returns a data frame}
+\NormalTok{df[[}\StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{]].groupby(}\StringTok{"gender"}\NormalTok{).mean()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             grade
+## gender           
+## Female  13.000000
+## Male    11.333333
+\end{verbatim}
+
+{\textbf{Task: Grouped by gender, find mean, median, minimum, and maximum grade.
+}}
+
+dplyr
+
+pandas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(gender) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean =} \FunctionTok{mean}\NormalTok{(grade),}
+            \AttributeTok{median =} \FunctionTok{median}\NormalTok{(grade),}
+            \AttributeTok{min =} \FunctionTok{min}\NormalTok{(grade),}
+            \AttributeTok{max =} \FunctionTok{max}\NormalTok{(grade))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 5
+##   gender  mean median   min   max
+##   <chr>  <dbl>  <dbl> <dbl> <dbl>
+## 1 Female  13       13    12    14
+## 2 Male    11.3     11    10    13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.groupby(}\StringTok{"gender"}\NormalTok{)[}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{].agg(}
+  \CommentTok{\# provide a dictionary}
+\NormalTok{  \{}\CommentTok{\# variable name followed by function}
+    \StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}median\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}median\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{,}
+    \StringTok{\textquotesingle{}max\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}max\textquotesingle{}}
+\NormalTok{  \}}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              mean  median  min  max
+## gender                             
+## Female  13.000000      13   12   14
+## Male    11.333333      11   10   13
+## 
+## C:/Users/Bhaswar/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:7: FutureWarning: using a dict on a Series for aggregation
+## is deprecated and will be removed in a future version. Use                 named aggregation instead.
+## 
+##     >>> grouper.agg(name_1=func_1, name_2=func_2)
 \end{verbatim}
 
 \hypertarget{python}{%
@@ -1064,11 +1117,11 @@ index values.}
 \end{Shaded}
 
 \begin{verbatim}
-## [[4 5]
-##  [6 6]
+## [[1 3]
+##  [9 9]
 ##  [7 4]
-##  [6 1]
-##  [9 2]]
+##  [7 4]
+##  [5 4]]
 \end{verbatim}
 
 \begin{Shaded}
@@ -1079,11 +1132,11 @@ index values.}
 
 \begin{verbatim}
 ##    x  y
-## a  4  5
-## b  6  6
+## a  1  3
+## b  9  9
 ## c  7  4
-## d  6  1
-## e  9  2
+## d  7  4
+## e  5  4
 \end{verbatim}
 
 \hypertarget{subsetting-the-dataframe}{%
