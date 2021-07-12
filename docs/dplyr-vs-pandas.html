@@ -144,6 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#mutate"><i class="fa fa-check"></i><b>1.2</b> mutate()</a></li>
 <li class="chapter" data-level="1.3" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#filter"><i class="fa fa-check"></i><b>1.3</b> filter()</a></li>
 <li class="chapter" data-level="1.4" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> group_by() and summarize()</a></li>
+<li class="chapter" data-level="1.5" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#arrange"><i class="fa fa-check"></i><b>1.5</b> arrange()</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="python.html"><a href="python.html"><i class="fa fa-check"></i><b>2</b> Python</a>
 <ul>
@@ -544,6 +545,111 @@ pandas
 </td>
 <tr>
 </table>
+</div>
+<div id="arrange" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> arrange()</h2>
+<p><span style="color:blue"><strong>Task: Arrange grade in ascending order.
+</strong></span></p>
+<table class='table'>
+<tr>
+<th>
+dplyr
+</th>
+<th>
+pandas
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="dplyr-vs-pandas.html#cb40-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="dplyr-vs-pandas.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(grade)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   name     gender grade
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
+## 1 Barney   Male      10
+## 2 Ted      Male      11
+## 3 Lilly    Female    12
+## 4 Marshall Male      13
+## 5 Robin    Female    14</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="dplyr-vs-pandas.html#cb42-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;grade&#39;</span>)</span></code></pre></div>
+<pre><code>##        name  gender  grade
+## 0    Barney    Male     10
+## 1       Ted    Male     11
+## 3     Lilly  Female     12
+## 2  Marshall    Male     13
+## 4     Robin  Female     14</code></pre>
+</td>
+<tr>
+</table>
+<p><span style="color:blue"><strong>Task: Arrange grade in ascending order.
+</strong></span></p>
+<table class='table'>
+<tr>
+<th>
+dplyr
+</th>
+<th>
+pandas
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="dplyr-vs-pandas.html#cb44-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(grade))</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   name     gender grade
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
+## 1 Robin    Female    14
+## 2 Marshall Male      13
+## 3 Lilly    Female    12
+## 4 Ted      Male      11
+## 5 Barney   Male      10</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="dplyr-vs-pandas.html#cb46-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;grade&#39;</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+<pre><code>##        name  gender  grade
+## 4     Robin  Female     14
+## 2  Marshall    Male     13
+## 3     Lilly  Female     12
+## 1       Ted    Male     11
+## 0    Barney    Male     10</code></pre>
+</td>
+<tr>
+</table>
+<p><span style="color:blue"><strong>Task: Arrange gender in ascending order then arrange grade in descending order.
+</strong></span></p>
+<table class='table'>
+<tr>
+<th>
+dplyr
+</th>
+<th>
+pandas
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="dplyr-vs-pandas.html#cb48-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="dplyr-vs-pandas.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(gender, <span class="fu">desc</span>(grade))</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##   name     gender grade
+##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
+## 1 Robin    Female    14
+## 2 Lilly    Female    12
+## 3 Marshall Male      13
+## 4 Ted      Male      11
+## 5 Barney   Male      10</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="dplyr-vs-pandas.html#cb50-1" aria-hidden="true" tabindex="-1"></a>df.sort_values([<span class="st">&#39;gender&#39;</span>,<span class="st">&#39;grade&#39;</span>],</span>
+<span id="cb50-2"><a href="dplyr-vs-pandas.html#cb50-2" aria-hidden="true" tabindex="-1"></a>                ascending <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>])</span></code></pre></div>
+<pre><code>##        name  gender  grade
+## 4     Robin  Female     14
+## 3     Lilly  Female     12
+## 2  Marshall    Male     13
+## 1       Ted    Male     11
+## 0    Barney    Male     10</code></pre>
 
 </div>
 </div>

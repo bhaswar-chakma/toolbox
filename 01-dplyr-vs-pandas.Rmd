@@ -275,3 +275,69 @@ df.groupby("gender")['grade'].agg(
 </table>
 
 
+## arrange()
+
+<span style="color:blue">**Task: Arrange grade in ascending order.
+**</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r arrange-a-r}
+df %>% 
+  arrange(grade)
+```
+
+</td>
+<td>
+```{python arrange-a-py}
+df.sort_values('grade')
+```
+
+</td>
+<tr>
+</table>
+
+<span style="color:blue">**Task: Arrange grade in ascending order.
+**</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r arrange-desc-r}
+df %>% arrange(desc(grade))
+```
+
+</td>
+<td>
+```{python arrange-desc-py}
+df.sort_values('grade', ascending = False)
+```
+
+</td>
+<tr>
+</table>
+
+<span style="color:blue">**Task: Arrange gender in ascending order then arrange grade in descending order.
+**</span>
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{r arrange-multiple-r}
+df %>%
+  arrange(gender, desc(grade))
+```
+
+</td>
+<td>
+```{python arrange-multiple-py}
+df.sort_values(['gender','grade'],
+                ascending = [True, False])
+```

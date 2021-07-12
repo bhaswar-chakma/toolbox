@@ -27,3 +27,4 @@ guided-exercise-create-table-and-insert-data
 guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise.
 guided-exercise-truncate
 guided-exercise-drop
+arrange
