@@ -12,7 +12,7 @@ library(dplyr)
 import pandas as pd
 ```
 
-We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) for comparison
+We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) (also [pandas' guide](https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html) is also helpful) for comparison
 
 - `select()` picks variables based on their names.
 
@@ -27,7 +27,9 @@ We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) for comparison
 - `arrange()` changes the ordering of the rows.
 
 
-and use the following toy data to apply the verbs. 
+and use the following toy data to apply the verbs.
+
+
 
 ```{r df0-r, include = FALSE}
 df <- tibble(
@@ -183,15 +185,27 @@ df.drop(columns = 'grade_p', inplace = True)
 
 ```{r filter-r}
 df %>% 
-  filter(name == "Barney"| gender == "Female")
+  filter(name == "Barney"|
+         gender == "Female")
 
 ```
 
 </td>
 <td>
 ```{python filter-py}
+# similar to base R
 df[(df["name"] == "Barney") | 
    (df["gender"] == "Female")]
+```
+
+```{python filter2-py}
+# query with ''; need to use "" for conditions
+df.query('name == "Barney"|gender == "Female"')
+```
+
+```{python filter3-py}
+# query with ""; need to use '' for conditions
+df.query("name == 'Barney'| gender == 'Female'")
 ```
 
 </td>
@@ -341,3 +355,6 @@ df %>%
 df.sort_values(['gender','grade'],
                 ascending = [True, False])
 ```
+</td>
+<tr>
+</table>

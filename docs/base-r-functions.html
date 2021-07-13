@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Toolbox</title>
-  <meta name="description" content="Toolbox" />
+  <title>3 Base R Functions | Toolbox</title>
+  <meta name="description" content="3 Base R Functions | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Toolbox" />
+  <meta property="og:title" content="3 Base R Functions | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Toolbox" />
+  <meta name="twitter:title" content="3 Base R Functions | Toolbox" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="dplyr-vs-pandas.html"/>
+<link rel="prev" href="python.html"/>
+<link rel="next" href="sql.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -166,15 +166,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="python.html"><a href="python.html#indexing"><i class="fa fa-check"></i><b>2.2.1</b> Indexing</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>3</b> R Strings</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>3.1</b> String Manupulation with Base R Functions</a></li>
-<li class="chapter" data-level="3.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>3.2</b> <code>stringr</code></a></li>
-<li class="chapter" data-level="3.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>3.3</b> Regular Expressions</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>3.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
-</ul></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="base-r-functions.html"><a href="base-r-functions.html"><i class="fa fa-check"></i><b>3</b> Base R Functions</a></li>
 <li class="chapter" data-level="4" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>4</b> SQL</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>4.1</b> CREATE</a></li>
@@ -203,16 +195,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Toolbox</h1>
-<p class="author"><em>Bhaswar Chakma</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-13</em></p>
-</div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
-<center>
-<img src="https://pbs.twimg.com/media/ELaj6MaXYAAozFy?format=jpg&name=large" width="1200" alt="rstudio lovestory logo"  />
-</center>
+<div id="base-r-functions" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Base R Functions</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="base-r-functions.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example Vector</span></span>
+<span id="cb1-2"><a href="base-r-functions.html#cb1-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Universe&quot;</span>)</span></code></pre></div>
+<p>There are many functions in base R for basic string manipulation.</p>
+<ul>
+<li><code>nchar()</code> Returns number of characters</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="base-r-functions.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y)</span></code></pre></div>
+<pre><code>## [1] 5 5 5 8</code></pre>
+<ul>
+<li><p><code>tolower()</code> Converts to lower case</p></li>
+<li><p><code>toupper()</code> Converts to upper case</p></li>
+<li><p><code>chartr()</code> Translates characters</p></li>
+<li><p><code>substr()</code> Extracts substrings of a character vector</p></li>
+<li><p><code>strsplit()</code> Splits strings into substrings</p></li>
+</ul>
 
 </div>
             </section>
@@ -220,8 +219,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-
-<a href="dplyr-vs-pandas.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="python.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,6 +1,0 @@
-# R
-
-<center>
-    <img src="https://cran.r-project.org/Rlogo.svg" width="150" alt="cognitiveclass.ai logo"  />
-</center>
-

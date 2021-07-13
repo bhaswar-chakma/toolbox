@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Toolbox</title>
-  <meta name="description" content="Toolbox" />
+  <title>3 R Strings | Toolbox</title>
+  <meta name="description" content="3 R Strings | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Toolbox" />
+  <meta property="og:title" content="3 R Strings | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Toolbox" />
+  <meta name="twitter:title" content="3 R Strings | Toolbox" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="dplyr-vs-pandas.html"/>
+<link rel="prev" href="python.html"/>
+<link rel="next" href="sql.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -203,25 +203,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Toolbox</h1>
-<p class="author"><em>Bhaswar Chakma</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-13</em></p>
+<div id="r-strings" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> R Strings</h1>
+<div id="string-manupulation-with-base-r-functions" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> String Manupulation with Base R Functions</h2>
+<p>There are many functions in base R for basic string manipulation.</p>
+<table class='table'>
+<tr>
+<th>
+Function
+</th>
+<th>
+Example
+</th>
+<tr>
+<tr>
+<td>
+<p><span style="color:blue"><strong><code>nchar()</code>
+</strong></span></p>
+</td>
+<td>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="r-strings.html#cb260-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Universe&quot;</span>)</span>
+<span id="cb260-2"><a href="r-strings.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y) <span class="co"># Returns number of characters</span></span></code></pre></div>
+<pre><code>## [1] 5 5 5 8</code></pre>
+</td>
+<tr>
+<tr>
+<td>
+<p><span style="color:blue"><strong><code>tolower()</code>
+</strong></span></p>
+</td>
+<td>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="r-strings.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;hello&quot;    &quot;world&quot;    &quot;hello&quot;    &quot;universe&quot;</code></pre>
+</td>
+<tr>
+<tr>
+<td>
+<p><span style="color:blue"><strong><code>toupper()</code>
+</strong></span></p>
+</td>
+<td>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="r-strings.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;HELLO&quot;    &quot;WORLD&quot;    &quot;HELLO&quot;    &quot;UNIVERSE&quot;</code></pre>
+</td>
+<tr>
+<tr>
+<td>
+<p><span style="color:blue"><strong><code>chartr()</code>
+</strong></span></p>
+</td>
+<td>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="r-strings.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartr</span>(<span class="st">&quot;oe&quot;</span>, <span class="st">&quot;$#&quot;</span>, y)<span class="co">#o becomes $; e becomes #</span></span></code></pre></div>
+<pre><code>## [1] &quot;H#ll$&quot;    &quot;W$rld&quot;    &quot;H#ll$&quot;    &quot;Univ#rs#&quot;</code></pre>
+</td>
+<tr>
+<tr>
+<td>
+<p><span style="color:blue"><strong><code>substr()</code>
+</strong></span></p>
+</td>
+<td>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="r-strings.html#cb268-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;1t345s?&quot;</span></span>
+<span id="cb268-2"><a href="r-strings.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(x, <span class="dv">2</span>, <span class="dv">6</span>) <span class="co"># provides strings from 2 to 6</span></span></code></pre></div>
+<pre><code>## [1] &quot;t345s&quot;</code></pre>
+</td>
+<tr>
+<tr>
+<td>
+<p><span style="color:blue"><strong><code>strsplit()</code>
+</strong></span></p>
+</td>
+<td>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="r-strings.html#cb270-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;R#Rocks#!&quot;</span></span>
+<span id="cb270-2"><a href="r-strings.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strsplit</span>(x, <span class="at">split =</span> <span class="st">&quot;#&quot;</span>)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;R&quot;     &quot;Rocks&quot; &quot;!&quot;</code></pre>
+</td>
+<tr>
+</table>
 </div>
-<div id="section" class="section level1 unnumbered">
-<h1 class="unnumbered"></h1>
-<center>
-<img src="https://pbs.twimg.com/media/ELaj6MaXYAAozFy?format=jpg&name=large" width="1200" alt="rstudio lovestory logo"  />
-</center>
+<div id="stringr" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> <code>stringr</code></h2>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="r-strings.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Job</th>
+<th align="center">stringr</th>
+<th align="center">Base R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">String concatenation</td>
+<td align="center"><code>str_c()</code></td>
+<td align="center"><code>paste()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Number of characters</td>
+<td align="center"><code>str_length()</code></td>
+<td align="center"><code>nchar()</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Extracts substrings</td>
+<td align="center"><code>str_sub()</code></td>
+<td align="center"><code>substr()</code></td>
+</tr>
+<tr class="even">
+<td align="center">Duplicates characters</td>
+<td align="center"><code>str_dup()</code></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Removes leading and trailing whitespace</td>
+<td align="center"><code>str_trim()</code></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Pads a string</td>
+<td align="center"><code>str_pad()</code></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Wraps a string paragraph</td>
+<td align="center"><code>str_wrap()</code></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="regular-expressions" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Regular Expressions</h2>
+<p>A <strong>regular expression</strong> (or <strong>regex</strong>) is a set of symbols that describes a text pattern. More formally, a regular expression is a pattern that describes a set of strings.</p>
+<p>Regular expressions are a formal language in the sense that the symbols have a defined set of rules to specify the desired patterns.</p>
+<div id="stringr-functions-for-regular-expressions" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> <code>stringr</code> Functions for Regular Expressions</h3>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="74%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Function</th>
+<th align="center">Job</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>str_detect</code>(str, pattern)</td>
+<td align="center">Detects the presence of a pattern and returns TRUE if it is found</td>
+</tr>
+<tr class="even">
+<td align="center"><code>str_locate</code>(str, pattern)</td>
+<td align="center">Locate the 1st position of a pattern and return a matrix with start &amp; end.s</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>str_extract</code>(str, pattern)</td>
+<td align="center">Extracts text corresponding to the first match.</td>
+</tr>
+<tr class="even">
+<td align="center"><code>str_match</code>(str, pattern)</td>
+<td align="center">Extracts capture groups formed by () from the first match.</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>str_split</code>(str, pattern)</td>
+<td align="center">Splits string into pieces and returns a list of character vectors.</td>
+</tr>
+</tbody>
+</table>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="dplyr-vs-pandas.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="python.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

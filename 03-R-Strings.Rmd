@@ -1,0 +1,145 @@
+# R Strings
+```{r setup-rstring, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+## String Manupulation with Base R Functions
+
+
+There are many functions in base R for basic string manipulation.
+
+
+<table class='table'>
+<tr> <th>Function</th> <th>Example</th> <tr>
+<tr>
+<td>
+
+<span style="color:blue">**`nchar()`
+**</span>
+
+
+</td>
+<td>
+
+```{r}
+y <- c("Hello", "World", "Hello", "Universe")
+nchar(y) # Returns number of characters
+```
+
+</td>
+<tr>
+
+<tr>
+<td>
+
+<span style="color:blue">**`tolower()`
+**</span>
+
+</td>
+<td>
+
+```{r}
+tolower(y)
+```
+
+</td>
+<tr>
+
+
+<tr>
+<td>
+
+<span style="color:blue">**`toupper()`
+**</span>
+
+</td>
+<td>
+
+```{r}
+toupper(y)
+```
+
+</td>
+<tr>
+
+<tr>
+<td>
+
+<span style="color:blue">**`chartr()`
+**</span>
+
+</td>
+<td>
+
+```{r}
+chartr("oe", "$#", y)#o becomes $; e becomes #
+```
+
+</td>
+<tr>
+
+<tr>
+<td>
+
+<span style="color:blue">**`substr()`
+**</span>
+
+</td>
+<td>
+
+```{r}
+x <- "1t345s?"
+substr(x, 2, 6) # provides strings from 2 to 6
+```
+
+</td>
+<tr>
+<tr>
+<td>
+
+<span style="color:blue">**`strsplit()`
+**</span>
+
+</td>
+<td>
+
+```{r}
+x <- "R#Rocks#!"
+strsplit(x, split = "#")
+```
+
+</td>
+<tr>
+</table>
+
+## `stringr`
+
+```{r}
+library(stringr)
+```
+
+|                   Job                   |     stringr    |   Base R   |
+|:---------------------------------------:|:--------------:|:----------:|
+|           String concatenation          |    `str_c()`   |  `paste()` |
+|           Number of characters          | `str_length()` |  `nchar()` |
+|           Extracts substrings           |   `str_sub()`  | `substr()` |
+|          Duplicates characters          |   `str_dup()`  |            |
+| Removes leading and trailing whitespace |  `str_trim()`  |            |
+|              Pads a string              |   `str_pad()`  |            |
+|         Wraps a string paragraph        |  `str_wrap()`  |            |
+
+## Regular Expressions
+
+A **regular expression** (or **regex**) is a set of symbols that describes a text pattern. More formally, a regular expression is a pattern that describes a set of strings.
+
+
+Regular expressions are a formal language in the sense that the symbols have a defined set of rules to specify the desired patterns.
+
+### `stringr` Functions for Regular Expressions
+
+|         Function         |                                     Job                                     |
+|:------------------------:|:---------------------------------------------------------------------------:|
+| `str_detect`(str, pattern) | Detects the presence of a pattern and returns TRUE if it is found           |
+| `str_locate`(str, pattern)          | Locate the 1st position of a pattern and return a matrix with start & end.s |
+| `str_extract`(str, pattern)          | Extracts text corresponding to the first match.                             |
+| `str_match`(str, pattern)            | Extracts capture groups formed by () from the first match.                  |
+| `str_split`(str, pattern)            | Splits string into pieces and returns a list of character vectors.          |
