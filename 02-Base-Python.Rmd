@@ -1,0 +1,113 @@
+# Base Python
+
+<center>
+    <img src="https://www.python.org/static/img/python-logo@2x.png" width="300" alt="cognitiveclass.ai logo"  />
+</center>
+
+## `map()`
+
+`map()` lets you apply a function to each element of a list.
+
+```{python map1}
+# toy list
+toy_list = [1, 200, 3, 400]
+
+# Create toy function
+def smaller_than_100(k):
+  if k < 100:
+    return True
+  else:
+    False
+
+```
+
+```{python}
+# test the function
+smaller_than_100(2)
+```
+
+```{python}
+# apply it to toy_list
+mapped = map(smaller_than_100, toy_list)
+print(mapped) # doesn't provide the desired output; use loop
+for i in mapped:
+    print(i)
+```
+
+
+```{python}
+# Extract mapping into new list
+mapped_list = [*map(smaller_than_100, toy_list)]
+type(mapped_list)
+print(mapped_list)
+```
+
+```{python}
+# Use map() with lambda function
+[*map(lambda x: x < 100, toy_list)]
+```
+## `zip()`
+
+Use `zip()` to iterables into tuples
+
+  - elementwise
+  
+  - make separate lists into tuples
+  
+```{python}
+x = [1, 3, 7, 9]
+y = [1, 9, 49, 81]
+[*zip(x, y)]
+```
+
+```{python}
+# can operate on more than two inputs
+z = [10, 11, 12, 13]
+[*zip(x, y, z)]
+```
+
+```{python}
+# zip() will continue upto the length of the shortest input
+short_list = [1, 2]
+long_list = [16, 7, 8, 9]
+[*zip(short_list, long_list)]
+```
+
+```{python}
+# If you want to keep all the items, use itertools.zip_longest()
+from itertools import zip_longest
+[*zip_longest(short_list, long_list, fillvalue = None)]
+```
+
+## `enumerate()`
+
+`enumerate()` returns a sequence of tuples: (index, item).
+
+```{python}
+toy_names = ["Robin", "Barney", "Ted", "Lilly", "Marshall"]
+enumerate(toy_names) # creates object
+list(enumerate(toy_names)) # get a list of tuples
+```
+
+```{python}
+# Use enumerate() in a for loop
+for i, j in enumerate(toy_names):
+  print(i, j)
+```
+
+**Example: Suppose there are duplicates in a given list. You want to create a dictionary with names as keys; index numbers as values.**
+
+```{python}
+dup_names_list = ["Robin", "Barney","Robin", "Ted", "Lilly", "Marshall", "Robin", "Ted", "Barney"]
+# create dictionary, keys:names; values: empty
+names_dic = {name:[] for name in set(dup_names_list)}
+print(names_dic)
+```
+
+```{python}
+# use enumerate() to store the index for each occurence
+for index, name in enumerate(dup_names_list):
+  names_dic[name].append(index)
+print(names_dic)
+```
+

@@ -12,7 +12,7 @@ library(dplyr)
 import pandas as pd
 ```
 
-We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) (also [pandas' guide](https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html) is also helpful) for comparison
+We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) (also [pandas' guide](https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html)) for comparison
 
 - `select()` picks variables based on their names.
 
@@ -105,7 +105,7 @@ df.info()
 
 
 
-## select()
+## `select()`
 
 <span style="color:blue">**Task: Pick the variables `name` and `grade`.
 **</span>
@@ -142,7 +142,7 @@ df.drop(['grade'], axis = 1)
 <tr>
 </table>
 
-## mutate()
+## `mutate()`
 
 <span style="color:blue">**Task: Generate a variable `grade_p`, expressing grade out of 100.
 **</span>
@@ -173,7 +173,7 @@ df.drop(columns = 'grade_p', inplace = True)
 <tr>
 </table>
 
-## filter()
+## `filter()`
 
 <span style="color:blue">**Task: Keep Barney or females.
 **</span>
@@ -215,7 +215,7 @@ df.query("name == 'Barney'| gender == 'Female'")
 
 
 
-## group_by() and summarize()
+## `group_by()` and `summarize()`
 
 <span style="color:blue">**Task: Grouped by gender, find mean grade.
 **</span>
@@ -289,7 +289,7 @@ df.groupby("gender")['grade'].agg(
 </table>
 
 
-## arrange()
+## `arrange()`
 
 <span style="color:blue">**Task: Arrange grade in ascending order.
 **</span>

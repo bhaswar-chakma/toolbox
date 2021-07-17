@@ -18,6 +18,9 @@ link-citations: yes
     <img src="https://pbs.twimg.com/media/ELaj6MaXYAAozFy?format=jpg&name=large" width="1200" alt="rstudio lovestory logo"  />
 </center>
 
+<center>
+    <img src="images/barney-quote.jpg" width="1200" alt="rstudio lovestory logo"  />
+</center>
 
 
 

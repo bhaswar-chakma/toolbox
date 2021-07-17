@@ -223,7 +223,7 @@ In this exercise, you will go through some SQL problems on String Patterns.
 
 Here is `EMPLOYEES` table.
 
-```{r setup, include=FALSE}
+```{r setup-r-sql, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 ```{r, echo = FALSE}

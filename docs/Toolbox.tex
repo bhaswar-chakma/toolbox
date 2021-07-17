@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-07-13}
+\date{2021-07-17}
 
 \begin{document}
 \maketitle
@@ -140,7 +140,7 @@
 \hypertarget{dplyr-vs-pandas}{%
 \chapter{dplyr vs pandas}\label{dplyr-vs-pandas}}
 
-We will use the five \href{https://dplyr.tidyverse.org/}{dplyr verbs} for comparison
+We will use the five \href{https://dplyr.tidyverse.org/}{dplyr verbs} (also \href{https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html}{pandas' guide} is also helpful) for comparison
 
 \begin{itemize}
 \item
@@ -424,7 +424,8 @@ pandas
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(name }\SpecialCharTok{==} \StringTok{"Barney"}\SpecialCharTok{|}\NormalTok{ gender }\SpecialCharTok{==} \StringTok{"Female"}\NormalTok{)}
+  \FunctionTok{filter}\NormalTok{(name }\SpecialCharTok{==} \StringTok{"Barney"}\SpecialCharTok{|}
+\NormalTok{         gender }\SpecialCharTok{==} \StringTok{"Female"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -439,8 +440,37 @@ pandas
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\# similar to base R}
 \NormalTok{df[(df[}\StringTok{"name"}\NormalTok{] }\OperatorTok{==} \StringTok{"Barney"}\NormalTok{) }\OperatorTok{|} 
 \NormalTok{   (df[}\StringTok{"gender"}\NormalTok{] }\OperatorTok{==} \StringTok{"Female"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      name  gender  grade
+## 0  Barney    Male     10
+## 3   Lilly  Female     12
+## 4   Robin  Female     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# query with \textquotesingle{}\textquotesingle{}; need to use "" for conditions}
+\NormalTok{df.query(}\StringTok{\textquotesingle{}name == "Barney"|gender == "Female"\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      name  gender  grade
+## 0  Barney    Male     10
+## 3   Lilly  Female     12
+## 4   Robin  Female     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# query with ""; need to use \textquotesingle{}\textquotesingle{} for conditions}
+\NormalTok{df.query(}\StringTok{"name == \textquotesingle{}Barney\textquotesingle{}| gender == \textquotesingle{}Female\textquotesingle{}"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -680,1562 +710,58 @@ pandas
 ## 0    Barney    Male     10
 \end{verbatim}
 
-\hypertarget{python}{%
-\chapter{Python}\label{python}}
+\hypertarget{base-python}{%
+\chapter{Base Python}\label{base-python}}
 
-\hypertarget{pandas-i-basics}{%
-\section{Pandas I: Basics}\label{pandas-i-basics}}
+\hypertarget{map}{%
+\section{\texorpdfstring{\texttt{map()}}{map()}}\label{map}}
 
-NumPy creates ndarrays that must contain values that are of the same data type.
-Pandas creates dataframes. Each column in a dataframe is an ndarray. This allows us to have
-traditional tables of data where each column can be a different data type.
+\texttt{map()} lets you apply a function to each element of a list.
 
-Important References:
-
-\begin{itemize}
-\item
-  Series: \url{https://pandas.pydata.org/pandas-docs/stable/reference/series.html}
-\item
-  DataFrame: \url{https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html}
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
-\ImportTok{import}\NormalTok{ pandas }\ImportTok{as}\NormalTok{ pd}
-\end{Highlighting}
-\end{Shaded}
-
-\hypertarget{series}{%
-\subsection{Series}\label{series}}
-
-The basic data structure in pandas is the series. You can construct it in a similar fashion to making a numpy array. The command to make a Series object is
-\texttt{pd.Series(data,\ index=index)}. Note that the \texttt{index} argument is optional.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\FloatTok{1.0}\NormalTok{])}
-\BuiltInTok{print}\NormalTok{(data)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0    0.25
-## 1    0.50
-## 2    0.75
-## 3    1.00
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(data)) }\CommentTok{\# data type}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(data.values) }\CommentTok{\# data values}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [0.25 0.5  0.75 1.  ]
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(data.values)) }\CommentTok{\# The values attribute of the series is a numpy array.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'numpy.ndarray'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(data.index) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## RangeIndex(start=0, stop=4, step=1)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(data.index)) }\CommentTok{\# the row names are known as the index}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.indexes.range.RangeIndex'>
-\end{verbatim}
-
-\textbf{You can subset a pandas series like other python objects.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(data) }\CommentTok{\# example data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0    0.25
-## 1    0.50
-## 2    0.75
-## 3    1.00
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(data[}\DecValTok{1}\NormalTok{]) }\CommentTok{\# select the 2nd value}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0.5
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(data[}\DecValTok{1}\NormalTok{])) }\CommentTok{\# when you select only one value, it simplifies the object}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'numpy.float64'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(data[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 1    0.50
-## 2    0.75
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(data[}\DecValTok{1}\NormalTok{:}\DecValTok{3}\NormalTok{])) }\CommentTok{\# slicing / selecting multiple values returns a series}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\textbf{You can also do fancy indexing by subsetting w/a numpy array e.g.~repeat observations.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(data[np.array([}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{])])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 1    0.50
-## 0    0.25
-## 1    0.50
-## 2    0.75
-## dtype: float64
-\end{verbatim}
-
-\textbf{Pandas uses a 0-based index by default. You may also specify the index values.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{0.25}\NormalTok{, }\FloatTok{0.5}\NormalTok{, }\FloatTok{0.75}\NormalTok{, }\FloatTok{1.0}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{])}
-\BuiltInTok{print}\NormalTok{(data)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a    0.25
-## b    0.50
-## c    0.75
-## d    1.00
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data.values}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## array([0.25, 0.5 , 0.75, 1.  ])
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data.index}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['a', 'b', 'c', 'd'], dtype='object')
-\end{verbatim}
-
-\textbf{Subset with index position or name}
-
-\begin{itemize}
-\tightlist
-\item
-  subset with index position
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data[}\DecValTok{1}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0.5
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  subset with index name
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data[}\StringTok{"a"}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0.25
-\end{verbatim}
-
-\textbf{Slicing with \texttt{:}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data[}\DecValTok{0}\NormalTok{:}\DecValTok{2}\NormalTok{] }\CommentTok{\# slicing behavior is unchanged}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a    0.25
-## b    0.50
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data[}\StringTok{"a"}\NormalTok{:}\StringTok{"c"}\NormalTok{] }\CommentTok{\# slicing using index names includes the last value}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a    0.25
-## b    0.50
-## c    0.75
-## dtype: float64
-\end{verbatim}
-
-\textbf{Create a series from a python dictionary}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# remember, dictionary construction uses curly braces \{\}}
-\NormalTok{samp\_dict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\StringTok{"Robert Downey Jr."}\NormalTok{,}
-             \StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\StringTok{"Chris Evans"}\NormalTok{,}
-             \StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\StringTok{"Scarlett Johansson"}\NormalTok{,}
-             \StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\StringTok{"Mark Ruffalo"}\NormalTok{,}
-             \StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: }\StringTok{"Chris Hemsworth"}\NormalTok{,}
-             \StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\StringTok{"Jeremy Renner"}\NormalTok{\}}
-\NormalTok{samp\_series }\OperatorTok{=}\NormalTok{ pd.Series(samp\_dict)}
-\NormalTok{samp\_series}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Tony Stark           Robert Downey Jr.
-## Steve Rogers               Chris Evans
-## Natasha Romanoff    Scarlett Johansson
-## Bruce Banner              Mark Ruffalo
-## Thor                   Chris Hemsworth
-## Clint Barton             Jeremy Renner
-## dtype: object
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(samp\_series.index) }\CommentTok{\# dtype = object is for strings but allows mixed data types.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['Tony Stark', 'Steve Rogers', 'Natasha Romanoff', 'Bruce Banner',
-##        'Thor', 'Clint Barton'],
-##       dtype='object')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{samp\_series.values}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## array(['Robert Downey Jr.', 'Chris Evans', 'Scarlett Johansson',
-##        'Mark Ruffalo', 'Chris Hemsworth', 'Jeremy Renner'], dtype=object)
-\end{verbatim}
-
-Another example:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# ages during the First Avengers film (2012)}
-\NormalTok{age\_dict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: }\DecValTok{1493}\NormalTok{,}
-            \StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\DecValTok{104}\NormalTok{,}
-            \StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\DecValTok{28}\NormalTok{,}
-            \StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\DecValTok{41}\NormalTok{,}
-            \StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\DecValTok{42}\NormalTok{,}
-            \StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\DecValTok{42}\NormalTok{\} }\CommentTok{\# note that the dictionary order is not same here}
-\NormalTok{ages }\OperatorTok{=}\NormalTok{ pd.Series(age\_dict)}
-\BuiltInTok{print}\NormalTok{(ages)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Thor                1493
-## Steve Rogers         104
-## Natasha Romanoff      28
-## Clint Barton          41
-## Tony Stark            42
-## Bruce Banner          42
-## dtype: int64
-\end{verbatim}
-
-\textbf{Use \texttt{np.NaN} to specify missing values.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# ages during the First Avengers film (2012)}
-\NormalTok{hero\_dict }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{: np.NaN,}
-             \StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Captain America\textquotesingle{}}\NormalTok{,}
-             \StringTok{\textquotesingle{}Natasha Romanoff\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Black Widow\textquotesingle{}}\NormalTok{,}
-             \StringTok{\textquotesingle{}Clint Barton\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Hawkeye\textquotesingle{}}\NormalTok{,}
-             \StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Iron Man\textquotesingle{}}\NormalTok{,}
-             \StringTok{\textquotesingle{}Bruce Banner\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}Hulk\textquotesingle{}}\NormalTok{\}}
-\NormalTok{hero\_names }\OperatorTok{=}\NormalTok{ pd.Series(hero\_dict)}
-\BuiltInTok{print}\NormalTok{(hero\_names)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Thor                            NaN
-## Steve Rogers        Captain America
-## Natasha Romanoff        Black Widow
-## Clint Barton                Hawkeye
-## Tony Stark                 Iron Man
-## Bruce Banner                   Hulk
-## dtype: object
-\end{verbatim}
-
-\hypertarget{dataframe}{%
-\subsection{DataFrame}\label{dataframe}}
-
-There are multiple ways of creating a DataFrame in Pandas:
-
-\textbf{Create a dataframe by providing a dictionary of series objects.}
-
-\begin{itemize}
-\item
-  The dictionary key becomes the column name. The dictionary values become values.
-\item
-  The keys within the dictionaries become the index.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# we previously created the following series}
-\BuiltInTok{type}\NormalTok{(samp\_series)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{type}\NormalTok{(hero\_names)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{type}\NormalTok{(ages)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Now create data frame using those series}
-\NormalTok{avengers }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{\textquotesingle{}actor\textquotesingle{}}\NormalTok{: samp\_series, }\StringTok{\textquotesingle{}hero name\textquotesingle{}}\NormalTok{: hero\_names, }\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{: ages\})}
-\CommentTok{\# the DataFrame will match the indices and sort them}
-\BuiltInTok{print}\NormalTok{(avengers)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth              NaN  1493
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(avengers)) }\CommentTok{\# this is a DataFrame object}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.frame.DataFrame'>
-\end{verbatim}
-
-The data is a list of dictionaries. Each dictionary needs to have the same set of keys,
-otherwise, \texttt{NaN}s will appear.
-
-\textbf{Data is a list of dictionaries}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OperatorTok{=}\NormalTok{ [\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{\},}
-\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
-\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{\}]}
-\NormalTok{data}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [{'a': 0, 'b': 0}, {'a': 1, 'b': 2}, {'a': 2, 'b': 5}]
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(pd.DataFrame(data, index }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{]))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    a  b
-## 1  0  0
-## 2  1  2
-## 3  2  5
-\end{verbatim}
-
-Mismatch of keys produces NaN
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data2 }\OperatorTok{=}\NormalTok{ [\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{0}\NormalTok{\},}
-\NormalTok{         \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{1}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
-\NormalTok{         \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{, }\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{: }\DecValTok{5}\NormalTok{\}] }\CommentTok{\# mismatch of keys. NAs will appear}
-\NormalTok{data2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [{'a': 0, 'b': 0}, {'a': 1, 'b': 2}, {'a': 2, 'c': 5}]
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pd.DataFrame(data2)}\CommentTok{\# \# if the index argument is not supplied, it defaults to integer index start at 0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    a    b    c
-## 0  0  0.0  NaN
-## 1  1  2.0  NaN
-## 2  2  NaN  5.0
-\end{verbatim}
-
-\textbf{Convert a dictionary to a DataFrame.}
-
-\begin{itemize}
-\item
-  The keys form column names, and the values are lists/arrays of values.
-\item
-  The arrays need to be of the same length.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data3 }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{], }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}z\textquotesingle{}}\NormalTok{]\}}
-\NormalTok{data3 }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## {'a': [1, 2, 3], 'b': ['x', 'y', 'z']}
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pd.DataFrame(data3)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    a  b
-## 0  1  x
-## 1  2  y
-## 2  3  z
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data4 }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{], }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}z\textquotesingle{}}\NormalTok{]\} }\CommentTok{\# arrays are not of the same length}
-\NormalTok{pd.DataFrame(data4)}
-\end{Highlighting}
-\end{Shaded}
-
-The code above will get the following error
-
-\begin{quote}
-ValueError: arrays must all be same length
-\end{quote}
-
-\textbf{Turn a 2D Numpy array (matrix) into a DataFrame by adding column names and optionally
-index values.}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OperatorTok{=}\NormalTok{ np.random.randint(}\DecValTok{10}\NormalTok{, size }\OperatorTok{=} \DecValTok{10}\NormalTok{).reshape((}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{))}
-\BuiltInTok{print}\NormalTok{(data)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [[1 8]
-##  [6 6]
-##  [7 2]
-##  [7 9]
-##  [1 7]]
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(pd.DataFrame(data, columns }\OperatorTok{=}\NormalTok{ [}\StringTok{"x"}\NormalTok{,}\StringTok{"y"}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}e\textquotesingle{}}\NormalTok{]))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##    x  y
-## a  1  8
-## b  6  6
-## c  7  2
-## d  7  9
-## e  1  7
-\end{verbatim}
-
-\hypertarget{subsetting-the-dataframe}{%
-\subsection{Subsetting the DataFrame}\label{subsetting-the-dataframe}}
-
-In a DataFrame, the \texttt{.columns} attribute show the column names and the \texttt{.index} attribute
-show the row names.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth              NaN  1493
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers.columns)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['actor', 'hero name', 'age'], dtype='object')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers.index)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['Bruce Banner', 'Clint Barton', 'Natasha Romanoff', 'Steve Rogers',
-##        'Thor', 'Tony Stark'],
-##       dtype='object')
-\end{verbatim}
-
-You can select a column using:
-
-\begin{itemize}
-\tightlist
-\item
-  dot notation
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.actor }\CommentTok{\# extracting the column}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Bruce Banner              Mark Ruffalo
-## Clint Barton             Jeremy Renner
-## Natasha Romanoff    Scarlett Johansson
-## Steve Rogers               Chris Evans
-## Thor                   Chris Hemsworth
-## Tony Stark           Robert Downey Jr.
-## Name: actor, dtype: object
-\end{verbatim}
-
-\begin{itemize}
-\tightlist
-\item
-  single square brackets.
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers[}\StringTok{"hero name"}\NormalTok{] }\CommentTok{\# if there\textquotesingle{}s a space in the column name, you\textquotesingle{}ll need to use square brackets}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Bruce Banner                   Hulk
-## Clint Barton                Hawkeye
-## Natasha Romanoff        Black Widow
-## Steve Rogers        Captain America
-## Thor                            NaN
-## Tony Stark                 Iron Man
-## Name: hero name, dtype: object
-\end{verbatim}
-
-Single column is returned as series. For example, \texttt{avengers.actor} is a Pandas Series.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{type}\NormalTok{(avengers.actor)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\textbf{Subset}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers) }\CommentTok{\# just for ease of inspection}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth              NaN  1493
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.actor[}\DecValTok{1}\NormalTok{] }\CommentTok{\# 0 based indexing}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'Jeremy Renner'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.actor[avengers.age }\OperatorTok{==} \DecValTok{42}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Bruce Banner         Mark Ruffalo
-## Tony Stark      Robert Downey Jr.
-## Name: actor, dtype: object
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers[}\StringTok{"hero name"}\NormalTok{][}\StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'Captain America'
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers[}\StringTok{"hero name"}\NormalTok{][}\StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}Tony Stark\textquotesingle{}}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Steve Rogers    Captain America
-## Thor                        NaN
-## Tony Stark             Iron Man
-## Name: hero name, dtype: object
-\end{verbatim}
-
-\hypertarget{loc}{%
-\subsection{\texorpdfstring{\texttt{.loc}}{.loc}}\label{loc}}
-
-The \texttt{.loc} attribute can be used to subset the DataFrame using the index names.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.loc[}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{] }\CommentTok{\# subset based on location to get a row}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## actor        Chris Hemsworth
-## hero name                NaN
-## age                     1493
-## Name: Thor, dtype: object
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(avengers.loc[}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{]))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(avengers.loc[}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{].values))  }\CommentTok{\# the values are of mixed type but is still a numpy array. }
-\CommentTok{\# this is possible because it is a structured numpy array. (covered in "Python for Data Science" chapter 2)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'numpy.ndarray'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers.loc[ : ,}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{]) }\CommentTok{\# subset based on location to get a column}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Bruce Banner          42
-## Clint Barton          41
-## Natasha Romanoff      28
-## Steve Rogers         104
-## Thor                1493
-## Tony Stark            42
-## Name: age, dtype: int64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(avengers.loc[:,}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{]))  }\CommentTok{\#the object is a pandas series}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.series.Series'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(}\BuiltInTok{type}\NormalTok{(avengers.loc[:,}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{].values))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'numpy.ndarray'>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.loc[}\StringTok{\textquotesingle{}Steve Rogers\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{]  }\CommentTok{\# you can provide a pair of \textquotesingle{}coordinates\textquotesingle{} to get a particular value}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 104
-\end{verbatim}
-
-\hypertarget{iloc}{%
-\subsection{\texorpdfstring{\texttt{.iloc}}{.iloc}}\label{iloc}}
-
-The \texttt{.iloc} attribute can be used to subset the DataFrame using the index position (zero-indexed).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers) }\CommentTok{\# just for ease of inspection}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth              NaN  1493
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.iloc[}\DecValTok{3}\NormalTok{,] }\CommentTok{\# subset based on index location}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## actor            Chris Evans
-## hero name    Captain America
-## age                      104
-## Name: Steve Rogers, dtype: object
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.iloc[}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{] }\CommentTok{\# pair of coordinates}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 'Hulk'
-\end{verbatim}
-
-\hypertarget{assignment-with-.loc-and-.iloc}{%
-\subsection{\texorpdfstring{Assignment with \texttt{.loc} and \texttt{.iloc}}{Assignment with .loc and .iloc}}\label{assignment-with-.loc-and-.iloc}}
-
-The \texttt{.loc} and \texttt{.iloc} attributes can be used in conjunction with assignment.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# set values individually}
-\NormalTok{avengers.loc[}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \DecValTok{1500}
-\NormalTok{avengers.loc[}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}hero name\textquotesingle{}}\NormalTok{] }\OperatorTok{=} \StringTok{\textquotesingle{}Thor\textquotesingle{}}
-\NormalTok{avengers}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth             Thor  1500
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# assign multiple values at once}
-\NormalTok{avengers.loc[}\StringTok{\textquotesingle{}Thor\textquotesingle{}}\NormalTok{, [}\StringTok{\textquotesingle{}hero name\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{]] }\OperatorTok{=}\NormalTok{ [np.NaN, }\DecValTok{1493}\NormalTok{]}
-\NormalTok{avengers}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth              NaN  1493
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\hypertarget{loc-vs-.iloc-with-numeric-index}{%
-\subsection{\texorpdfstring{\texttt{.loc} vs \texttt{.iloc} with numeric index}{.loc vs .iloc with numeric index}}\label{loc-vs-.iloc-with-numeric-index}}
-
-The following DataFrame has a numeric index, but it starts at 1 instead of 0.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{data }\OperatorTok{=}\NormalTok{ [\{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{11}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{2}\NormalTok{\},}
-\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{12}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{4}\NormalTok{\},}
-\NormalTok{        \{}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{: }\DecValTok{13}\NormalTok{, }\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{: }\DecValTok{6}\NormalTok{\}]}
-\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data, index }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{])}
-\NormalTok{df}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##     a  b
-## 1  11  2
-## 2  12  4
-## 3  13  6
-\end{verbatim}
-
-{\textbf{\texttt{.loc} always uses the actual index.}}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df.loc[}\DecValTok{1}\NormalTok{, :] }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a    11
-## b     2
-## Name: 1, dtype: int64
-\end{verbatim}
-
-{\textbf{\texttt{.iloc} always uses the position using a 0-based index.}}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df.iloc[}\DecValTok{1}\NormalTok{, :]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a    12
-## b     4
-## Name: 2, dtype: int64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df.iloc[}\DecValTok{3}\NormalTok{, :] }\CommentTok{\# using a position that doesn\textquotesingle{}t exist results in an exception. }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{quote}
-IndexError: single positional indexer is out-of-bounds
-\end{quote}
-
-\hypertarget{boolean-subsetting-examples-with-.loc}{%
-\subsection{\texorpdfstring{Boolean subsetting examples with \texttt{.loc}}{Boolean subsetting examples with .loc}}\label{boolean-subsetting-examples-with-.loc}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\BuiltInTok{print}\NormalTok{(avengers) }\CommentTok{\# just for ease of inspection}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name   age
-## Bruce Banner            Mark Ruffalo             Hulk    42
-## Clint Barton           Jeremy Renner          Hawkeye    41
-## Natasha Romanoff  Scarlett Johansson      Black Widow    28
-## Steve Rogers             Chris Evans  Captain America   104
-## Thor                 Chris Hemsworth              NaN  1493
-## Tony Stark         Robert Downey Jr.         Iron Man    42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# select avengers whose age is less than 50 and greater than 40}
-\CommentTok{\# select the columns \textquotesingle{}hero name\textquotesingle{} and \textquotesingle{}age\textquotesingle{}}
-\NormalTok{avengers.loc[ (avengers.age }\OperatorTok{\textless{}} \DecValTok{50}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (avengers.age }\OperatorTok{\textgreater{}} \DecValTok{40}\NormalTok{), [}\StringTok{\textquotesingle{}hero name\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{]]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##              hero name  age
-## Bruce Banner      Hulk   42
-## Clint Barton   Hawkeye   41
-## Tony Stark    Iron Man   42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Use the index of the DataFrame, treat it as a string, and select rows that start with B}
-\NormalTok{avengers.loc[ avengers.index.}\BuiltInTok{str}\NormalTok{.startswith(}\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{), : ]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                      actor hero name  age
-## Bruce Banner  Mark Ruffalo      Hulk   42
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Use the index of the DataFrame, treat it as a string,}
-\CommentTok{\# find the character capital R. Find returns {-}1 if it does not find the letter}
-\CommentTok{\# We select rows that did not result in {-}1, which means it does contain a capital R}
-\NormalTok{avengers.loc[ avengers.index.}\BuiltInTok{str}\NormalTok{.find(}\StringTok{\textquotesingle{}R\textquotesingle{}}\NormalTok{) }\OperatorTok{!=} \OperatorTok{{-}}\DecValTok{1}\NormalTok{, : ]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##                                actor        hero name  age
-## Natasha Romanoff  Scarlett Johansson      Black Widow   28
-## Steve Rogers             Chris Evans  Captain America  104
-\end{verbatim}
-
-\texttt{python\ avengers.loc{[}\ avengers.index.str.find(\textquotesingle{}X\textquotesingle{})\ !=\ -1,\ :\ {]}} gets the message
-
-\begin{quote}
-Error: unexpected `:' in ``avengers.loc{[} avengers.index.str.find(`X') != -1, :''
-\end{quote}
-
-\hypertarget{other-commonly-used-dataframe-attributes}{%
-\subsection{Other commonly used DataFrame attributes}\label{other-commonly-used-dataframe-attributes}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.T }\CommentTok{\# the transpose}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##            Bruce Banner   Clint Barton  ...             Thor         Tony Stark
-## actor      Mark Ruffalo  Jeremy Renner  ...  Chris Hemsworth  Robert Downey Jr.
-## hero name          Hulk        Hawkeye  ...              NaN           Iron Man
-## age                  42             41  ...             1493                 42
-## 
-## [3 rows x 6 columns]
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.dtypes }\CommentTok{\# the data types contained in the DataFrame}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## actor        object
-## hero name    object
-## age           int64
-## dtype: object
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{avengers.shape }\CommentTok{\# shape}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (6, 3)
-\end{verbatim}
-
-\hypertarget{importing-data-with-pd.read_csv}{%
-\subsection{Importing Data with pd.read\_csv()}\label{importing-data-with-pd.read_csv}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Titanic Dataset}
-\NormalTok{url }\OperatorTok{=} \StringTok{\textquotesingle{}https://assets.datacamp.com/production/course\_1607/datasets/titanic\_sub.csv\textquotesingle{}}
-\NormalTok{titanic }\OperatorTok{=}\NormalTok{ pd.read\_csv(url)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      PassengerId  Survived  Pclass  ...     Fare  Cabin  Embarked
-## 0              1         0       3  ...   7.2500    NaN         S
-## 1              2         1       1  ...  71.2833    C85         C
-## 2              3         1       3  ...   7.9250    NaN         S
-## 3              4         1       1  ...  53.1000   C123         S
-## 4              5         0       3  ...   8.0500    NaN         S
-## ..           ...       ...     ...  ...      ...    ...       ...
-## 886          887         0       2  ...  13.0000    NaN         S
-## 887          888         1       1  ...  30.0000    B42         S
-## 888          889         0       3  ...  23.4500    NaN         S
-## 889          890         1       1  ...  30.0000   C148         C
-## 890          891         0       3  ...   7.7500    NaN         Q
-## 
-## [891 rows x 11 columns]
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic.shape}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## (891, 11)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic.columns}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['PassengerId', 'Survived', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch',
-##        'Ticket', 'Fare', 'Cabin', 'Embarked'],
-##       dtype='object')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic.index}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## RangeIndex(start=0, stop=891, step=1)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic.info()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## <class 'pandas.core.frame.DataFrame'>
-## RangeIndex: 891 entries, 0 to 890
-## Data columns (total 11 columns):
-## PassengerId    891 non-null int64
-## Survived       891 non-null int64
-## Pclass         891 non-null int64
-## Sex            891 non-null object
-## Age            714 non-null float64
-## SibSp          891 non-null int64
-## Parch          891 non-null int64
-## Ticket         891 non-null object
-## Fare           891 non-null float64
-## Cabin          204 non-null object
-## Embarked       889 non-null object
-## dtypes: float64(2), int64(5), object(4)
-## memory usage: 76.7+ KB
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{titanic.describe() }\CommentTok{\# displays summary statistics of the numeric variables}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##        PassengerId    Survived      Pclass  ...       SibSp       Parch        Fare
-## count   891.000000  891.000000  891.000000  ...  891.000000  891.000000  891.000000
-## mean    446.000000    0.383838    2.308642  ...    0.523008    0.381594   32.204208
-## std     257.353842    0.486592    0.836071  ...    1.102743    0.806057   49.693429
-## min       1.000000    0.000000    1.000000  ...    0.000000    0.000000    0.000000
-## 25%     223.500000    0.000000    2.000000  ...    0.000000    0.000000    7.910400
-## 50%     446.000000    0.000000    3.000000  ...    0.000000    0.000000   14.454200
-## 75%     668.500000    1.000000    3.000000  ...    1.000000    0.000000   31.000000
-## max     891.000000    1.000000    3.000000  ...    8.000000    6.000000  512.329200
-## 
-## [8 rows x 7 columns]
-\end{verbatim}
-
-\hypertarget{pandas-ii-indexing-arithmetic-missing-values}{%
-\section{Pandas II: Indexing, Arithmetic, Missing Values}\label{pandas-ii-indexing-arithmetic-missing-values}}
-
-\hypertarget{indexing}{%
-\subsection{Indexing}\label{indexing}}
-
-\textbf{Series that we will use as examples}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# note that the value after the decimal place corresponds to the letter position.}
-\CommentTok{\# i.e. 1.4 corresponds to d, the fourth letter.}
-\NormalTok{original1 }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{1.4}\NormalTok{, }\FloatTok{2.3}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{4.2}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{])}
-\NormalTok{original2 }\OperatorTok{=}\NormalTok{ pd.Series([}\FloatTok{2.2}\NormalTok{, }\FloatTok{3.1}\NormalTok{, }\FloatTok{1.3}\NormalTok{, }\FloatTok{4.4}\NormalTok{], index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}b\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-{\textbf{When you create a series, the original order of the index is preserved.}}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## d    1.4
-## c    2.3
-## a    3.1
-## b    4.2
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## b    2.2
-## a    3.1
-## c    1.3
-## d    4.4
-## dtype: float64
-\end{verbatim}
-
-{\textbf{Making a DataFrame with multiple series with the same index preserves the index order.}}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pd.DataFrame(\{}\StringTok{"x"}\NormalTok{:original1, }\StringTok{"x2"}\NormalTok{: original1 }\OperatorTok{*} \DecValTok{2}\NormalTok{\})}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      x   x2
-## d  1.4  2.8
-## c  2.3  4.6
-## a  3.1  6.2
-## b  4.2  8.4
-\end{verbatim}
-
-{\textbf{Note that original1 and original2 have different index orders. Because original1 and original2 have index in different order, Pandas will sort the index before putting them together}}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}\StringTok{"x"}\NormalTok{:original1, }\StringTok{"y"}\NormalTok{: original2\})}
-\NormalTok{df}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      x    y
-## a  3.1  3.1
-## b  4.2  2.2
-## c  2.3  1.3
-## d  1.4  4.4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.index }\CommentTok{\# the index of original1 is the letters d, c, a, b in a tuple{-}like object}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['d', 'c', 'a', 'b'], dtype='object')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1[}\StringTok{\textquotesingle{}d\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{] }\CommentTok{\# when slicing pandas uses the index order or original1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## d    1.4
-## c    2.3
-## a    3.1
-## dtype: float64
-\end{verbatim}
-
-{\textbf{When slicing Pandas uses the index order of the DataFrame, which has been sorted.}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df.index }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Index(['a', 'b', 'c', 'd'], dtype='object')
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{:}\StringTok{\textquotesingle{}c\textquotesingle{}}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      x    y
-## a  3.1  3.1
-## b  4.2  2.2
-## c  2.3  1.3
-\end{verbatim}
-
-\textbf{Rearranging value}
-
-{\textbf{Both Series and DataFrames have the .sort\_index() and .sort\_values() methods which can be used to rearrange the value.}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original2}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## b    2.2
-## a    3.1
-## c    1.3
-## d    4.4
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original2.sort\_index()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## a    3.1
-## b    2.2
-## c    1.3
-## d    4.4
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original2.sort\_values()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## c    1.3
-## b    2.2
-## a    3.1
-## d    4.4
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      x    y
-## a  3.1  3.1
-## b  4.2  2.2
-## c  2.3  1.3
-## d  1.4  4.4
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df.sort\_values(by }\OperatorTok{=} \StringTok{"x"}\NormalTok{, ascending }\OperatorTok{=} \VariableTok{False}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      x    y
-## b  4.2  2.2
-## a  3.1  3.1
-## c  2.3  1.3
-## d  1.4  4.4
-\end{verbatim}
-
-\textbf{Changing the Index}
-
-{\textbf{The index of a Pandas Series or Pandas DataFrame is immutable and cannot be modified.}} However, if you want to change the index of a series or dataframe, you can define a new index and replace the existing index of the series/DataFrame.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## d    1.4
-## c    2.3
-## a    3.1
-## b    4.2
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.index }\OperatorTok{=} \BuiltInTok{range}\NormalTok{(}\DecValTok{4}\NormalTok{) }\CommentTok{\# I replace the index of the series with this range object.}
-\NormalTok{original1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 0    1.4
-## 1    2.3
-## 2    3.1
-## 3    4.2
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.index }\CommentTok{\# We can see this has automatically become a RangeIndex object}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## RangeIndex(start=0, stop=4, step=1)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1[}\DecValTok{1}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.loc[}\DecValTok{1}\NormalTok{] }\CommentTok{\# behaves the same as above}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.iloc[}\DecValTok{1}\NormalTok{] }\CommentTok{\# behaves the same as above because the range index starts at 0}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 2.3
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.index }\OperatorTok{=} \BuiltInTok{range}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{)}
-\NormalTok{original1}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 1    1.4
-## 2    2.3
-## 3    3.1
-## 4    4.2
-## dtype: float64
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1[}\DecValTok{1}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 1.4
-\end{verbatim}
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{original1.loc[}\DecValTok{1}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 1.4
-\end{verbatim}
+\CommentTok{\# toy list}
+\NormalTok{toy\_list }\OperatorTok{=}\NormalTok{ [}\DecValTok{1}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{400}\NormalTok{]}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1.iloc[}\DecValTok{1}\NormalTok{] }\CommentTok{\# behavior is different because range index starts at 1}
+\CommentTok{\# Create toy function}
+\KeywordTok{def}\NormalTok{ smaller\_than\_100(k):}
+  \ControlFlowTok{if}\NormalTok{ k }\OperatorTok{\textless{}} \DecValTok{100}\NormalTok{:}
+    \ControlFlowTok{return} \VariableTok{True}
+  \ControlFlowTok{else}\NormalTok{:}
+    \VariableTok{False}
+\CommentTok{\# test the function}
+\NormalTok{smaller\_than\_100(}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 2.3
+## True
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{original1[}\StringTok{\textquotesingle{}a\textquotesingle{}}\NormalTok{] }\CommentTok{\# throws an error because \textquotesingle{}a\textquotesingle{} is no longer part of the index and cannot be used to select values}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{quote}
-KeyError: `a'
-\end{quote}
-
-You can change the index of a DataFrame by defining a new object and assigning it to the index.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df}
+\CommentTok{\# apply it to toy\_list}
+\NormalTok{mapped }\OperatorTok{=} \BuiltInTok{map}\NormalTok{(smaller\_than\_100, toy\_list)}
+\BuiltInTok{print}\NormalTok{(mapped) }\CommentTok{\# doesn\textquotesingle{}t provide the desired output; use loop}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      x    y
-## a  3.1  3.1
-## b  4.2  2.2
-## c  2.3  1.3
-## d  1.4  4.4
+## <map object at 0x000000003082B5F8>
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df.index }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}j\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}k\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}m\textquotesingle{}}\NormalTok{]}
-\NormalTok{df}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in}\NormalTok{ mapped:}
+    \BuiltInTok{print}\NormalTok{(i)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      x    y
-## j  3.1  3.1
-## k  4.2  2.2
-## l  2.3  1.3
-## m  1.4  4.4
+## True
+## None
+## True
+## None
 \end{verbatim}
 
 \hypertarget{r-strings}{%
@@ -2638,6 +1164,237 @@ In this exercise, you will use the \texttt{DROP} statement to delete an existing
 \begin{Highlighting}[]
 \KeywordTok{DROP} \KeywordTok{TABLE}\NormalTok{ PET;}
 \KeywordTok{SELECT} \OperatorTok{*} \KeywordTok{FROM}\NormalTok{ PET;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-string-patterns}{%
+\section{Exercise: String Patterns}\label{exercise-string-patterns}}
+
+In this exercise, you will go through some SQL problems on String Patterns.
+
+Here is \texttt{EMPLOYEES} table.
+
+\begin{tabular}{l|l|l|r|l}
+\hline
+EMP\_ID & F\_NAME & L\_NAME & SSN & B\_DATE\\
+\hline
+E1001 & John & Thomas & 123456 & 1976-01-09\\
+\hline
+E1002 & Alice & James & 123457 & 1972-07-31\\
+\hline
+E1003 & Steve & Wells & 123458 & 1980-08-10\\
+\hline
+E1004 & Santosh & Kumar & 123459 & 1985-07-20\\
+\hline
+E1005 & Ahmed & Hussain & 123410 & 1981-01-04\\
+\hline
+E1006 & Nancy & Allen & 123411 & 1978-02-06\\
+\hline
+E1007 & Mary & Thomas & 123412 & 1975-05-05\\
+\hline
+E1008 & Bharath & Gupta & 123413 & 1985-05-06\\
+\hline
+E1009 & Andrea & Jones & 123414 & 1990-07-09\\
+\hline
+E1010 & Ann & Jacob & 123415 & 1982-03-30\\
+\hline
+\end{tabular}
+
+\begin{tabular}{l|l|r|r|r|r}
+\hline
+SEX & ADDRESS & JOB\_ID & SALARY & MANAGER\_ID & DEP\_ID\\
+\hline
+M & 5631 Rice, OakPark,IL & 100 & 100000 & 30001 & 2\\
+\hline
+F & 980 Berry ln, Elgin,IL & 200 & 80000 & 30002 & 5\\
+\hline
+M & 291 Springs, Gary,IL & 300 & 50000 & 30002 & 5\\
+\hline
+M & 511 Aurora Av, Aurora,IL & 400 & 60000 & 30004 & 5\\
+\hline
+M & 216 Oak Tree, Geneva,IL & 500 & 70000 & 30001 & 2\\
+\hline
+F & 111 Green Pl, Elgin,IL & 600 & 90000 & 30001 & 2\\
+\hline
+F & 100 Rose Pl, Gary,IL & 650 & 65000 & 30003 & 7\\
+\hline
+M & 145 Berry Ln, Naperville,IL & 660 & 65000 & 30003 & 7\\
+\hline
+F & 120 Fall Creek, Gary,IL & 234 & 70000 & 30003 & 7\\
+\hline
+F & 111 Britany Springs,Elgin,IL & 220 & 70000 & 30004 & 5\\
+\hline
+\end{tabular}
+
+\hypertarget{retrieve-all-employees-whose-address-is-in-elginil.}{%
+\subsection{\texorpdfstring{\emph{Retrieve all employees whose address is in Elgin,IL}.}{Retrieve all employees whose address is in Elgin,IL.}}\label{retrieve-all-employees-whose-address-is-in-elginil.}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ F\_NAME , L\_NAME}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{WHERE}\NormalTok{ ADDRESS }\KeywordTok{LIKE} \StringTok{\textquotesingle{}\%Elgin,IL\%\textquotesingle{}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{retrieve-all-employees-who-were-born-during-the-1970s..}{%
+\subsection{\texorpdfstring{\emph{Retrieve all employees who were born during the 1970's.}.}{Retrieve all employees who were born during the 1970's..}}\label{retrieve-all-employees-who-were-born-during-the-1970s..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ F\_NAME , L\_NAME}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{WHERE}\NormalTok{ B\_DATE }\KeywordTok{LIKE} \StringTok{\textquotesingle{}197\%\textquotesingle{}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000..}{%
+\subsection{\texorpdfstring{\emph{Retrieve all employees in department 5 whose salary is between 60000 and 70000.}.}{Retrieve all employees in department 5 whose salary is between 60000 and 70000..}}\label{retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ F\_NAME , L\_NAME}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{WHERE}\NormalTok{ DEP\_ID }\OperatorTok{=} \DecValTok{5} \KeywordTok{and}\NormalTok{ (SALARY }\KeywordTok{BETWEEN} \DecValTok{60000} \KeywordTok{AND} \DecValTok{70000}\NormalTok{);}
+\CommentTok{{-}{-}Notice the "=" and "and"}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-sorting}{%
+\section{Exercise: Sorting}\label{exercise-sorting}}
+
+\hypertarget{retrieve-a-list-of-employees-ordered-by-department-id..}{%
+\subsection{\texorpdfstring{\emph{Retrieve a list of employees ordered by department ID.}.}{Retrieve a list of employees ordered by department ID..}}\label{retrieve-a-list-of-employees-ordered-by-department-id..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ F\_NAME, L\_NAME, DEP\_ID }
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ DEP\_ID;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name..}{%
+\subsection{\texorpdfstring{\emph{Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.}.}{Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name..}}\label{retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ F\_NAME, L\_NAME, DEP\_ID }
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ DEP\_ID }\KeywordTok{DESC}\NormalTok{, L\_NAME }\KeywordTok{DESC}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name..}{%
+\subsection{\texorpdfstring{\emph{In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.}.}{In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name..}}\label{in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name..}}
+
+Here is the \texttt{DEPARTMENTS} table.
+
+\begin{tabular}{r|l|r|l}
+\hline
+DEPT\_ID\_DEP & DEP\_NAME & MANAGER\_ID & LOC\_ID\\
+\hline
+2 & Architect Group & 30001 & L0001\\
+\hline
+5 & Software Group & 30002 & L0002\\
+\hline
+7 & Design Team & 30003 & L0003\\
+\hline
+\end{tabular}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ D.DEP\_NAME , E.F\_NAME, E.L\_NAME}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES }\KeywordTok{as}\NormalTok{ E, DEPARTMENTS }\KeywordTok{as}\NormalTok{ D}
+\KeywordTok{WHERE}\NormalTok{ E.DEP\_ID }\OperatorTok{=}\NormalTok{ D.DEPT\_ID\_DEP}
+\KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ D.DEP\_NAME, E.L\_NAME }\KeywordTok{DESC}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+In the SQL Query above, \texttt{D} and \texttt{E} are aliases for the table names. Once you define an alias like \texttt{D} in your query, you can simply write \texttt{D.COLUMN\_NAME} rather than the full form \texttt{DEPARTMENTS.COLUMN\_NAME}.
+\end{quote}
+
+\hypertarget{exercise-3-grouping}{%
+\section{Exercise 3: Grouping}\label{exercise-3-grouping}}
+
+\hypertarget{for-each-department-id-retrieve-the-number-of-employees-in-the-department..}{%
+\subsection{\texorpdfstring{\emph{For each department ID retrieve the number of employees in the department.}.}{For each department ID retrieve the number of employees in the department..}}\label{for-each-department-id-retrieve-the-number-of-employees-in-the-department..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ DEP\_ID, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{)}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ DEP\_ID;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department..}{%
+\subsection{\texorpdfstring{\emph{For each department retrieve the number of employees in the department, and the average employee salary in the department.}.}{For each department retrieve the number of employees in the department, and the average employee salary in the department..}}\label{for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ DEP\_ID, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{), }\FunctionTok{AVG}\NormalTok{(SALARY)}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ DEP\_ID;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary..}{%
+\subsection{\texorpdfstring{\emph{Label the computed columns in the result set of the last SQL problem as NUM\_EMPLOYEES and AVG\_SALARY.}.}{Label the computed columns in the result set of the last SQL problem as NUM\_EMPLOYEES and AVG\_SALARY..}}\label{label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ DEP\_ID, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS} \OtherTok{"NUM\_EMPLOYEES"}\NormalTok{, }\FunctionTok{AVG}\NormalTok{(SALARY) }\KeywordTok{AS} \OtherTok{"AVG\_SALARY"}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ DEP\_ID;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{in-the-previous-sql-problem-order-the-result-set-by-average-salary..}{%
+\subsection{\texorpdfstring{\emph{In the previous SQL problem , order the result set by Average Salary.}.}{In the previous SQL problem , order the result set by Average Salary..}}\label{in-the-previous-sql-problem-order-the-result-set-by-average-salary..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ DEP\_ID, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS} \OtherTok{"NUM\_EMPLOYEES"}\NormalTok{, }\FunctionTok{AVG}\NormalTok{(SALARY) }\KeywordTok{AS} \OtherTok{"AVG\_SALARY"}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ DEP\_ID}
+\KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ AVG\_SALARY;}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees..}{%
+\subsection{\texorpdfstring{\emph{In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.}.}{In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees..}}\label{in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees..}}
+
+Click here for the solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{SELECT}\NormalTok{ DEP\_ID, }\FunctionTok{COUNT}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\KeywordTok{AS} \OtherTok{"NUM\_EMPLOYEES"}\NormalTok{, }\FunctionTok{AVG}\NormalTok{(SALARY) }\KeywordTok{AS} \OtherTok{"AVG\_SALARY"}
+\KeywordTok{FROM}\NormalTok{ EMPLOYEES}
+\KeywordTok{GROUP} \KeywordTok{BY}\NormalTok{ DEP\_ID}
+\KeywordTok{HAVING} \FunctionTok{count}\NormalTok{(}\OperatorTok{*}\NormalTok{) }\OperatorTok{\textless{}} \DecValTok{4}
+\KeywordTok{ORDER} \KeywordTok{BY}\NormalTok{ AVG\_SALARY;}
 \end{Highlighting}
 \end{Shaded}
 
