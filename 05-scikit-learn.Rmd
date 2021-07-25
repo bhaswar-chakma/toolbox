@@ -1,0 +1,214 @@
+# `scikit-learn`
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+```
+
+```{python}
+import sklearn
+# check version
+sklearn.__version__ 
+```
+
+## Linear Model
+
+```{python}
+from sklearn import linear_model
+from sklearn.metrics import mean_squared_error, r2_score
+```
+
+```{python}
+# data
+olympic = pd.read_csv("https://raw.githubusercontent.com/sdrogers/fcmlcode/master/R/data/olympics/male100.csv", names = ["year","time"])
+```
+
+```{python}
+olympic.head()
+```
+
+```{python}
+olympic.tail()
+```
+```{python}
+plt.scatter('year', 'time', data = olympic)
+plt.show()
+```
+
+```{python}
+# create an instance of a linear regression model where we will estimate the intercept
+model = linear_model.LinearRegression(fit_intercept = True)
+```
+
+<span style="color: blue;">`scikit-learn` requires that the features (x) be a matrix and the response y be a one-dimension array.</span>
+
+### Prepare X
+
+```{python}
+# Create an X matrix using the x values
+x = olympic.year.values
+x.shape
+type(x)
+```
+
+```{python}
+X = x.reshape([-1, 1]) # here - 1 means "I don't know how many..."
+```
+
+```{python, eval = FALSE}
+# if you know the dimensions
+X = x.reshape((28, 1))
+```
+```{python}
+# Check the shape
+print(X.shape)
+```
+Alternative? Try the following
+```{python}
+X2 = olympic[['year']]
+X2.shape
+```
+
+
+### Prepare y
+```{python}
+y = olympic.time
+y.shape
+type(y)# fine! note the difference between year and time; we had to reshape year
+```
+### Fit 
+
+```{python}
+# Now fit the model
+model.fit(X, y)
+
+print(model.coef_) # coefficient
+print(model.intercept_) # intercept
+```
+### Prediction
+
+```{python}
+# New X as np array
+prediction_x = np.linspace(1900, 2000, 101)
+# reshape it
+prediction_x = prediction_x.reshape([-1, 1]) # recall -1 stands for "i don't know"
+```
+```{python}
+model.predict(prediction_x)
+```
+
+### Scatter Plot: Actual vs Fitted
+
+```{python}
+plt.scatter(x, y)
+plt.plot(prediction_x, model.predict(prediction_x), color = 'red')
+plt.show()
+```
+
+### Residual Plot
+
+```{python}
+# find residuals
+residuals = y - model.predict(X)
+np.mean(residuals) # check mean
+```
+
+
+```{python}
+plt.hist(residuals)
+plt.show()
+plt.plot(x, residuals, "o")
+plt.show()
+```
+
+
+## Train-Test
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn import linear_model, preprocessing, model_selection
+from sklearn.model_selection import train_test_split, cross_val_score
+```
+
+
+
+`train_test_split()` takes a list of arrays and splits each array into two arrays (a training set and a test set) by randomly selecting rows or values.
+
+### Example
+
+```{python}
+# x is our predictor matrix
+X = np.arange(20).reshape((2, -1)).T
+print(X)
+```
+
+```{python}
+# y is a numeric output - for regression methods
+y = np.arange(10)
+print(y)
+```
+
+```{python}
+# z is a categorical output - for classification methods
+z = np.array([0,0,0,0,0,1,1,1,1,1])
+print(z)
+```
+
+
+We can use `train_test_split()` on each array **individually**. 
+
+What happens?
+
+```{python}
+train_test_split(X, test_size = 1/4, random_state = 1)
+```
+
+```{python}
+type(train_test_split(X, test_size = 1/4, random_state = 1))
+```
+
+Store them 
+
+```{python}
+X_train, X_test = train_test_split(X, test_size = 1/4, random_state = 1)
+print(X_train)
+print(X_test)
+```
+
+```{python}
+y_train, y_test = train_test_split(y, test_size = 1/4, random_state = 1)
+print(y_train)
+print(y_test)
+```
+
+We can also apply it to multiple arrays **simultaneously**.
+
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 1/4, random_state = 1)
+print(X_train)
+print(X_test)
+print(y_train)
+print(y_test)
+```
+
+If you have a **categorical** variable, the `stratify` argument ensures 
+that you'll get an appropriate number of each category in the resulting split.
+For this purpose, we previously created `z`.
+
+```{python}
+X_train, X_test, z_train, z_test = train_test_split(
+  X, z, test_size = 1/4, random_state = 1, stratify = z
+)
+```
+
+```{python}
+print(X_train)
+print(X_test)
+print(z_train)
+print(z_test)
+```
+

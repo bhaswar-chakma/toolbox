@@ -36,3 +36,13 @@ in-the-previous-sql-problem-order-the-result-set-by-average-salary..
 in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees..
 zip
 enumerate
+scikit-learn
+linear-model
+prepare-x
+prepare-y
+fit
+prediction
+scatter-plot-actual-vs-fitted
+residual-plot
+train-test
+example
