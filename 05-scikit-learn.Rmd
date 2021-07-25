@@ -129,7 +129,6 @@ plt.show()
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.datasets import load_iris
 from sklearn import linear_model, preprocessing, model_selection
 from sklearn.model_selection import train_test_split, cross_val_score
 ```
@@ -210,5 +209,149 @@ print(X_train)
 print(X_test)
 print(z_train)
 print(z_test)
+```
+
+### Another Example
+
+```{python}
+# Example data: ironslag
+iron = pd.read_csv('https://raw.githubusercontent.com/bhaswar-chakma/toolbox/main/data/ironslag.csv')
+```
+
+```{python}
+iron.head()
+iron.shape
+```
+
+
+*Magnetic test is cheaper; chemical test is more accurate.Can we use the magnetic test to predict the chemical test result?*
+
+- `X` = magnetic test result
+
+- `y` = chemical test
+
+```{python}
+plt.scatter(iron.magnetic, iron.chemical)
+```
+
+
+**Create a hold-out set using train-test split**
+
+```{python}
+train, test = train_test_split(
+  iron, test_size = 1/5, random_state = 1
+)
+```
+```{python}
+train.shape
+train.head()
+```
+
+```{python}
+test.shape
+test.head()
+```
+
+
+```{python}
+plt.scatter(train.magnetic, train.chemical)
+```
+
+
+**Use only the training data to try out possible models**
+
+```{python}
+# sklearn requires our predictor variables to be in a two dimensional array
+# reshape to have 1 column
+# the -1 in reshape means I don't want to figure out all the necessary dimensions
+# i want 1 column, and numpy, you figure out how many rows I need
+X = train.magnetic.values.reshape(-1,1)
+X.shape
+```
+
+```{python}
+y = train.chemical.values
+y.shape
+```
+```{python}
+np.corrcoef(train.magnetic.values, train.chemical.values)
+```
+
+```{python}
+# r-squared
+np.corrcoef(train.magnetic.values, train.chemical.values)[0,1] ** 2
+```
+**Fit a linear model between x and y**
+
+```{python}
+linear = linear_model.LinearRegression()
+linear.fit(X, y)
+```
+
+`linear.score()` is the $R^2$ value.
+
+```{python}
+# linear.score is the R^2 value
+# how much error is reduced from no model (variance or MSE)
+# vs having the regression model
+linear.score(X, y)
+```
+```{python}
+x_predict = np.arange(10, 40).reshape(-1,1) # values to be used for prediction
+lin_y_hat = linear.predict(x_predict) # use the values and predict
+```
+```{python}
+plt.scatter(X, y)
+plt.plot(x_predict, lin_y_hat, c = 'red')
+```
+
+
+## Cross Validation
+
+**Linear Model**
+
+```{python}
+# shuffle split says 'shuffle the data' and split it into 5 equal parts
+cv = model_selection.ShuffleSplit(n_splits = 5, test_size = 0.3, random_state=0)
+cv_linear = model_selection.cross_val_score(linear, X, y, cv = cv)
+print(cv_linear)
+print(np.mean(cv_linear))
+```
+
+**Polynomial Fit - Quadratic**
+
+```{python}
+# preprocessing polynomial features creates a polynomial based on X
+quad = preprocessing.PolynomialFeatures(2)
+quadX = quad.fit_transform(X)
+quad_model = linear_model.LinearRegression()
+quad_model.fit(quadX, y)
+cv_quad = model_selection.cross_val_score(quad_model, quadX, y, cv = cv)
+print(cv_quad)
+print(np.mean(cv_quad))
+```
+
+**Cubic Fit**
+
+```{python}
+cube = preprocessing.PolynomialFeatures(3)
+cubeX = cube.fit_transform(X)
+cube_model = linear_model.LinearRegression()
+cube_model.fit(cubeX, y)
+cv_cube = model_selection.cross_val_score(cube_model, cubeX, y, cv = cv)
+print(cv_cube)
+print(np.mean(cv_cube))
+```
+
+**Y ~ log X model**
+
+```{python}
+log_transform = preprocessing.FunctionTransformer(np.log)
+logX = log_transform.fit_transform(X)
+logX_model = linear_model.LinearRegression()
+logX_model.fit(logX, y)
+cv_logX = model_selection.cross_val_score(logX_model, logX, y, cv = cv)
+print(cv_logX)
+print(np.mean(cv_logX))
 ```
 

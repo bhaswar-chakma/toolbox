@@ -46,3 +46,9 @@ scatter-plot-actual-vs-fitted
 residual-plot
 train-test
 example
+another-example-with-cross-validation
+create-a-hold-out-set-using-train-test-split
+use-only-the-training-data-to-try-out-possible-models
+fit-a-linear-model-between-x-and-y
+another-example
+cross-validation
