@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-07-17" />
+<meta name="date" content="2021-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -145,6 +145,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a></li>
 <li class="chapter" data-level="1.4" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a></li>
 <li class="chapter" data-level="1.5" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="1.6" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#helper-functions"><i class="fa fa-check"></i><b>1.6</b> Helper Functions</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="dplyr-vs-pandas.html"><a href="dplyr-vs-pandas.html#case_when-vs-pd.cut-vs-np.select"><i class="fa fa-check"></i><b>1.6.1</b> <code>case_when()</code> vs <code>pd.cut()</code> vs <code>np.select()</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>2</b> Base Python</a>
 <ul>
@@ -191,6 +195,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>4.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
 <li class="chapter" data-level="4.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>4.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>5</b> <code>scikit-learn</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>5.1</b> Linear Model</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>5.1.1</b> Prepare X</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>5.1.2</b> Prepare y</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>5.1.3</b> Fit</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>5.1.4</b> Prediction</a></li>
+<li class="chapter" data-level="5.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
+<li class="chapter" data-level="5.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>5.1.6</b> Residual Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>5.2</b> Train-Test</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>5.2.1</b> Example</a></li>
+<li class="chapter" data-level="5.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>5.2.2</b> Another Example</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>5.3</b> Cross Validation</a></li>
 </ul></li>
 </ul>
 
@@ -681,7 +703,103 @@ pandas
 </td>
 <tr>
 </table>
+</div>
+<div id="helper-functions" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Helper Functions</h2>
+<div id="case_when-vs-pd.cut-vs-np.select" class="section level3" number="1.6.1">
+<h3><span class="header-section-number">1.6.1</span> <code>case_when()</code> vs <code>pd.cut()</code> vs <code>np.select()</code></h3>
+<p><span style="color:blue"><em>Suppose we have a data frame with a variable called <code>age</code>. We want to create a variable <code>age_cat</code> with the following conditions:</em></p>
+<ul>
+<li><p><code>age</code> &lt; 18: “Kids”</p></li>
+<li><p>18 <span class="math inline">\(\leq\)</span> <code>age</code> &lt; 31: “18-30”</p></li>
+<li><p>31 <span class="math inline">\(\leq\)</span> <code>age</code>: “31 and above”</span></p></li>
+</ul>
+<p>With <code>dplyr::case_when()</code> we can do it in the following way:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="dplyr-vs-pandas.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example data</span></span>
+<span id="cb56-2"><a href="dplyr-vs-pandas.html#cb56-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>))</span>
+<span id="cb56-3"><a href="dplyr-vs-pandas.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when() in action</span></span>
+<span id="cb56-4"><a href="dplyr-vs-pandas.html#cb56-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb56-5"><a href="dplyr-vs-pandas.html#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb56-6"><a href="dplyr-vs-pandas.html#cb56-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Kids&quot;</span>,</span>
+<span id="cb56-7"><a href="dplyr-vs-pandas.html#cb56-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;18-30&quot;</span>,</span>
+<span id="cb56-8"><a href="dplyr-vs-pandas.html#cb56-8" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;31 and above&quot;</span></span>
+<span id="cb56-9"><a href="dplyr-vs-pandas.html#cb56-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<pre><code>## # A tibble: 7 x 2
+##     age age_cat     
+##   &lt;dbl&gt; &lt;chr&gt;       
+## 1     9 Kids        
+## 2    10 Kids        
+## 3    18 18-30       
+## 4    21 18-30       
+## 5    29 18-30       
+## 6    31 31 and above
+## 7    45 31 and above</code></pre>
+<p>We can achieve the same result in Python using</p>
+<ul>
+<li><p><code>np.select()</code></p></li>
+<li><p><code>pd.cut()</code></p></li>
+</ul>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="dplyr-vs-pandas.html#cb58-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&#39;age&#39;</span>: [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>]})</span></code></pre></div>
+<table class='table'>
+<tr>
+<th>
+numpy
+</th>
+<th>
+pandas
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="dplyr-vs-pandas.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create conditions</span></span>
+<span id="cb59-2"><a href="dplyr-vs-pandas.html#cb59-2" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> [</span>
+<span id="cb59-3"><a href="dplyr-vs-pandas.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">18</span>)),</span>
+<span id="cb59-4"><a href="dplyr-vs-pandas.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">18</span>) <span class="op">&amp;</span> (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">31</span>))),</span>
+<span id="cb59-5"><a href="dplyr-vs-pandas.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">31</span>))</span>
+<span id="cb59-6"><a href="dplyr-vs-pandas.html#cb59-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb59-7"><a href="dplyr-vs-pandas.html#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign names based on the conditions</span></span>
+<span id="cb59-8"><a href="dplyr-vs-pandas.html#cb59-8" aria-hidden="true" tabindex="-1"></a>cat_names <span class="op">=</span> [<span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>, <span class="st">&#39;30 and above&#39;</span>]</span>
+<span id="cb59-9"><a href="dplyr-vs-pandas.html#cb59-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-10"><a href="dplyr-vs-pandas.html#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Use np.select() to generate the variable</span></span>
+<span id="cb59-11"><a href="dplyr-vs-pandas.html#cb59-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;age_cat&#39;</span>] <span class="op">=</span> np.select(conditions, cat_names)</span>
+<span id="cb59-12"><a href="dplyr-vs-pandas.html#cb59-12" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    age       age_cat
+## 0    9          Kids
+## 1   10          Kids
+## 2   18         18-30
+## 3   21         18-30
+## 4   29         18-30
+## 5   31  30 and above
+## 6   45  30 and above</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="dplyr-vs-pandas.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create bin condition</span></span>
+<span id="cb61-2"><a href="dplyr-vs-pandas.html#cb61-2" aria-hidden="true" tabindex="-1"></a>bin_cond <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">17</span>, <span class="dv">30</span>, np.inf] </span>
+<span id="cb61-3"><a href="dplyr-vs-pandas.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note: instead of 0, </span></span>
+<span id="cb61-4"><a href="dplyr-vs-pandas.html#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co">#    -np.inf will also work</span></span>
+<span id="cb61-5"><a href="dplyr-vs-pandas.html#cb61-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-6"><a href="dplyr-vs-pandas.html#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign bin labs</span></span>
+<span id="cb61-7"><a href="dplyr-vs-pandas.html#cb61-7" aria-hidden="true" tabindex="-1"></a>bin_lab <span class="op">=</span> [<span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>,</span>
+<span id="cb61-8"><a href="dplyr-vs-pandas.html#cb61-8" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;30 and above&#39;</span>]</span>
+<span id="cb61-9"><a href="dplyr-vs-pandas.html#cb61-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-10"><a href="dplyr-vs-pandas.html#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Use pd.cut() </span></span>
+<span id="cb61-11"><a href="dplyr-vs-pandas.html#cb61-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;age_cat&quot;</span>] <span class="op">=</span> pd.cut(df[<span class="st">&quot;age&quot;</span>],</span>
+<span id="cb61-12"><a href="dplyr-vs-pandas.html#cb61-12" aria-hidden="true" tabindex="-1"></a>                       bins<span class="op">=</span>bin_cond,</span>
+<span id="cb61-13"><a href="dplyr-vs-pandas.html#cb61-13" aria-hidden="true" tabindex="-1"></a>                       labels<span class="op">=</span>bin_lab)</span>
+<span id="cb61-14"><a href="dplyr-vs-pandas.html#cb61-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    age       age_cat
+## 0    9          Kids
+## 1   10          Kids
+## 2   18         18-30
+## 3   21         18-30
+## 4   29         18-30
+## 5   31  30 and above
+## 6   45  30 and above</code></pre>
+</td>
+<tr>
+</table>
 
+</div>
 </div>
 </div>
             </section>
@@ -742,6 +860,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

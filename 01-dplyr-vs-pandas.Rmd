@@ -10,7 +10,10 @@ library(dplyr)
 
 ```{python lib-py, echo = FALSE}
 import pandas as pd
+import numpy as np
 ```
+
+
 
 We will use the five [dplyr verbs](https://dplyr.tidyverse.org/) (also [pandas' guide](https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html)) for comparison
 
@@ -354,6 +357,85 @@ df %>%
 ```{python arrange-multiple-py}
 df.sort_values(['gender','grade'],
                 ascending = [True, False])
+```
+</td>
+<tr>
+</table>
+
+## Helper Functions
+
+### `case_when()` vs `pd.cut()` vs `np.select()`
+
+<span style="color:blue">*Suppose we have a data frame with a variable called `age`. We want to create a variable `age_cat` with the following conditions:*
+
+  -  `age` < 18: "Kids"
+  
+  -  18 $\leq$ `age` < 31: "18-30"
+  
+  -  31 $\leq$ `age`: "31 and above"</span>
+
+With `dplyr::case_when()` we can do it in the following way:
+
+```{r}
+# example data
+df <- tibble(age = c(9, 10, 18, 21, 29, 31, 45))
+# case_when() in action
+df %>% 
+  mutate(age_cat = case_when(
+    age < 18 ~ "Kids",
+    age >= 18 & age < 31 ~ "18-30",
+    age >= 31 ~ "31 and above"
+  ))
+```
+
+We can achieve the same result in Python using 
+
+  - `np.select()`
+  
+  - `pd.cut()`
+
+```{python}
+df = pd.DataFrame({'age': [9, 10, 18, 21, 29, 31, 45]})
+```
+
+
+<table class='table'>
+<tr> <th>numpy</th> <th>pandas</th> <tr>
+<tr>
+<td>
+
+```{python}
+# Step 1: Create conditions
+conditions = [
+  (df['age'].lt(18)),
+  (df['age'].ge(18) & (df['age'].lt(31))),
+  (df['age'].ge(31))
+]
+# Step 2: Assign names based on the conditions
+cat_names = ['Kids', '18-30', '30 and above']
+
+# Step 3: Use np.select() to generate the variable
+df['age_cat'] = np.select(conditions, cat_names)
+df
+```
+
+</td>
+<td>
+```{python}
+# Step 1: Create bin condition
+bin_cond = [0, 17, 30, np.inf] 
+# note: instead of 0, 
+#    -np.inf will also work
+
+# Step 2: Assign bin labs
+bin_lab = ['Kids', '18-30',
+           '30 and above']
+
+# Step 3: Use pd.cut() 
+df["age_cat"] = pd.cut(df["age"],
+                       bins=bin_cond,
+                       labels=bin_lab)
+df
 ```
 </td>
 <tr>

@@ -52,3 +52,9 @@ use-only-the-training-data-to-try-out-possible-models
 fit-a-linear-model-between-x-and-y
 another-example
 cross-validation
+categorical-variables
+problem-1
+mutate-categorical-variables
+helper-functions
+case_when
+case_when-vs-pd.cut-vs-np.select
