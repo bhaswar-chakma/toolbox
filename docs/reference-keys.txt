@@ -58,3 +58,6 @@ mutate-categorical-variables
 helper-functions
 case_when
 case_when-vs-pd.cut-vs-np.select
+dplyr-vs-pandasand-numpy
+if_else-vs-np.where
+dplyr-vs-pandas-numpy

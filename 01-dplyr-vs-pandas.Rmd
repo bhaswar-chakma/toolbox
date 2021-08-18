@@ -1,4 +1,4 @@
-# dplyr vs pandas
+# dplyr vs pandas & numpy
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -133,12 +133,12 @@ df[['name', 'grade']]
 
 ```{python}
 # or
-df.drop(columns = ['grade'])
+df.drop(columns = ['gender'])
 ```
 
 ```{python}
 # or
-df.drop(['grade'], axis = 1)
+df.drop(['gender'], axis = 1)
 ```
 
 </td>
@@ -440,3 +440,46 @@ df
 </td>
 <tr>
 </table>
+
+### `if_else()` vs `np.where()`
+
+<span style="color:blue"> *Given prices of shirts `price`, how do we create a variable `price_cat` with the following conditions?*
+
+  - when `price` is less than 50, we label it as "Cheap"
+  
+  - when `price` is 50 or more, we label it as "Expensive"</span>
+
+
+<table class='table'>
+<tr> <th>dplyr</th> <th>numpy</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+prices <- c(25, 30, 45, 80,100, 125)
+df <- tibble(price = prices)
+# case_when in action
+df %>% 
+  mutate(price_cat = if_else(
+    price <50, "Cheap", "Expenseive"
+  ))
+```
+
+</td>
+<td>
+```{python}
+# toy data
+prices = {'price': [25, 30, 45, 80,100, 125]}
+df = pd.DataFrame(prices)
+# np.where() in action
+df['price_cat'] = np.where(
+  df.price < 50, "Cheap", "Expenseive"
+)
+df
+```
+</td>
+<tr>
+</table>
+
+
