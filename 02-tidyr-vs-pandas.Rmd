@@ -1,0 +1,82 @@
+# tidyr vs pandas
+```{r setup-tidyr, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r lib-r-tidyr, echo = FALSE}
+library(dplyr)
+library(tidyr)
+```
+
+```{python lib-py-tidyr, echo = FALSE}
+import pandas as pd
+import numpy as np
+```
+
+## pivot_longer() vs melt()
+
+Example data: Life expectancy
+
+|country    | 1997| 2007|
+|:----------|----:|----:|
+|Bangladesh | 59.4| 64.1|
+|Portugal   | 76.0| 78.1|
+
+<span style="color:blue">*How do we make the table long?*</span>
+
+Desired output:
+
+|country    |year | life_exp|
+|:----------|:----|--------:|
+|Bangladesh |1997 |     59.4|
+|Bangladesh |2007 |     64.1|
+|Portugal   |1997 |     76.0|
+|Portugal   |2007 |     78.1|
+
+
+<table class='table'>
+<tr> <th>tidyr::pivot_longer</th> <th>pandas::melt()</th> <tr>
+<tr>
+<td>
+
+```{R}
+# create df
+df <- tibble(
+  country = c("Bangladesh", "Portugal"),
+  `1997` = c(59.4, 76.0),
+  `2007` = c(64.1, 78.1)
+  )
+
+# pivot_longer in action
+df %>% 
+  pivot_longer(
+    cols = c(`1997`, `2007`),
+    names_to = "year",
+    values_to = "life_exp"
+  )
+```
+
+</td>
+<td>
+```{python}
+# create df
+data = {
+  'country': ["Bangladesh", "Portugal"],
+  '1997': [59.4, 76.0],
+  '2007': [64.1, 78.1]
+}
+df = pd.DataFrame(data)
+
+# melt() in action
+df.melt(
+  id_vars = 'country',
+  value_vars = ['1997', '2007'],
+  value_name = 'life_exp',
+  var_name = 'year'
+)
+```
+
+</td>
+<tr>
+</table>
+
