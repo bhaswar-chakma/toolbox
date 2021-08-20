@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-08-18}
+\date{2021-08-20}
 
 \begin{document}
 \maketitle
@@ -157,21 +157,18 @@ We will use the five \href{https://dplyr.tidyverse.org/}{dplyr verbs} (also \hre
 
 and use the following toy data to apply the verbs.
 
-\begin{tabular}{l|l|r}
-\hline
-name & gender & grade\\
-\hline
-Barney & Male & 10\\
-\hline
-Ted & Male & 11\\
-\hline
-Marshall & Male & 13\\
-\hline
-Lilly & Female & 12\\
-\hline
-Robin & Female & 14\\
-\hline
-\end{tabular}
+\begin{longtable}[]{@{}llr@{}}
+\toprule
+name & gender & grade \\
+\midrule
+\endhead
+Barney & Male & 10 \\
+Ted & Male & 11 \\
+Marshall & Male & 13 \\
+Lilly & Female & 12 \\
+Robin & Female & 14 \\
+\bottomrule
+\end{longtable}
 
 {\textbf{Create Toy Data}}
 
@@ -348,6 +345,38 @@ pandas
 \begin{Highlighting}[]
 \CommentTok{\# or}
 \NormalTok{df.drop([}\StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{], axis }\OperatorTok{=} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        name  grade
+## 0    Barney     10
+## 1       Ted     11
+## 2  Marshall     13
+## 3     Lilly     12
+## 4     Robin     14
+\end{verbatim}
+
+\textbf{Using positions of columns:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df[df.columns[[}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        name  grade
+## 0    Barney     10
+## 1       Ted     11
+## 2  Marshall     13
+## 3     Lilly     12
+## 4     Robin     14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df.iloc[:, [}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{]]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -711,10 +740,10 @@ pandas
 \end{verbatim}
 
 \hypertarget{helper-functions}{%
-\section{Helper Functions}\label{helper-functions}}
+\chapter{Helper Functions}\label{helper-functions}}
 
 \hypertarget{case_when-vs-pd.cut-vs-np.select}{%
-\subsection{\texorpdfstring{\texttt{case\_when()} vs \texttt{pd.cut()} vs \texttt{np.select()}}{case\_when() vs pd.cut() vs np.select()}}\label{case_when-vs-pd.cut-vs-np.select}}
+\section{\texorpdfstring{\texttt{case\_when()} vs \texttt{pd.cut()} vs \texttt{np.select()}}{case\_when() vs pd.cut() vs np.select()}}\label{case_when-vs-pd.cut-vs-np.select}}
 
 \emph{Suppose we have a data frame with a variable called \texttt{age}. We want to create a variable \texttt{age\_cat} with the following conditions:}
 
@@ -834,7 +863,7 @@ pandas
 \end{verbatim}
 
 \hypertarget{if_else-vs-np.where}{%
-\subsection{\texorpdfstring{\texttt{if\_else()} vs \texttt{np.where()}}{if\_else() vs np.where()}}\label{if_else-vs-np.where}}
+\section{\texorpdfstring{\texttt{if\_else()} vs \texttt{np.where()}}{if\_else() vs np.where()}}\label{if_else-vs-np.where}}
 
 \emph{Given prices of shirts \texttt{price}, how do we create a variable \texttt{price\_cat} with the following conditions?}
 
@@ -903,6 +932,8 @@ numpy
 \hypertarget{pivot_longer-vs-melt}{%
 \section{pivot\_longer() vs melt()}\label{pivot_longer-vs-melt}}
 
+Example data: Life expectancy
+
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
 country & 1997 & 2007 \\
@@ -913,7 +944,7 @@ Portugal & 76.0 & 78.1 \\
 \bottomrule
 \end{longtable}
 
-{\emph{How do we make life expectancy data frame long?}}
+{\emph{How do we make the table long?}}
 
 Desired output:
 
@@ -929,9 +960,9 @@ Portugal & 2007 & 78.1 \\
 \bottomrule
 \end{longtable}
 
-dplyr
+tidyr::pivot\_longer
 
-numpy
+pandas::melt()
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1032,7 +1063,7 @@ numpy
 \end{Shaded}
 
 \begin{verbatim}
-## <map object at 0x0000000030472780>
+## <map object at 0x000000003031CEB8>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1156,7 +1187,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <enumerate object at 0x0000000030478318>
+## <enumerate object at 0x000000003031AB40>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1197,7 +1228,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Lilly': [], 'Barney': [], 'Robin': [], 'Ted': [], 'Marshall': []}
+## {'Barney': [], 'Robin': [], 'Marshall': [], 'Lilly': [], 'Ted': []}
 \end{verbatim}
 
 \begin{Shaded}
@@ -1210,7 +1241,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Lilly': [4], 'Barney': [1, 8], 'Robin': [0, 2, 6], 'Ted': [3, 7], 'Marshall': [5]}
+## {'Barney': [1, 8], 'Robin': [0, 2, 6], 'Marshall': [5], 'Lilly': [4], 'Ted': [3, 7]}
 \end{verbatim}
 
 \hypertarget{scikit-learn}{%
@@ -1290,7 +1321,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000003311DA58>
+## <matplotlib.collections.PathCollection object at 0x000000003F036470>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1482,7 +1513,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000003F235E48>
+## <matplotlib.collections.PathCollection object at 0x0000000041C79048>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1492,7 +1523,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000041CB5160>]
+## [<matplotlib.lines.Line2D object at 0x0000000041C79358>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -1545,7 +1576,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000041E56C18>]
+## [<matplotlib.lines.Line2D object at 0x0000000041D14F60>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2026,7 +2057,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x00000000422EF198>
+## <matplotlib.collections.PathCollection object at 0x0000000004BFF2B0>
 \end{verbatim}
 
 \begin{Shaded}

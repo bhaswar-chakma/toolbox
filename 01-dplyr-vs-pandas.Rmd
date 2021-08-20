@@ -34,20 +34,16 @@ and use the following toy data to apply the verbs.
 
 
 
-```{r df0-r, include = FALSE}
-df <- tibble(
-  name = c("Barney", "Ted", "Marshall",
-           "Lilly","Robin"),
-  gender = c("Male", "Male","Male",
-             "Female", "Female"),
-  grade = c(10, 11, 13, 12, 14)
-)
-df
-```
+|name     |gender | grade|
+|:--------|:------|-----:|
+|Barney   |Male   |    10|
+|Ted      |Male   |    11|
+|Marshall |Male   |    13|
+|Lilly    |Female |    12|
+|Robin    |Female |    14|
 
-```{r, echo = FALSE}
-knitr::kable(df)
-```
+
+
 
 <span style="color:blue">**Create Toy Data**</span>
 
@@ -140,6 +136,17 @@ df.drop(columns = ['gender'])
 # or
 df.drop(['gender'], axis = 1)
 ```
+
+**Using positions of columns:**
+
+```{python}
+df[df.columns[[0,2]]]
+```
+
+```{python}
+df.iloc[:, [0,2]]
+```
+
 
 </td>
 <tr>
@@ -361,125 +368,3 @@ df.sort_values(['gender','grade'],
 </td>
 <tr>
 </table>
-
-## Helper Functions
-
-### `case_when()` vs `pd.cut()` vs `np.select()`
-
-<span style="color:blue">*Suppose we have a data frame with a variable called `age`. We want to create a variable `age_cat` with the following conditions:*
-
-  -  `age` < 18: "Kids"
-  
-  -  18 $\leq$ `age` < 31: "18-30"
-  
-  -  31 $\leq$ `age`: "31 and above"</span>
-
-With `dplyr::case_when()` we can do it in the following way:
-
-```{r}
-# example data
-df <- tibble(age = c(9, 10, 18, 21, 29, 31, 45))
-# case_when() in action
-df %>% 
-  mutate(age_cat = case_when(
-    age < 18 ~ "Kids",
-    age >= 18 & age < 31 ~ "18-30",
-    age >= 31 ~ "31 and above"
-  ))
-```
-
-We can achieve the same result in Python using 
-
-  - `np.select()`
-  
-  - `pd.cut()`
-
-```{python}
-df = pd.DataFrame({'age': [9, 10, 18, 21, 29, 31, 45]})
-```
-
-
-<table class='table'>
-<tr> <th>numpy</th> <th>pandas</th> <tr>
-<tr>
-<td>
-
-```{python}
-# Step 1: Create conditions
-conditions = [
-  (df['age'].lt(18)),
-  (df['age'].ge(18) & (df['age'].lt(31))),
-  (df['age'].ge(31))
-]
-# Step 2: Assign names based on the conditions
-cat_names = ['Kids', '18-30', '30 and above']
-
-# Step 3: Use np.select() to generate the variable
-df['age_cat'] = np.select(conditions, cat_names)
-df
-```
-
-</td>
-<td>
-```{python}
-# Step 1: Create bin condition
-bin_cond = [0, 17, 30, np.inf] 
-# note: instead of 0, 
-#    -np.inf will also work
-
-# Step 2: Assign bin labs
-bin_lab = ['Kids', '18-30',
-           '30 and above']
-
-# Step 3: Use pd.cut() 
-df["age_cat"] = pd.cut(df["age"],
-                       bins=bin_cond,
-                       labels=bin_lab)
-df
-```
-</td>
-<tr>
-</table>
-
-### `if_else()` vs `np.where()`
-
-<span style="color:blue"> *Given prices of shirts `price`, how do we create a variable `price_cat` with the following conditions?*
-
-  - when `price` is less than 50, we label it as "Cheap"
-  
-  - when `price` is 50 or more, we label it as "Expensive"</span>
-
-
-<table class='table'>
-<tr> <th>dplyr</th> <th>numpy</th> <tr>
-<tr>
-<td>
-
-```{R}
-# toy data
-prices <- c(25, 30, 45, 80,100, 125)
-df <- tibble(price = prices)
-# case_when in action
-df %>% 
-  mutate(price_cat = if_else(
-    price <50, "Cheap", "Expenseive"
-  ))
-```
-
-</td>
-<td>
-```{python}
-# toy data
-prices = {'price': [25, 30, 45, 80,100, 125]}
-df = pd.DataFrame(prices)
-# np.where() in action
-df['price_cat'] = np.where(
-  df.price < 50, "Cheap", "Expenseive"
-)
-df
-```
-</td>
-<tr>
-</table>
-
-
