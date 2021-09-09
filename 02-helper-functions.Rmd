@@ -7,6 +7,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r lib-r-helper, echo = FALSE}
 library(dplyr)
 library(tidyr)
+library(reticulate)
 ```
 
 ```{python lib-py-helper, echo = FALSE}
@@ -15,7 +16,7 @@ import numpy as np
 ```
 
 
-## `case_when()` vs `pd.cut()` vs `np.select()`
+## `case_when()` vs `pd.cut()` and `np.select()`
 
 <span style="color:blue">*Suppose we have a data frame with a variable called `age`. We want to create a variable `age_cat` with the following conditions:*
 
@@ -129,6 +130,97 @@ df['price_cat'] = np.where(
 )
 df
 ```
+</td>
+<tr>
+</table>
+
+
+## `%in%` vs `isin`, `@`, and `in`
+
+|code |capital |
+|:----|:-------|
+|BD   |Dhaka   |
+|PT   |Lisbon  |
+|ES   |Madrid  |
+|FR   |Paris   |
+
+<span style="color:blue"> *How to keep observations that belong to BD or DE? *
+
+<table class='table'>
+<tr> <th>R</th> <th>Python</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+df <- tibble(
+  # country code
+  code = c(
+    "BD", "PT",
+    "ES", "FR"
+  ),
+  # capital
+  capital = c(
+    "Dhaka", "Lisbon",
+    "Madrid", "Paris"
+  ) 
+)
+df
+
+```
+
+```{r}
+# %in% in action
+df %>%
+  filter(code %in% c("BD", "PT"))
+```
+
+
+</td>
+<td>
+```{python}
+# toy data
+data = {
+    # country code
+    'code':[
+        "BD", "PT",
+        "ES", "FR"
+    ],
+    # capital
+    'capital':[
+        "Dhaka", "Lisbon",
+        "Madrid", "Paris"
+    ]
+}
+df = pd.DataFrame(data)
+df
+```
+
+**isin**
+
+```{python}
+# isin in action
+df[df["code"].isin(["BD", "PT"])]
+```
+
+**`@`**
+
+```{python}
+country_list = ["BD", "PT"]
+# @ in action
+df.query('code == @country_list')
+# note: you must create a list first
+#   @["BD", "PT"] doesn't work
+#   but, @list(["BD", "PT"] works
+```
+**in**
+
+```{python}
+# in in action
+df.query('code in ["BD", "PT"]')
+```
+
+
 </td>
 <tr>
 </table>

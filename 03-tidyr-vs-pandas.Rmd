@@ -6,6 +6,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r lib-r-tidyr, echo = FALSE}
 library(dplyr)
 library(tidyr)
+library(reticulate)
 ```
 
 ```{python lib-py-tidyr, echo = FALSE}
@@ -13,16 +14,16 @@ import pandas as pd
 import numpy as np
 ```
 
-## pivot_longer() vs melt()
+## `pivot_longer()` vs `melt()`
 
-Example data: Life expectancy
+Given the following table (life expectancy data)
 
 |country    | 1997| 2007|
 |:----------|----:|----:|
 |Bangladesh | 59.4| 64.1|
 |Portugal   | 76.0| 78.1|
 
-<span style="color:blue">*How do we make the table long?*</span>
+<span style="color:blue">*How do we make the table "long"?*</span>
 
 Desired output:
 
@@ -40,13 +41,20 @@ Desired output:
 <td>
 
 ```{R}
-# create df
+# toy data
 df <- tibble(
   country = c("Bangladesh", "Portugal"),
   `1997` = c(59.4, 76.0),
   `2007` = c(64.1, 78.1)
   )
+df
+```
 
+
+<span style="color:blue">**`pivot_longer()` in action!**</span>
+
+
+```
 # pivot_longer in action
 df %>% 
   pivot_longer(
@@ -59,20 +67,26 @@ df %>%
 </td>
 <td>
 ```{python}
-# create df
+# toy data
 data = {
   'country': ["Bangladesh", "Portugal"],
   '1997': [59.4, 76.0],
   '2007': [64.1, 78.1]
 }
 df = pd.DataFrame(data)
+df
+```
 
+
+<span style="color:blue">**`melt()` in action!**</span>
+
+```
 # melt() in action
 df.melt(
   id_vars = 'country',
-  value_vars = ['1997', '2007'],
-  value_name = 'life_exp',
-  var_name = 'year'
+  value_vars = ['1997', '2007'], # cols
+  var_name = 'year', # names_to
+  value_name = 'life_exp' # values_to
 )
 ```
 
@@ -80,3 +94,119 @@ df.melt(
 <tr>
 </table>
 
+## `pivot_wider` vs `pivot`
+
+Given the following table
+
+|country    |year | life_exp|
+|:----------|:----|--------:|
+|Bangladesh |1997 |     59.4|
+|Bangladesh |2007 |     64.1|
+|Portugal   |1997 |     76.0|
+|Portugal   |2007 |     78.1|
+
+<span style="color:blue">*How do we make the table "wide"?*</span>
+
+Desired output:
+
+|country    | 1997| 2007|
+|:----------|----:|----:|
+|Bangladesh | 59.4| 64.1|
+|Portugal   | 76.0| 78.1|
+
+
+<table class='table'>
+<tr> <th>tidyr::pivot_wider()</th> <th>pandas::pivot()</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+
+country <- c(
+  "Bangladesh", "Bangladesh",
+  "Portugal", "Portugal"
+)
+
+year <- c(
+  "1997", "2007",
+  "1997", "2007"
+)
+
+life_exp <- c(
+  59.4, 64.1,
+  76, 78.1
+)
+
+df <- tibble(country, year, life_exp)
+df
+
+```
+
+<span style="color:blue">**`pivot_wider()` in action!**</span>
+
+
+```{r}
+# pivot_wider in action
+df %>% 
+  pivot_wider(
+    names_from = "year",
+    values_from = "life_exp"
+  )
+```
+
+
+</td>
+<td>
+```{python}
+# toy data
+
+country =[
+    "Bangladesh", "Bangladesh",
+    "Portugal", "Portugal"
+]
+
+year = [
+    "1997", "2007",
+    "1997", "2007"
+]
+
+life_exp = [
+    59.4, 64.1,
+    76, 78.1
+]
+
+df = pd.DataFrame(
+   {'country': country,
+    'year': year,
+    'life_exp': life_exp}
+)
+df
+```
+
+<span style="color:blue">**`pivot()` in action!**</span>
+```{python}
+# pivot in action
+df_wide = df.pivot(
+    index = 'country',
+    columns = 'year', # names from
+    values = 'life_exp' # vasles from
+)
+df_wide
+```
+```{python}
+# Reset the names
+df_wide.index.name = None
+df_wide.columns.name = None
+```
+
+```{python}
+df_wide
+```
+
+
+
+
+</td>
+<tr>
+</table>

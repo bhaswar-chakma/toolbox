@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-08-20" />
+<meta name="date" content="2021-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,12 +148,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="helper-functions.html"><a href="helper-functions.html"><i class="fa fa-check"></i><b>2</b> Helper Functions</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-vs-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> vs <code>np.select()</code></a></li>
+<li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-and-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></a></li>
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
+<li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> tidyr vs pandas</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>3.1</b> pivot_longer() vs melt()</a></li>
+<li class="chapter" data-level="3.1" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>3.1</b> <code>pivot_longer(</code>) vs <code>melt()</code></a></li>
+<li class="chapter" data-level="3.2" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>3.2</b> <code>pivot_wider</code> vs <code>pivot</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>4</b> Base Python</a>
 <ul>
@@ -238,8 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="helper-functions" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Helper Functions</h1>
-<div id="case_when-vs-pd.cut-vs-np.select" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> <code>case_when()</code> vs <code>pd.cut()</code> vs <code>np.select()</code></h2>
+<div id="case_when-vs-pd.cut-and-np.select" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></h2>
 <p><span style="color:blue"><em>Suppose we have a data frame with a variable called <code>age</code>. We want to create a variable <code>age_cat</code> with the following conditions:</em></p>
 <ul>
 <li><p><code>age</code> &lt; 18: “Kids”</p></li>
@@ -247,15 +249,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>31 <span class="math inline">\(\leq\)</span> <code>age</code>: “31 and above”</span></p></li>
 </ul>
 <p>With <code>dplyr::case_when()</code> we can do it in the following way:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="helper-functions.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example data</span></span>
-<span id="cb60-2"><a href="helper-functions.html#cb60-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>))</span>
-<span id="cb60-3"><a href="helper-functions.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when() in action</span></span>
-<span id="cb60-4"><a href="helper-functions.html#cb60-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb60-5"><a href="helper-functions.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb60-6"><a href="helper-functions.html#cb60-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Kids&quot;</span>,</span>
-<span id="cb60-7"><a href="helper-functions.html#cb60-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;18-30&quot;</span>,</span>
-<span id="cb60-8"><a href="helper-functions.html#cb60-8" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;31 and above&quot;</span></span>
-<span id="cb60-9"><a href="helper-functions.html#cb60-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="helper-functions.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example data</span></span>
+<span id="cb1-2"><a href="helper-functions.html#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>))</span>
+<span id="cb1-3"><a href="helper-functions.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when() in action</span></span>
+<span id="cb1-4"><a href="helper-functions.html#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="helper-functions.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-6"><a href="helper-functions.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Kids&quot;</span>,</span>
+<span id="cb1-7"><a href="helper-functions.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;18-30&quot;</span>,</span>
+<span id="cb1-8"><a href="helper-functions.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;31 and above&quot;</span></span>
+<span id="cb1-9"><a href="helper-functions.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##     age age_cat     
 ##   &lt;dbl&gt; &lt;chr&gt;       
@@ -271,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>np.select()</code></p></li>
 <li><p><code>pd.cut()</code></p></li>
 </ul>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="helper-functions.html#cb62-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&#39;age&#39;</span>: [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>]})</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="helper-functions.html#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&#39;age&#39;</span>: [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>]})</span></code></pre></div>
 <table class='table'>
 <tr>
 <th>
@@ -283,18 +285,18 @@ pandas
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="helper-functions.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create conditions</span></span>
-<span id="cb63-2"><a href="helper-functions.html#cb63-2" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> [</span>
-<span id="cb63-3"><a href="helper-functions.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">18</span>)),</span>
-<span id="cb63-4"><a href="helper-functions.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">18</span>) <span class="op">&amp;</span> (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">31</span>))),</span>
-<span id="cb63-5"><a href="helper-functions.html#cb63-5" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">31</span>))</span>
-<span id="cb63-6"><a href="helper-functions.html#cb63-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb63-7"><a href="helper-functions.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign names based on the conditions</span></span>
-<span id="cb63-8"><a href="helper-functions.html#cb63-8" aria-hidden="true" tabindex="-1"></a>cat_names <span class="op">=</span> [<span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>, <span class="st">&#39;30 and above&#39;</span>]</span>
-<span id="cb63-9"><a href="helper-functions.html#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-10"><a href="helper-functions.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Use np.select() to generate the variable</span></span>
-<span id="cb63-11"><a href="helper-functions.html#cb63-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;age_cat&#39;</span>] <span class="op">=</span> np.select(conditions, cat_names)</span>
-<span id="cb63-12"><a href="helper-functions.html#cb63-12" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="helper-functions.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create conditions</span></span>
+<span id="cb4-2"><a href="helper-functions.html#cb4-2" aria-hidden="true" tabindex="-1"></a>conditions <span class="op">=</span> [</span>
+<span id="cb4-3"><a href="helper-functions.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">18</span>)),</span>
+<span id="cb4-4"><a href="helper-functions.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">18</span>) <span class="op">&amp;</span> (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">31</span>))),</span>
+<span id="cb4-5"><a href="helper-functions.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">31</span>))</span>
+<span id="cb4-6"><a href="helper-functions.html#cb4-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-7"><a href="helper-functions.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign names based on the conditions</span></span>
+<span id="cb4-8"><a href="helper-functions.html#cb4-8" aria-hidden="true" tabindex="-1"></a>cat_names <span class="op">=</span> [<span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>, <span class="st">&#39;30 and above&#39;</span>]</span>
+<span id="cb4-9"><a href="helper-functions.html#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="helper-functions.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Use np.select() to generate the variable</span></span>
+<span id="cb4-11"><a href="helper-functions.html#cb4-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;age_cat&#39;</span>] <span class="op">=</span> np.select(conditions, cat_names)</span>
+<span id="cb4-12"><a href="helper-functions.html#cb4-12" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    age       age_cat
 ## 0    9          Kids
 ## 1   10          Kids
@@ -305,20 +307,20 @@ pandas
 ## 6   45  30 and above</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="helper-functions.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create bin condition</span></span>
-<span id="cb65-2"><a href="helper-functions.html#cb65-2" aria-hidden="true" tabindex="-1"></a>bin_cond <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">17</span>, <span class="dv">30</span>, np.inf] </span>
-<span id="cb65-3"><a href="helper-functions.html#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note: instead of 0, </span></span>
-<span id="cb65-4"><a href="helper-functions.html#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="co">#    -np.inf will also work</span></span>
-<span id="cb65-5"><a href="helper-functions.html#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-6"><a href="helper-functions.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign bin labs</span></span>
-<span id="cb65-7"><a href="helper-functions.html#cb65-7" aria-hidden="true" tabindex="-1"></a>bin_lab <span class="op">=</span> [<span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>,</span>
-<span id="cb65-8"><a href="helper-functions.html#cb65-8" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;30 and above&#39;</span>]</span>
-<span id="cb65-9"><a href="helper-functions.html#cb65-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-10"><a href="helper-functions.html#cb65-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Use pd.cut() </span></span>
-<span id="cb65-11"><a href="helper-functions.html#cb65-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;age_cat&quot;</span>] <span class="op">=</span> pd.cut(df[<span class="st">&quot;age&quot;</span>],</span>
-<span id="cb65-12"><a href="helper-functions.html#cb65-12" aria-hidden="true" tabindex="-1"></a>                       bins<span class="op">=</span>bin_cond,</span>
-<span id="cb65-13"><a href="helper-functions.html#cb65-13" aria-hidden="true" tabindex="-1"></a>                       labels<span class="op">=</span>bin_lab)</span>
-<span id="cb65-14"><a href="helper-functions.html#cb65-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="helper-functions.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create bin condition</span></span>
+<span id="cb6-2"><a href="helper-functions.html#cb6-2" aria-hidden="true" tabindex="-1"></a>bin_cond <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">17</span>, <span class="dv">30</span>, np.inf] </span>
+<span id="cb6-3"><a href="helper-functions.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note: instead of 0, </span></span>
+<span id="cb6-4"><a href="helper-functions.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#    -np.inf will also work</span></span>
+<span id="cb6-5"><a href="helper-functions.html#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="helper-functions.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign bin labs</span></span>
+<span id="cb6-7"><a href="helper-functions.html#cb6-7" aria-hidden="true" tabindex="-1"></a>bin_lab <span class="op">=</span> [<span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>,</span>
+<span id="cb6-8"><a href="helper-functions.html#cb6-8" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;30 and above&#39;</span>]</span>
+<span id="cb6-9"><a href="helper-functions.html#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="helper-functions.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Use pd.cut() </span></span>
+<span id="cb6-11"><a href="helper-functions.html#cb6-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;age_cat&quot;</span>] <span class="op">=</span> pd.cut(df[<span class="st">&quot;age&quot;</span>],</span>
+<span id="cb6-12"><a href="helper-functions.html#cb6-12" aria-hidden="true" tabindex="-1"></a>                       bins<span class="op">=</span>bin_cond,</span>
+<span id="cb6-13"><a href="helper-functions.html#cb6-13" aria-hidden="true" tabindex="-1"></a>                       labels<span class="op">=</span>bin_lab)</span>
+<span id="cb6-14"><a href="helper-functions.html#cb6-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    age       age_cat
 ## 0    9          Kids
 ## 1   10          Kids
@@ -349,14 +351,14 @@ numpy
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="helper-functions.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb67-2"><a href="helper-functions.html#cb67-2" aria-hidden="true" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>)</span>
-<span id="cb67-3"><a href="helper-functions.html#cb67-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">price =</span> prices)</span>
-<span id="cb67-4"><a href="helper-functions.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when in action</span></span>
-<span id="cb67-5"><a href="helper-functions.html#cb67-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb67-6"><a href="helper-functions.html#cb67-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_cat =</span> <span class="fu">if_else</span>(</span>
-<span id="cb67-7"><a href="helper-functions.html#cb67-7" aria-hidden="true" tabindex="-1"></a>    price <span class="sc">&lt;</span><span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
-<span id="cb67-8"><a href="helper-functions.html#cb67-8" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="helper-functions.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb8-2"><a href="helper-functions.html#cb8-2" aria-hidden="true" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>)</span>
+<span id="cb8-3"><a href="helper-functions.html#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">price =</span> prices)</span>
+<span id="cb8-4"><a href="helper-functions.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when in action</span></span>
+<span id="cb8-5"><a href="helper-functions.html#cb8-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="helper-functions.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_cat =</span> <span class="fu">if_else</span>(</span>
+<span id="cb8-7"><a href="helper-functions.html#cb8-7" aria-hidden="true" tabindex="-1"></a>    price <span class="sc">&lt;</span><span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
+<span id="cb8-8"><a href="helper-functions.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   price price_cat 
 ##   &lt;dbl&gt; &lt;chr&gt;     
@@ -368,14 +370,14 @@ numpy
 ## 6   125 Expenseive</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb69"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb69-1"><a href="helper-functions.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb69-2"><a href="helper-functions.html#cb69-2" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> {<span class="st">&#39;price&#39;</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>]}</span>
-<span id="cb69-3"><a href="helper-functions.html#cb69-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(prices)</span>
-<span id="cb69-4"><a href="helper-functions.html#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># np.where() in action</span></span>
-<span id="cb69-5"><a href="helper-functions.html#cb69-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;price_cat&#39;</span>] <span class="op">=</span> np.where(</span>
-<span id="cb69-6"><a href="helper-functions.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  df.price <span class="op">&lt;</span> <span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
-<span id="cb69-7"><a href="helper-functions.html#cb69-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb69-8"><a href="helper-functions.html#cb69-8" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="helper-functions.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb10-2"><a href="helper-functions.html#cb10-2" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> {<span class="st">&#39;price&#39;</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>]}</span>
+<span id="cb10-3"><a href="helper-functions.html#cb10-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(prices)</span>
+<span id="cb10-4"><a href="helper-functions.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># np.where() in action</span></span>
+<span id="cb10-5"><a href="helper-functions.html#cb10-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;price_cat&#39;</span>] <span class="op">=</span> np.where(</span>
+<span id="cb10-6"><a href="helper-functions.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  df.price <span class="op">&lt;</span> <span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
+<span id="cb10-7"><a href="helper-functions.html#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-8"><a href="helper-functions.html#cb10-8" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    price   price_cat
 ## 0     25       Cheap
 ## 1     30       Cheap
@@ -383,6 +385,122 @@ numpy
 ## 3     80  Expenseive
 ## 4    100  Expenseive
 ## 5    125  Expenseive</code></pre>
+</td>
+<tr>
+</table>
+</div>
+<div id="in-vs-isin-and-in" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">code</th>
+<th align="left">capital</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">BD</td>
+<td align="left">Dhaka</td>
+</tr>
+<tr class="even">
+<td align="left">PT</td>
+<td align="left">Lisbon</td>
+</tr>
+<tr class="odd">
+<td align="left">ES</td>
+<td align="left">Madrid</td>
+</tr>
+<tr class="even">
+<td align="left">FR</td>
+<td align="left">Paris</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:blue"> <em>How to keep observations that belong to BD or DE? </em></p>
+<table class='table'>
+<tr>
+<th>
+R
+</th>
+<th>
+Python
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="helper-functions.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb12-2"><a href="helper-functions.html#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-3"><a href="helper-functions.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># country code</span></span>
+<span id="cb12-4"><a href="helper-functions.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">code =</span> <span class="fu">c</span>(</span>
+<span id="cb12-5"><a href="helper-functions.html#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
+<span id="cb12-6"><a href="helper-functions.html#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
+<span id="cb12-7"><a href="helper-functions.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb12-8"><a href="helper-functions.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># capital</span></span>
+<span id="cb12-9"><a href="helper-functions.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">capital =</span> <span class="fu">c</span>(</span>
+<span id="cb12-10"><a href="helper-functions.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
+<span id="cb12-11"><a href="helper-functions.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
+<span id="cb12-12"><a href="helper-functions.html#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb12-13"><a href="helper-functions.html#cb12-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-14"><a href="helper-functions.html#cb12-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   code  capital
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 BD    Dhaka  
+## 2 PT    Lisbon 
+## 3 ES    Madrid 
+## 4 FR    Paris</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="helper-functions.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% in action</span></span>
+<span id="cb14-2"><a href="helper-functions.html#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="helper-functions.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   code  capital
+##   &lt;chr&gt; &lt;chr&gt;  
+## 1 BD    Dhaka  
+## 2 PT    Lisbon</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="helper-functions.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb16-2"><a href="helper-functions.html#cb16-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb16-3"><a href="helper-functions.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># country code</span></span>
+<span id="cb16-4"><a href="helper-functions.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;code&#39;</span>:[</span>
+<span id="cb16-5"><a href="helper-functions.html#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
+<span id="cb16-6"><a href="helper-functions.html#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
+<span id="cb16-7"><a href="helper-functions.html#cb16-7" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb16-8"><a href="helper-functions.html#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># capital</span></span>
+<span id="cb16-9"><a href="helper-functions.html#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;capital&#39;</span>:[</span>
+<span id="cb16-10"><a href="helper-functions.html#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
+<span id="cb16-11"><a href="helper-functions.html#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
+<span id="cb16-12"><a href="helper-functions.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb16-13"><a href="helper-functions.html#cb16-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-14"><a href="helper-functions.html#cb16-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb16-15"><a href="helper-functions.html#cb16-15" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon
+## 2   ES  Madrid
+## 3   FR   Paris</code></pre>
+<p><strong>isin</strong></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="helper-functions.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># isin in action</span></span>
+<span id="cb18-2"><a href="helper-functions.html#cb18-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&quot;code&quot;</span>].isin([<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>])]</span></code></pre></div>
+<pre><code>##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon</code></pre>
+<p><strong><code>@</code></strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="helper-functions.html#cb20-1" aria-hidden="true" tabindex="-1"></a>country_list <span class="op">=</span> [<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>]</span>
+<span id="cb20-2"><a href="helper-functions.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># @ in action</span></span>
+<span id="cb20-3"><a href="helper-functions.html#cb20-3" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code == @country_list&#39;</span>)</span>
+<span id="cb20-4"><a href="helper-functions.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note: you must create a list first</span></span>
+<span id="cb20-5"><a href="helper-functions.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   @[&quot;BD&quot;, &quot;PT&quot;] doesn&#39;t work</span></span>
+<span id="cb20-6"><a href="helper-functions.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   but, @list([&quot;BD&quot;, &quot;PT&quot;] works</span></span></code></pre></div>
+<pre><code>##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon</code></pre>
+<p><strong>in</strong></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="helper-functions.html#cb22-1" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code in [&quot;BD&quot;, &quot;PT&quot;]&#39;</span>)</span></code></pre></div>
+<pre><code>##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon</code></pre>
 </td>
 <tr>
 </table>
