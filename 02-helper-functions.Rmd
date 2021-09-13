@@ -26,6 +26,22 @@ import numpy as np
   
   -  31 $\leq$ `age`: "31 and above"</span>
 
+
+*Example:*
+
+| age |      age_cat |
+|----:|-------------:|
+|   9 |         Kids |
+|  10 |         Kids |
+|  18 |        18-30 |
+|  21 |        18-30 |
+|  29 |        18-30 |
+|  31 | 31 and above |
+|  45 | 31 and above |
+
+
+**dplyr::case_when()**
+
 With `dplyr::case_when()` we can do it in the following way:
 
 ```{r}
@@ -52,22 +68,25 @@ df = pd.DataFrame({'age': [9, 10, 18, 21, 29, 31, 45]})
 
 
 <table class='table'>
-<tr> <th>numpy</th> <th>pandas</th> <tr>
+<tr> <th>np.select()</th> <th>pd.cut()</th> <tr>
 <tr>
 <td>
 
 ```{python}
 # Step 1: Create conditions
-conditions = [
+cond = [
   (df['age'].lt(18)),
   (df['age'].ge(18) & (df['age'].lt(31))),
   (df['age'].ge(31))
 ]
-# Step 2: Assign names based on the conditions
-cat_names = ['Kids', '18-30', '30 and above']
 
-# Step 3: Use np.select() to generate the variable
-df['age_cat'] = np.select(conditions, cat_names)
+# Step 2: Assign labels
+cond_labs = [
+  'Kids', '18-30', '30 and above'
+]
+
+# Step 3: apply np.select()
+df['age_cat'] = np.select(cond, cond_labs)
 df
 ```
 
@@ -77,16 +96,24 @@ df
 # Step 1: Create bin condition
 bin_cond = [0, 17, 30, np.inf] 
 # note: instead of 0, 
-#    -np.inf will also work
+#       -np.inf will also work
+#  
+# 0: greater than 0
+# 17: upper limit is 17
 
 # Step 2: Assign bin labs
-bin_lab = ['Kids', '18-30',
-           '30 and above']
+bin_labs = [
+  'Kids',
+  '18-30',
+  '30 and above'
+]
 
-# Step 3: Use pd.cut() 
-df["age_cat"] = pd.cut(df["age"],
-                       bins=bin_cond,
-                       labels=bin_lab)
+# Step 3: apply pd.cut() 
+df["age_cat"] = pd.cut(
+  df["age"],
+  bins = bin_cond,
+  labels = bin_labs
+)
 df
 ```
 </td>
@@ -103,7 +130,7 @@ df
 
 
 <table class='table'>
-<tr> <th>dplyr</th> <th>numpy</th> <tr>
+<tr> <th>dplyr::if_else()</th> <th>np.where()</th> <tr>
 <tr>
 <td>
 
@@ -111,7 +138,7 @@ df
 # toy data
 prices <- c(25, 30, 45, 80,100, 125)
 df <- tibble(price = prices)
-# case_when in action
+# if_else in action
 df %>% 
   mutate(price_cat = if_else(
     price <50, "Cheap", "Expenseive"
@@ -122,7 +149,9 @@ df %>%
 <td>
 ```{python}
 # toy data
-prices = {'price': [25, 30, 45, 80,100, 125]}
+prices = {
+  'price': [25, 30, 45, 80,100, 125]
+}
 df = pd.DataFrame(prices)
 # np.where() in action
 df['price_cat'] = np.where(
@@ -144,7 +173,7 @@ df
 |ES   |Madrid  |
 |FR   |Paris   |
 
-<span style="color:blue"> *How to keep observations that belong to BD or DE? *
+<span style="color:blue"> *How to keep observations that belong to BD or DE (without using the `|` operator)? *
 
 <table class='table'>
 <tr> <th>R</th> <th>Python</th> <tr>

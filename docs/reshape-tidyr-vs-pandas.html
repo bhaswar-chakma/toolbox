@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 R Strings | Toolbox</title>
-  <meta name="description" content="6 R Strings | Toolbox" />
+  <title>3 Reshape: tidyr vs pandas | Toolbox</title>
+  <meta name="description" content="3 Reshape: tidyr vs pandas | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 R Strings | Toolbox" />
+  <meta property="og:title" content="3 Reshape: tidyr vs pandas | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 R Strings | Toolbox" />
+  <meta name="twitter:title" content="3 Reshape: tidyr vs pandas | Toolbox" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scikit-learn.html"/>
-<link rel="next" href="sql.html"/>
+<link rel="prev" href="helper-functions.html"/>
+<link rel="next" href="base-python.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -238,178 +238,280 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-strings" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> R Strings</h1>
-<div id="string-manupulation-with-base-r-functions" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> String Manupulation with Base R Functions</h2>
-<p>There are many functions in base R for basic string manipulation.</p>
+<div id="reshape-tidyr-vs-pandas" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Reshape: tidyr vs pandas</h1>
+<div id="pivot_longer-vs-melt" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> <code>pivot_longer()</code> vs <code>melt()</code></h2>
+<p>Given the following table (life expectancy data)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="right">1997</th>
+<th align="right">2007</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bangladesh</td>
+<td align="right">59.4</td>
+<td align="right">64.1</td>
+</tr>
+<tr class="even">
+<td align="left">Portugal</td>
+<td align="right">76.0</td>
+<td align="right">78.1</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:blue"><em>How do we make the table “long?”</em></span></p>
+<p>Desired output:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">country</th>
+<th align="left">year</th>
+<th align="right">life_exp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bangladesh</td>
+<td align="left">1997</td>
+<td align="right">59.4</td>
+</tr>
+<tr class="even">
+<td align="left">Bangladesh</td>
+<td align="left">2007</td>
+<td align="right">64.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Portugal</td>
+<td align="left">1997</td>
+<td align="right">76.0</td>
+</tr>
+<tr class="even">
+<td align="left">Portugal</td>
+<td align="left">2007</td>
+<td align="right">78.1</td>
+</tr>
+</tbody>
+</table>
 <table class='table'>
 <tr>
 <th>
-Function
+tidyr::pivot_longer
 </th>
 <th>
-Example
+pandas::melt()
 </th>
 <tr>
 <tr>
 <td>
-<p><span style="color:blue"><strong><code>nchar()</code>
-</strong></span></p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="reshape-tidyr-vs-pandas.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb83-2"><a href="reshape-tidyr-vs-pandas.html#cb83-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb83-3"><a href="reshape-tidyr-vs-pandas.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="st">&quot;Bangladesh&quot;</span>, <span class="st">&quot;Portugal&quot;</span>),</span>
+<span id="cb83-4"><a href="reshape-tidyr-vs-pandas.html#cb83-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">1997</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">59.4</span>, <span class="fl">76.0</span>),</span>
+<span id="cb83-5"><a href="reshape-tidyr-vs-pandas.html#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">2007</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">64.1</span>, <span class="fl">78.1</span>)</span>
+<span id="cb83-6"><a href="reshape-tidyr-vs-pandas.html#cb83-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb83-7"><a href="reshape-tidyr-vs-pandas.html#cb83-7" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   country    `1997` `2007`
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Bangladesh   59.4   64.1
+## 2 Portugal     76     78.1</code></pre>
+<p><span style="color:blue"><strong><code>pivot_longer()</code> in action!</strong></span></p>
+<pre><code># pivot_longer in action
+df %&gt;% 
+  pivot_longer(
+    cols = c(`1997`, `2007`),
+    names_to = &quot;year&quot;,
+    values_to = &quot;life_exp&quot;
+  )</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="r-strings.html#cb270-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Universe&quot;</span>)</span>
-<span id="cb270-2"><a href="r-strings.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y) <span class="co"># Returns number of characters</span></span></code></pre></div>
-<pre><code>## [1] 5 5 5 8</code></pre>
-</td>
-<tr>
-<tr>
-<td>
-<p><span style="color:blue"><strong><code>tolower()</code>
-</strong></span></p>
-</td>
-<td>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="r-strings.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(y)</span></code></pre></div>
-<pre><code>## [1] &quot;hello&quot;    &quot;world&quot;    &quot;hello&quot;    &quot;universe&quot;</code></pre>
-</td>
-<tr>
-<tr>
-<td>
-<p><span style="color:blue"><strong><code>toupper()</code>
-</strong></span></p>
-</td>
-<td>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="r-strings.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(y)</span></code></pre></div>
-<pre><code>## [1] &quot;HELLO&quot;    &quot;WORLD&quot;    &quot;HELLO&quot;    &quot;UNIVERSE&quot;</code></pre>
-</td>
-<tr>
-<tr>
-<td>
-<p><span style="color:blue"><strong><code>chartr()</code>
-</strong></span></p>
-</td>
-<td>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="r-strings.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartr</span>(<span class="st">&quot;oe&quot;</span>, <span class="st">&quot;$#&quot;</span>, y)<span class="co">#o becomes $; e becomes #</span></span></code></pre></div>
-<pre><code>## [1] &quot;H#ll$&quot;    &quot;W$rld&quot;    &quot;H#ll$&quot;    &quot;Univ#rs#&quot;</code></pre>
-</td>
-<tr>
-<tr>
-<td>
-<p><span style="color:blue"><strong><code>substr()</code>
-</strong></span></p>
-</td>
-<td>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="r-strings.html#cb278-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;1t345s?&quot;</span></span>
-<span id="cb278-2"><a href="r-strings.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(x, <span class="dv">2</span>, <span class="dv">6</span>) <span class="co"># provides strings from 2 to 6</span></span></code></pre></div>
-<pre><code>## [1] &quot;t345s&quot;</code></pre>
-</td>
-<tr>
-<tr>
-<td>
-<p><span style="color:blue"><strong><code>strsplit()</code>
-</strong></span></p>
-</td>
-<td>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="r-strings.html#cb280-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;R#Rocks#!&quot;</span></span>
-<span id="cb280-2"><a href="r-strings.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strsplit</span>(x, <span class="at">split =</span> <span class="st">&quot;#&quot;</span>)</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] &quot;R&quot;     &quot;Rocks&quot; &quot;!&quot;</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="reshape-tidyr-vs-pandas.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb86-2"><a href="reshape-tidyr-vs-pandas.html#cb86-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb86-3"><a href="reshape-tidyr-vs-pandas.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;country&#39;</span>: [<span class="st">&quot;Bangladesh&quot;</span>, <span class="st">&quot;Portugal&quot;</span>],</span>
+<span id="cb86-4"><a href="reshape-tidyr-vs-pandas.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;1997&#39;</span>: [<span class="fl">59.4</span>, <span class="fl">76.0</span>],</span>
+<span id="cb86-5"><a href="reshape-tidyr-vs-pandas.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;2007&#39;</span>: [<span class="fl">64.1</span>, <span class="fl">78.1</span>]</span>
+<span id="cb86-6"><a href="reshape-tidyr-vs-pandas.html#cb86-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-7"><a href="reshape-tidyr-vs-pandas.html#cb86-7" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb86-8"><a href="reshape-tidyr-vs-pandas.html#cb86-8" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##       country  1997  2007
+## 0  Bangladesh  59.4  64.1
+## 1    Portugal  76.0  78.1</code></pre>
+<p><span style="color:blue"><strong><code>melt()</code> in action!</strong></span></p>
+<pre><code># melt() in action
+df.melt(
+  id_vars = &#39;country&#39;,
+  value_vars = [&#39;1997&#39;, &#39;2007&#39;], # cols
+  var_name = &#39;year&#39;, # names_to
+  value_name = &#39;life_exp&#39; # values_to
+)</code></pre>
 </td>
 <tr>
 </table>
 </div>
-<div id="stringr" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> <code>stringr</code></h2>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="r-strings.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<div id="pivot_wider-vs-pivot" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> <code>pivot_wider</code> vs <code>pivot</code></h2>
+<p>Given the following table</p>
 <table>
 <thead>
 <tr class="header">
-<th align="center">Job</th>
-<th align="center">stringr</th>
-<th align="center">Base R</th>
+<th align="left">country</th>
+<th align="left">year</th>
+<th align="right">life_exp</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">String concatenation</td>
-<td align="center"><code>str_c()</code></td>
-<td align="center"><code>paste()</code></td>
+<td align="left">Bangladesh</td>
+<td align="left">1997</td>
+<td align="right">59.4</td>
 </tr>
 <tr class="even">
-<td align="center">Number of characters</td>
-<td align="center"><code>str_length()</code></td>
-<td align="center"><code>nchar()</code></td>
+<td align="left">Bangladesh</td>
+<td align="left">2007</td>
+<td align="right">64.1</td>
 </tr>
 <tr class="odd">
-<td align="center">Extracts substrings</td>
-<td align="center"><code>str_sub()</code></td>
-<td align="center"><code>substr()</code></td>
+<td align="left">Portugal</td>
+<td align="left">1997</td>
+<td align="right">76.0</td>
 </tr>
 <tr class="even">
-<td align="center">Duplicates characters</td>
-<td align="center"><code>str_dup()</code></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">Removes leading and trailing whitespace</td>
-<td align="center"><code>str_trim()</code></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">Pads a string</td>
-<td align="center"><code>str_pad()</code></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">Wraps a string paragraph</td>
-<td align="center"><code>str_wrap()</code></td>
-<td align="center"></td>
+<td align="left">Portugal</td>
+<td align="left">2007</td>
+<td align="right">78.1</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="regular-expressions" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Regular Expressions</h2>
-<p>A <strong>regular expression</strong> (or <strong>regex</strong>) is a set of symbols that describes a text pattern. More formally, a regular expression is a pattern that describes a set of strings.</p>
-<p>Regular expressions are a formal language in the sense that the symbols have a defined set of rules to specify the desired patterns.</p>
-<div id="stringr-functions-for-regular-expressions" class="section level3" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> <code>stringr</code> Functions for Regular Expressions</h3>
+<p><span style="color:blue"><em>How do we make the table “wide?”</em></span></p>
+<p>Desired output:</p>
 <table>
-<colgroup>
-<col width="25%" />
-<col width="74%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th align="center">Function</th>
-<th align="center">Job</th>
+<th align="left">country</th>
+<th align="right">1997</th>
+<th align="right">2007</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><code>str_detect</code>(str, pattern)</td>
-<td align="center">Detects the presence of a pattern and returns TRUE if it is found</td>
+<td align="left">Bangladesh</td>
+<td align="right">59.4</td>
+<td align="right">64.1</td>
 </tr>
 <tr class="even">
-<td align="center"><code>str_locate</code>(str, pattern)</td>
-<td align="center">Locate the 1st position of a pattern and return a matrix with start &amp; end.s</td>
-</tr>
-<tr class="odd">
-<td align="center"><code>str_extract</code>(str, pattern)</td>
-<td align="center">Extracts text corresponding to the first match.</td>
-</tr>
-<tr class="even">
-<td align="center"><code>str_match</code>(str, pattern)</td>
-<td align="center">Extracts capture groups formed by () from the first match.</td>
-</tr>
-<tr class="odd">
-<td align="center"><code>str_split</code>(str, pattern)</td>
-<td align="center">Splits string into pieces and returns a list of character vectors.</td>
+<td align="left">Portugal</td>
+<td align="right">76.0</td>
+<td align="right">78.1</td>
 </tr>
 </tbody>
+</table>
+<table class='table'>
+<tr>
+<th>
+tidyr::pivot_wider()
+</th>
+<th>
+pandas::pivot()
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="reshape-tidyr-vs-pandas.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb89-2"><a href="reshape-tidyr-vs-pandas.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="reshape-tidyr-vs-pandas.html#cb89-3" aria-hidden="true" tabindex="-1"></a>country <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb89-4"><a href="reshape-tidyr-vs-pandas.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Bangladesh&quot;</span>, <span class="st">&quot;Bangladesh&quot;</span>,</span>
+<span id="cb89-5"><a href="reshape-tidyr-vs-pandas.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Portugal&quot;</span>, <span class="st">&quot;Portugal&quot;</span></span>
+<span id="cb89-6"><a href="reshape-tidyr-vs-pandas.html#cb89-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-7"><a href="reshape-tidyr-vs-pandas.html#cb89-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-8"><a href="reshape-tidyr-vs-pandas.html#cb89-8" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb89-9"><a href="reshape-tidyr-vs-pandas.html#cb89-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;1997&quot;</span>, <span class="st">&quot;2007&quot;</span>,</span>
+<span id="cb89-10"><a href="reshape-tidyr-vs-pandas.html#cb89-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;1997&quot;</span>, <span class="st">&quot;2007&quot;</span></span>
+<span id="cb89-11"><a href="reshape-tidyr-vs-pandas.html#cb89-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-12"><a href="reshape-tidyr-vs-pandas.html#cb89-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-13"><a href="reshape-tidyr-vs-pandas.html#cb89-13" aria-hidden="true" tabindex="-1"></a>life_exp <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb89-14"><a href="reshape-tidyr-vs-pandas.html#cb89-14" aria-hidden="true" tabindex="-1"></a>  <span class="fl">59.4</span>, <span class="fl">64.1</span>,</span>
+<span id="cb89-15"><a href="reshape-tidyr-vs-pandas.html#cb89-15" aria-hidden="true" tabindex="-1"></a>  <span class="dv">76</span>, <span class="fl">78.1</span></span>
+<span id="cb89-16"><a href="reshape-tidyr-vs-pandas.html#cb89-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb89-17"><a href="reshape-tidyr-vs-pandas.html#cb89-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-18"><a href="reshape-tidyr-vs-pandas.html#cb89-18" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(country, year, life_exp)</span>
+<span id="cb89-19"><a href="reshape-tidyr-vs-pandas.html#cb89-19" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   country    year  life_exp
+##   &lt;chr&gt;      &lt;chr&gt;    &lt;dbl&gt;
+## 1 Bangladesh 1997      59.4
+## 2 Bangladesh 2007      64.1
+## 3 Portugal   1997      76  
+## 4 Portugal   2007      78.1</code></pre>
+<p><span style="color:blue"><strong><code>pivot_wider()</code> in action!</strong></span></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="reshape-tidyr-vs-pandas.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot_wider in action</span></span>
+<span id="cb91-2"><a href="reshape-tidyr-vs-pandas.html#cb91-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb91-3"><a href="reshape-tidyr-vs-pandas.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb91-4"><a href="reshape-tidyr-vs-pandas.html#cb91-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb91-5"><a href="reshape-tidyr-vs-pandas.html#cb91-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;life_exp&quot;</span></span>
+<span id="cb91-6"><a href="reshape-tidyr-vs-pandas.html#cb91-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   country    `1997` `2007`
+##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Bangladesh   59.4   64.1
+## 2 Portugal     76     78.1</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="reshape-tidyr-vs-pandas.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb93-2"><a href="reshape-tidyr-vs-pandas.html#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="reshape-tidyr-vs-pandas.html#cb93-3" aria-hidden="true" tabindex="-1"></a>country <span class="op">=</span>[</span>
+<span id="cb93-4"><a href="reshape-tidyr-vs-pandas.html#cb93-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Bangladesh&quot;</span>, <span class="st">&quot;Bangladesh&quot;</span>,</span>
+<span id="cb93-5"><a href="reshape-tidyr-vs-pandas.html#cb93-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Portugal&quot;</span>, <span class="st">&quot;Portugal&quot;</span></span>
+<span id="cb93-6"><a href="reshape-tidyr-vs-pandas.html#cb93-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb93-7"><a href="reshape-tidyr-vs-pandas.html#cb93-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-8"><a href="reshape-tidyr-vs-pandas.html#cb93-8" aria-hidden="true" tabindex="-1"></a>year <span class="op">=</span> [</span>
+<span id="cb93-9"><a href="reshape-tidyr-vs-pandas.html#cb93-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;1997&quot;</span>, <span class="st">&quot;2007&quot;</span>,</span>
+<span id="cb93-10"><a href="reshape-tidyr-vs-pandas.html#cb93-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;1997&quot;</span>, <span class="st">&quot;2007&quot;</span></span>
+<span id="cb93-11"><a href="reshape-tidyr-vs-pandas.html#cb93-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb93-12"><a href="reshape-tidyr-vs-pandas.html#cb93-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-13"><a href="reshape-tidyr-vs-pandas.html#cb93-13" aria-hidden="true" tabindex="-1"></a>life_exp <span class="op">=</span> [</span>
+<span id="cb93-14"><a href="reshape-tidyr-vs-pandas.html#cb93-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">59.4</span>, <span class="fl">64.1</span>,</span>
+<span id="cb93-15"><a href="reshape-tidyr-vs-pandas.html#cb93-15" aria-hidden="true" tabindex="-1"></a>    <span class="dv">76</span>, <span class="fl">78.1</span></span>
+<span id="cb93-16"><a href="reshape-tidyr-vs-pandas.html#cb93-16" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb93-17"><a href="reshape-tidyr-vs-pandas.html#cb93-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-18"><a href="reshape-tidyr-vs-pandas.html#cb93-18" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb93-19"><a href="reshape-tidyr-vs-pandas.html#cb93-19" aria-hidden="true" tabindex="-1"></a>   {<span class="st">&#39;country&#39;</span>: country,</span>
+<span id="cb93-20"><a href="reshape-tidyr-vs-pandas.html#cb93-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;year&#39;</span>: year,</span>
+<span id="cb93-21"><a href="reshape-tidyr-vs-pandas.html#cb93-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;life_exp&#39;</span>: life_exp}</span>
+<span id="cb93-22"><a href="reshape-tidyr-vs-pandas.html#cb93-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb93-23"><a href="reshape-tidyr-vs-pandas.html#cb93-23" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##       country  year  life_exp
+## 0  Bangladesh  1997      59.4
+## 1  Bangladesh  2007      64.1
+## 2    Portugal  1997      76.0
+## 3    Portugal  2007      78.1</code></pre>
+<p><span style="color:blue"><strong><code>pivot()</code> in action!</strong></span></p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="reshape-tidyr-vs-pandas.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivot in action</span></span>
+<span id="cb95-2"><a href="reshape-tidyr-vs-pandas.html#cb95-2" aria-hidden="true" tabindex="-1"></a>df_wide <span class="op">=</span> df.pivot(</span>
+<span id="cb95-3"><a href="reshape-tidyr-vs-pandas.html#cb95-3" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> <span class="st">&#39;country&#39;</span>,</span>
+<span id="cb95-4"><a href="reshape-tidyr-vs-pandas.html#cb95-4" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> <span class="st">&#39;year&#39;</span>, <span class="co"># names from</span></span>
+<span id="cb95-5"><a href="reshape-tidyr-vs-pandas.html#cb95-5" aria-hidden="true" tabindex="-1"></a>    values <span class="op">=</span> <span class="st">&#39;life_exp&#39;</span> <span class="co"># vasles from</span></span>
+<span id="cb95-6"><a href="reshape-tidyr-vs-pandas.html#cb95-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb95-7"><a href="reshape-tidyr-vs-pandas.html#cb95-7" aria-hidden="true" tabindex="-1"></a>df_wide</span></code></pre></div>
+<pre><code>## year        1997  2007
+## country               
+## Bangladesh  59.4  64.1
+## Portugal    76.0  78.1</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="reshape-tidyr-vs-pandas.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reset the names</span></span>
+<span id="cb97-2"><a href="reshape-tidyr-vs-pandas.html#cb97-2" aria-hidden="true" tabindex="-1"></a>df_wide.index.name <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb97-3"><a href="reshape-tidyr-vs-pandas.html#cb97-3" aria-hidden="true" tabindex="-1"></a>df_wide.columns.name <span class="op">=</span> <span class="va">None</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="reshape-tidyr-vs-pandas.html#cb98-1" aria-hidden="true" tabindex="-1"></a>df_wide</span></code></pre></div>
+<pre><code>##             1997  2007
+## Bangladesh  59.4  64.1
+## Portugal    76.0  78.1</code></pre>
+</td>
+<tr>
 </table>
 
-</div>
 </div>
 </div>
             </section>
@@ -417,8 +519,8 @@ Example
           </div>
         </div>
       </div>
-<a href="scikit-learn.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sql.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="helper-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base-python.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

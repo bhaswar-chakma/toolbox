@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -116,7 +116,7 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-08-20}
+\date{2021-09-13}
 
 \begin{document}
 \maketitle
@@ -137,8 +137,8 @@
 \chapter*{}\label{section}}
 \addcontentsline{toc}{chapter}{}
 
-\hypertarget{dplyr-vs-pandas-numpy}{%
-\chapter{dplyr vs pandas \& numpy}\label{dplyr-vs-pandas-numpy}}
+\hypertarget{grammar-of-data-manipulation-dplyr-vs-pandas-numpy}{%
+\chapter{Grammar of data manipulation: dplyr vs pandas \& numpy}\label{grammar-of-data-manipulation-dplyr-vs-pandas-numpy}}
 
 We will use the five \href{https://dplyr.tidyverse.org/}{dplyr verbs} (also \href{https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html}{pandas' guide}) for comparison
 
@@ -742,8 +742,8 @@ pandas
 \hypertarget{helper-functions}{%
 \chapter{Helper Functions}\label{helper-functions}}
 
-\hypertarget{case_when-vs-pd.cut-vs-np.select}{%
-\section{\texorpdfstring{\texttt{case\_when()} vs \texttt{pd.cut()} vs \texttt{np.select()}}{case\_when() vs pd.cut() vs np.select()}}\label{case_when-vs-pd.cut-vs-np.select}}
+\hypertarget{case_when-vs-pd.cut-and-np.select}{%
+\section{\texorpdfstring{\texttt{case\_when()} vs \texttt{pd.cut()} and \texttt{np.select()}}{case\_when() vs pd.cut() and np.select()}}\label{case_when-vs-pd.cut-and-np.select}}
 
 \emph{Suppose we have a data frame with a variable called \texttt{age}. We want to create a variable \texttt{age\_cat} with the following conditions:}
 
@@ -800,23 +800,26 @@ We can achieve the same result in Python using
 \end{Highlighting}
 \end{Shaded}
 
-numpy
+np.select()
 
-pandas
+pd.cut()
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Step 1: Create conditions}
-\NormalTok{conditions }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{cond }\OperatorTok{=}\NormalTok{ [}
 \NormalTok{  (df[}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{].lt(}\DecValTok{18}\NormalTok{)),}
 \NormalTok{  (df[}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{].ge(}\DecValTok{18}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (df[}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{].lt(}\DecValTok{31}\NormalTok{))),}
 \NormalTok{  (df[}\StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{].ge(}\DecValTok{31}\NormalTok{))}
 \NormalTok{]}
-\CommentTok{\# Step 2: Assign names based on the conditions}
-\NormalTok{cat\_names }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Kids\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}18{-}30\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}30 and above\textquotesingle{}}\NormalTok{]}
 
-\CommentTok{\# Step 3: Use np.select() to generate the variable}
-\NormalTok{df[}\StringTok{\textquotesingle{}age\_cat\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.select(conditions, cat\_names)}
+\CommentTok{\# Step 2: Assign labels}
+\NormalTok{cond\_labs }\OperatorTok{=}\NormalTok{ [}
+  \StringTok{\textquotesingle{}Kids\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}18{-}30\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}30 and above\textquotesingle{}}
+\NormalTok{]}
+
+\CommentTok{\# Step 3: apply np.select()}
+\NormalTok{df[}\StringTok{\textquotesingle{}age\_cat\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.select(cond, cond\_labs)}
 \NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
@@ -837,16 +840,24 @@ pandas
 \CommentTok{\# Step 1: Create bin condition}
 \NormalTok{bin\_cond }\OperatorTok{=}\NormalTok{ [}\DecValTok{0}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{30}\NormalTok{, np.inf] }
 \CommentTok{\# note: instead of 0, }
-\CommentTok{\#    {-}np.inf will also work}
+\CommentTok{\#       {-}np.inf will also work}
+\CommentTok{\#  }
+\CommentTok{\# 0: greater than 0}
+\CommentTok{\# 17: upper limit is 17}
 
 \CommentTok{\# Step 2: Assign bin labs}
-\NormalTok{bin\_lab }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}Kids\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}18{-}30\textquotesingle{}}\NormalTok{,}
-           \StringTok{\textquotesingle{}30 and above\textquotesingle{}}\NormalTok{]}
+\NormalTok{bin\_labs }\OperatorTok{=}\NormalTok{ [}
+  \StringTok{\textquotesingle{}Kids\textquotesingle{}}\NormalTok{,}
+  \StringTok{\textquotesingle{}18{-}30\textquotesingle{}}\NormalTok{,}
+  \StringTok{\textquotesingle{}30 and above\textquotesingle{}}
+\NormalTok{]}
 
-\CommentTok{\# Step 3: Use pd.cut() }
-\NormalTok{df[}\StringTok{"age\_cat"}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.cut(df[}\StringTok{"age"}\NormalTok{],}
-\NormalTok{                       bins}\OperatorTok{=}\NormalTok{bin\_cond,}
-\NormalTok{                       labels}\OperatorTok{=}\NormalTok{bin\_lab)}
+\CommentTok{\# Step 3: apply pd.cut() }
+\NormalTok{df[}\StringTok{"age\_cat"}\NormalTok{] }\OperatorTok{=}\NormalTok{ pd.cut(}
+\NormalTok{  df[}\StringTok{"age"}\NormalTok{],}
+\NormalTok{  bins }\OperatorTok{=}\NormalTok{ bin\_cond,}
+\NormalTok{  labels }\OperatorTok{=}\NormalTok{ bin\_labs}
+\NormalTok{)}
 \NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
@@ -874,16 +885,16 @@ pandas
   when \texttt{price} is 50 or more, we label it as ``Expensive''
 \end{itemize}
 
-dplyr
+dplyr::if\_else
 
-numpy
+np.where()
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# toy data}
 \NormalTok{prices }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{80}\NormalTok{,}\DecValTok{100}\NormalTok{, }\DecValTok{125}\NormalTok{)}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{price =}\NormalTok{ prices)}
-\CommentTok{\# case\_when in action}
+\CommentTok{\# if\_else in action}
 \NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{price\_cat =} \FunctionTok{if\_else}\NormalTok{(}
 \NormalTok{    price }\SpecialCharTok{\textless{}}\DecValTok{50}\NormalTok{, }\StringTok{"Cheap"}\NormalTok{, }\StringTok{"Expenseive"}
@@ -906,7 +917,9 @@ numpy
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# toy data}
-\NormalTok{prices }\OperatorTok{=}\NormalTok{ \{}\StringTok{\textquotesingle{}price\textquotesingle{}}\NormalTok{: [}\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{80}\NormalTok{,}\DecValTok{100}\NormalTok{, }\DecValTok{125}\NormalTok{]\}}
+\NormalTok{prices }\OperatorTok{=}\NormalTok{ \{}
+  \StringTok{\textquotesingle{}price\textquotesingle{}}\NormalTok{: [}\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{80}\NormalTok{,}\DecValTok{100}\NormalTok{, }\DecValTok{125}\NormalTok{]}
+\NormalTok{\}}
 \NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(prices)}
 \CommentTok{\# np.where() in action}
 \NormalTok{df[}\StringTok{\textquotesingle{}price\_cat\textquotesingle{}}\NormalTok{] }\OperatorTok{=}\NormalTok{ np.where(}
@@ -926,13 +939,156 @@ numpy
 ## 5    125  Expenseive
 \end{verbatim}
 
-\hypertarget{tidyr-vs-pandas}{%
-\chapter{tidyr vs pandas}\label{tidyr-vs-pandas}}
+\hypertarget{in-vs-isin-and-in}{%
+\section{\texorpdfstring{\texttt{\%in\%} vs \texttt{isin}, \texttt{@}, and \texttt{in}}{\%in\% vs isin, @, and in}}\label{in-vs-isin-and-in}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+code & capital \\
+\midrule
+\endhead
+BD & Dhaka \\
+PT & Lisbon \\
+ES & Madrid \\
+FR & Paris \\
+\bottomrule
+\end{longtable}
+
+\emph{How to keep observations that belong to BD or DE? }
+
+R
+
+Python
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \CommentTok{\# country code}
+  \AttributeTok{code =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"BD"}\NormalTok{, }\StringTok{"PT"}\NormalTok{,}
+    \StringTok{"ES"}\NormalTok{, }\StringTok{"FR"}
+\NormalTok{  ),}
+  \CommentTok{\# capital}
+  \AttributeTok{capital =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Dhaka"}\NormalTok{, }\StringTok{"Lisbon"}\NormalTok{,}
+    \StringTok{"Madrid"}\NormalTok{, }\StringTok{"Paris"}
+\NormalTok{  ) }
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   code  capital
+##   <chr> <chr>  
+## 1 BD    Dhaka  
+## 2 PT    Lisbon 
+## 3 ES    Madrid 
+## 4 FR    Paris
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \%in\% in action}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(code }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"BD"}\NormalTok{, }\StringTok{"PT"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   code  capital
+##   <chr> <chr>  
+## 1 BD    Dhaka  
+## 2 PT    Lisbon
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{data }\OperatorTok{=}\NormalTok{ \{}
+    \CommentTok{\# country code}
+    \StringTok{\textquotesingle{}code\textquotesingle{}}\NormalTok{:[}
+        \StringTok{"BD"}\NormalTok{, }\StringTok{"PT"}\NormalTok{,}
+        \StringTok{"ES"}\NormalTok{, }\StringTok{"FR"}
+\NormalTok{    ],}
+    \CommentTok{\# capital}
+    \StringTok{\textquotesingle{}capital\textquotesingle{}}\NormalTok{:[}
+        \StringTok{"Dhaka"}\NormalTok{, }\StringTok{"Lisbon"}\NormalTok{,}
+        \StringTok{"Madrid"}\NormalTok{, }\StringTok{"Paris"}
+\NormalTok{    ]}
+\NormalTok{\}}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon
+## 2   ES  Madrid
+## 3   FR   Paris
+\end{verbatim}
+
+\textbf{isin}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# isin in action}
+\NormalTok{df[df[}\StringTok{"code"}\NormalTok{].isin([}\StringTok{"BD"}\NormalTok{, }\StringTok{"PT"}\NormalTok{])]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon
+\end{verbatim}
+
+\textbf{\texttt{@}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{country\_list }\OperatorTok{=}\NormalTok{ [}\StringTok{"BD"}\NormalTok{, }\StringTok{"PT"}\NormalTok{]}
+\CommentTok{\# @ in action}
+\NormalTok{df.query(}\StringTok{\textquotesingle{}code == @country\_list\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# note: you must create a list first}
+\CommentTok{\#   @["BD", "PT"] doesn\textquotesingle{}t work}
+\CommentTok{\#   but, @list(["BD", "PT"] works}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon
+\end{verbatim}
+
+\textbf{in}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# in in action}
+\NormalTok{df.query(}\StringTok{\textquotesingle{}code in ["BD", "PT"]\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   code capital
+## 0   BD   Dhaka
+## 1   PT  Lisbon
+\end{verbatim}
+
+\hypertarget{reshape-tidyr-vs-pandas}{%
+\chapter{Reshape: tidyr vs pandas}\label{reshape-tidyr-vs-pandas}}
 
 \hypertarget{pivot_longer-vs-melt}{%
-\section{pivot\_longer() vs melt()}\label{pivot_longer-vs-melt}}
+\section{\texorpdfstring{\texttt{pivot\_longer()} vs \texttt{melt()}}{pivot\_longer() vs melt()}}\label{pivot_longer-vs-melt}}
 
-Example data: Life expectancy
+Given the following table (life expectancy data)
 
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
@@ -944,7 +1100,7 @@ Portugal & 76.0 & 78.1 \\
 \bottomrule
 \end{longtable}
 
-{\emph{How do we make the table long?}}
+{\emph{How do we make the table ``long''?}}
 
 Desired output:
 
@@ -966,20 +1122,123 @@ pandas::melt()
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# create df}
+\CommentTok{\# toy data}
 \NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
   \AttributeTok{country =} \FunctionTok{c}\NormalTok{(}\StringTok{"Bangladesh"}\NormalTok{, }\StringTok{"Portugal"}\NormalTok{),}
   \StringTok{\textasciigrave{}}\AttributeTok{1997}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{59.4}\NormalTok{, }\FloatTok{76.0}\NormalTok{),}
   \StringTok{\textasciigrave{}}\AttributeTok{2007}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{, }\FloatTok{78.1}\NormalTok{)}
 \NormalTok{  )}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# pivot\_longer in action}
-\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{pivot\_longer}\NormalTok{(}
-    \AttributeTok{cols =} \FunctionTok{c}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{1997}\StringTok{\textasciigrave{}}\NormalTok{, }\StringTok{\textasciigrave{}}\AttributeTok{2007}\StringTok{\textasciigrave{}}\NormalTok{),}
-    \AttributeTok{names\_to =} \StringTok{"year"}\NormalTok{,}
-    \AttributeTok{values\_to =} \StringTok{"life\_exp"}
-\NormalTok{  )}
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   country    `1997` `2007`
+##   <chr>       <dbl>  <dbl>
+## 1 Bangladesh   59.4   64.1
+## 2 Portugal     76     78.1
+\end{verbatim}
+
+{\textbf{\texttt{pivot\_longer()} in action!}}
+
+\begin{verbatim}
+# pivot_longer in action
+df %>% 
+  pivot_longer(
+    cols = c(`1997`, `2007`),
+    names_to = "year",
+    values_to = "life_exp"
+  )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{data }\OperatorTok{=}\NormalTok{ \{}
+  \StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{: [}\StringTok{"Bangladesh"}\NormalTok{, }\StringTok{"Portugal"}\NormalTok{],}
+  \StringTok{\textquotesingle{}1997\textquotesingle{}}\NormalTok{: [}\FloatTok{59.4}\NormalTok{, }\FloatTok{76.0}\NormalTok{],}
+  \StringTok{\textquotesingle{}2007\textquotesingle{}}\NormalTok{: [}\FloatTok{64.1}\NormalTok{, }\FloatTok{78.1}\NormalTok{]}
+\NormalTok{\}}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       country  1997  2007
+## 0  Bangladesh  59.4  64.1
+## 1    Portugal  76.0  78.1
+\end{verbatim}
+
+{\textbf{\texttt{melt()} in action!}}
+
+\begin{verbatim}
+# melt() in action
+df.melt(
+  id_vars = 'country',
+  value_vars = ['1997', '2007'], # cols
+  var_name = 'year', # names_to
+  value_name = 'life_exp' # values_to
+)
+\end{verbatim}
+
+\hypertarget{pivot_wider-vs-pivot}{%
+\section{\texorpdfstring{\texttt{pivot\_wider} vs \texttt{pivot}}{pivot\_wider vs pivot}}\label{pivot_wider-vs-pivot}}
+
+Given the following table
+
+\begin{longtable}[]{@{}llr@{}}
+\toprule
+country & year & life\_exp \\
+\midrule
+\endhead
+Bangladesh & 1997 & 59.4 \\
+Bangladesh & 2007 & 64.1 \\
+Portugal & 1997 & 76.0 \\
+Portugal & 2007 & 78.1 \\
+\bottomrule
+\end{longtable}
+
+{\emph{How do we make the table ``wide''?}}
+
+Desired output:
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+country & 1997 & 2007 \\
+\midrule
+\endhead
+Bangladesh & 59.4 & 64.1 \\
+Portugal & 76.0 & 78.1 \\
+\bottomrule
+\end{longtable}
+
+tidyr::pivot\_wider()
+
+pandas::pivot()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+
+\NormalTok{country }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"Bangladesh"}\NormalTok{, }\StringTok{"Bangladesh"}\NormalTok{,}
+  \StringTok{"Portugal"}\NormalTok{, }\StringTok{"Portugal"}
+\NormalTok{)}
+
+\NormalTok{year }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"1997"}\NormalTok{, }\StringTok{"2007"}\NormalTok{,}
+  \StringTok{"1997"}\NormalTok{, }\StringTok{"2007"}
+\NormalTok{)}
+
+\NormalTok{life\_exp }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \FloatTok{59.4}\NormalTok{, }\FloatTok{64.1}\NormalTok{,}
+  \DecValTok{76}\NormalTok{, }\FloatTok{78.1}
+\NormalTok{)}
+
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(country, year, life\_exp)}
+\NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
 
@@ -993,32 +1252,102 @@ pandas::melt()
 ## 4 Portugal   2007      78.1
 \end{verbatim}
 
+{\textbf{\texttt{pivot\_wider()} in action!}}
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# create df}
-\NormalTok{data }\OperatorTok{=}\NormalTok{ \{}
-  \StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{: [}\StringTok{"Bangladesh"}\NormalTok{, }\StringTok{"Portugal"}\NormalTok{],}
-  \StringTok{\textquotesingle{}1997\textquotesingle{}}\NormalTok{: [}\FloatTok{59.4}\NormalTok{, }\FloatTok{76.0}\NormalTok{],}
-  \StringTok{\textquotesingle{}2007\textquotesingle{}}\NormalTok{: [}\FloatTok{64.1}\NormalTok{, }\FloatTok{78.1}\NormalTok{]}
-\NormalTok{\}}
-\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(data)}
+\CommentTok{\# pivot\_wider in action}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_wider}\NormalTok{(}
+    \AttributeTok{names\_from =} \StringTok{"year"}\NormalTok{,}
+    \AttributeTok{values\_from =} \StringTok{"life\_exp"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
 
-\CommentTok{\# melt() in action}
-\NormalTok{df.melt(}
-\NormalTok{  id\_vars }\OperatorTok{=} \StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{,}
-\NormalTok{  value\_vars }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}1997\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}2007\textquotesingle{}}\NormalTok{],}
-\NormalTok{  value\_name }\OperatorTok{=} \StringTok{\textquotesingle{}life\_exp\textquotesingle{}}\NormalTok{,}
-\NormalTok{  var\_name }\OperatorTok{=} \StringTok{\textquotesingle{}year\textquotesingle{}}
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   country    `1997` `2007`
+##   <chr>       <dbl>  <dbl>
+## 1 Bangladesh   59.4   64.1
+## 2 Portugal     76     78.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+
+\NormalTok{country }\OperatorTok{=}\NormalTok{[}
+    \StringTok{"Bangladesh"}\NormalTok{, }\StringTok{"Bangladesh"}\NormalTok{,}
+    \StringTok{"Portugal"}\NormalTok{, }\StringTok{"Portugal"}
+\NormalTok{]}
+
+\NormalTok{year }\OperatorTok{=}\NormalTok{ [}
+    \StringTok{"1997"}\NormalTok{, }\StringTok{"2007"}\NormalTok{,}
+    \StringTok{"1997"}\NormalTok{, }\StringTok{"2007"}
+\NormalTok{]}
+
+\NormalTok{life\_exp }\OperatorTok{=}\NormalTok{ [}
+    \FloatTok{59.4}\NormalTok{, }\FloatTok{64.1}\NormalTok{,}
+    \DecValTok{76}\NormalTok{, }\FloatTok{78.1}
+\NormalTok{]}
+
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(}
+\NormalTok{   \{}\StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{: country,}
+    \StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{: year,}
+    \StringTok{\textquotesingle{}life\_exp\textquotesingle{}}\NormalTok{: life\_exp\}}
 \NormalTok{)}
+\NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##       country  year  life_exp
 ## 0  Bangladesh  1997      59.4
-## 1    Portugal  1997      76.0
-## 2  Bangladesh  2007      64.1
+## 1  Bangladesh  2007      64.1
+## 2    Portugal  1997      76.0
 ## 3    Portugal  2007      78.1
+\end{verbatim}
+
+{\textbf{\texttt{pivot()} in action!}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# pivot in action}
+\NormalTok{df\_wide }\OperatorTok{=}\NormalTok{ df.pivot(}
+\NormalTok{    index }\OperatorTok{=} \StringTok{\textquotesingle{}country\textquotesingle{}}\NormalTok{,}
+\NormalTok{    columns }\OperatorTok{=} \StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{, }\CommentTok{\# names from}
+\NormalTok{    values }\OperatorTok{=} \StringTok{\textquotesingle{}life\_exp\textquotesingle{}} \CommentTok{\# vasles from}
+\NormalTok{)}
+\NormalTok{df\_wide}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## year        1997  2007
+## country               
+## Bangladesh  59.4  64.1
+## Portugal    76.0  78.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reset the names}
+\NormalTok{df\_wide.index.name }\OperatorTok{=} \VariableTok{None}
+\NormalTok{df\_wide.columns.name }\OperatorTok{=} \VariableTok{None}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_wide}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             1997  2007
+## Bangladesh  59.4  64.1
+## Portugal    76.0  78.1
 \end{verbatim}
 
 \hypertarget{base-python}{%
@@ -1063,7 +1392,7 @@ pandas::melt()
 \end{Shaded}
 
 \begin{verbatim}
-## <map object at 0x000000003031CEB8>
+## <map object at 0x000000002C92BBE0>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1187,7 +1516,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <enumerate object at 0x000000003031AB40>
+## <enumerate object at 0x000000003089F120>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1228,7 +1557,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Barney': [], 'Robin': [], 'Marshall': [], 'Lilly': [], 'Ted': []}
+## {'Robin': [], 'Marshall': [], 'Ted': [], 'Lilly': [], 'Barney': []}
 \end{verbatim}
 
 \begin{Shaded}
@@ -1241,7 +1570,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Barney': [1, 8], 'Robin': [0, 2, 6], 'Marshall': [5], 'Lilly': [4], 'Ted': [3, 7]}
+## {'Robin': [0, 2, 6], 'Marshall': [5], 'Ted': [3, 7], 'Lilly': [4], 'Barney': [1, 8]}
 \end{verbatim}
 
 \hypertarget{scikit-learn}{%
@@ -1321,7 +1650,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000003F036470>
+## <matplotlib.collections.PathCollection object at 0x000000003761E828>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1513,7 +1842,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x0000000041C79048>
+## <matplotlib.collections.PathCollection object at 0x00000000421C7898>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1523,7 +1852,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000041C79358>]
+## [<matplotlib.lines.Line2D object at 0x00000000421C7B70>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -1576,7 +1905,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000041D14F60>]
+## [<matplotlib.lines.Line2D object at 0x00000000422A66D8>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2057,7 +2386,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x0000000004BFF2B0>
+## <matplotlib.collections.PathCollection object at 0x00000000428379B0>
 \end{verbatim}
 
 \begin{Shaded}

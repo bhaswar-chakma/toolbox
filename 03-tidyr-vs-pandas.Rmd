@@ -1,4 +1,4 @@
-# tidyr vs pandas
+# Reshape: tidyr vs pandas
 ```{r setup-tidyr, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```

@@ -1,4 +1,4 @@
-# dplyr vs pandas & numpy
+# Grammar of data manipulation: dplyr vs pandas & numpy
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)

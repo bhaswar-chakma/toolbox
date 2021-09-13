@@ -1,14 +1,16 @@
-dplyr-vs-pandas-numpy
+grammar-of-data-manipulation-dplyr-vs-pandas-numpy
 select
 mutate
 filter
 group_by-and-summarize
 arrange
 helper-functions
-case_when-vs-pd.cut-vs-np.select
+case_when-vs-pd.cut-and-np.select
 if_else-vs-np.where
-tidyr-vs-pandas
+in-vs-isin-and-in
+reshape-tidyr-vs-pandas
 pivot_longer-vs-melt
+pivot_wider-vs-pivot
 base-python
 map
 zip
@@ -53,6 +55,3 @@ for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-a
 label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary..
 in-the-previous-sql-problem-order-the-result-set-by-average-salary..
 in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees..
-pivot_wider-vs-pivot
-case_when-vs-pd.cut-and-np.select
-in-vs-isin-and-in
