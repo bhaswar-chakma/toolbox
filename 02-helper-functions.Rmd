@@ -255,3 +255,101 @@ df.query('code in ["BD", "PT"]')
 </table>
 
 
+## `stringr::str_detect()` vs `str.contains()`
+
+*Example:*
+
+|info             | amount|
+|:----------------|------:|
+|XYZ Deposit 2020 |      0|
+|Cash Deposit     |      1|
+|ATM              |      2|
+|XYZ Fee 2021     |      3|
+|XYZ Deposit 2021 |      4|
+
+<span style="color:blue"> *How to keep or drop only those observations where `info` is about `XYZ`? *
+
+<table class='table'>
+<tr> <th>R `stringr::str_detect()` </th> <th>Python `str.contains()`</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+df <- tibble(
+  info = c(
+    "XYZ Deposit 2020",
+    "Cash Deposit",
+    "ATM",
+    "XYZ Fee 2021",
+    "XYZ Deposit 2021"
+  ),
+  amount = seq(1,5) - 1
+)
+
+df
+
+```
+
+**Keep:**
+
+```{r}
+# str_detect() in action
+df %>%
+  filter( # keeps
+    stringr::str_detect(
+      info, "XYZ"
+    )
+  )
+```
+
+**Drop:**
+
+```{r}
+# str_detect() in action
+df %>%
+  filter( # drops
+    ! stringr::str_detect(
+      info, "XYZ"
+    )
+  )
+```
+
+</td>
+<td>
+```{python}
+# toy data
+df = pd.DataFrame({
+    'info':
+    [
+    "XYZ Deposit 2020",
+    "Cash Deposit",
+    "ATM",
+    "XYZ Fee 2021",
+    "XYZ Deposit 2021"
+],
+    'amount': np.arange(5)    
+})
+df
+```
+
+**Keep:**
+
+```{python}
+# str.contains in action: keep
+df[df['info'].str.contains("XYZ")]
+```
+
+**Drop:**
+
+```{python}
+# str.contains in action: drop
+df[~ df['info'].str.contains("XYZ")]
+```
+
+
+
+</td>
+<tr>
+</table>
+

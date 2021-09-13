@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-and-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></a></li>
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
 <li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
+<li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Reshape: tidyr vs pandas</a>
 <ul>
@@ -555,6 +556,137 @@ Python
 <pre><code>##   code capital
 ## 0   BD   Dhaka
 ## 1   PT  Lisbon</code></pre>
+</td>
+<tr>
+</table>
+</div>
+<div id="stringrstr_detect-vs-str.contains" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> <code>stringr::str_detect()</code> vs <code>str.contains()</code></h2>
+<p><em>Example:</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">info</th>
+<th align="right">amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">XYZ Deposit 2020</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">Cash Deposit</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">ATM</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">XYZ Fee 2021</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">XYZ Deposit 2021</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:blue"> <em>How to keep or drop only those observations where <code>info</code> is about <code>XYZ</code>? </em></p>
+<table class='table'>
+<tr>
+<th>
+R <code>stringr::str_detect()</code>
+</th>
+<th>
+Python <code>str.contains()</code>
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="helper-functions.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb24-2"><a href="helper-functions.html#cb24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb24-3"><a href="helper-functions.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">info =</span> <span class="fu">c</span>(</span>
+<span id="cb24-4"><a href="helper-functions.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2020&quot;</span>,</span>
+<span id="cb24-5"><a href="helper-functions.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Cash Deposit&quot;</span>,</span>
+<span id="cb24-6"><a href="helper-functions.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ATM&quot;</span>,</span>
+<span id="cb24-7"><a href="helper-functions.html#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Fee 2021&quot;</span>,</span>
+<span id="cb24-8"><a href="helper-functions.html#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2021&quot;</span></span>
+<span id="cb24-9"><a href="helper-functions.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb24-10"><a href="helper-functions.html#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">amount =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb24-11"><a href="helper-functions.html#cb24-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-12"><a href="helper-functions.html#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="helper-functions.html#cb24-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##   info             amount
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 XYZ Deposit 2020      0
+## 2 Cash Deposit          1
+## 3 ATM                   2
+## 4 XYZ Fee 2021          3
+## 5 XYZ Deposit 2021      4</code></pre>
+<p><strong>Keep:</strong></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="helper-functions.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_detect() in action</span></span>
+<span id="cb26-2"><a href="helper-functions.html#cb26-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="helper-functions.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="co"># keeps</span></span>
+<span id="cb26-4"><a href="helper-functions.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
+<span id="cb26-5"><a href="helper-functions.html#cb26-5" aria-hidden="true" tabindex="-1"></a>      info, <span class="st">&quot;XYZ&quot;</span></span>
+<span id="cb26-6"><a href="helper-functions.html#cb26-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-7"><a href="helper-functions.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   info             amount
+##   &lt;chr&gt;             &lt;dbl&gt;
+## 1 XYZ Deposit 2020      0
+## 2 XYZ Fee 2021          3
+## 3 XYZ Deposit 2021      4</code></pre>
+<p><strong>Drop:</strong></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="helper-functions.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_detect() in action</span></span>
+<span id="cb28-2"><a href="helper-functions.html#cb28-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="helper-functions.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="co"># drops</span></span>
+<span id="cb28-4"><a href="helper-functions.html#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
+<span id="cb28-5"><a href="helper-functions.html#cb28-5" aria-hidden="true" tabindex="-1"></a>      info, <span class="st">&quot;XYZ&quot;</span></span>
+<span id="cb28-6"><a href="helper-functions.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-7"><a href="helper-functions.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   info         amount
+##   &lt;chr&gt;         &lt;dbl&gt;
+## 1 Cash Deposit      1
+## 2 ATM               2</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="helper-functions.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb30-2"><a href="helper-functions.html#cb30-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb30-3"><a href="helper-functions.html#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;info&#39;</span>:</span>
+<span id="cb30-4"><a href="helper-functions.html#cb30-4" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb30-5"><a href="helper-functions.html#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2020&quot;</span>,</span>
+<span id="cb30-6"><a href="helper-functions.html#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Cash Deposit&quot;</span>,</span>
+<span id="cb30-7"><a href="helper-functions.html#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ATM&quot;</span>,</span>
+<span id="cb30-8"><a href="helper-functions.html#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Fee 2021&quot;</span>,</span>
+<span id="cb30-9"><a href="helper-functions.html#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2021&quot;</span></span>
+<span id="cb30-10"><a href="helper-functions.html#cb30-10" aria-hidden="true" tabindex="-1"></a>],</span>
+<span id="cb30-11"><a href="helper-functions.html#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;amount&#39;</span>: np.arange(<span class="dv">5</span>)    </span>
+<span id="cb30-12"><a href="helper-functions.html#cb30-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb30-13"><a href="helper-functions.html#cb30-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##                info  amount
+## 0  XYZ Deposit 2020       0
+## 1      Cash Deposit       1
+## 2               ATM       2
+## 3      XYZ Fee 2021       3
+## 4  XYZ Deposit 2021       4</code></pre>
+<p><strong>Keep:</strong></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="helper-functions.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains in action: keep</span></span>
+<span id="cb32-2"><a href="helper-functions.html#cb32-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&#39;info&#39;</span>].<span class="bu">str</span>.contains(<span class="st">&quot;XYZ&quot;</span>)]</span></code></pre></div>
+<pre><code>##                info  amount
+## 0  XYZ Deposit 2020       0
+## 3      XYZ Fee 2021       3
+## 4  XYZ Deposit 2021       4</code></pre>
+<p><strong>Drop:</strong></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="helper-functions.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains in action: drop</span></span>
+<span id="cb34-2"><a href="helper-functions.html#cb34-2" aria-hidden="true" tabindex="-1"></a>df[<span class="op">~</span> df[<span class="st">&#39;info&#39;</span>].<span class="bu">str</span>.contains(<span class="st">&quot;XYZ&quot;</span>)]</span></code></pre></div>
+<pre><code>##            info  amount
+## 1  Cash Deposit       1
+## 2           ATM       2</code></pre>
 </td>
 <tr>
 </table>
