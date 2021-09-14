@@ -6,6 +6,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ```{r lib-r, echo = FALSE}
 library(dplyr)
+library(reticulate)
 ```
 
 ```{python lib-py, echo = FALSE}
@@ -253,6 +254,16 @@ df.groupby("gender")['grade'].mean()
 # returns a data frame
 df[['gender', 'grade']].groupby("gender").mean()
 ```
+
+```{python}
+# useful for multiple groups and stat
+df.groupby(['gender']).agg(
+    {'grade': ['mean']}
+)
+# here [] is unnecessary but
+# required for multiple groups and stats
+```
+
 </td>
 <tr>
 </table>
@@ -282,14 +293,14 @@ df %>%
 </td>
 <td>
 ```{python grp-sum2-py}
-df.groupby("gender")['grade'].agg(
+df.groupby("gender").agg(
   # provide a dictionary
-  {# variable name followed by function
-    'mean': 'mean',
-    'median': 'median',
-    'min': 'min',
-    'max': 'max'
-  }
+  #   key: variable
+  #   value: stats
+   {'grade':['mean',
+             'median',
+             'min',
+             'max']}
 )
 ```
 

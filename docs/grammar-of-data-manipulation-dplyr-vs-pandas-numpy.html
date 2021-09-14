@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-13" />
+<meta name="date" content="2021-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="helper-functions.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -151,6 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-and-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></a></li>
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
 <li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
+<li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Reshape: tidyr vs pandas</a>
 <ul>
@@ -567,6 +568,17 @@ pandas
 ## gender           
 ## Female  13.000000
 ## Male    11.333333</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># useful for multiple groups and stat</span></span>
+<span id="cb44-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-2" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">&#39;gender&#39;</span>]).agg(</span>
+<span id="cb44-3"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-3" aria-hidden="true" tabindex="-1"></a>    {<span class="st">&#39;grade&#39;</span>: [<span class="st">&#39;mean&#39;</span>]}</span>
+<span id="cb44-4"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-5"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># here [] is unnecessary but</span></span>
+<span id="cb44-6"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># required for multiple groups and stats</span></span></code></pre></div>
+<pre><code>##             grade
+##              mean
+## gender           
+## Female  13.000000
+## Male    11.333333</code></pre>
 </td>
 <tr>
 </table>
@@ -583,12 +595,12 @@ pandas
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb44-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
-<span id="cb44-3"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(grade),</span>
-<span id="cb44-4"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(grade),</span>
-<span id="cb44-5"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(grade),</span>
-<span id="cb44-6"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb44-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(grade))</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb46-3"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(grade),</span>
+<span id="cb46-4"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(grade),</span>
+<span id="cb46-5"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">min =</span> <span class="fu">min</span>(grade),</span>
+<span id="cb46-6"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(grade))</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   gender  mean median   min   max
 ##   &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -596,24 +608,20 @@ pandas
 ## 2 Male    11.3     11    10    13</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">&quot;gender&quot;</span>)[<span class="st">&#39;grade&#39;</span>].agg(</span>
-<span id="cb46-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># provide a dictionary</span></span>
-<span id="cb46-3"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  {<span class="co"># variable name followed by function</span></span>
-<span id="cb46-4"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;mean&#39;</span>: <span class="st">&#39;mean&#39;</span>,</span>
-<span id="cb46-5"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;median&#39;</span>: <span class="st">&#39;median&#39;</span>,</span>
-<span id="cb46-6"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;min&#39;</span>: <span class="st">&#39;min&#39;</span>,</span>
-<span id="cb46-7"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;max&#39;</span>: <span class="st">&#39;max&#39;</span></span>
-<span id="cb46-8"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb46-9"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb46-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>##              mean  median  min  max
-## gender                             
-## Female  13.000000      13   12   14
-## Male    11.333333      11   10   13
-## 
-## C:/Users/Bhaswar/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:7: FutureWarning: using a dict on a Series for aggregation
-## is deprecated and will be removed in a future version. Use                 named aggregation instead.
-## 
-##     &gt;&gt;&gt; grouper.agg(name_1=func_1, name_2=func_2)</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">&quot;gender&quot;</span>).agg(</span>
+<span id="cb48-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># provide a dictionary</span></span>
+<span id="cb48-3"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   key: variable</span></span>
+<span id="cb48-4"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#   value: stats</span></span>
+<span id="cb48-5"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-5" aria-hidden="true" tabindex="-1"></a>   {<span class="st">&#39;grade&#39;</span>:[<span class="st">&#39;mean&#39;</span>,</span>
+<span id="cb48-6"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;median&#39;</span>,</span>
+<span id="cb48-7"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;min&#39;</span>,</span>
+<span id="cb48-8"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">&#39;max&#39;</span>]}</span>
+<span id="cb48-9"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>##             grade               
+##              mean median min max
+## gender                          
+## Female  13.000000     13  12  14
+## Male    11.333333     11  10  13</code></pre>
 </td>
 <tr>
 </table>
@@ -633,8 +641,8 @@ pandas
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(grade)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb50-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb50-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(grade)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   name     gender grade
 ##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
@@ -645,7 +653,7 @@ pandas
 ## 5 Robin    Female    14</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb50-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;grade&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb52-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;grade&#39;</span>)</span></code></pre></div>
 <pre><code>##        name  gender  grade
 ## 0    Barney    Male     10
 ## 1       Ted    Male     11
@@ -668,7 +676,7 @@ pandas
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb52-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(grade))</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb54-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(grade))</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   name     gender grade
 ##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
@@ -679,7 +687,7 @@ pandas
 ## 5 Barney   Male      10</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb54-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;grade&#39;</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb56-1" aria-hidden="true" tabindex="-1"></a>df.sort_values(<span class="st">&#39;grade&#39;</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span></code></pre></div>
 <pre><code>##        name  gender  grade
 ## 4     Robin  Female     14
 ## 2  Marshall    Male     13
@@ -702,8 +710,8 @@ pandas
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb56-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb56-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(gender, <span class="fu">desc</span>(grade))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb58-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb58-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(gender, <span class="fu">desc</span>(grade))</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 3
 ##   name     gender grade
 ##   &lt;chr&gt;    &lt;chr&gt;  &lt;dbl&gt;
@@ -714,8 +722,8 @@ pandas
 ## 5 Barney   Male      10</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb58-1" aria-hidden="true" tabindex="-1"></a>df.sort_values([<span class="st">&#39;gender&#39;</span>,<span class="st">&#39;grade&#39;</span>],</span>
-<span id="cb58-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb58-2" aria-hidden="true" tabindex="-1"></a>                ascending <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb60-1" aria-hidden="true" tabindex="-1"></a>df.sort_values([<span class="st">&#39;gender&#39;</span>,<span class="st">&#39;grade&#39;</span>],</span>
+<span id="cb60-2"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#cb60-2" aria-hidden="true" tabindex="-1"></a>                ascending <span class="op">=</span> [<span class="va">True</span>, <span class="va">False</span>])</span></code></pre></div>
 <pre><code>##        name  gender  grade
 ## 4     Robin  Female     14
 ## 3     Lilly  Female     12
@@ -786,20 +794,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
