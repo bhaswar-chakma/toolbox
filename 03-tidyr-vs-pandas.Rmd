@@ -16,7 +16,7 @@ import numpy as np
 
 ## `pivot_longer()` vs `melt()`
 
-Given the following table (life expectancy data)
+### *Example: Life Expectancy data in "wide" format*
 
 |country    | 1997| 2007|
 |:----------|----:|----:|
@@ -96,7 +96,7 @@ df.melt(
 
 ## `pivot_wider` vs `pivot`
 
-Given the following table
+### *Example: Life Expectancy data in "long" format*
 
 |country    |year | life_exp|
 |:----------|:----|--------:|
@@ -204,9 +204,92 @@ df_wide.columns.name = None
 df_wide
 ```
 
-
-
-
 </td>
 <tr>
 </table>
+
+## pandas:: `stack()` 
+
+
+```{python}
+# toy data
+df = pd.DataFrame({
+    'year': np.arange(2020,2025),
+    'Fall': np.linspace(10,15,5),
+    'Spring': np.linspace(1, 5,5)
+})
+df
+```
+
+**How to create MultiIndex series?**
+
+```{python}
+# step 1: set year as index
+df.set_index('year', inplace = True)
+df
+```
+
+```{python}
+# step 2: apply stack()
+df_stacked = df.stack()
+df_stacked
+```
+```{python}
+# check type
+type(df_stacked)
+```
+
+```{python}
+# check index
+df_stacked.index
+```
+
+## pandas:: `unstack()` 
+
+```{python}
+# toy data
+year = [2010, 2010, 2010, 2020, 2020, 2020]
+name = ["X", "Y", "Z", "X", "Y", "Z"]
+gender = ["M", "F", "F", "M", "F", "F"]
+grade = [10, 10, 20, 20, 12.5, 17.5]
+df = pd.DataFrame(
+    {
+    'year': year,
+    'name': name,
+    'gender': gender,
+    'grade': grade
+    }
+)
+df
+```
+
+**Suppose we want to find mean `grade` grouped by `year` and `gender`.**
+
+```{python}
+# grouped by year and gender:
+# find mean grade
+df_stat = df.groupby(
+    ['year', 'gender']
+).agg({
+    'grade': ['mean']
+})
+df_stat
+```
+
+**How to get `F` and `M` as columns?**
+
+  - Just apply `unstack()`
+  
+```{python}
+df_unstacked = df_stat.unstack()
+df_unstacked
+```
+```{python}
+# To change the names
+
+# reset index
+df_unstacked2 = df_unstacked.reset_index()
+# rename
+df_unstacked2.columns = ['year', 'M', 'F']
+df_unstacked2
+```

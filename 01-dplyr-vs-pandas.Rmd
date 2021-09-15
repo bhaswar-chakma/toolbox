@@ -1,4 +1,4 @@
-# Grammar of data manipulation: dplyr vs pandas & numpy
+# Grammar: dplyr vs pandas & numpy
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -107,8 +107,7 @@ df.info()
 
 ## `select()`
 
-<span style="color:blue">**Task: Pick the variables `name` and `grade`.
-**</span>
+### *Example: Pick the variables `name` and `grade`.*</span>
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -155,8 +154,7 @@ df.iloc[:, [0,2]]
 
 ## `mutate()`
 
-<span style="color:blue">**Task: Generate a variable `grade_p`, expressing grade out of 100.
-**</span>
+### *Example: Generate a variable `grade_p`, expressing grade out of 100.*</span>
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -186,8 +184,7 @@ df.drop(columns = 'grade_p', inplace = True)
 
 ## `filter()`
 
-<span style="color:blue">**Task: Keep Barney or females.
-**</span>
+### *Example: Keep if the student is Barney or female.*
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -228,8 +225,7 @@ df.query("name == 'Barney'| gender == 'Female'")
 
 ## `group_by()` and `summarize()`
 
-<span style="color:blue">**Task: Grouped by gender, find mean grade.
-**</span>
+### *Example: Grouped by gender, find mean grade.*
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -245,20 +241,25 @@ df %>%
 
 </td>
 <td>
+
+**Option 1:**
 ```{python grp-sum1a-py}
 # returns a series
 df.groupby("gender")['grade'].mean()
 ```
 
+**Option 2:**
 ```{python grp-sum1b-py}
 # returns a data frame
 df[['gender', 'grade']].groupby("gender").mean()
 ```
 
+**Option 3:**
 ```{python}
 # useful for multiple groups and stat
 df.groupby(['gender']).agg(
     {'grade': ['mean']}
+    # Here key: variable name; value: stat function
 )
 # here [] is unnecessary but
 # required for multiple groups and stats
@@ -270,8 +271,7 @@ df.groupby(['gender']).agg(
 
 
 
-<span style="color:blue">**Task: Grouped by gender, find mean, median, minimum, and maximum grade.
-**</span>
+### *Example: Grouped by gender, find mean, median, minimum, and maximum grade*.
 
 
 <table class='table'>
@@ -293,10 +293,10 @@ df %>%
 </td>
 <td>
 ```{python grp-sum2-py}
-df.groupby("gender").agg(
+df.groupby(["gender"]).agg(
   # provide a dictionary
-  #   key: variable
-  #   value: stats
+  #   key: variable name
+  #   value: stat function
    {'grade':['mean',
              'median',
              'min',
@@ -310,10 +310,10 @@ df.groupby("gender").agg(
 </table>
 
 
+
 ## `arrange()`
 
-<span style="color:blue">**Task: Arrange grade in ascending order.
-**</span>
+### *Example: Arrange grade in ascending order.*</span>
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -335,8 +335,7 @@ df.sort_values('grade')
 <tr>
 </table>
 
-<span style="color:blue">**Task: Arrange grade in ascending order.
-**</span>
+### *Example: Arrange grade in descending order.*
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
@@ -357,8 +356,7 @@ df.sort_values('grade', ascending = False)
 <tr>
 </table>
 
-<span style="color:blue">**Task: Arrange gender in ascending order then arrange grade in descending order.
-**</span>
+### *Example: Arrange gender in ascending order then arrange grade in descending order.*
 
 <table class='table'>
 <tr> <th>dplyr</th> <th>pandas</th> <tr>
