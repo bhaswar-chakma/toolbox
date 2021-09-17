@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 SQL | Toolbox</title>
-  <meta name="description" content="7 SQL | Toolbox" />
+  <title>8 SQL | Toolbox</title>
+  <meta name="description" content="8 SQL | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 SQL | Toolbox" />
+  <meta property="og:title" content="8 SQL | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 SQL | Toolbox" />
+  <meta name="twitter:title" content="8 SQL | Toolbox" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-13" />
+<meta name="date" content="2021-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="r-strings.html"/>
 
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -138,87 +138,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li><a href="index.html#section"></a></li>
-<li class="chapter" data-level="1" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><i class="fa fa-check"></i><b>1</b> Grammar of data manipulation: dplyr vs pandas &amp; numpy</a>
+<li class="chapter" data-level="1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html"><i class="fa fa-check"></i><b>1</b> Grammar: dplyr vs pandas &amp; numpy</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#select"><i class="fa fa-check"></i><b>1.1</b> <code>select()</code></a></li>
-<li class="chapter" data-level="1.2" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#mutate"><i class="fa fa-check"></i><b>1.2</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="1.3" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a></li>
-<li class="chapter" data-level="1.4" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a></li>
-<li class="chapter" data-level="1.5" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="1.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#select"><i class="fa fa-check"></i><b>1.1</b> <code>select()</code></a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-pick-the-variables-name-and-grade."><i class="fa fa-check"></i><b>1.1.1</b> <em>Example: Pick the variables <code>name</code> and <code>grade</code>.</em></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#mutate"><i class="fa fa-check"></i><b>1.2</b> <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-generate-a-variable-grade_p-expressing-grade-out-of-100."><i class="fa fa-check"></i><b>1.2.1</b> <em>Example: Generate a variable <code>grade_p</code>, expressing grade out of 100.</em></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-keep-if-the-student-is-barney-or-female."><i class="fa fa-check"></i><b>1.3.1</b> <em>Example: Keep if the student is Barney or female.</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-grouped-by-gender-find-mean-grade."><i class="fa fa-check"></i><b>1.4.1</b> <em>Example: Grouped by gender, find mean grade.</em></a></li>
+<li class="chapter" data-level="1.4.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-grouped-by-gender-find-mean-median-minimum-and-maximum-grade."><i class="fa fa-check"></i><b>1.4.2</b> <em>Example: Grouped by gender, find mean, median, minimum, and maximum grade</em>.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-grade-in-ascending-order."><i class="fa fa-check"></i><b>1.5.1</b> <em>Example: Arrange grade in ascending order.</em></span></a></li>
+<li class="chapter" data-level="1.5.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-grade-in-descending-order."><i class="fa fa-check"></i><b>1.5.2</b> <em>Example: Arrange grade in descending order.</em></a></li>
+<li class="chapter" data-level="1.5.3" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-gender-in-ascending-order-then-arrange-grade-in-descending-order."><i class="fa fa-check"></i><b>1.5.3</b> <em>Example: Arrange gender in ascending order then arrange grade in descending order.</em></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="helper-functions.html"><a href="helper-functions.html"><i class="fa fa-check"></i><b>2</b> Helper Functions</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-and-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></a></li>
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
 <li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
+<li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Reshape: tidyr vs pandas</a>
+<li class="chapter" data-level="3" data-path="join-dplyr-vs-pandas.html"><a href="join-dplyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Join: dplyr vs pandas</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>3.1</b> <code>pivot_longer()</code> vs <code>melt()</code></a></li>
-<li class="chapter" data-level="3.2" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>3.2</b> <code>pivot_wider</code> vs <code>pivot</code></a></li>
+<li class="chapter" data-level="3.1" data-path="join-dplyr-vs-pandas.html"><a href="join-dplyr-vs-pandas.html#example-data"><i class="fa fa-check"></i><b>3.1</b> Example Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>4</b> Base Python</a>
+<li class="chapter" data-level="4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>4</b> Reshape: tidyr vs pandas</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="base-python.html"><a href="base-python.html#map"><i class="fa fa-check"></i><b>4.1</b> <code>map()</code></a></li>
-<li class="chapter" data-level="4.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>4.2</b> <code>zip()</code></a></li>
-<li class="chapter" data-level="4.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>4.3</b> <code>enumerate()</code></a></li>
+<li class="chapter" data-level="4.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>4.1</b> <code>pivot_longer()</code> vs <code>melt()</code></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#example-life-expectancy-data-in-wide-format"><i class="fa fa-check"></i><b>4.1.1</b> <em>Example: Life Expectancy data in “wide” format</em></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>5</b> <code>scikit-learn</code></a>
+<li class="chapter" data-level="4.2" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>4.2</b> <code>pivot_wider</code> vs <code>pivot</code></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>5.1</b> Linear Model</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>5.1.1</b> Prepare X</a></li>
-<li class="chapter" data-level="5.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>5.1.2</b> Prepare y</a></li>
-<li class="chapter" data-level="5.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>5.1.3</b> Fit</a></li>
-<li class="chapter" data-level="5.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>5.1.4</b> Prediction</a></li>
-<li class="chapter" data-level="5.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
-<li class="chapter" data-level="5.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>5.1.6</b> Residual Plot</a></li>
+<li class="chapter" data-level="4.2.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#example-life-expectancy-data-in-long-format"><i class="fa fa-check"></i><b>4.2.1</b> <em>Example: Life Expectancy data in “long” format</em></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>5.2</b> Train-Test</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>5.2.1</b> Example</a></li>
-<li class="chapter" data-level="5.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>5.2.2</b> Another Example</a></li>
+<li class="chapter" data-level="4.3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-stack"><i class="fa fa-check"></i><b>4.3</b> pandas:: <code>stack()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-unstack"><i class="fa fa-check"></i><b>4.4</b> pandas:: <code>unstack()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>5.3</b> Cross Validation</a></li>
+<li class="chapter" data-level="5" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>5</b> Base Python</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="base-python.html"><a href="base-python.html#map"><i class="fa fa-check"></i><b>5.1</b> <code>map()</code></a></li>
+<li class="chapter" data-level="5.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>5.2</b> <code>zip()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>5.3</b> <code>enumerate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>6</b> R Strings</a>
+<li class="chapter" data-level="6" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>6</b> <code>scikit-learn</code></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>6.1</b> String Manupulation with Base R Functions</a></li>
-<li class="chapter" data-level="6.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>6.2</b> <code>stringr</code></a></li>
-<li class="chapter" data-level="6.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>6.3</b> Regular Expressions</a>
+<li class="chapter" data-level="6.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>6.1</b> Linear Model</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>6.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
+<li class="chapter" data-level="6.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>6.1.1</b> Prepare X</a></li>
+<li class="chapter" data-level="6.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>6.1.2</b> Prepare y</a></li>
+<li class="chapter" data-level="6.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>6.1.3</b> Fit</a></li>
+<li class="chapter" data-level="6.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>6.1.4</b> Prediction</a></li>
+<li class="chapter" data-level="6.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>6.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
+<li class="chapter" data-level="6.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>6.1.6</b> Residual Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>6.2</b> Train-Test</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>6.2.1</b> Example</a></li>
+<li class="chapter" data-level="6.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>6.2.2</b> Another Example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>6.3</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>7</b> R Strings</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>7.1</b> String Manupulation with Base R Functions</a></li>
+<li class="chapter" data-level="7.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>7.2</b> <code>stringr</code></a></li>
+<li class="chapter" data-level="7.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>7.3</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>7.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>7</b> SQL</a>
+<li class="chapter" data-level="8" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>8</b> SQL</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>7.1</b> CREATE</a></li>
-<li class="chapter" data-level="7.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>7.2</b> DROP</a></li>
-<li class="chapter" data-level="7.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>7.3</b> ALTER</a></li>
-<li class="chapter" data-level="7.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>7.4</b> TRUNCATE</a></li>
-<li class="chapter" data-level="7.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>7.5</b> Guided Exercise: Create table and insert data</a></li>
-<li class="chapter" data-level="7.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>7.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
-<li class="chapter" data-level="7.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>7.7</b> Guided Exercise: TRUNCATE</a></li>
-<li class="chapter" data-level="7.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>7.8</b> Guided Exercise: DROP</a></li>
-<li class="chapter" data-level="7.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>7.9</b> Exercise: String Patterns</a>
+<li class="chapter" data-level="8.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>8.1</b> CREATE</a></li>
+<li class="chapter" data-level="8.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>8.2</b> DROP</a></li>
+<li class="chapter" data-level="8.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>8.3</b> ALTER</a></li>
+<li class="chapter" data-level="8.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>8.4</b> TRUNCATE</a></li>
+<li class="chapter" data-level="8.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>8.5</b> Guided Exercise: Create table and insert data</a></li>
+<li class="chapter" data-level="8.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>8.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
+<li class="chapter" data-level="8.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>8.7</b> Guided Exercise: TRUNCATE</a></li>
+<li class="chapter" data-level="8.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>8.8</b> Guided Exercise: DROP</a></li>
+<li class="chapter" data-level="8.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>8.9</b> Exercise: String Patterns</a>
 <ul>
-<li class="chapter" data-level="7.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>7.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
-<li class="chapter" data-level="7.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>7.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
-<li class="chapter" data-level="7.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>7.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
+<li class="chapter" data-level="8.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>8.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
+<li class="chapter" data-level="8.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>8.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
+<li class="chapter" data-level="8.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>8.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="7.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>7.10</b> Exercise: Sorting</a>
+<li class="chapter" data-level="8.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>8.10</b> Exercise: Sorting</a>
 <ul>
-<li class="chapter" data-level="7.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>7.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
-<li class="chapter" data-level="7.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>7.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
-<li class="chapter" data-level="7.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>7.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="8.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>8.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
+<li class="chapter" data-level="8.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="8.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="7.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>7.11</b> Exercise 3: Grouping</a>
+<li class="chapter" data-level="8.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>8.11</b> Exercise 3: Grouping</a>
 <ul>
-<li class="chapter" data-level="7.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>7.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
-<li class="chapter" data-level="7.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>7.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
-<li class="chapter" data-level="7.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>7.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
-<li class="chapter" data-level="7.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>7.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
-<li class="chapter" data-level="7.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>7.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
+<li class="chapter" data-level="8.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>8.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
+<li class="chapter" data-level="8.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>8.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
+<li class="chapter" data-level="8.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>8.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
+<li class="chapter" data-level="8.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>8.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
+<li class="chapter" data-level="8.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>8.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -238,156 +269,156 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sql" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> SQL</h1>
-<div id="create" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> CREATE</h2>
+<div id="sql" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> SQL</h1>
+<div id="create" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> CREATE</h2>
 <p>The general syntax to create a table:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb283-1"><a href="sql.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> TABLENAME (</span>
-<span id="cb283-2"><a href="sql.html#cb283-2" aria-hidden="true" tabindex="-1"></a>  COLUMN1 datatype, </span>
-<span id="cb283-3"><a href="sql.html#cb283-3" aria-hidden="true" tabindex="-1"></a>  COLUMN2 datatype, </span>
-<span id="cb283-4"><a href="sql.html#cb283-4" aria-hidden="true" tabindex="-1"></a>  COLUMN3 datatype, </span>
-<span id="cb283-5"><a href="sql.html#cb283-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">..</span>. );</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb323-1"><a href="sql.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> TABLENAME (</span>
+<span id="cb323-2"><a href="sql.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  COLUMN1 datatype, </span>
+<span id="cb323-3"><a href="sql.html#cb323-3" aria-hidden="true" tabindex="-1"></a>  COLUMN2 datatype, </span>
+<span id="cb323-4"><a href="sql.html#cb323-4" aria-hidden="true" tabindex="-1"></a>  COLUMN3 datatype, </span>
+<span id="cb323-5"><a href="sql.html#cb323-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">..</span>. );</span></code></pre></div>
 <p>To create a table called <code>TEST</code> with two columns - <code>ID</code> of type integer, and <code>NAME</code> of type varchar, we could create it using the following SQL statement:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb284-1"><a href="sql.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> TEST(</span>
-<span id="cb284-2"><a href="sql.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ID</span> <span class="dt">int</span></span>
-<span id="cb284-3"><a href="sql.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  NAME <span class="dt">varchar</span>(<span class="dv">30</span>)</span>
-<span id="cb284-4"><a href="sql.html#cb284-4" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb324-1"><a href="sql.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> TEST(</span>
+<span id="cb324-2"><a href="sql.html#cb324-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ID</span> <span class="dt">int</span></span>
+<span id="cb324-3"><a href="sql.html#cb324-3" aria-hidden="true" tabindex="-1"></a>  NAME <span class="dt">varchar</span>(<span class="dv">30</span>)</span>
+<span id="cb324-4"><a href="sql.html#cb324-4" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <p>To create a table called <code>COUNTRY</code> with an <code>ID</code> column, a two letter country code column <code>CCODE</code>, and a variable length country name column <code>NAME</code>:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb285-1"><a href="sql.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> COUNTRY(</span>
-<span id="cb285-2"><a href="sql.html#cb285-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">int</span>,</span>
-<span id="cb285-3"><a href="sql.html#cb285-3" aria-hidden="true" tabindex="-1"></a>    CCODE <span class="dt">char</span>(<span class="dv">2</span>),</span>
-<span id="cb285-4"><a href="sql.html#cb285-4" aria-hidden="true" tabindex="-1"></a>    NAME <span class="dt">varchar</span>(<span class="dv">60</span>)</span>
-<span id="cb285-5"><a href="sql.html#cb285-5" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb325-1"><a href="sql.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> COUNTRY(</span>
+<span id="cb325-2"><a href="sql.html#cb325-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">int</span>,</span>
+<span id="cb325-3"><a href="sql.html#cb325-3" aria-hidden="true" tabindex="-1"></a>    CCODE <span class="dt">char</span>(<span class="dv">2</span>),</span>
+<span id="cb325-4"><a href="sql.html#cb325-4" aria-hidden="true" tabindex="-1"></a>    NAME <span class="dt">varchar</span>(<span class="dv">60</span>)</span>
+<span id="cb325-5"><a href="sql.html#cb325-5" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <p>Sometimes you may see additional keywords in a create table statement:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb286-1"><a href="sql.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> COUNTRY(</span>
-<span id="cb286-2"><a href="sql.html#cb286-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb286-3"><a href="sql.html#cb286-3" aria-hidden="true" tabindex="-1"></a>    CCODE <span class="dt">char</span>(<span class="dv">2</span>),</span>
-<span id="cb286-4"><a href="sql.html#cb286-4" aria-hidden="true" tabindex="-1"></a>    NAME <span class="dt">varchar</span>(<span class="dv">60</span>),</span>
-<span id="cb286-5"><a href="sql.html#cb286-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">ID</span>)</span>
-<span id="cb286-6"><a href="sql.html#cb286-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb326-1"><a href="sql.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> COUNTRY(</span>
+<span id="cb326-2"><a href="sql.html#cb326-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">int</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb326-3"><a href="sql.html#cb326-3" aria-hidden="true" tabindex="-1"></a>    CCODE <span class="dt">char</span>(<span class="dv">2</span>),</span>
+<span id="cb326-4"><a href="sql.html#cb326-4" aria-hidden="true" tabindex="-1"></a>    NAME <span class="dt">varchar</span>(<span class="dv">60</span>),</span>
+<span id="cb326-5"><a href="sql.html#cb326-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(<span class="kw">ID</span>)</span>
+<span id="cb326-6"><a href="sql.html#cb326-6" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <ul>
 <li><p>In the above example the <code>ID</code> column has the <span style="color:blue"><strong><code>NOT NULL</code></strong></span> constraint added after the datatype - meaning that <em>it cannot contain a NULL or an empty value</em>.</p></li>
 <li><p>If you look at the last row in the create table statement above you will note that we are using <code>ID</code> as a <span style="color:blue"><strong>Primary Key</strong></span> and the database <strong>does not allow</strong> Primary Keys to have <strong><code>NULL</code></strong> values. <em>A Primary Key is a unique identifier in a table, and using Primary Keys can help speed up your queries significantly</em>.</p></li>
 <li><p>If the table you are trying to create already exists in the database, you will get an error indicating table <code>XXX.YYY</code> already exists. To circumvent this error, either create a table with a different name or first <code>DROP</code> the existing table. It is quite common to issue a <code>DROP</code> before doing a <code>CREATE</code> in test and development scenarios.</p></li>
 </ul>
 </div>
-<div id="drop" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> DROP</h2>
+<div id="drop" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> DROP</h2>
 <p>The general syntax to drop a table:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb287-1"><a href="sql.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">table</span> TABLENAME;</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb327-1"><a href="sql.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">table</span> TABLENAME;</span></code></pre></div>
 <p>For example, to drop the table COUNTRY, we can use the following code:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb288-1"><a href="sql.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">table</span> COUNTRY;</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb328-1"><a href="sql.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="kw">drop</span> <span class="kw">table</span> COUNTRY;</span></code></pre></div>
 </div>
-<div id="alter" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> ALTER</h2>
-<div class="sourceCode" id="cb289"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb289-1"><a href="sql.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
-<span id="cb289-2"><a href="sql.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">COLUMN</span> column_name data_type column_constraint;</span>
-<span id="cb289-3"><a href="sql.html#cb289-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-4"><a href="sql.html#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
-<span id="cb289-5"><a href="sql.html#cb289-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> column_name;</span>
-<span id="cb289-6"><a href="sql.html#cb289-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-7"><a href="sql.html#cb289-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
-<span id="cb289-8"><a href="sql.html#cb289-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">COLUMN</span> column_name <span class="kw">SET</span> <span class="kw">DATA</span> <span class="kw">TYPE</span> data_type;</span>
-<span id="cb289-9"><a href="sql.html#cb289-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb289-10"><a href="sql.html#cb289-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
-<span id="cb289-11"><a href="sql.html#cb289-11" aria-hidden="true" tabindex="-1"></a><span class="kw">RENAME</span> <span class="kw">COLUMN</span> current_column_name <span class="kw">TO</span> new_column_name;</span></code></pre></div>
+<div id="alter" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> ALTER</h2>
+<div class="sourceCode" id="cb329"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb329-1"><a href="sql.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
+<span id="cb329-2"><a href="sql.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">COLUMN</span> column_name data_type column_constraint;</span>
+<span id="cb329-3"><a href="sql.html#cb329-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-4"><a href="sql.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
+<span id="cb329-5"><a href="sql.html#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> column_name;</span>
+<span id="cb329-6"><a href="sql.html#cb329-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-7"><a href="sql.html#cb329-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
+<span id="cb329-8"><a href="sql.html#cb329-8" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">COLUMN</span> column_name <span class="kw">SET</span> <span class="kw">DATA</span> <span class="kw">TYPE</span> data_type;</span>
+<span id="cb329-9"><a href="sql.html#cb329-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb329-10"><a href="sql.html#cb329-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> table_name</span>
+<span id="cb329-11"><a href="sql.html#cb329-11" aria-hidden="true" tabindex="-1"></a><span class="kw">RENAME</span> <span class="kw">COLUMN</span> current_column_name <span class="kw">TO</span> new_column_name;</span></code></pre></div>
 </div>
-<div id="truncate" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> TRUNCATE</h2>
-<div class="sourceCode" id="cb290"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb290-1"><a href="sql.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRUNCATE</span> <span class="kw">TABLE</span> table_name;</span></code></pre></div>
+<div id="truncate" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> TRUNCATE</h2>
+<div class="sourceCode" id="cb330"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb330-1"><a href="sql.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRUNCATE</span> <span class="kw">TABLE</span> table_name;</span></code></pre></div>
 </div>
-<div id="guided-exercise-create-table-and-insert-data" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Guided Exercise: Create table and insert data</h2>
+<div id="guided-exercise-create-table-and-insert-data" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Guided Exercise: Create table and insert data</h2>
 <p>You will to create two tables</p>
 <ol style="list-style-type: decimal">
 <li><p><code>PETSALE</code></p></li>
 <li><p><code>PET</code>.</p></li>
 </ol>
-<div class="sourceCode" id="cb291"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb291-1"><a href="sql.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> PETSALE (</span>
-<span id="cb291-2"><a href="sql.html#cb291-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb291-3"><a href="sql.html#cb291-3" aria-hidden="true" tabindex="-1"></a>    PET <span class="dt">CHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb291-4"><a href="sql.html#cb291-4" aria-hidden="true" tabindex="-1"></a>    SALEPRICE <span class="dt">DECIMAL</span>(<span class="dv">6</span>,<span class="dv">2</span>),</span>
-<span id="cb291-5"><a href="sql.html#cb291-5" aria-hidden="true" tabindex="-1"></a>    PROFIT <span class="dt">DECIMAL</span>(<span class="dv">6</span>,<span class="dv">2</span>),</span>
-<span id="cb291-6"><a href="sql.html#cb291-6" aria-hidden="true" tabindex="-1"></a>    SALEDATE <span class="dt">DATE</span></span>
-<span id="cb291-7"><a href="sql.html#cb291-7" aria-hidden="true" tabindex="-1"></a>    );</span>
-<span id="cb291-8"><a href="sql.html#cb291-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb291-9"><a href="sql.html#cb291-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> PET (</span>
-<span id="cb291-10"><a href="sql.html#cb291-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb291-11"><a href="sql.html#cb291-11" aria-hidden="true" tabindex="-1"></a>    ANIMAL <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb291-12"><a href="sql.html#cb291-12" aria-hidden="true" tabindex="-1"></a>    QUANTITY <span class="dt">INTEGER</span></span>
-<span id="cb291-13"><a href="sql.html#cb291-13" aria-hidden="true" tabindex="-1"></a>    );</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb331-1"><a href="sql.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> PETSALE (</span>
+<span id="cb331-2"><a href="sql.html#cb331-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb331-3"><a href="sql.html#cb331-3" aria-hidden="true" tabindex="-1"></a>    PET <span class="dt">CHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb331-4"><a href="sql.html#cb331-4" aria-hidden="true" tabindex="-1"></a>    SALEPRICE <span class="dt">DECIMAL</span>(<span class="dv">6</span>,<span class="dv">2</span>),</span>
+<span id="cb331-5"><a href="sql.html#cb331-5" aria-hidden="true" tabindex="-1"></a>    PROFIT <span class="dt">DECIMAL</span>(<span class="dv">6</span>,<span class="dv">2</span>),</span>
+<span id="cb331-6"><a href="sql.html#cb331-6" aria-hidden="true" tabindex="-1"></a>    SALEDATE <span class="dt">DATE</span></span>
+<span id="cb331-7"><a href="sql.html#cb331-7" aria-hidden="true" tabindex="-1"></a>    );</span>
+<span id="cb331-8"><a href="sql.html#cb331-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb331-9"><a href="sql.html#cb331-9" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> PET (</span>
+<span id="cb331-10"><a href="sql.html#cb331-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ID</span> <span class="dt">INTEGER</span> <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb331-11"><a href="sql.html#cb331-11" aria-hidden="true" tabindex="-1"></a>    ANIMAL <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb331-12"><a href="sql.html#cb331-12" aria-hidden="true" tabindex="-1"></a>    QUANTITY <span class="dt">INTEGER</span></span>
+<span id="cb331-13"><a href="sql.html#cb331-13" aria-hidden="true" tabindex="-1"></a>    );</span></code></pre></div>
 <p><span style="color:blue"><em>Now insert some records into the two newly created tables and show all the records of the two tables. </em></span></p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb292-1"><a href="sql.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> PETSALE <span class="kw">VALUES</span></span>
-<span id="cb292-2"><a href="sql.html#cb292-2" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>,<span class="st">&#39;Cat&#39;</span>,<span class="fl">450.09</span>,<span class="fl">100.47</span>,<span class="st">&#39;2018-05-29&#39;</span>),</span>
-<span id="cb292-3"><a href="sql.html#cb292-3" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span>,<span class="st">&#39;Dog&#39;</span>,<span class="fl">666.66</span>,<span class="fl">150.76</span>,<span class="st">&#39;2018-06-01&#39;</span>),</span>
-<span id="cb292-4"><a href="sql.html#cb292-4" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>,<span class="st">&#39;Parrot&#39;</span>,<span class="fl">50.00</span>,<span class="fl">8.9</span>,<span class="st">&#39;2018-06-04&#39;</span>),</span>
-<span id="cb292-5"><a href="sql.html#cb292-5" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">4</span>,<span class="st">&#39;Hamster&#39;</span>,<span class="fl">60.60</span>,<span class="dv">12</span>,<span class="st">&#39;2018-06-11&#39;</span>),</span>
-<span id="cb292-6"><a href="sql.html#cb292-6" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">5</span>,<span class="st">&#39;Goldfish&#39;</span>,<span class="fl">48.48</span>,<span class="fl">3.5</span>,<span class="st">&#39;2018-06-14&#39;</span>);</span>
-<span id="cb292-7"><a href="sql.html#cb292-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb292-8"><a href="sql.html#cb292-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> PET <span class="kw">VALUES</span></span>
-<span id="cb292-9"><a href="sql.html#cb292-9" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>,<span class="st">&#39;Cat&#39;</span>,<span class="dv">3</span>),</span>
-<span id="cb292-10"><a href="sql.html#cb292-10" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span>,<span class="st">&#39;Dog&#39;</span>,<span class="dv">4</span>),</span>
-<span id="cb292-11"><a href="sql.html#cb292-11" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>,<span class="st">&#39;Hamster&#39;</span>,<span class="dv">2</span>);</span>
-<span id="cb292-12"><a href="sql.html#cb292-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb292-13"><a href="sql.html#cb292-13" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span>
-<span id="cb292-14"><a href="sql.html#cb292-14" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PET;</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb332-1"><a href="sql.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> PETSALE <span class="kw">VALUES</span></span>
+<span id="cb332-2"><a href="sql.html#cb332-2" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>,<span class="st">&#39;Cat&#39;</span>,<span class="fl">450.09</span>,<span class="fl">100.47</span>,<span class="st">&#39;2018-05-29&#39;</span>),</span>
+<span id="cb332-3"><a href="sql.html#cb332-3" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span>,<span class="st">&#39;Dog&#39;</span>,<span class="fl">666.66</span>,<span class="fl">150.76</span>,<span class="st">&#39;2018-06-01&#39;</span>),</span>
+<span id="cb332-4"><a href="sql.html#cb332-4" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>,<span class="st">&#39;Parrot&#39;</span>,<span class="fl">50.00</span>,<span class="fl">8.9</span>,<span class="st">&#39;2018-06-04&#39;</span>),</span>
+<span id="cb332-5"><a href="sql.html#cb332-5" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">4</span>,<span class="st">&#39;Hamster&#39;</span>,<span class="fl">60.60</span>,<span class="dv">12</span>,<span class="st">&#39;2018-06-11&#39;</span>),</span>
+<span id="cb332-6"><a href="sql.html#cb332-6" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">5</span>,<span class="st">&#39;Goldfish&#39;</span>,<span class="fl">48.48</span>,<span class="fl">3.5</span>,<span class="st">&#39;2018-06-14&#39;</span>);</span>
+<span id="cb332-7"><a href="sql.html#cb332-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb332-8"><a href="sql.html#cb332-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> PET <span class="kw">VALUES</span></span>
+<span id="cb332-9"><a href="sql.html#cb332-9" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>,<span class="st">&#39;Cat&#39;</span>,<span class="dv">3</span>),</span>
+<span id="cb332-10"><a href="sql.html#cb332-10" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">2</span>,<span class="st">&#39;Dog&#39;</span>,<span class="dv">4</span>),</span>
+<span id="cb332-11"><a href="sql.html#cb332-11" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">3</span>,<span class="st">&#39;Hamster&#39;</span>,<span class="dv">2</span>);</span>
+<span id="cb332-12"><a href="sql.html#cb332-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb332-13"><a href="sql.html#cb332-13" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span>
+<span id="cb332-14"><a href="sql.html#cb332-14" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PET;</span></code></pre></div>
 </div>
-<div id="guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise." class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</h2>
+<div id="guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise." class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</h2>
 <p><span style="color:blue"><em>Add a new <code>QUANTITY</code> column to the <code>PETSALE</code> table and show the altered table.</em></span></p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb293-1"><a href="sql.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
-<span id="cb293-2"><a href="sql.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">COLUMN</span> QUANTITY <span class="dt">INTEGER</span>;</span>
-<span id="cb293-3"><a href="sql.html#cb293-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb293-4"><a href="sql.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb333-1"><a href="sql.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
+<span id="cb333-2"><a href="sql.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ADD</span> <span class="kw">COLUMN</span> QUANTITY <span class="dt">INTEGER</span>;</span>
+<span id="cb333-3"><a href="sql.html#cb333-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-4"><a href="sql.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
 <p><span style="color:blue"><em>Now update the newly added <code>QUANTITY</code> column of the <code>PETSALE</code> table with some values and show all the records of the table.
 </em></span></p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb294-1"><a href="sql.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">9</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">1</span>;</span>
-<span id="cb294-2"><a href="sql.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">3</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">2</span>;</span>
-<span id="cb294-3"><a href="sql.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">2</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">3</span>;</span>
-<span id="cb294-4"><a href="sql.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">6</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">4</span>;</span>
-<span id="cb294-5"><a href="sql.html#cb294-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">24</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">5</span>;</span>
-<span id="cb294-6"><a href="sql.html#cb294-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb294-7"><a href="sql.html#cb294-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb334-1"><a href="sql.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">9</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">1</span>;</span>
+<span id="cb334-2"><a href="sql.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">3</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">2</span>;</span>
+<span id="cb334-3"><a href="sql.html#cb334-3" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">2</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">3</span>;</span>
+<span id="cb334-4"><a href="sql.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">6</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">4</span>;</span>
+<span id="cb334-5"><a href="sql.html#cb334-5" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> PETSALE <span class="kw">SET</span> QUANTITY <span class="op">=</span> <span class="dv">24</span> <span class="kw">WHERE</span> <span class="kw">ID</span> <span class="op">=</span> <span class="dv">5</span>;</span>
+<span id="cb334-6"><a href="sql.html#cb334-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb334-7"><a href="sql.html#cb334-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
 <p><span style="color:blue"><em>Delete the <code>PROFIT</code> column from the <code>PETSALE</code> table and show the altered table.
 </em></span></p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb295-1"><a href="sql.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
-<span id="cb295-2"><a href="sql.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> PROFIT;</span>
-<span id="cb295-3"><a href="sql.html#cb295-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb295-4"><a href="sql.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb335-1"><a href="sql.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
+<span id="cb335-2"><a href="sql.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">COLUMN</span> PROFIT;</span>
+<span id="cb335-3"><a href="sql.html#cb335-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb335-4"><a href="sql.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
 <p><span style="color:blue"><em>Change the data type to <code>VARCHAR(20)</code> type of the column <code>PET</code> of the table <code>PETSALE</code> and show the altered table.
 </em></span></p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb296-1"><a href="sql.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
-<span id="cb296-2"><a href="sql.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">COLUMN</span> PET <span class="kw">SET</span> <span class="kw">DATA</span> <span class="kw">TYPE</span> <span class="dt">VARCHAR</span>(<span class="dv">20</span>);</span>
-<span id="cb296-3"><a href="sql.html#cb296-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb296-4"><a href="sql.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb336-1"><a href="sql.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
+<span id="cb336-2"><a href="sql.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">COLUMN</span> PET <span class="kw">SET</span> <span class="kw">DATA</span> <span class="kw">TYPE</span> <span class="dt">VARCHAR</span>(<span class="dv">20</span>);</span>
+<span id="cb336-3"><a href="sql.html#cb336-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb336-4"><a href="sql.html#cb336-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
 <p>If you are using IBM db2:
 Now verify if the data type of the column PET of the table PETSALE changed to <code>VARCHAR(20)</code> type or not. Click on the 3 bar menu icon in the top left corner and click Explore &gt; Tables. Find the <code>PETSALE</code> table from Schemas by clicking Select All. Click on the <code>PETSALE</code> table to open the Table Definition page of the table. Here, you can see all the current data type of the columns of the <code>PETSALE</code> table.</p>
 <p><span style="color:blue"><em>Rename the column PET to ANIMAL of the PETSALE table and show the altered table.
 </em></span></p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb297-1"><a href="sql.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
-<span id="cb297-2"><a href="sql.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RENAME</span> <span class="kw">COLUMN</span> PET <span class="kw">TO</span> ANIMAL;</span>
-<span id="cb297-3"><a href="sql.html#cb297-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb297-4"><a href="sql.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb337-1"><a href="sql.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> PETSALE</span>
+<span id="cb337-2"><a href="sql.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="kw">RENAME</span> <span class="kw">COLUMN</span> PET <span class="kw">TO</span> ANIMAL;</span>
+<span id="cb337-3"><a href="sql.html#cb337-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-4"><a href="sql.html#cb337-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PETSALE;</span></code></pre></div>
 </div>
-<div id="guided-exercise-truncate" class="section level2" number="7.7">
-<h2><span class="header-section-number">7.7</span> Guided Exercise: TRUNCATE</h2>
+<div id="guided-exercise-truncate" class="section level2" number="8.7">
+<h2><span class="header-section-number">8.7</span> Guided Exercise: TRUNCATE</h2>
 <p>In this exercise, you will use the <code>TRUNCATE</code> statement to remove all rows from an existing table created in exercise 1 without deleting the table itself.</p>
 <p><span style="color:blue"><em>Remove all rows from the PET table and show the empty table.
 </em></span></p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb298-1"><a href="sql.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRUNCATE</span> <span class="kw">TABLE</span> PET <span class="kw">IMMEDIATE</span>;</span>
-<span id="cb298-2"><a href="sql.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PET;</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb338-1"><a href="sql.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="kw">TRUNCATE</span> <span class="kw">TABLE</span> PET <span class="kw">IMMEDIATE</span>;</span>
+<span id="cb338-2"><a href="sql.html#cb338-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PET;</span></code></pre></div>
 </div>
-<div id="guided-exercise-drop" class="section level2" number="7.8">
-<h2><span class="header-section-number">7.8</span> Guided Exercise: DROP</h2>
+<div id="guided-exercise-drop" class="section level2" number="8.8">
+<h2><span class="header-section-number">8.8</span> Guided Exercise: DROP</h2>
 <p>In this exercise, you will use the <code>DROP</code> statement to delete an existing table created in the previous exercise.</p>
 <p><span style="color:blue"><em>Delete the PET table and verify if the table still exists or not (SELECT statement won’t work if a table doesn’t exist).
 </em></span></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb299-1"><a href="sql.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> PET;</span>
-<span id="cb299-2"><a href="sql.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PET;</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb339-1"><a href="sql.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> PET;</span>
+<span id="cb339-2"><a href="sql.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> PET;</span></code></pre></div>
 </div>
-<div id="exercise-string-patterns" class="section level2" number="7.9">
-<h2><span class="header-section-number">7.9</span> Exercise: String Patterns</h2>
+<div id="exercise-string-patterns" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> Exercise: String Patterns</h2>
 <p>In this exercise, you will go through some SQL problems on String Patterns.</p>
 <p>Here is <code>EMPLOYEES</code> table.</p>
 <table>
@@ -567,67 +598,67 @@ Now verify if the data type of the column PET of the table PETSALE changed to <c
 </tr>
 </tbody>
 </table>
-<div id="retrieve-all-employees-whose-address-is-in-elginil." class="section level3" number="7.9.1">
-<h3><span class="header-section-number">7.9.1</span> <em>Retrieve all employees whose address is in Elgin,IL</em>.</h3>
+<div id="retrieve-all-employees-whose-address-is-in-elginil." class="section level3" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> <em>Retrieve all employees whose address is in Elgin,IL</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb300"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb300-1"><a href="sql.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME , L_NAME</span>
-<span id="cb300-2"><a href="sql.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb300-3"><a href="sql.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> ADDRESS <span class="kw">LIKE</span> <span class="st">&#39;%Elgin,IL%&#39;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb340-1"><a href="sql.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME , L_NAME</span>
+<span id="cb340-2"><a href="sql.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb340-3"><a href="sql.html#cb340-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> ADDRESS <span class="kw">LIKE</span> <span class="st">&#39;%Elgin,IL%&#39;</span>;</span></code></pre></div>
 </details>
 </div>
-<div id="retrieve-all-employees-who-were-born-during-the-1970s.." class="section level3" number="7.9.2">
-<h3><span class="header-section-number">7.9.2</span> <em>Retrieve all employees who were born during the 1970’s.</em>.</h3>
+<div id="retrieve-all-employees-who-were-born-during-the-1970s.." class="section level3" number="8.9.2">
+<h3><span class="header-section-number">8.9.2</span> <em>Retrieve all employees who were born during the 1970’s.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb301"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb301-1"><a href="sql.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME , L_NAME</span>
-<span id="cb301-2"><a href="sql.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb301-3"><a href="sql.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> B_DATE <span class="kw">LIKE</span> <span class="st">&#39;197%&#39;</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb341-1"><a href="sql.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME , L_NAME</span>
+<span id="cb341-2"><a href="sql.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb341-3"><a href="sql.html#cb341-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> B_DATE <span class="kw">LIKE</span> <span class="st">&#39;197%&#39;</span>;</span></code></pre></div>
 </details>
 </div>
-<div id="retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.." class="section level3" number="7.9.3">
-<h3><span class="header-section-number">7.9.3</span> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</h3>
+<div id="retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.." class="section level3" number="8.9.3">
+<h3><span class="header-section-number">8.9.3</span> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb302"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb302-1"><a href="sql.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME , L_NAME</span>
-<span id="cb302-2"><a href="sql.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb302-3"><a href="sql.html#cb302-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> DEP_ID <span class="op">=</span> <span class="dv">5</span> <span class="kw">and</span> (SALARY <span class="kw">BETWEEN</span> <span class="dv">60000</span> <span class="kw">AND</span> <span class="dv">70000</span>);</span>
-<span id="cb302-4"><a href="sql.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="co">--Notice the &quot;=&quot; and &quot;and&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb342-1"><a href="sql.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME , L_NAME</span>
+<span id="cb342-2"><a href="sql.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb342-3"><a href="sql.html#cb342-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> DEP_ID <span class="op">=</span> <span class="dv">5</span> <span class="kw">and</span> (SALARY <span class="kw">BETWEEN</span> <span class="dv">60000</span> <span class="kw">AND</span> <span class="dv">70000</span>);</span>
+<span id="cb342-4"><a href="sql.html#cb342-4" aria-hidden="true" tabindex="-1"></a><span class="co">--Notice the &quot;=&quot; and &quot;and&quot;</span></span></code></pre></div>
 </details>
 </div>
 </div>
-<div id="exercise-sorting" class="section level2" number="7.10">
-<h2><span class="header-section-number">7.10</span> Exercise: Sorting</h2>
-<div id="retrieve-a-list-of-employees-ordered-by-department-id.." class="section level3" number="7.10.1">
-<h3><span class="header-section-number">7.10.1</span> <em>Retrieve a list of employees ordered by department ID.</em>.</h3>
+<div id="exercise-sorting" class="section level2" number="8.10">
+<h2><span class="header-section-number">8.10</span> Exercise: Sorting</h2>
+<div id="retrieve-a-list-of-employees-ordered-by-department-id.." class="section level3" number="8.10.1">
+<h3><span class="header-section-number">8.10.1</span> <em>Retrieve a list of employees ordered by department ID.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb303"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb303-1"><a href="sql.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME, L_NAME, DEP_ID </span>
-<span id="cb303-2"><a href="sql.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb303-3"><a href="sql.html#cb303-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb343-1"><a href="sql.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME, L_NAME, DEP_ID </span>
+<span id="cb343-2"><a href="sql.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb343-3"><a href="sql.html#cb343-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
 </details>
 </div>
-<div id="retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.." class="section level3" number="7.10.2">
-<h3><span class="header-section-number">7.10.2</span> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</h3>
+<div id="retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.." class="section level3" number="8.10.2">
+<h3><span class="header-section-number">8.10.2</span> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb304"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb304-1"><a href="sql.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME, L_NAME, DEP_ID </span>
-<span id="cb304-2"><a href="sql.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb304-3"><a href="sql.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> DEP_ID <span class="kw">DESC</span>, L_NAME <span class="kw">DESC</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb344-1"><a href="sql.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F_NAME, L_NAME, DEP_ID </span>
+<span id="cb344-2"><a href="sql.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb344-3"><a href="sql.html#cb344-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> DEP_ID <span class="kw">DESC</span>, L_NAME <span class="kw">DESC</span>;</span></code></pre></div>
 </details>
 </div>
-<div id="in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.." class="section level3" number="7.10.3">
-<h3><span class="header-section-number">7.10.3</span> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</h3>
+<div id="in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.." class="section level3" number="8.10.3">
+<h3><span class="header-section-number">8.10.3</span> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</h3>
 <p>Here is the <code>DEPARTMENTS</code> table.</p>
 <table>
 <thead>
@@ -663,74 +694,74 @@ Click here for the solution
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb305"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb305-1"><a href="sql.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> D.DEP_NAME , E.F_NAME, E.L_NAME</span>
-<span id="cb305-2"><a href="sql.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES <span class="kw">as</span> E, DEPARTMENTS <span class="kw">as</span> D</span>
-<span id="cb305-3"><a href="sql.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> E.DEP_ID <span class="op">=</span> D.DEPT_ID_DEP</span>
-<span id="cb305-4"><a href="sql.html#cb305-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> D.DEP_NAME, E.L_NAME <span class="kw">DESC</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb345-1"><a href="sql.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> D.DEP_NAME , E.F_NAME, E.L_NAME</span>
+<span id="cb345-2"><a href="sql.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES <span class="kw">as</span> E, DEPARTMENTS <span class="kw">as</span> D</span>
+<span id="cb345-3"><a href="sql.html#cb345-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> E.DEP_ID <span class="op">=</span> D.DEPT_ID_DEP</span>
+<span id="cb345-4"><a href="sql.html#cb345-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> D.DEP_NAME, E.L_NAME <span class="kw">DESC</span>;</span></code></pre></div>
 <blockquote>
 <p>In the SQL Query above, <code>D</code> and <code>E</code> are aliases for the table names. Once you define an alias like <code>D</code> in your query, you can simply write <code>D.COLUMN_NAME</code> rather than the full form <code>DEPARTMENTS.COLUMN_NAME</code>.</p>
 </blockquote>
 </details>
 </div>
 </div>
-<div id="exercise-3-grouping" class="section level2" number="7.11">
-<h2><span class="header-section-number">7.11</span> Exercise 3: Grouping</h2>
-<div id="for-each-department-id-retrieve-the-number-of-employees-in-the-department.." class="section level3" number="7.11.1">
-<h3><span class="header-section-number">7.11.1</span> <em>For each department ID retrieve the number of employees in the department.</em>.</h3>
+<div id="exercise-3-grouping" class="section level2" number="8.11">
+<h2><span class="header-section-number">8.11</span> Exercise 3: Grouping</h2>
+<div id="for-each-department-id-retrieve-the-number-of-employees-in-the-department.." class="section level3" number="8.11.1">
+<h3><span class="header-section-number">8.11.1</span> <em>For each department ID retrieve the number of employees in the department.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb306"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb306-1"><a href="sql.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
-<span id="cb306-2"><a href="sql.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb306-3"><a href="sql.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb346-1"><a href="sql.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>)</span>
+<span id="cb346-2"><a href="sql.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb346-3"><a href="sql.html#cb346-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
 </details>
 </div>
-<div id="for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.." class="section level3" number="7.11.2">
-<h3><span class="header-section-number">7.11.2</span> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</h3>
+<div id="for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.." class="section level3" number="8.11.2">
+<h3><span class="header-section-number">8.11.2</span> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb307"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb307-1"><a href="sql.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">AVG</span>(SALARY)</span>
-<span id="cb307-2"><a href="sql.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb307-3"><a href="sql.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb347-1"><a href="sql.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">AVG</span>(SALARY)</span>
+<span id="cb347-2"><a href="sql.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb347-3"><a href="sql.html#cb347-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
 </details>
 </div>
-<div id="label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.." class="section level3" number="7.11.3">
-<h3><span class="header-section-number">7.11.3</span> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</h3>
+<div id="label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.." class="section level3" number="8.11.3">
+<h3><span class="header-section-number">8.11.3</span> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb308"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb308-1"><a href="sql.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">&quot;NUM_EMPLOYEES&quot;</span>, <span class="fu">AVG</span>(SALARY) <span class="kw">AS</span> <span class="ot">&quot;AVG_SALARY&quot;</span></span>
-<span id="cb308-2"><a href="sql.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb308-3"><a href="sql.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb348-1"><a href="sql.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">&quot;NUM_EMPLOYEES&quot;</span>, <span class="fu">AVG</span>(SALARY) <span class="kw">AS</span> <span class="ot">&quot;AVG_SALARY&quot;</span></span>
+<span id="cb348-2"><a href="sql.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb348-3"><a href="sql.html#cb348-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID;</span></code></pre></div>
 </details>
 </div>
-<div id="in-the-previous-sql-problem-order-the-result-set-by-average-salary.." class="section level3" number="7.11.4">
-<h3><span class="header-section-number">7.11.4</span> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</h3>
+<div id="in-the-previous-sql-problem-order-the-result-set-by-average-salary.." class="section level3" number="8.11.4">
+<h3><span class="header-section-number">8.11.4</span> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb309"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb309-1"><a href="sql.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">&quot;NUM_EMPLOYEES&quot;</span>, <span class="fu">AVG</span>(SALARY) <span class="kw">AS</span> <span class="ot">&quot;AVG_SALARY&quot;</span></span>
-<span id="cb309-2"><a href="sql.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb309-3"><a href="sql.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID</span>
-<span id="cb309-4"><a href="sql.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> AVG_SALARY;</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb349-1"><a href="sql.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">&quot;NUM_EMPLOYEES&quot;</span>, <span class="fu">AVG</span>(SALARY) <span class="kw">AS</span> <span class="ot">&quot;AVG_SALARY&quot;</span></span>
+<span id="cb349-2"><a href="sql.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb349-3"><a href="sql.html#cb349-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID</span>
+<span id="cb349-4"><a href="sql.html#cb349-4" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> AVG_SALARY;</span></code></pre></div>
 </details>
 </div>
-<div id="in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.." class="section level3" number="7.11.5">
-<h3><span class="header-section-number">7.11.5</span> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</h3>
+<div id="in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.." class="section level3" number="8.11.5">
+<h3><span class="header-section-number">8.11.5</span> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</h3>
 <details>
 <summary>
 Click here for the solution
 </summary>
-<div class="sourceCode" id="cb310"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb310-1"><a href="sql.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">&quot;NUM_EMPLOYEES&quot;</span>, <span class="fu">AVG</span>(SALARY) <span class="kw">AS</span> <span class="ot">&quot;AVG_SALARY&quot;</span></span>
-<span id="cb310-2"><a href="sql.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
-<span id="cb310-3"><a href="sql.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID</span>
-<span id="cb310-4"><a href="sql.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">count</span>(<span class="op">*</span>) <span class="op">&lt;</span> <span class="dv">4</span></span>
-<span id="cb310-5"><a href="sql.html#cb310-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> AVG_SALARY;</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb350-1"><a href="sql.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> DEP_ID, <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">AS</span> <span class="ot">&quot;NUM_EMPLOYEES&quot;</span>, <span class="fu">AVG</span>(SALARY) <span class="kw">AS</span> <span class="ot">&quot;AVG_SALARY&quot;</span></span>
+<span id="cb350-2"><a href="sql.html#cb350-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> EMPLOYEES</span>
+<span id="cb350-3"><a href="sql.html#cb350-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> DEP_ID</span>
+<span id="cb350-4"><a href="sql.html#cb350-4" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">count</span>(<span class="op">*</span>) <span class="op">&lt;</span> <span class="dv">4</span></span>
+<span id="cb350-5"><a href="sql.html#cb350-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> AVG_SALARY;</span></code></pre></div>
 </details>
 
 </div>

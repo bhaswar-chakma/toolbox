@@ -1,0 +1,217 @@
+# Join and Bind
+
+## Join (`*_join` vs `merge()`)
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r , echo = FALSE}
+library(dplyr)
+library(reticulate)
+```
+
+```{python , echo = FALSE}
+import pandas as pd
+import numpy as np
+```
+
+**Toy Data**
+
+**`df1`:**
+
+|id   |first_name |
+|:----|:----------|
+|hiRS |Robin      |
+|hiTM |Ted        |
+|bbP  |Penny      |
+|bbSC |Sheldon    |
+
+**`df2`:**
+
+|id   |last_name  |
+|:----|:----------|
+|hiRS |Robin      |
+|hiTM |Ted        |
+|bbSC |Cooper     |
+|bbLH |Hofstadter |
+
+
+<table class='table'>
+<tr> <th>R</th> <th>Python</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+df1 = tibble(
+    'id'= c("hiRS", "hiTM",
+           "bbP", "bbSC"),
+    'first_name'= c(
+        'Robin',
+        'Ted',
+        'Penny',
+        'Sheldon'
+    )
+)
+
+
+
+df2 = tibble(
+    'id'= c("hiRS", "hiTM",
+            "bbSC", "bbLH"),
+    'last_name'= c(
+        'Robin',
+        'Ted',
+        'Cooper',
+        'Hofstadter'
+    )
+)
+
+
+```
+
+</td>
+<td>
+```{python}
+# toy data
+df1 = pd.DataFrame({
+    'id': ["hiRS", "hiTM",
+           "bbP", "bbSC"],
+    'first_name':[
+        'Robin',
+        'Ted',
+        'Penny',
+        'Sheldon'
+    ]
+})
+
+
+
+df2 = pd.DataFrame({
+    'id': ["hiRS", "hiTM",
+           "bbSC", "bbLH"],
+    'last_name':[
+        'Scherbatsky',
+        'Mosby',
+        'Cooper',
+        'Hofstadter'
+    ]
+})
+
+```
+
+
+</td>
+<tr>
+</table>
+
+### Inner Join
+
+<table class='table'>
+<tr> <th>dplyr::inner_join()</th> <th>pandas::merge(how = "inner")</th> <tr>
+<tr>
+<td>
+
+```{R}
+# inner_join in action
+# note: by argument is not needed here
+df1 %>% inner_join(df2, by = "id")
+```
+
+</td>
+<td>
+```{python}
+# merge(how = "inner") in action
+df1.merge(df2, how = 'inner', on = 'id')
+# note: default is inner join
+# i.e. df1.merge(df2) does inner join
+```
+
+
+</td>
+<tr>
+</table>
+
+
+
+### Left Join
+
+<table class='table'>
+<tr> <th>dplyr::inner_join()</th> <th>pandas::merge(how = "left")</th> <tr>
+<tr>
+<td>
+
+```{R}
+# left_join in action
+# note: by argument is not needed here
+# needed when you have more keys
+df1 %>% left_join(df2, by = "id")
+```
+
+</td>
+<td>
+```{python}
+# merge(how = "left") in action
+df1.merge(df2, how = 'left', on = 'id')
+```
+
+
+</td>
+<tr>
+</table>
+
+
+
+### Right Join
+
+<table class='table'>
+<tr> <th>dplyr::right_join()</th> <th>pandas::merge(how = "right")</th> <tr>
+<tr>
+<td>
+
+```{R}
+# left_join in action
+# note: by argument is not needed here
+# needed when you have more keys
+df1 %>% right_join(df2, by = "id")
+```
+
+</td>
+<td>
+```{python}
+# merge(how = "right") in action
+df1.merge(df2, how = 'right', on = 'id')
+```
+
+
+</td>
+<tr>
+</table>
+
+### Full Join
+
+<table class='table'>
+<tr> <th>dplyr::full_join()</th> <th>pandas::merge(how = "outer")</th> <tr>
+<tr>
+<td>
+
+```{R}
+# full_join in action
+# note: by argument is not needed here
+# needed when you have more keys
+df1 %>% full_join(df2, by = "id")
+```
+
+</td>
+<td>
+```{python}
+# merge(how = "outer") in action
+df1.merge(df2, how = 'outer', on = 'id')
+```
+
+
+</td>
+<tr>
+</table>
+

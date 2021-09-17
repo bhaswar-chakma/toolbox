@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 R Strings | Toolbox</title>
-  <meta name="description" content="6 R Strings | Toolbox" />
+  <title>7 R Strings | Toolbox</title>
+  <meta name="description" content="7 R Strings | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 R Strings | Toolbox" />
+  <meta property="og:title" content="7 R Strings | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 R Strings | Toolbox" />
+  <meta name="twitter:title" content="7 R Strings | Toolbox" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-13" />
+<meta name="date" content="2021-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="scikit-learn.html"/>
 <link rel="next" href="sql.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -138,87 +138,118 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li><a href="index.html#section"></a></li>
-<li class="chapter" data-level="1" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><i class="fa fa-check"></i><b>1</b> Grammar of data manipulation: dplyr vs pandas &amp; numpy</a>
+<li class="chapter" data-level="1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html"><i class="fa fa-check"></i><b>1</b> Grammar: dplyr vs pandas &amp; numpy</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#select"><i class="fa fa-check"></i><b>1.1</b> <code>select()</code></a></li>
-<li class="chapter" data-level="1.2" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#mutate"><i class="fa fa-check"></i><b>1.2</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="1.3" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a></li>
-<li class="chapter" data-level="1.4" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a></li>
-<li class="chapter" data-level="1.5" data-path="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html"><a href="grammar-of-data-manipulation-dplyr-vs-pandas-numpy.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="1.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#select"><i class="fa fa-check"></i><b>1.1</b> <code>select()</code></a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-pick-the-variables-name-and-grade."><i class="fa fa-check"></i><b>1.1.1</b> <em>Example: Pick the variables <code>name</code> and <code>grade</code>.</em></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#mutate"><i class="fa fa-check"></i><b>1.2</b> <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-generate-a-variable-grade_p-expressing-grade-out-of-100."><i class="fa fa-check"></i><b>1.2.1</b> <em>Example: Generate a variable <code>grade_p</code>, expressing grade out of 100.</em></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-keep-if-the-student-is-barney-or-female."><i class="fa fa-check"></i><b>1.3.1</b> <em>Example: Keep if the student is Barney or female.</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-grouped-by-gender-find-mean-grade."><i class="fa fa-check"></i><b>1.4.1</b> <em>Example: Grouped by gender, find mean grade.</em></a></li>
+<li class="chapter" data-level="1.4.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-grouped-by-gender-find-mean-median-minimum-and-maximum-grade."><i class="fa fa-check"></i><b>1.4.2</b> <em>Example: Grouped by gender, find mean, median, minimum, and maximum grade</em>.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-grade-in-ascending-order."><i class="fa fa-check"></i><b>1.5.1</b> <em>Example: Arrange grade in ascending order.</em></span></a></li>
+<li class="chapter" data-level="1.5.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-grade-in-descending-order."><i class="fa fa-check"></i><b>1.5.2</b> <em>Example: Arrange grade in descending order.</em></a></li>
+<li class="chapter" data-level="1.5.3" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-gender-in-ascending-order-then-arrange-grade-in-descending-order."><i class="fa fa-check"></i><b>1.5.3</b> <em>Example: Arrange gender in ascending order then arrange grade in descending order.</em></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="helper-functions.html"><a href="helper-functions.html"><i class="fa fa-check"></i><b>2</b> Helper Functions</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-and-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></a></li>
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
 <li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
+<li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Reshape: tidyr vs pandas</a>
+<li class="chapter" data-level="3" data-path="join-dplyr-vs-pandas.html"><a href="join-dplyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Join: dplyr vs pandas</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>3.1</b> <code>pivot_longer()</code> vs <code>melt()</code></a></li>
-<li class="chapter" data-level="3.2" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>3.2</b> <code>pivot_wider</code> vs <code>pivot</code></a></li>
+<li class="chapter" data-level="3.1" data-path="join-dplyr-vs-pandas.html"><a href="join-dplyr-vs-pandas.html#example-data"><i class="fa fa-check"></i><b>3.1</b> Example Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>4</b> Base Python</a>
+<li class="chapter" data-level="4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>4</b> Reshape: tidyr vs pandas</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="base-python.html"><a href="base-python.html#map"><i class="fa fa-check"></i><b>4.1</b> <code>map()</code></a></li>
-<li class="chapter" data-level="4.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>4.2</b> <code>zip()</code></a></li>
-<li class="chapter" data-level="4.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>4.3</b> <code>enumerate()</code></a></li>
+<li class="chapter" data-level="4.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>4.1</b> <code>pivot_longer()</code> vs <code>melt()</code></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#example-life-expectancy-data-in-wide-format"><i class="fa fa-check"></i><b>4.1.1</b> <em>Example: Life Expectancy data in “wide” format</em></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>5</b> <code>scikit-learn</code></a>
+<li class="chapter" data-level="4.2" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>4.2</b> <code>pivot_wider</code> vs <code>pivot</code></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>5.1</b> Linear Model</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>5.1.1</b> Prepare X</a></li>
-<li class="chapter" data-level="5.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>5.1.2</b> Prepare y</a></li>
-<li class="chapter" data-level="5.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>5.1.3</b> Fit</a></li>
-<li class="chapter" data-level="5.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>5.1.4</b> Prediction</a></li>
-<li class="chapter" data-level="5.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
-<li class="chapter" data-level="5.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>5.1.6</b> Residual Plot</a></li>
+<li class="chapter" data-level="4.2.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#example-life-expectancy-data-in-long-format"><i class="fa fa-check"></i><b>4.2.1</b> <em>Example: Life Expectancy data in “long” format</em></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>5.2</b> Train-Test</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>5.2.1</b> Example</a></li>
-<li class="chapter" data-level="5.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>5.2.2</b> Another Example</a></li>
+<li class="chapter" data-level="4.3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-stack"><i class="fa fa-check"></i><b>4.3</b> pandas:: <code>stack()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-unstack"><i class="fa fa-check"></i><b>4.4</b> pandas:: <code>unstack()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>5.3</b> Cross Validation</a></li>
+<li class="chapter" data-level="5" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>5</b> Base Python</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="base-python.html"><a href="base-python.html#map"><i class="fa fa-check"></i><b>5.1</b> <code>map()</code></a></li>
+<li class="chapter" data-level="5.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>5.2</b> <code>zip()</code></a></li>
+<li class="chapter" data-level="5.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>5.3</b> <code>enumerate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>6</b> R Strings</a>
+<li class="chapter" data-level="6" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>6</b> <code>scikit-learn</code></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>6.1</b> String Manupulation with Base R Functions</a></li>
-<li class="chapter" data-level="6.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>6.2</b> <code>stringr</code></a></li>
-<li class="chapter" data-level="6.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>6.3</b> Regular Expressions</a>
+<li class="chapter" data-level="6.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>6.1</b> Linear Model</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>6.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
+<li class="chapter" data-level="6.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>6.1.1</b> Prepare X</a></li>
+<li class="chapter" data-level="6.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>6.1.2</b> Prepare y</a></li>
+<li class="chapter" data-level="6.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>6.1.3</b> Fit</a></li>
+<li class="chapter" data-level="6.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>6.1.4</b> Prediction</a></li>
+<li class="chapter" data-level="6.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>6.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
+<li class="chapter" data-level="6.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>6.1.6</b> Residual Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>6.2</b> Train-Test</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>6.2.1</b> Example</a></li>
+<li class="chapter" data-level="6.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>6.2.2</b> Another Example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>6.3</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>7</b> R Strings</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>7.1</b> String Manupulation with Base R Functions</a></li>
+<li class="chapter" data-level="7.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>7.2</b> <code>stringr</code></a></li>
+<li class="chapter" data-level="7.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>7.3</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>7.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>7</b> SQL</a>
+<li class="chapter" data-level="8" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>8</b> SQL</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>7.1</b> CREATE</a></li>
-<li class="chapter" data-level="7.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>7.2</b> DROP</a></li>
-<li class="chapter" data-level="7.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>7.3</b> ALTER</a></li>
-<li class="chapter" data-level="7.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>7.4</b> TRUNCATE</a></li>
-<li class="chapter" data-level="7.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>7.5</b> Guided Exercise: Create table and insert data</a></li>
-<li class="chapter" data-level="7.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>7.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
-<li class="chapter" data-level="7.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>7.7</b> Guided Exercise: TRUNCATE</a></li>
-<li class="chapter" data-level="7.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>7.8</b> Guided Exercise: DROP</a></li>
-<li class="chapter" data-level="7.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>7.9</b> Exercise: String Patterns</a>
+<li class="chapter" data-level="8.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>8.1</b> CREATE</a></li>
+<li class="chapter" data-level="8.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>8.2</b> DROP</a></li>
+<li class="chapter" data-level="8.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>8.3</b> ALTER</a></li>
+<li class="chapter" data-level="8.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>8.4</b> TRUNCATE</a></li>
+<li class="chapter" data-level="8.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>8.5</b> Guided Exercise: Create table and insert data</a></li>
+<li class="chapter" data-level="8.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>8.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
+<li class="chapter" data-level="8.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>8.7</b> Guided Exercise: TRUNCATE</a></li>
+<li class="chapter" data-level="8.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>8.8</b> Guided Exercise: DROP</a></li>
+<li class="chapter" data-level="8.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>8.9</b> Exercise: String Patterns</a>
 <ul>
-<li class="chapter" data-level="7.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>7.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
-<li class="chapter" data-level="7.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>7.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
-<li class="chapter" data-level="7.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>7.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
+<li class="chapter" data-level="8.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>8.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
+<li class="chapter" data-level="8.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>8.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
+<li class="chapter" data-level="8.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>8.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="7.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>7.10</b> Exercise: Sorting</a>
+<li class="chapter" data-level="8.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>8.10</b> Exercise: Sorting</a>
 <ul>
-<li class="chapter" data-level="7.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>7.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
-<li class="chapter" data-level="7.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>7.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
-<li class="chapter" data-level="7.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>7.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="8.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>8.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
+<li class="chapter" data-level="8.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="8.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="7.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>7.11</b> Exercise 3: Grouping</a>
+<li class="chapter" data-level="8.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>8.11</b> Exercise 3: Grouping</a>
 <ul>
-<li class="chapter" data-level="7.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>7.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
-<li class="chapter" data-level="7.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>7.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
-<li class="chapter" data-level="7.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>7.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
-<li class="chapter" data-level="7.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>7.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
-<li class="chapter" data-level="7.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>7.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
+<li class="chapter" data-level="8.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>8.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
+<li class="chapter" data-level="8.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>8.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
+<li class="chapter" data-level="8.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>8.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
+<li class="chapter" data-level="8.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>8.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
+<li class="chapter" data-level="8.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>8.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -238,10 +269,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-strings" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> R Strings</h1>
-<div id="string-manupulation-with-base-r-functions" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> String Manupulation with Base R Functions</h2>
+<div id="r-strings" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> R Strings</h1>
+<div id="string-manupulation-with-base-r-functions" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> String Manupulation with Base R Functions</h2>
 <p>There are many functions in base R for basic string manipulation.</p>
 <table class='table'>
 <tr>
@@ -258,8 +289,8 @@ Example
 </strong></span></p>
 </td>
 <td>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="r-strings.html#cb270-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Universe&quot;</span>)</span>
-<span id="cb270-2"><a href="r-strings.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y) <span class="co"># Returns number of characters</span></span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="r-strings.html#cb310-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;World&quot;</span>, <span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;Universe&quot;</span>)</span>
+<span id="cb310-2"><a href="r-strings.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nchar</span>(y) <span class="co"># Returns number of characters</span></span></code></pre></div>
 <pre><code>## [1] 5 5 5 8</code></pre>
 </td>
 <tr>
@@ -269,7 +300,7 @@ Example
 </strong></span></p>
 </td>
 <td>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="r-strings.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="r-strings.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tolower</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;hello&quot;    &quot;world&quot;    &quot;hello&quot;    &quot;universe&quot;</code></pre>
 </td>
 <tr>
@@ -279,7 +310,7 @@ Example
 </strong></span></p>
 </td>
 <td>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="r-strings.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="r-strings.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;HELLO&quot;    &quot;WORLD&quot;    &quot;HELLO&quot;    &quot;UNIVERSE&quot;</code></pre>
 </td>
 <tr>
@@ -289,7 +320,7 @@ Example
 </strong></span></p>
 </td>
 <td>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="r-strings.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartr</span>(<span class="st">&quot;oe&quot;</span>, <span class="st">&quot;$#&quot;</span>, y)<span class="co">#o becomes $; e becomes #</span></span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="r-strings.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartr</span>(<span class="st">&quot;oe&quot;</span>, <span class="st">&quot;$#&quot;</span>, y)<span class="co">#o becomes $; e becomes #</span></span></code></pre></div>
 <pre><code>## [1] &quot;H#ll$&quot;    &quot;W$rld&quot;    &quot;H#ll$&quot;    &quot;Univ#rs#&quot;</code></pre>
 </td>
 <tr>
@@ -299,8 +330,8 @@ Example
 </strong></span></p>
 </td>
 <td>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="r-strings.html#cb278-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;1t345s?&quot;</span></span>
-<span id="cb278-2"><a href="r-strings.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(x, <span class="dv">2</span>, <span class="dv">6</span>) <span class="co"># provides strings from 2 to 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="r-strings.html#cb318-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;1t345s?&quot;</span></span>
+<span id="cb318-2"><a href="r-strings.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="fu">substr</span>(x, <span class="dv">2</span>, <span class="dv">6</span>) <span class="co"># provides strings from 2 to 6</span></span></code></pre></div>
 <pre><code>## [1] &quot;t345s&quot;</code></pre>
 </td>
 <tr>
@@ -310,17 +341,17 @@ Example
 </strong></span></p>
 </td>
 <td>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="r-strings.html#cb280-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;R#Rocks#!&quot;</span></span>
-<span id="cb280-2"><a href="r-strings.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strsplit</span>(x, <span class="at">split =</span> <span class="st">&quot;#&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="r-strings.html#cb320-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;R#Rocks#!&quot;</span></span>
+<span id="cb320-2"><a href="r-strings.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">strsplit</span>(x, <span class="at">split =</span> <span class="st">&quot;#&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;R&quot;     &quot;Rocks&quot; &quot;!&quot;</code></pre>
 </td>
 <tr>
 </table>
 </div>
-<div id="stringr" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> <code>stringr</code></h2>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="r-strings.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<div id="stringr" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> <code>stringr</code></h2>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="r-strings.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -368,12 +399,12 @@ Example
 </tbody>
 </table>
 </div>
-<div id="regular-expressions" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Regular Expressions</h2>
+<div id="regular-expressions" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Regular Expressions</h2>
 <p>A <strong>regular expression</strong> (or <strong>regex</strong>) is a set of symbols that describes a text pattern. More formally, a regular expression is a pattern that describes a set of strings.</p>
 <p>Regular expressions are a formal language in the sense that the symbols have a defined set of rules to specify the desired patterns.</p>
-<div id="stringr-functions-for-regular-expressions" class="section level3" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> <code>stringr</code> Functions for Regular Expressions</h3>
+<div id="stringr-functions-for-regular-expressions" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> <code>stringr</code> Functions for Regular Expressions</h3>
 <table>
 <colgroup>
 <col width="25%" />

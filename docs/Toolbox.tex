@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{iftex}
-\ifPDFTeX
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -116,7 +116,7 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
-\ifLuaTeX
+\ifluatex
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-09-13}
+\date{2021-09-17}
 
 \begin{document}
 \maketitle
@@ -137,8 +137,8 @@
 \chapter*{}\label{section}}
 \addcontentsline{toc}{chapter}{}
 
-\hypertarget{grammar-of-data-manipulation-dplyr-vs-pandas-numpy}{%
-\chapter{Grammar of data manipulation: dplyr vs pandas \& numpy}\label{grammar-of-data-manipulation-dplyr-vs-pandas-numpy}}
+\hypertarget{grammar-dplyr-vs-pandas-numpy}{%
+\chapter{Grammar: dplyr vs pandas \& numpy}\label{grammar-dplyr-vs-pandas-numpy}}
 
 We will use the five \href{https://dplyr.tidyverse.org/}{dplyr verbs} (also \href{https://pandas.pydata.org/pandas-docs/stable/getting_started/comparison/comparison_with_r.html}{pandas' guide}) for comparison
 
@@ -285,8 +285,8 @@ pandas
 \hypertarget{select}{%
 \section{\texorpdfstring{\texttt{select()}}{select()}}\label{select}}
 
-{\textbf{Task: Pick the variables \texttt{name} and \texttt{grade}.
-}}
+\hypertarget{example-pick-the-variables-name-and-grade.}{%
+\subsection{\texorpdfstring{\emph{Example: Pick the variables \texttt{name} and \texttt{grade}.}}{Example: Pick the variables name and grade.}}\label{example-pick-the-variables-name-and-grade.}}
 
 dplyr
 
@@ -392,8 +392,8 @@ pandas
 \hypertarget{mutate}{%
 \section{\texorpdfstring{\texttt{mutate()}}{mutate()}}\label{mutate}}
 
-{\textbf{Task: Generate a variable \texttt{grade\_p}, expressing grade out of 100.
-}}
+\hypertarget{example-generate-a-variable-grade_p-expressing-grade-out-of-100.}{%
+\subsection{\texorpdfstring{\emph{Example: Generate a variable \texttt{grade\_p}, expressing grade out of 100.}}{Example: Generate a variable grade\_p, expressing grade out of 100.}}\label{example-generate-a-variable-grade_p-expressing-grade-out-of-100.}}
 
 dplyr
 
@@ -443,8 +443,8 @@ pandas
 \hypertarget{filter}{%
 \section{\texorpdfstring{\texttt{filter()}}{filter()}}\label{filter}}
 
-{\textbf{Task: Keep Barney or females.
-}}
+\hypertarget{example-keep-if-the-student-is-barney-or-female.}{%
+\subsection{\texorpdfstring{\emph{Example: Keep if the student is Barney or female.}}{Example: Keep if the student is Barney or female.}}\label{example-keep-if-the-student-is-barney-or-female.}}
 
 dplyr
 
@@ -513,8 +513,8 @@ pandas
 \hypertarget{group_by-and-summarize}{%
 \section{\texorpdfstring{\texttt{group\_by()} and \texttt{summarize()}}{group\_by() and summarize()}}\label{group_by-and-summarize}}
 
-{\textbf{Task: Grouped by gender, find mean grade.
-}}
+\hypertarget{example-grouped-by-gender-find-mean-grade.}{%
+\subsection{\texorpdfstring{\emph{Example: Grouped by gender, find mean grade.}}{Example: Grouped by gender, find mean grade.}}\label{example-grouped-by-gender-find-mean-grade.}}
 
 dplyr
 
@@ -536,6 +536,8 @@ pandas
 ## 2 Male        11.3
 \end{verbatim}
 
+\textbf{Option 1:}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# returns a series}
@@ -549,6 +551,8 @@ pandas
 ## Male      11.333333
 ## Name: grade, dtype: float64
 \end{verbatim}
+
+\textbf{Option 2:}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -564,8 +568,30 @@ pandas
 ## Male    11.333333
 \end{verbatim}
 
-{\textbf{Task: Grouped by gender, find mean, median, minimum, and maximum grade.
-}}
+\textbf{Option 3:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# useful for multiple groups and stat}
+\NormalTok{df.groupby([}\StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{]).agg(}
+\NormalTok{    \{}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{]\}}
+    \CommentTok{\# Here key: variable name; value: stat function}
+\NormalTok{)}
+\CommentTok{\# here [] is unnecessary but}
+\CommentTok{\# required for multiple groups and stats}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             grade
+##              mean
+## gender           
+## Female  13.000000
+## Male    11.333333
+\end{verbatim}
+
+\hypertarget{example-grouped-by-gender-find-mean-median-minimum-and-maximum-grade.}{%
+\subsection{\texorpdfstring{\emph{Example: Grouped by gender, find mean, median, minimum, and maximum grade}.}{Example: Grouped by gender, find mean, median, minimum, and maximum grade.}}\label{example-grouped-by-gender-find-mean-median-minimum-and-maximum-grade.}}
 
 dplyr
 
@@ -592,35 +618,31 @@ pandas
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{df.groupby(}\StringTok{"gender"}\NormalTok{)[}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{].agg(}
+\NormalTok{df.groupby([}\StringTok{"gender"}\NormalTok{]).agg(}
   \CommentTok{\# provide a dictionary}
-\NormalTok{  \{}\CommentTok{\# variable name followed by function}
-    \StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{,}
-    \StringTok{\textquotesingle{}median\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}median\textquotesingle{}}\NormalTok{,}
-    \StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{,}
-    \StringTok{\textquotesingle{}max\textquotesingle{}}\NormalTok{: }\StringTok{\textquotesingle{}max\textquotesingle{}}
-\NormalTok{  \}}
+  \CommentTok{\#   key: variable name}
+  \CommentTok{\#   value: stat function}
+\NormalTok{   \{}\StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{:[}\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}median\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}min\textquotesingle{}}\NormalTok{,}
+             \StringTok{\textquotesingle{}max\textquotesingle{}}\NormalTok{]\}}
 \NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##              mean  median  min  max
-## gender                             
-## Female  13.000000      13   12   14
-## Male    11.333333      11   10   13
-## 
-## C:/Users/Bhaswar/AppData/Local/r-miniconda/envs/r-reticulate/python.exe:7: FutureWarning: using a dict on a Series for aggregation
-## is deprecated and will be removed in a future version. Use                 named aggregation instead.
-## 
-##     >>> grouper.agg(name_1=func_1, name_2=func_2)
+##             grade               
+##              mean median min max
+## gender                          
+## Female  13.000000     13  12  14
+## Male    11.333333     11  10  13
 \end{verbatim}
 
 \hypertarget{arrange}{%
 \section{\texorpdfstring{\texttt{arrange()}}{arrange()}}\label{arrange}}
 
-{\textbf{Task: Arrange grade in ascending order.
-}}
+\hypertarget{example-arrange-grade-in-ascending-order.}{%
+\subsection{\texorpdfstring{\emph{Example: Arrange grade in ascending order.}}{Example: Arrange grade in ascending order.}}\label{example-arrange-grade-in-ascending-order.}}
 
 dplyr
 
@@ -659,8 +681,8 @@ pandas
 ## 4     Robin  Female     14
 \end{verbatim}
 
-{\textbf{Task: Arrange grade in ascending order.
-}}
+\hypertarget{example-arrange-grade-in-descending-order.}{%
+\subsection{\texorpdfstring{\emph{Example: Arrange grade in descending order.}}{Example: Arrange grade in descending order.}}\label{example-arrange-grade-in-descending-order.}}
 
 dplyr
 
@@ -698,8 +720,8 @@ pandas
 ## 0    Barney    Male     10
 \end{verbatim}
 
-{\textbf{Task: Arrange gender in ascending order then arrange grade in descending order.
-}}
+\hypertarget{example-arrange-gender-in-ascending-order-then-arrange-grade-in-descending-order.}{%
+\subsection{\texorpdfstring{\emph{Example: Arrange gender in ascending order then arrange grade in descending order.}}{Example: Arrange gender in ascending order then arrange grade in descending order.}}\label{example-arrange-gender-in-ascending-order-then-arrange-grade-in-descending-order.}}
 
 dplyr
 
@@ -755,6 +777,25 @@ pandas
 \item
   31 \(\leq\) \texttt{age}: ``31 and above''
 \end{itemize}
+
+\emph{Example:}
+
+\begin{longtable}[]{@{}rr@{}}
+\toprule
+age & age\_cat \\
+\midrule
+\endhead
+9 & Kids \\
+10 & Kids \\
+18 & 18-30 \\
+21 & 18-30 \\
+29 & 18-30 \\
+31 & 31 and above \\
+45 & 31 and above \\
+\bottomrule
+\end{longtable}
+
+\textbf{dplyr::case\_when()}
 
 With \texttt{dplyr::case\_when()} we can do it in the following way:
 
@@ -885,7 +926,7 @@ pd.cut()
   when \texttt{price} is 50 or more, we label it as ``Expensive''
 \end{itemize}
 
-dplyr::if\_else
+dplyr::if\_else()
 
 np.where()
 
@@ -954,7 +995,7 @@ FR & Paris \\
 \bottomrule
 \end{longtable}
 
-\emph{How to keep observations that belong to BD or DE? }
+\emph{How to keep observations that belong to BD or DE (without using the \texttt{\textbar{}} operator)? }
 
 R
 
@@ -1082,13 +1123,313 @@ Python
 ## 1   PT  Lisbon
 \end{verbatim}
 
+\hypertarget{stringrstr_detect-vs-str.contains}{%
+\section{\texorpdfstring{\texttt{stringr::str\_detect()} vs \texttt{str.contains()}}{stringr::str\_detect() vs str.contains()}}\label{stringrstr_detect-vs-str.contains}}
+
+\emph{Example:}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+info & amount \\
+\midrule
+\endhead
+XYZ Deposit 2020 & 0 \\
+Cash Deposit & 1 \\
+ATM & 2 \\
+XYZ Fee 2021 & 3 \\
+XYZ Deposit 2021 & 4 \\
+\bottomrule
+\end{longtable}
+
+\emph{How to keep or drop only those observations where \texttt{info} is about \texttt{XYZ}? }
+
+R \texttt{stringr::str\_detect()}
+
+Python \texttt{str.contains()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{info =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"XYZ Deposit 2020"}\NormalTok{,}
+    \StringTok{"Cash Deposit"}\NormalTok{,}
+    \StringTok{"ATM"}\NormalTok{,}
+    \StringTok{"XYZ Fee 2021"}\NormalTok{,}
+    \StringTok{"XYZ Deposit 2021"}
+\NormalTok{  ),}
+  \AttributeTok{amount =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{)}
+
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   info             amount
+##   <chr>             <dbl>
+## 1 XYZ Deposit 2020      0
+## 2 Cash Deposit          1
+## 3 ATM                   2
+## 4 XYZ Fee 2021          3
+## 5 XYZ Deposit 2021      4
+\end{verbatim}
+
+\textbf{Keep:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# str\_detect() in action}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{( }\CommentTok{\# keeps}
+\NormalTok{    stringr}\SpecialCharTok{::}\FunctionTok{str\_detect}\NormalTok{(}
+\NormalTok{      info, }\StringTok{"XYZ"}
+\NormalTok{    )}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   info             amount
+##   <chr>             <dbl>
+## 1 XYZ Deposit 2020      0
+## 2 XYZ Fee 2021          3
+## 3 XYZ Deposit 2021      4
+\end{verbatim}
+
+\textbf{Drop:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# str\_detect() in action}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{( }\CommentTok{\# drops}
+    \SpecialCharTok{!}\NormalTok{ stringr}\SpecialCharTok{::}\FunctionTok{str\_detect}\NormalTok{(}
+\NormalTok{      info, }\StringTok{"XYZ"}
+\NormalTok{    )}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   info         amount
+##   <chr>         <dbl>
+## 1 Cash Deposit      1
+## 2 ATM               2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}info\textquotesingle{}}\NormalTok{:}
+\NormalTok{    [}
+    \StringTok{"XYZ Deposit 2020"}\NormalTok{,}
+    \StringTok{"Cash Deposit"}\NormalTok{,}
+    \StringTok{"ATM"}\NormalTok{,}
+    \StringTok{"XYZ Fee 2021"}\NormalTok{,}
+    \StringTok{"XYZ Deposit 2021"}
+\NormalTok{],}
+    \StringTok{\textquotesingle{}amount\textquotesingle{}}\NormalTok{: np.arange(}\DecValTok{5}\NormalTok{)    }
+\NormalTok{\})}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                info  amount
+## 0  XYZ Deposit 2020       0
+## 1      Cash Deposit       1
+## 2               ATM       2
+## 3      XYZ Fee 2021       3
+## 4  XYZ Deposit 2021       4
+\end{verbatim}
+
+\textbf{Keep:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# str.contains in action: keep}
+\NormalTok{df[df[}\StringTok{\textquotesingle{}info\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{"XYZ"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                info  amount
+## 0  XYZ Deposit 2020       0
+## 3      XYZ Fee 2021       3
+## 4  XYZ Deposit 2021       4
+\end{verbatim}
+
+\textbf{Drop:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# str.contains in action: drop}
+\NormalTok{df[}\OperatorTok{\textasciitilde{}}\NormalTok{ df[}\StringTok{\textquotesingle{}info\textquotesingle{}}\NormalTok{].}\BuiltInTok{str}\NormalTok{.contains(}\StringTok{"XYZ"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            info  amount
+## 1  Cash Deposit       1
+## 2           ATM       2
+\end{verbatim}
+
+\hypertarget{join-dplyr-vs-pandas}{%
+\chapter{Join: dplyr vs pandas}\label{join-dplyr-vs-pandas}}
+
+\textbf{\texttt{df1}:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+id & first\_name \\
+\midrule
+\endhead
+hiRS & Robin \\
+hiTM & Ted \\
+bbP & Penny \\
+bbSC & Sheldon \\
+\bottomrule
+\end{longtable}
+
+\textbf{\texttt{df2}:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+id & last\_name \\
+\midrule
+\endhead
+hiRS & Robin \\
+hiTM & Ted \\
+bbSC & Cooper \\
+bbLH & Hofstadter \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{example-data}{%
+\section{Example Data}\label{example-data}}
+
+tidyr::pivot\_wider()
+
+pandas::pivot()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df1 }\OtherTok{=} \FunctionTok{tibble}\NormalTok{(}
+    \StringTok{\textquotesingle{}id\textquotesingle{}}\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"hiRS"}\NormalTok{, }\StringTok{"hiTM"}\NormalTok{,}
+           \StringTok{"bbP"}\NormalTok{, }\StringTok{"bbSC"}\NormalTok{),}
+    \StringTok{\textquotesingle{}first\_name\textquotesingle{}}\OtherTok{=} \FunctionTok{c}\NormalTok{(}
+        \StringTok{\textquotesingle{}Robin\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Ted\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Penny\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Sheldon\textquotesingle{}}
+\NormalTok{    )}
+\NormalTok{)}
+
+\NormalTok{df1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   id    first_name
+##   <chr> <chr>     
+## 1 hiRS  Robin     
+## 2 hiTM  Ted       
+## 3 bbP   Penny     
+## 4 bbSC  Sheldon
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 }\OtherTok{=} \FunctionTok{tibble}\NormalTok{(}
+    \StringTok{\textquotesingle{}id\textquotesingle{}}\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"hiRS"}\NormalTok{, }\StringTok{"hiTM"}\NormalTok{,}
+            \StringTok{"bbSC"}\NormalTok{, }\StringTok{"bbLH"}\NormalTok{),}
+    \StringTok{\textquotesingle{}last\_name\textquotesingle{}}\OtherTok{=} \FunctionTok{c}\NormalTok{(}
+        \StringTok{\textquotesingle{}Robin\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Ted\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Cooper\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Hofstadter\textquotesingle{}}
+\NormalTok{    )}
+\NormalTok{)}
+
+\NormalTok{df2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   id    last_name 
+##   <chr> <chr>     
+## 1 hiRS  Robin     
+## 2 hiTM  Ted       
+## 3 bbSC  Cooper    
+## 4 bbLH  Hofstadter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df1 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{: [}\StringTok{"hiRS"}\NormalTok{, }\StringTok{"hiTM"}\NormalTok{,}
+           \StringTok{"bbP"}\NormalTok{, }\StringTok{"bbSC"}\NormalTok{],}
+    \StringTok{\textquotesingle{}first\_name\textquotesingle{}}\NormalTok{:[}
+        \StringTok{\textquotesingle{}Robin\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Ted\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Penny\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Sheldon\textquotesingle{}}
+\NormalTok{    ]}
+\NormalTok{\})}
+
+\NormalTok{df1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id first_name
+## 0  hiRS      Robin
+## 1  hiTM        Ted
+## 2   bbP      Penny
+## 3  bbSC    Sheldon
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df2 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{: [}\StringTok{"hiRS"}\NormalTok{, }\StringTok{"hiTM"}\NormalTok{,}
+           \StringTok{"bbSC"}\NormalTok{, }\StringTok{"bbLH"}\NormalTok{],}
+    \StringTok{\textquotesingle{}last\_name\textquotesingle{}}\NormalTok{:[}
+        \StringTok{\textquotesingle{}Scherbatsky\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Mosby\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Cooper\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}Hofstadter\textquotesingle{}}
+\NormalTok{    ]}
+\NormalTok{\})}
+\NormalTok{df2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id    last_name
+## 0  hiRS  Scherbatsky
+## 1  hiTM        Mosby
+## 2  bbSC       Cooper
+## 3  bbLH   Hofstadter
+\end{verbatim}
+
 \hypertarget{reshape-tidyr-vs-pandas}{%
 \chapter{Reshape: tidyr vs pandas}\label{reshape-tidyr-vs-pandas}}
 
 \hypertarget{pivot_longer-vs-melt}{%
 \section{\texorpdfstring{\texttt{pivot\_longer()} vs \texttt{melt()}}{pivot\_longer() vs melt()}}\label{pivot_longer-vs-melt}}
 
-Given the following table (life expectancy data)
+\hypertarget{example-life-expectancy-data-in-wide-format}{%
+\subsection{\texorpdfstring{\emph{Example: Life Expectancy data in ``wide'' format}}{Example: Life Expectancy data in ``wide'' format}}\label{example-life-expectancy-data-in-wide-format}}
 
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
@@ -1186,7 +1527,8 @@ df.melt(
 \hypertarget{pivot_wider-vs-pivot}{%
 \section{\texorpdfstring{\texttt{pivot\_wider} vs \texttt{pivot}}{pivot\_wider vs pivot}}\label{pivot_wider-vs-pivot}}
 
-Given the following table
+\hypertarget{example-life-expectancy-data-in-long-format}{%
+\subsection{\texorpdfstring{\emph{Example: Life Expectancy data in ``long'' format}}{Example: Life Expectancy data in ``long'' format}}\label{example-life-expectancy-data-in-long-format}}
 
 \begin{longtable}[]{@{}llr@{}}
 \toprule
@@ -1350,6 +1692,204 @@ pandas::pivot()
 ## Portugal    76.0  78.1
 \end{verbatim}
 
+\hypertarget{pandas-stack}{%
+\section{\texorpdfstring{pandas:: \texttt{stack()}}{pandas:: stack()}}\label{pandas-stack}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{: np.arange(}\DecValTok{2020}\NormalTok{,}\DecValTok{2025}\NormalTok{),}
+    \StringTok{\textquotesingle{}Fall\textquotesingle{}}\NormalTok{: np.linspace(}\DecValTok{10}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{5}\NormalTok{),}
+    \StringTok{\textquotesingle{}Spring\textquotesingle{}}\NormalTok{: np.linspace(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{\})}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    year   Fall  Spring
+## 0  2020  10.00     1.0
+## 1  2021  11.25     2.0
+## 2  2022  12.50     3.0
+## 3  2023  13.75     4.0
+## 4  2024  15.00     5.0
+\end{verbatim}
+
+\textbf{How to create MultiIndex series?}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# step 1: set year as index}
+\NormalTok{df.set\_index(}\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{, inplace }\OperatorTok{=} \VariableTok{True}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Fall  Spring
+## year               
+## 2020  10.00     1.0
+## 2021  11.25     2.0
+## 2022  12.50     3.0
+## 2023  13.75     4.0
+## 2024  15.00     5.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# step 2: apply stack()}
+\NormalTok{df\_stacked }\OperatorTok{=}\NormalTok{ df.stack()}
+\NormalTok{df\_stacked}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## year        
+## 2020  Fall      10.00
+##       Spring     1.00
+## 2021  Fall      11.25
+##       Spring     2.00
+## 2022  Fall      12.50
+##       Spring     3.00
+## 2023  Fall      13.75
+##       Spring     4.00
+## 2024  Fall      15.00
+##       Spring     5.00
+## dtype: float64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# check type}
+\BuiltInTok{type}\NormalTok{(df\_stacked)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <class 'pandas.core.series.Series'>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# check index}
+\NormalTok{df\_stacked.index}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## MultiIndex([(2020,   'Fall'),
+##             (2020, 'Spring'),
+##             (2021,   'Fall'),
+##             (2021, 'Spring'),
+##             (2022,   'Fall'),
+##             (2022, 'Spring'),
+##             (2023,   'Fall'),
+##             (2023, 'Spring'),
+##             (2024,   'Fall'),
+##             (2024, 'Spring')],
+##            names=['year', None])
+\end{verbatim}
+
+\hypertarget{pandas-unstack}{%
+\section{\texorpdfstring{pandas:: \texttt{unstack()}}{pandas:: unstack()}}\label{pandas-unstack}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{year }\OperatorTok{=}\NormalTok{ [}\DecValTok{2010}\NormalTok{, }\DecValTok{2010}\NormalTok{, }\DecValTok{2010}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2020}\NormalTok{]}
+\NormalTok{name }\OperatorTok{=}\NormalTok{ [}\StringTok{"X"}\NormalTok{, }\StringTok{"Y"}\NormalTok{, }\StringTok{"Z"}\NormalTok{, }\StringTok{"X"}\NormalTok{, }\StringTok{"Y"}\NormalTok{, }\StringTok{"Z"}\NormalTok{]}
+\NormalTok{gender }\OperatorTok{=}\NormalTok{ [}\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"M"}\NormalTok{, }\StringTok{"F"}\NormalTok{, }\StringTok{"F"}\NormalTok{]}
+\NormalTok{grade }\OperatorTok{=}\NormalTok{ [}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{, }\FloatTok{12.5}\NormalTok{, }\FloatTok{17.5}\NormalTok{]}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(}
+\NormalTok{    \{}
+    \StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{: year,}
+    \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{: name,}
+    \StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{: gender,}
+    \StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{: grade}
+\NormalTok{    \}}
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    year name gender  grade
+## 0  2010    X      M   10.0
+## 1  2010    Y      F   10.0
+## 2  2010    Z      F   20.0
+## 3  2020    X      M   20.0
+## 4  2020    Y      F   12.5
+## 5  2020    Z      F   17.5
+\end{verbatim}
+
+\textbf{Suppose we want to find mean \texttt{grade} grouped by \texttt{year} and \texttt{gender}.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# grouped by year and gender:}
+\CommentTok{\# find mean grade}
+\NormalTok{df\_stat }\OperatorTok{=}\NormalTok{ df.groupby(}
+\NormalTok{    [}\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}gender\textquotesingle{}}\NormalTok{]}
+\NormalTok{).agg(\{}
+    \StringTok{\textquotesingle{}grade\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}mean\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+\NormalTok{df\_stat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             grade
+##              mean
+## year gender      
+## 2010 F       15.0
+##      M       10.0
+## 2020 F       15.0
+##      M       20.0
+\end{verbatim}
+
+\textbf{How to get \texttt{F} and \texttt{M} as columns?}
+
+\begin{itemize}
+\tightlist
+\item
+  Just apply \texttt{unstack()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df\_unstacked }\OperatorTok{=}\NormalTok{ df\_stat.unstack()}
+\NormalTok{df\_unstacked}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        grade      
+##         mean      
+## gender     F     M
+## year              
+## 2010    15.0  10.0
+## 2020    15.0  20.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# To change the names}
+
+\CommentTok{\# reset index}
+\NormalTok{df\_unstacked2 }\OperatorTok{=}\NormalTok{ df\_unstacked.reset\_index()}
+\CommentTok{\# rename}
+\NormalTok{df\_unstacked2.columns }\OperatorTok{=}\NormalTok{ [}\StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}M\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}F\textquotesingle{}}\NormalTok{]}
+\NormalTok{df\_unstacked2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    year     M     F
+## 0  2010  15.0  10.0
+## 1  2020  15.0  20.0
+\end{verbatim}
+
 \hypertarget{base-python}{%
 \chapter{Base Python}\label{base-python}}
 
@@ -1392,7 +1932,7 @@ pandas::pivot()
 \end{Shaded}
 
 \begin{verbatim}
-## <map object at 0x000000002C92BBE0>
+## <map object at 0x00000000049955F8>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1516,7 +2056,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <enumerate object at 0x000000003089F120>
+## <enumerate object at 0x000000000499A3F0>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1557,7 +2097,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Robin': [], 'Marshall': [], 'Ted': [], 'Lilly': [], 'Barney': []}
+## {'Marshall': [], 'Lilly': [], 'Ted': [], 'Barney': [], 'Robin': []}
 \end{verbatim}
 
 \begin{Shaded}
@@ -1570,7 +2110,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Robin': [0, 2, 6], 'Marshall': [5], 'Ted': [3, 7], 'Lilly': [4], 'Barney': [1, 8]}
+## {'Marshall': [5], 'Lilly': [4], 'Ted': [3, 7], 'Barney': [1, 8], 'Robin': [0, 2, 6]}
 \end{verbatim}
 
 \hypertarget{scikit-learn}{%
@@ -1650,7 +2190,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000003761E828>
+## <matplotlib.collections.PathCollection object at 0x000000000708F240>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1842,7 +2382,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x00000000421C7898>
+## <matplotlib.collections.PathCollection object at 0x00000000070FD048>
 \end{verbatim}
 
 \begin{Shaded}
@@ -1852,7 +2392,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x00000000421C7B70>]
+## [<matplotlib.lines.Line2D object at 0x0000000007142E10>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -1905,7 +2445,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x00000000422A66D8>]
+## [<matplotlib.lines.Line2D object at 0x0000000009B7E6D8>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2386,7 +2926,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x00000000428379B0>
+## <matplotlib.collections.PathCollection object at 0x000000000A4032B0>
 \end{verbatim}
 
 \begin{Shaded}

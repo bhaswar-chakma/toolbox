@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 %in% vs isin, @, and in | Toolbox</title>
-  <meta name="description" content="3 %in% vs isin, @, and in | Toolbox" />
+  <title>3 Join: dplyr vs pandas | Toolbox</title>
+  <meta name="description" content="3 Join: dplyr vs pandas | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 %in% vs isin, @, and in | Toolbox" />
+  <meta property="og:title" content="3 Join: dplyr vs pandas | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 %in% vs isin, @, and in | Toolbox" />
+  <meta name="twitter:title" content="3 Join: dplyr vs pandas | Toolbox" />
   
   
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-09" />
+<meta name="date" content="2021-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="helper-functions.html"/>
-<link rel="next" href="tidyr-vs-pandas.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<link rel="next" href="reshape-tidyr-vs-pandas.html"/>
+<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -138,24 +138,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li><a href="index.html#section"></a></li>
-<li class="chapter" data-level="1" data-path="dplyr-vs-pandas-numpy.html"><a href="dplyr-vs-pandas-numpy.html"><i class="fa fa-check"></i><b>1</b> dplyr vs pandas &amp; numpy</a>
+<li class="chapter" data-level="1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html"><i class="fa fa-check"></i><b>1</b> Grammar: dplyr vs pandas &amp; numpy</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="dplyr-vs-pandas-numpy.html"><a href="dplyr-vs-pandas-numpy.html#select"><i class="fa fa-check"></i><b>1.1</b> <code>select()</code></a></li>
-<li class="chapter" data-level="1.2" data-path="dplyr-vs-pandas-numpy.html"><a href="dplyr-vs-pandas-numpy.html#mutate"><i class="fa fa-check"></i><b>1.2</b> <code>mutate()</code></a></li>
-<li class="chapter" data-level="1.3" data-path="dplyr-vs-pandas-numpy.html"><a href="dplyr-vs-pandas-numpy.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a></li>
-<li class="chapter" data-level="1.4" data-path="dplyr-vs-pandas-numpy.html"><a href="dplyr-vs-pandas-numpy.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a></li>
-<li class="chapter" data-level="1.5" data-path="dplyr-vs-pandas-numpy.html"><a href="dplyr-vs-pandas-numpy.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a></li>
+<li class="chapter" data-level="1.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#select"><i class="fa fa-check"></i><b>1.1</b> <code>select()</code></a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-pick-the-variables-name-and-grade."><i class="fa fa-check"></i><b>1.1.1</b> <em>Example: Pick the variables <code>name</code> and <code>grade</code>.</em></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#mutate"><i class="fa fa-check"></i><b>1.2</b> <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-generate-a-variable-grade_p-expressing-grade-out-of-100."><i class="fa fa-check"></i><b>1.2.1</b> <em>Example: Generate a variable <code>grade_p</code>, expressing grade out of 100.</em></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#filter"><i class="fa fa-check"></i><b>1.3</b> <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-keep-if-the-student-is-barney-or-female."><i class="fa fa-check"></i><b>1.3.1</b> <em>Example: Keep if the student is Barney or female.</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#group_by-and-summarize"><i class="fa fa-check"></i><b>1.4</b> <code>group_by()</code> and <code>summarize()</code></a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-grouped-by-gender-find-mean-grade."><i class="fa fa-check"></i><b>1.4.1</b> <em>Example: Grouped by gender, find mean grade.</em></a></li>
+<li class="chapter" data-level="1.4.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-grouped-by-gender-find-mean-median-minimum-and-maximum-grade."><i class="fa fa-check"></i><b>1.4.2</b> <em>Example: Grouped by gender, find mean, median, minimum, and maximum grade</em>.</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#arrange"><i class="fa fa-check"></i><b>1.5</b> <code>arrange()</code></a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-grade-in-ascending-order."><i class="fa fa-check"></i><b>1.5.1</b> <em>Example: Arrange grade in ascending order.</em></span></a></li>
+<li class="chapter" data-level="1.5.2" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-grade-in-descending-order."><i class="fa fa-check"></i><b>1.5.2</b> <em>Example: Arrange grade in descending order.</em></a></li>
+<li class="chapter" data-level="1.5.3" data-path="grammar-dplyr-vs-pandas-numpy.html"><a href="grammar-dplyr-vs-pandas-numpy.html#example-arrange-gender-in-ascending-order-then-arrange-grade-in-descending-order."><i class="fa fa-check"></i><b>1.5.3</b> <em>Example: Arrange gender in ascending order then arrange grade in descending order.</em></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="helper-functions.html"><a href="helper-functions.html"><i class="fa fa-check"></i><b>2</b> Helper Functions</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="helper-functions.html"><a href="helper-functions.html#case_when-vs-pd.cut-and-np.select"><i class="fa fa-check"></i><b>2.1</b> <code>case_when()</code> vs <code>pd.cut()</code> and <code>np.select()</code></a></li>
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
+<li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
+<li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="in-vs-isin-and-in.html"><a href="in-vs-isin-and-in.html"><i class="fa fa-check"></i><b>3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
-<li class="chapter" data-level="4" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>4</b> tidyr vs pandas</a>
+<li class="chapter" data-level="3" data-path="join-dplyr-vs-pandas.html"><a href="join-dplyr-vs-pandas.html"><i class="fa fa-check"></i><b>3</b> Join: dplyr vs pandas</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>4.1</b> <code>pivot_longer(</code>) vs <code>melt()</code></a></li>
-<li class="chapter" data-level="4.2" data-path="tidyr-vs-pandas.html"><a href="tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>4.2</b> <code>pivot_wider</code> vs <code>pivot</code></a></li>
+<li class="chapter" data-level="3.1" data-path="join-dplyr-vs-pandas.html"><a href="join-dplyr-vs-pandas.html#example-data"><i class="fa fa-check"></i><b>3.1</b> Example Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>4</b> Reshape: tidyr vs pandas</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_longer-vs-melt"><i class="fa fa-check"></i><b>4.1</b> <code>pivot_longer()</code> vs <code>melt()</code></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#example-life-expectancy-data-in-wide-format"><i class="fa fa-check"></i><b>4.1.1</b> <em>Example: Life Expectancy data in “wide” format</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pivot_wider-vs-pivot"><i class="fa fa-check"></i><b>4.2</b> <code>pivot_wider</code> vs <code>pivot</code></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#example-life-expectancy-data-in-long-format"><i class="fa fa-check"></i><b>4.2.1</b> <em>Example: Life Expectancy data in “long” format</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-stack"><i class="fa fa-check"></i><b>4.3</b> pandas:: <code>stack()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-unstack"><i class="fa fa-check"></i><b>4.4</b> pandas:: <code>unstack()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>5</b> Base Python</a>
 <ul>
@@ -238,122 +269,155 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="in-vs-isin-and-in" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></h1>
+<div id="join-dplyr-vs-pandas" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Join: dplyr vs pandas</h1>
+<p><strong><code>df1</code>:</strong></p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">code</th>
-<th align="left">capital</th>
+<th align="left">id</th>
+<th align="left">first_name</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">BD</td>
-<td align="left">Dhaka</td>
+<td align="left">hiRS</td>
+<td align="left">Robin</td>
 </tr>
 <tr class="even">
-<td align="left">PT</td>
-<td align="left">Lisbon</td>
+<td align="left">hiTM</td>
+<td align="left">Ted</td>
 </tr>
 <tr class="odd">
-<td align="left">ES</td>
-<td align="left">Madrid</td>
+<td align="left">bbP</td>
+<td align="left">Penny</td>
 </tr>
 <tr class="even">
-<td align="left">FR</td>
-<td align="left">Paris</td>
+<td align="left">bbSC</td>
+<td align="left">Sheldon</td>
 </tr>
 </tbody>
 </table>
-<p><span style="color:blue"> <em>How to keep observations that belong to BD or DE? </em></p>
+<p><strong><code>df2</code>:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">last_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">hiRS</td>
+<td align="left">Robin</td>
+</tr>
+<tr class="even">
+<td align="left">hiTM</td>
+<td align="left">Ted</td>
+</tr>
+<tr class="odd">
+<td align="left">bbSC</td>
+<td align="left">Cooper</td>
+</tr>
+<tr class="even">
+<td align="left">bbLH</td>
+<td align="left">Hofstadter</td>
+</tr>
+</tbody>
+</table>
+<div id="example-data" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Example Data</h2>
 <table class='table'>
 <tr>
 <th>
-R
+tidyr::pivot_wider()
 </th>
 <th>
-Python
+pandas::pivot()
 </th>
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="in-vs-isin-and-in.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb12-2"><a href="in-vs-isin-and-in.html#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb12-3"><a href="in-vs-isin-and-in.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># country code</span></span>
-<span id="cb12-4"><a href="in-vs-isin-and-in.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">code =</span> <span class="fu">c</span>(</span>
-<span id="cb12-5"><a href="in-vs-isin-and-in.html#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
-<span id="cb12-6"><a href="in-vs-isin-and-in.html#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
-<span id="cb12-7"><a href="in-vs-isin-and-in.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb12-8"><a href="in-vs-isin-and-in.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># capital</span></span>
-<span id="cb12-9"><a href="in-vs-isin-and-in.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">capital =</span> <span class="fu">c</span>(</span>
-<span id="cb12-10"><a href="in-vs-isin-and-in.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
-<span id="cb12-11"><a href="in-vs-isin-and-in.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
-<span id="cb12-12"><a href="in-vs-isin-and-in.html#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb12-13"><a href="in-vs-isin-and-in.html#cb12-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-14"><a href="in-vs-isin-and-in.html#cb12-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="join-dplyr-vs-pandas.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb97-2"><a href="join-dplyr-vs-pandas.html#cb97-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb97-3"><a href="join-dplyr-vs-pandas.html#cb97-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;id&#39;</span><span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;hiRS&quot;</span>, <span class="st">&quot;hiTM&quot;</span>,</span>
+<span id="cb97-4"><a href="join-dplyr-vs-pandas.html#cb97-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;bbP&quot;</span>, <span class="st">&quot;bbSC&quot;</span>),</span>
+<span id="cb97-5"><a href="join-dplyr-vs-pandas.html#cb97-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;first_name&#39;</span><span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb97-6"><a href="join-dplyr-vs-pandas.html#cb97-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Robin&#39;</span>,</span>
+<span id="cb97-7"><a href="join-dplyr-vs-pandas.html#cb97-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Ted&#39;</span>,</span>
+<span id="cb97-8"><a href="join-dplyr-vs-pandas.html#cb97-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Penny&#39;</span>,</span>
+<span id="cb97-9"><a href="join-dplyr-vs-pandas.html#cb97-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Sheldon&#39;</span></span>
+<span id="cb97-10"><a href="join-dplyr-vs-pandas.html#cb97-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb97-11"><a href="join-dplyr-vs-pandas.html#cb97-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb97-12"><a href="join-dplyr-vs-pandas.html#cb97-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-13"><a href="join-dplyr-vs-pandas.html#cb97-13" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
-##   code  capital
-##   &lt;chr&gt; &lt;chr&gt;  
-## 1 BD    Dhaka  
-## 2 PT    Lisbon 
-## 3 ES    Madrid 
-## 4 FR    Paris</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="in-vs-isin-and-in.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% in action</span></span>
-<span id="cb14-2"><a href="in-vs-isin-and-in.html#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="in-vs-isin-and-in.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 2
-##   code  capital
-##   &lt;chr&gt; &lt;chr&gt;  
-## 1 BD    Dhaka  
-## 2 PT    Lisbon</code></pre>
+##   id    first_name
+##   &lt;chr&gt; &lt;chr&gt;     
+## 1 hiRS  Robin     
+## 2 hiTM  Ted       
+## 3 bbP   Penny     
+## 4 bbSC  Sheldon</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="join-dplyr-vs-pandas.html#cb99-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">=</span> <span class="fu">tibble</span>(</span>
+<span id="cb99-2"><a href="join-dplyr-vs-pandas.html#cb99-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;id&#39;</span><span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;hiRS&quot;</span>, <span class="st">&quot;hiTM&quot;</span>,</span>
+<span id="cb99-3"><a href="join-dplyr-vs-pandas.html#cb99-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;bbSC&quot;</span>, <span class="st">&quot;bbLH&quot;</span>),</span>
+<span id="cb99-4"><a href="join-dplyr-vs-pandas.html#cb99-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;last_name&#39;</span><span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb99-5"><a href="join-dplyr-vs-pandas.html#cb99-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Robin&#39;</span>,</span>
+<span id="cb99-6"><a href="join-dplyr-vs-pandas.html#cb99-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Ted&#39;</span>,</span>
+<span id="cb99-7"><a href="join-dplyr-vs-pandas.html#cb99-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Cooper&#39;</span>,</span>
+<span id="cb99-8"><a href="join-dplyr-vs-pandas.html#cb99-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Hofstadter&#39;</span></span>
+<span id="cb99-9"><a href="join-dplyr-vs-pandas.html#cb99-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb99-10"><a href="join-dplyr-vs-pandas.html#cb99-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb99-11"><a href="join-dplyr-vs-pandas.html#cb99-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb99-12"><a href="join-dplyr-vs-pandas.html#cb99-12" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   id    last_name 
+##   &lt;chr&gt; &lt;chr&gt;     
+## 1 hiRS  Robin     
+## 2 hiTM  Ted       
+## 3 bbSC  Cooper    
+## 4 bbLH  Hofstadter</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="in-vs-isin-and-in.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb16-2"><a href="in-vs-isin-and-in.html#cb16-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb16-3"><a href="in-vs-isin-and-in.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># country code</span></span>
-<span id="cb16-4"><a href="in-vs-isin-and-in.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;code&#39;</span>:[</span>
-<span id="cb16-5"><a href="in-vs-isin-and-in.html#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
-<span id="cb16-6"><a href="in-vs-isin-and-in.html#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
-<span id="cb16-7"><a href="in-vs-isin-and-in.html#cb16-7" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb16-8"><a href="in-vs-isin-and-in.html#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># capital</span></span>
-<span id="cb16-9"><a href="in-vs-isin-and-in.html#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;capital&#39;</span>:[</span>
-<span id="cb16-10"><a href="in-vs-isin-and-in.html#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
-<span id="cb16-11"><a href="in-vs-isin-and-in.html#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
-<span id="cb16-12"><a href="in-vs-isin-and-in.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb16-13"><a href="in-vs-isin-and-in.html#cb16-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-14"><a href="in-vs-isin-and-in.html#cb16-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb16-15"><a href="in-vs-isin-and-in.html#cb16-15" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<pre><code>##   code capital
-## 0   BD   Dhaka
-## 1   PT  Lisbon
-## 2   ES  Madrid
-## 3   FR   Paris</code></pre>
-<p><strong>isin</strong></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="in-vs-isin-and-in.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># isin in action</span></span>
-<span id="cb18-2"><a href="in-vs-isin-and-in.html#cb18-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&quot;code&quot;</span>].isin([<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>])]</span></code></pre></div>
-<pre><code>##   code capital
-## 0   BD   Dhaka
-## 1   PT  Lisbon</code></pre>
-<p>**<span class="citation"></span>*</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="in-vs-isin-and-in.html#cb20-1" aria-hidden="true" tabindex="-1"></a>country_list <span class="op">=</span> [<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>]</span>
-<span id="cb20-2"><a href="in-vs-isin-and-in.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># @ in action</span></span>
-<span id="cb20-3"><a href="in-vs-isin-and-in.html#cb20-3" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code == @country_list&#39;</span>)</span>
-<span id="cb20-4"><a href="in-vs-isin-and-in.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note: you must create a list first</span></span>
-<span id="cb20-5"><a href="in-vs-isin-and-in.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   @[&quot;BD&quot;, &quot;PT&quot;] doesn&#39;t work</span></span>
-<span id="cb20-6"><a href="in-vs-isin-and-in.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   but, @list([&quot;BD&quot;, &quot;PT&quot;] works</span></span></code></pre></div>
-<pre><code>##   code capital
-## 0   BD   Dhaka
-## 1   PT  Lisbon</code></pre>
-<p><strong>in</strong></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="in-vs-isin-and-in.html#cb22-1" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code in [&quot;BD&quot;, &quot;PT&quot;]&#39;</span>)</span></code></pre></div>
-<pre><code>##   code capital
-## 0   BD   Dhaka
-## 1   PT  Lisbon</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="join-dplyr-vs-pandas.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb101-2"><a href="join-dplyr-vs-pandas.html#cb101-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb101-3"><a href="join-dplyr-vs-pandas.html#cb101-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;id&#39;</span>: [<span class="st">&quot;hiRS&quot;</span>, <span class="st">&quot;hiTM&quot;</span>,</span>
+<span id="cb101-4"><a href="join-dplyr-vs-pandas.html#cb101-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;bbP&quot;</span>, <span class="st">&quot;bbSC&quot;</span>],</span>
+<span id="cb101-5"><a href="join-dplyr-vs-pandas.html#cb101-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;first_name&#39;</span>:[</span>
+<span id="cb101-6"><a href="join-dplyr-vs-pandas.html#cb101-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Robin&#39;</span>,</span>
+<span id="cb101-7"><a href="join-dplyr-vs-pandas.html#cb101-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Ted&#39;</span>,</span>
+<span id="cb101-8"><a href="join-dplyr-vs-pandas.html#cb101-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Penny&#39;</span>,</span>
+<span id="cb101-9"><a href="join-dplyr-vs-pandas.html#cb101-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Sheldon&#39;</span></span>
+<span id="cb101-10"><a href="join-dplyr-vs-pandas.html#cb101-10" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb101-11"><a href="join-dplyr-vs-pandas.html#cb101-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb101-12"><a href="join-dplyr-vs-pandas.html#cb101-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-13"><a href="join-dplyr-vs-pandas.html#cb101-13" aria-hidden="true" tabindex="-1"></a>df1</span></code></pre></div>
+<pre><code>##      id first_name
+## 0  hiRS      Robin
+## 1  hiTM        Ted
+## 2   bbP      Penny
+## 3  bbSC    Sheldon</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="join-dplyr-vs-pandas.html#cb103-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb103-2"><a href="join-dplyr-vs-pandas.html#cb103-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;id&#39;</span>: [<span class="st">&quot;hiRS&quot;</span>, <span class="st">&quot;hiTM&quot;</span>,</span>
+<span id="cb103-3"><a href="join-dplyr-vs-pandas.html#cb103-3" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;bbSC&quot;</span>, <span class="st">&quot;bbLH&quot;</span>],</span>
+<span id="cb103-4"><a href="join-dplyr-vs-pandas.html#cb103-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;last_name&#39;</span>:[</span>
+<span id="cb103-5"><a href="join-dplyr-vs-pandas.html#cb103-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Scherbatsky&#39;</span>,</span>
+<span id="cb103-6"><a href="join-dplyr-vs-pandas.html#cb103-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Mosby&#39;</span>,</span>
+<span id="cb103-7"><a href="join-dplyr-vs-pandas.html#cb103-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Cooper&#39;</span>,</span>
+<span id="cb103-8"><a href="join-dplyr-vs-pandas.html#cb103-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;Hofstadter&#39;</span></span>
+<span id="cb103-9"><a href="join-dplyr-vs-pandas.html#cb103-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb103-10"><a href="join-dplyr-vs-pandas.html#cb103-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb103-11"><a href="join-dplyr-vs-pandas.html#cb103-11" aria-hidden="true" tabindex="-1"></a>df2</span></code></pre></div>
+<pre><code>##      id    last_name
+## 0  hiRS  Scherbatsky
+## 1  hiTM        Mosby
+## 2  bbSC       Cooper
+## 3  bbLH   Hofstadter</code></pre>
 </td>
 <tr>
 </table>
 
+</div>
 </div>
             </section>
 
@@ -361,7 +425,7 @@ Python
         </div>
       </div>
 <a href="helper-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidyr-vs-pandas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reshape-tidyr-vs-pandas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
