@@ -1,6 +1,6 @@
 # Join and Bind
 
-## Join (`*_join` vs `merge()`)
+## Join Data Frames: `*_join` vs `merge()`
 
 ```{r , include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -215,3 +215,74 @@ df1.merge(df2, how = 'outer', on = 'id')
 <tr>
 </table>
 
+## Bind Rows: `bind_rows()` vs `append()`
+
+**df1:**
+
+|first_name |last_name |
+|:----------|:---------|
+|Steve      |Vai       |
+|Joe        |Satriani  |
+
+
+**df2:**
+
+|first_name |last_name |
+|:----------|:---------|
+|Paul       |Gilbert   |
+|Eric       |Johnson   |
+
+**How do we combine the rows of `df1` and `df2`?**
+
+<table class='table'>
+<tr> <th>dplyr::bind_rows()</th> <th>pandas::append()</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+df1 <- tibble(
+    first_name = c('Steve', 'Joe'),
+    last_name = c('Vai', 'Satriani')
+)
+
+df2 <- tibble(
+    first_name = c('Paul', 'Eric'),
+    last_name = c('Gilbert', 'Johnson')
+)
+```
+
+
+```{r}
+# bind_rows() in action
+bind_rows(df1, df2)
+```
+
+</td>
+<td>
+```{python}
+# toy data
+df1 = pd.DataFrame({
+    'first_name': ['Steve', 'Joe'],
+    'last_name': ['Vai', 'Satriani']
+})
+
+df2 = pd.DataFrame({
+    'first_name': ['Paul', 'Eric'],
+    'last_name': ['Gilbert', 'Johnson']
+})
+```
+
+```{python}
+# append in action: ignoring the index
+df1.append(df2, ignore_index = True)
+```
+
+
+```{python}
+# append in action: maintaining the index
+df1.append(df2)
+```
+</td>
+<tr>
+</table>

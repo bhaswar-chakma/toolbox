@@ -1279,8 +1279,13 @@ Python \texttt{str.contains()}
 ## 2           ATM       2
 \end{verbatim}
 
-\hypertarget{join-dplyr-vs-pandas}{%
-\chapter{Join: dplyr vs pandas}\label{join-dplyr-vs-pandas}}
+\hypertarget{join-and-bind}{%
+\chapter{Join and Bind}\label{join-and-bind}}
+
+\hypertarget{join-_join-vs-merge}{%
+\section{\texorpdfstring{Join (\texttt{*\_join} vs \texttt{merge()})}{Join (*\_join vs merge())}}\label{join-_join-vs-merge}}
+
+\textbf{Toy Data}
 
 \textbf{\texttt{df1}:}
 
@@ -1310,12 +1315,9 @@ bbLH & Hofstadter \\
 \bottomrule
 \end{longtable}
 
-\hypertarget{example-data}{%
-\section{Example Data}\label{example-data}}
+R
 
-tidyr::pivot\_wider()
-
-pandas::pivot()
+Python
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1331,22 +1333,8 @@ pandas::pivot()
 \NormalTok{    )}
 \NormalTok{)}
 
-\NormalTok{df1}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 4 x 2
-##   id    first_name
-##   <chr> <chr>     
-## 1 hiRS  Robin     
-## 2 hiTM  Ted       
-## 3 bbP   Penny     
-## 4 bbSC  Sheldon
-\end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{df2 }\OtherTok{=} \FunctionTok{tibble}\NormalTok{(}
     \StringTok{\textquotesingle{}id\textquotesingle{}}\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"hiRS"}\NormalTok{, }\StringTok{"hiTM"}\NormalTok{,}
             \StringTok{"bbSC"}\NormalTok{, }\StringTok{"bbLH"}\NormalTok{),}
@@ -1357,20 +1345,8 @@ pandas::pivot()
         \StringTok{\textquotesingle{}Hofstadter\textquotesingle{}}
 \NormalTok{    )}
 \NormalTok{)}
-
-\NormalTok{df2}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 4 x 2
-##   id    last_name 
-##   <chr> <chr>     
-## 1 hiRS  Robin     
-## 2 hiTM  Ted       
-## 3 bbSC  Cooper    
-## 4 bbLH  Hofstadter
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1386,20 +1362,8 @@ pandas::pivot()
 \NormalTok{    ]}
 \NormalTok{\})}
 
-\NormalTok{df1}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{verbatim}
-##      id first_name
-## 0  hiRS      Robin
-## 1  hiTM        Ted
-## 2   bbP      Penny
-## 3  bbSC    Sheldon
-\end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{df2 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
     \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{: [}\StringTok{"hiRS"}\NormalTok{, }\StringTok{"hiTM"}\NormalTok{,}
            \StringTok{"bbSC"}\NormalTok{, }\StringTok{"bbLH"}\NormalTok{],}
@@ -1410,16 +1374,172 @@ pandas::pivot()
         \StringTok{\textquotesingle{}Hofstadter\textquotesingle{}}
 \NormalTok{    ]}
 \NormalTok{\})}
-\NormalTok{df2}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{inner-join}{%
+\subsection{Inner Join}\label{inner-join}}
+
+dplyr::inner\_join()
+
+pandas::merge(how = ``inner'')
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# inner\_join in action}
+\CommentTok{\# note: by argument is not needed here}
+\NormalTok{df1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{inner\_join}\NormalTok{(df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##      id    last_name
-## 0  hiRS  Scherbatsky
-## 1  hiTM        Mosby
-## 2  bbSC       Cooper
-## 3  bbLH   Hofstadter
+## # A tibble: 3 x 3
+##   id    first_name last_name
+##   <chr> <chr>      <chr>    
+## 1 hiRS  Robin      Robin    
+## 2 hiTM  Ted        Ted      
+## 3 bbSC  Sheldon    Cooper
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# merge(how = "inner") in action}
+\NormalTok{df1.merge(df2, how }\OperatorTok{=} \StringTok{\textquotesingle{}inner\textquotesingle{}}\NormalTok{, on }\OperatorTok{=} \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# note: default is inner join}
+\CommentTok{\# i.e. df1.merge(df2) does inner join}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id first_name    last_name
+## 0  hiRS      Robin  Scherbatsky
+## 1  hiTM        Ted        Mosby
+## 2  bbSC    Sheldon       Cooper
+\end{verbatim}
+
+\hypertarget{left-join}{%
+\subsection{Left Join}\label{left-join}}
+
+dplyr::inner\_join()
+
+pandas::merge(how = ``left'')
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# left\_join in action}
+\CommentTok{\# note: by argument is not needed here}
+\CommentTok{\# needed when you have more keys}
+\NormalTok{df1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{left\_join}\NormalTok{(df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   id    first_name last_name
+##   <chr> <chr>      <chr>    
+## 1 hiRS  Robin      Robin    
+## 2 hiTM  Ted        Ted      
+## 3 bbP   Penny      <NA>     
+## 4 bbSC  Sheldon    Cooper
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# merge(how = "left") in action}
+\NormalTok{df1.merge(df2, how }\OperatorTok{=} \StringTok{\textquotesingle{}left\textquotesingle{}}\NormalTok{, on }\OperatorTok{=} \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id first_name    last_name
+## 0  hiRS      Robin  Scherbatsky
+## 1  hiTM        Ted        Mosby
+## 2   bbP      Penny          NaN
+## 3  bbSC    Sheldon       Cooper
+\end{verbatim}
+
+\hypertarget{right-join}{%
+\subsection{Right Join}\label{right-join}}
+
+dplyr::right\_join()
+
+pandas::merge(how = ``right'')
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# left\_join in action}
+\CommentTok{\# note: by argument is not needed here}
+\CommentTok{\# needed when you have more keys}
+\NormalTok{df1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{right\_join}\NormalTok{(df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   id    first_name last_name 
+##   <chr> <chr>      <chr>     
+## 1 hiRS  Robin      Robin     
+## 2 hiTM  Ted        Ted       
+## 3 bbSC  Sheldon    Cooper    
+## 4 bbLH  <NA>       Hofstadter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# merge(how = "right") in action}
+\NormalTok{df1.merge(df2, how }\OperatorTok{=} \StringTok{\textquotesingle{}right\textquotesingle{}}\NormalTok{, on }\OperatorTok{=} \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id first_name    last_name
+## 0  hiRS      Robin  Scherbatsky
+## 1  hiTM        Ted        Mosby
+## 2  bbSC    Sheldon       Cooper
+## 3  bbLH        NaN   Hofstadter
+\end{verbatim}
+
+\hypertarget{full-join}{%
+\subsection{Full Join}\label{full-join}}
+
+dplyr::full\_join()
+
+pandas::merge(how = ``outer'')
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# full\_join in action}
+\CommentTok{\# note: by argument is not needed here}
+\CommentTok{\# needed when you have more keys}
+\NormalTok{df1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{full\_join}\NormalTok{(df2, }\AttributeTok{by =} \StringTok{"id"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   id    first_name last_name 
+##   <chr> <chr>      <chr>     
+## 1 hiRS  Robin      Robin     
+## 2 hiTM  Ted        Ted       
+## 3 bbP   Penny      <NA>      
+## 4 bbSC  Sheldon    Cooper    
+## 5 bbLH  <NA>       Hofstadter
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# merge(how = "outer") in action}
+\NormalTok{df1.merge(df2, how }\OperatorTok{=} \StringTok{\textquotesingle{}outer\textquotesingle{}}\NormalTok{, on }\OperatorTok{=} \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id first_name    last_name
+## 0  hiRS      Robin  Scherbatsky
+## 1  hiTM        Ted        Mosby
+## 2   bbP      Penny          NaN
+## 3  bbSC    Sheldon       Cooper
+## 4  bbLH        NaN   Hofstadter
 \end{verbatim}
 
 \hypertarget{reshape-tidyr-vs-pandas}{%
@@ -1932,7 +2052,7 @@ pandas::pivot()
 \end{Shaded}
 
 \begin{verbatim}
-## <map object at 0x00000000049955F8>
+## <map object at 0x000000000468B2B0>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2056,7 +2176,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <enumerate object at 0x000000000499A3F0>
+## <enumerate object at 0x000000000468E948>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2097,7 +2217,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Marshall': [], 'Lilly': [], 'Ted': [], 'Barney': [], 'Robin': []}
+## {'Lilly': [], 'Marshall': [], 'Robin': [], 'Barney': [], 'Ted': []}
 \end{verbatim}
 
 \begin{Shaded}
@@ -2110,7 +2230,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Marshall': [5], 'Lilly': [4], 'Ted': [3, 7], 'Barney': [1, 8], 'Robin': [0, 2, 6]}
+## {'Lilly': [4], 'Marshall': [5], 'Robin': [0, 2, 6], 'Barney': [1, 8], 'Ted': [3, 7]}
 \end{verbatim}
 
 \hypertarget{scikit-learn}{%
@@ -2190,7 +2310,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000000708F240>
+## <matplotlib.collections.PathCollection object at 0x0000000006DA0CF8>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2382,7 +2502,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x00000000070FD048>
+## <matplotlib.collections.PathCollection object at 0x0000000006D6F048>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2392,7 +2512,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000007142E10>]
+## [<matplotlib.lines.Line2D object at 0x0000000006E62860>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2445,7 +2565,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000009B7E6D8>]
+## [<matplotlib.lines.Line2D object at 0x00000000082F42E8>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2926,7 +3046,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000000A4032B0>
+## <matplotlib.collections.PathCollection object at 0x000000000804F5F8>
 \end{verbatim}
 
 \begin{Shaded}
