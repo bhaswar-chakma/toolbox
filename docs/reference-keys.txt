@@ -77,3 +77,5 @@ in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer
 join-data-frames_join-vs-merge
 bind-rows-bind_rows-vs-append
 join-data-frames-_join-vs-merge
+graphics
+base-r-vs-matplotlib
