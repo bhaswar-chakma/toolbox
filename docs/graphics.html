@@ -287,10 +287,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <table class='table'>
 <tr>
 <th>
-dplyr::bind_rows()
+plot()
 </th>
 <th>
-pandas::append()
+plt.plot()
 </th>
 <tr>
 <tr>
@@ -298,19 +298,34 @@ pandas::append()
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="graphics.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
 <span id="cb1-2"><a href="graphics.html#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
 <span id="cb1-3"><a href="graphics.html#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">exp</span>(x)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="graphics.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-2"><a href="graphics.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb2-3"><a href="graphics.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
-<p><img src="Toolbox_files/figure-html/unnamed-chunk-3-1.png" width="100%" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="graphics.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># default &quot;type&quot; is &quot;p&quot;</span></span>
+<span id="cb2-2"><a href="graphics.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb2-3"><a href="graphics.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  x, y,</span>
+<span id="cb2-4"><a href="graphics.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb2-5"><a href="graphics.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb2-6"><a href="graphics.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># title</span></span>
+<span id="cb2-7"><a href="graphics.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Base R line plot&quot;</span>,</span>
+<span id="cb2-8"><a href="graphics.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb2-9"><a href="graphics.html#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="st">&quot;y = e&quot;</span><span class="sc">^</span><span class="st">&quot;x&quot;</span>)</span>
+<span id="cb2-10"><a href="graphics.html#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># latex2exp package offers more</span></span>
+<span id="cb2-11"><a href="graphics.html#cb2-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="Toolbox_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </td>
 <td>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="graphics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
 <span id="cb3-2"><a href="graphics.html#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">11</span>)</span>
 <span id="cb3-3"><a href="graphics.html#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.exp(np.arange(<span class="dv">11</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="graphics.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># basic plot: line(default)</span></span>
-<span id="cb4-2"><a href="graphics.html#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y, color <span class="op">=</span> <span class="st">&#39;blue&#39;</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="graphics.html#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="Toolbox_files/figure-html/unnamed-chunk-1-1.png" width="100%" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="graphics.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># default &#39;kind&#39; is &#39;line&#39;</span></span>
+<span id="cb4-2"><a href="graphics.html#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
+<span id="cb4-3"><a href="graphics.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  x, y,</span>
+<span id="cb4-4"><a href="graphics.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  color <span class="op">=</span> <span class="st">&#39;blue&#39;</span></span>
+<span id="cb4-5"><a href="graphics.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># titles are added separately</span></span>
+<span id="cb4-6"><a href="graphics.html#cb4-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
+<span id="cb4-7"><a href="graphics.html#cb4-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Matplotlib line plot&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-8"><a href="graphics.html#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;x&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-9"><a href="graphics.html#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;$y = e^x$&#39;</span>)<span class="op">;</span></span>
+<span id="cb4-10"><a href="graphics.html#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="Toolbox_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </td>
 <tr>
 </table>

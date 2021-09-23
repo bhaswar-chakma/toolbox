@@ -353,3 +353,139 @@ df[~ df['info'].str.contains("XYZ")]
 <tr>
 </table>
 
+
+
+## `distinct()` vs `unique()`
+
+|name | year|
+|:----|----:|
+|A    | 2020|
+|B    | 2020|
+|C    | 2020|
+|A    | 2021|
+|B    | 2021|
+|D    | 2021|
+
+
+<span style="color:blue"> *What are the distinct names?*
+
+<table class='table'>
+<tr> <th>dplyr::distinct()</th> <th>pd.unique()</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+df <- tibble(
+    name = c(
+        'A', 'B', 'C',
+        'A', 'B', 'D'
+    ),
+    year = c(
+        2020, 2020, 2020,
+        2021, 2021, 2021
+    )
+)
+```
+
+```{r}
+# dplyr::distinct in action
+df %>% distinct(name)
+```
+
+
+```{r}
+# if you want to count
+df %>% distinct(name) %>% count()
+```
+
+</td>
+<td>
+```{python}
+# toy data
+df = pd.DataFrame({
+    'name':[
+        'A', 'B', 'C',
+        'A', 'B', 'D'
+    ],
+    'year':[
+        2020, 2020, 2020,
+        2021, 2021, 2021
+    ]
+})
+
+```
+
+```{python}
+# pd.unique() in action
+df['name'].unique()
+```
+
+
+```{python}
+# if you want to count
+len(df['name'].unique())
+```
+</td>
+<tr>
+</table>
+
+
+## `slice()` vs `iloc()`
+
+| age|   id|
+|---:|----:|
+|  20|    1|
+|  21|    1|
+|  22|    1|
+|  23|    1|
+|  24|    1|
+
+<span style="color:blue"> *How to slice single or multiple rows?*
+
+<table class='table'>
+<tr> <th>dplyr::slice()</th> <th>pd.iloc()</th> <tr>
+<tr>
+<td>
+
+```{R}
+# toy data
+df <- tibble(
+  age = seq(20,24),
+  id = seq(1,5)
+)
+df
+```
+
+```{r}
+# slice row 1
+df %>% slice(1)
+```
+```{r}
+# slice rows 3 and 4
+df %>% slice(3:4)
+```
+</td>
+<td>
+```{python}
+# toy data
+df = pd.DataFrame({
+    'age' : np.arange(20, 25),
+    'id': np.arange(1, 6)
+})
+df
+
+```
+
+```{python}
+# slice row 1
+df.iloc[0:1]
+```
+
+```{python}
+# slice row 3 and 4
+df.iloc[2:4]
+```
+</td>
+<tr>
+</table>

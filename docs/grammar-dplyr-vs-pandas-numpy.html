@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="helper-functions.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -173,13 +173,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="join-and-bind.html"><a href="join-and-bind.html"><i class="fa fa-check"></i><b>3</b> Join and Bind</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="join-and-bind.html"><a href="join-and-bind.html#join-_join-vs-merge"><i class="fa fa-check"></i><b>3.1</b> Join (<code>*_join</code> vs <code>merge()</code>)</a>
+<li class="chapter" data-level="3.1" data-path="join-and-bind.html"><a href="join-and-bind.html#join-data-frames-_join-vs-merge"><i class="fa fa-check"></i><b>3.1</b> Join Data Frames: <code>*_join</code> vs <code>merge()</code></a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="join-and-bind.html"><a href="join-and-bind.html#inner-join"><i class="fa fa-check"></i><b>3.1.1</b> Inner Join</a></li>
 <li class="chapter" data-level="3.1.2" data-path="join-and-bind.html"><a href="join-and-bind.html#left-join"><i class="fa fa-check"></i><b>3.1.2</b> Left Join</a></li>
 <li class="chapter" data-level="3.1.3" data-path="join-and-bind.html"><a href="join-and-bind.html#right-join"><i class="fa fa-check"></i><b>3.1.3</b> Right Join</a></li>
 <li class="chapter" data-level="3.1.4" data-path="join-and-bind.html"><a href="join-and-bind.html#full-join"><i class="fa fa-check"></i><b>3.1.4</b> Full Join</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="join-and-bind.html"><a href="join-and-bind.html#bind-rows-bind_rows-vs-append"><i class="fa fa-check"></i><b>3.2</b> Bind Rows: <code>bind_rows()</code> vs <code>append()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>4</b> Reshape: tidyr vs pandas</a>
 <ul>
@@ -200,62 +201,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>5.2</b> <code>zip()</code></a></li>
 <li class="chapter" data-level="5.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>5.3</b> <code>enumerate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>6</b> <code>scikit-learn</code></a>
+<li class="chapter" data-level="6" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>6</b> Graphics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>6.1</b> Linear Model</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>6.1.1</b> Prepare X</a></li>
-<li class="chapter" data-level="6.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>6.1.2</b> Prepare y</a></li>
-<li class="chapter" data-level="6.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>6.1.3</b> Fit</a></li>
-<li class="chapter" data-level="6.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>6.1.4</b> Prediction</a></li>
-<li class="chapter" data-level="6.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>6.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
-<li class="chapter" data-level="6.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>6.1.6</b> Residual Plot</a></li>
+<li class="chapter" data-level="6.1" data-path="graphics.html"><a href="graphics.html#base-r-vs-matplotlib"><i class="fa fa-check"></i><b>6.1</b> Base R vs Matplotlib</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>6.2</b> Train-Test</a>
+<li class="chapter" data-level="7" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>7</b> <code>scikit-learn</code></a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>6.2.1</b> Example</a></li>
-<li class="chapter" data-level="6.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>6.2.2</b> Another Example</a></li>
+<li class="chapter" data-level="7.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>7.1</b> Linear Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>7.1.1</b> Prepare X</a></li>
+<li class="chapter" data-level="7.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>7.1.2</b> Prepare y</a></li>
+<li class="chapter" data-level="7.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>7.1.3</b> Fit</a></li>
+<li class="chapter" data-level="7.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>7.1.4</b> Prediction</a></li>
+<li class="chapter" data-level="7.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>7.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
+<li class="chapter" data-level="7.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>7.1.6</b> Residual Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>6.3</b> Cross Validation</a></li>
+<li class="chapter" data-level="7.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>7.2</b> Train-Test</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>7.2.1</b> Example</a></li>
+<li class="chapter" data-level="7.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>7.2.2</b> Another Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>7</b> R Strings</a>
+<li class="chapter" data-level="7.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>7.3</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>8</b> R Strings</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>7.1</b> String Manupulation with Base R Functions</a></li>
-<li class="chapter" data-level="7.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>7.2</b> <code>stringr</code></a></li>
-<li class="chapter" data-level="7.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>7.3</b> Regular Expressions</a>
+<li class="chapter" data-level="8.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>8.1</b> String Manupulation with Base R Functions</a></li>
+<li class="chapter" data-level="8.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>8.2</b> <code>stringr</code></a></li>
+<li class="chapter" data-level="8.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>8.3</b> Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>7.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
+<li class="chapter" data-level="8.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>8.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>8</b> SQL</a>
+<li class="chapter" data-level="9" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>9</b> SQL</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>8.1</b> CREATE</a></li>
-<li class="chapter" data-level="8.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>8.2</b> DROP</a></li>
-<li class="chapter" data-level="8.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>8.3</b> ALTER</a></li>
-<li class="chapter" data-level="8.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>8.4</b> TRUNCATE</a></li>
-<li class="chapter" data-level="8.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>8.5</b> Guided Exercise: Create table and insert data</a></li>
-<li class="chapter" data-level="8.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>8.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
-<li class="chapter" data-level="8.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>8.7</b> Guided Exercise: TRUNCATE</a></li>
-<li class="chapter" data-level="8.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>8.8</b> Guided Exercise: DROP</a></li>
-<li class="chapter" data-level="8.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>8.9</b> Exercise: String Patterns</a>
+<li class="chapter" data-level="9.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>9.1</b> CREATE</a></li>
+<li class="chapter" data-level="9.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>9.2</b> DROP</a></li>
+<li class="chapter" data-level="9.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>9.3</b> ALTER</a></li>
+<li class="chapter" data-level="9.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>9.4</b> TRUNCATE</a></li>
+<li class="chapter" data-level="9.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>9.5</b> Guided Exercise: Create table and insert data</a></li>
+<li class="chapter" data-level="9.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>9.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
+<li class="chapter" data-level="9.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>9.7</b> Guided Exercise: TRUNCATE</a></li>
+<li class="chapter" data-level="9.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>9.8</b> Guided Exercise: DROP</a></li>
+<li class="chapter" data-level="9.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>9.9</b> Exercise: String Patterns</a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>8.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
-<li class="chapter" data-level="8.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>8.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
-<li class="chapter" data-level="8.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>8.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
+<li class="chapter" data-level="9.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>9.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
+<li class="chapter" data-level="9.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>9.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
+<li class="chapter" data-level="9.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>9.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="8.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>8.10</b> Exercise: Sorting</a>
+<li class="chapter" data-level="9.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>9.10</b> Exercise: Sorting</a>
 <ul>
-<li class="chapter" data-level="8.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>8.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
-<li class="chapter" data-level="8.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
-<li class="chapter" data-level="8.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="9.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>9.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
+<li class="chapter" data-level="9.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>9.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="9.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>9.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="8.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>8.11</b> Exercise 3: Grouping</a>
+<li class="chapter" data-level="9.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>9.11</b> Exercise 3: Grouping</a>
 <ul>
-<li class="chapter" data-level="8.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>8.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
-<li class="chapter" data-level="8.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>8.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
-<li class="chapter" data-level="8.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>8.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
-<li class="chapter" data-level="8.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>8.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
-<li class="chapter" data-level="8.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>8.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
+<li class="chapter" data-level="9.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>9.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
+<li class="chapter" data-level="9.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>9.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
+<li class="chapter" data-level="9.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>9.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
+<li class="chapter" data-level="9.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>9.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
+<li class="chapter" data-level="9.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>9.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
 </ul></li>
 </ul></li>
 </ul>

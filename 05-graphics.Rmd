@@ -1,13 +1,14 @@
 # Graphics
 
 ## Base R vs Matplotlib
-```{r setup-tidyr, include=FALSE}
+```{r , include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r lib-r-tidyr, echo = FALSE}
+```{r , echo = FALSE}
 library(dplyr)
 library(tidyr)
+library(latex2exp)
 library(reticulate)
 ```
 
@@ -20,7 +21,7 @@ import matplotlib.pyplot as plt
 
 
 <table class='table'>
-<tr> <th>dplyr::bind_rows()</th> <th>pandas::append()</th> <tr>
+<tr> <th>plot()</th> <th>plt.plot()</th> <tr>
 <tr>
 <td>
 
@@ -31,10 +32,18 @@ y <- exp(x)
 ```
 
 
-```{r, out.width = "100%"}
-#
-#
-plot(x, y)
+```{r}
+# default "type" is "p"
+plot(
+  x, y,
+  type = "l",
+  col = "blue",
+  # title
+  main = "Base R line plot",
+  xlab = "x",
+  ylab = expression("y = e"^"x")
+  # latex2exp package offers more
+)
 ```
 
 </td>
@@ -45,9 +54,16 @@ x = np.arange(11)
 y = np.exp(np.arange(11))
 ```
 
-```{python, out.width = "100%"}
-# basic plot: line(default)
-plt.plot(x, y, color = 'blue');
+```{python} 
+# default 'kind' is 'line'
+plt.plot(
+  x, y,
+  color = 'blue'
+  # titles are added separately
+);
+plt.title('Matplotlib line plot');
+plt.xlabel('x');
+plt.ylabel('$y = e^x$');
 plt.show()
 ```
 

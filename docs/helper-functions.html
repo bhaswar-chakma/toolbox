@@ -24,7 +24,7 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-17" />
+<meta name="date" content="2021-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="grammar-dplyr-vs-pandas-numpy.html"/>
 <link rel="next" href="join-and-bind.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -170,16 +170,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
 <li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
 <li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
+<li class="chapter" data-level="2.5" data-path="helper-functions.html"><a href="helper-functions.html#distinct-vs-unique"><i class="fa fa-check"></i><b>2.5</b> <code>distinct()</code> vs <code>unique()</code></a></li>
+<li class="chapter" data-level="2.6" data-path="helper-functions.html"><a href="helper-functions.html#slice-vs-iloc"><i class="fa fa-check"></i><b>2.6</b> <code>slice()</code> vs <code>iloc()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="join-and-bind.html"><a href="join-and-bind.html"><i class="fa fa-check"></i><b>3</b> Join and Bind</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="join-and-bind.html"><a href="join-and-bind.html#join-_join-vs-merge"><i class="fa fa-check"></i><b>3.1</b> Join (<code>*_join</code> vs <code>merge()</code>)</a>
+<li class="chapter" data-level="3.1" data-path="join-and-bind.html"><a href="join-and-bind.html#join-data-frames-_join-vs-merge"><i class="fa fa-check"></i><b>3.1</b> Join Data Frames: <code>*_join</code> vs <code>merge()</code></a>
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="join-and-bind.html"><a href="join-and-bind.html#inner-join"><i class="fa fa-check"></i><b>3.1.1</b> Inner Join</a></li>
 <li class="chapter" data-level="3.1.2" data-path="join-and-bind.html"><a href="join-and-bind.html#left-join"><i class="fa fa-check"></i><b>3.1.2</b> Left Join</a></li>
 <li class="chapter" data-level="3.1.3" data-path="join-and-bind.html"><a href="join-and-bind.html#right-join"><i class="fa fa-check"></i><b>3.1.3</b> Right Join</a></li>
 <li class="chapter" data-level="3.1.4" data-path="join-and-bind.html"><a href="join-and-bind.html#full-join"><i class="fa fa-check"></i><b>3.1.4</b> Full Join</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="join-and-bind.html"><a href="join-and-bind.html#bind-rows-bind_rows-vs-append"><i class="fa fa-check"></i><b>3.2</b> Bind Rows: <code>bind_rows()</code> vs <code>append()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html"><i class="fa fa-check"></i><b>4</b> Reshape: tidyr vs pandas</a>
 <ul>
@@ -200,62 +203,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>5.2</b> <code>zip()</code></a></li>
 <li class="chapter" data-level="5.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>5.3</b> <code>enumerate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>6</b> <code>scikit-learn</code></a>
+<li class="chapter" data-level="6" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>6</b> Graphics</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>6.1</b> Linear Model</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>6.1.1</b> Prepare X</a></li>
-<li class="chapter" data-level="6.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>6.1.2</b> Prepare y</a></li>
-<li class="chapter" data-level="6.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>6.1.3</b> Fit</a></li>
-<li class="chapter" data-level="6.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>6.1.4</b> Prediction</a></li>
-<li class="chapter" data-level="6.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>6.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
-<li class="chapter" data-level="6.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>6.1.6</b> Residual Plot</a></li>
+<li class="chapter" data-level="6.1" data-path="graphics.html"><a href="graphics.html#base-r-vs-matplotlib"><i class="fa fa-check"></i><b>6.1</b> Base R vs Matplotlib</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>6.2</b> Train-Test</a>
+<li class="chapter" data-level="7" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>7</b> <code>scikit-learn</code></a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>6.2.1</b> Example</a></li>
-<li class="chapter" data-level="6.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>6.2.2</b> Another Example</a></li>
+<li class="chapter" data-level="7.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>7.1</b> Linear Model</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>7.1.1</b> Prepare X</a></li>
+<li class="chapter" data-level="7.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>7.1.2</b> Prepare y</a></li>
+<li class="chapter" data-level="7.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>7.1.3</b> Fit</a></li>
+<li class="chapter" data-level="7.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>7.1.4</b> Prediction</a></li>
+<li class="chapter" data-level="7.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>7.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
+<li class="chapter" data-level="7.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>7.1.6</b> Residual Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>6.3</b> Cross Validation</a></li>
+<li class="chapter" data-level="7.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>7.2</b> Train-Test</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>7.2.1</b> Example</a></li>
+<li class="chapter" data-level="7.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>7.2.2</b> Another Example</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>7</b> R Strings</a>
+<li class="chapter" data-level="7.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>7.3</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>8</b> R Strings</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>7.1</b> String Manupulation with Base R Functions</a></li>
-<li class="chapter" data-level="7.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>7.2</b> <code>stringr</code></a></li>
-<li class="chapter" data-level="7.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>7.3</b> Regular Expressions</a>
+<li class="chapter" data-level="8.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>8.1</b> String Manupulation with Base R Functions</a></li>
+<li class="chapter" data-level="8.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>8.2</b> <code>stringr</code></a></li>
+<li class="chapter" data-level="8.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>8.3</b> Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>7.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
+<li class="chapter" data-level="8.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>8.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>8</b> SQL</a>
+<li class="chapter" data-level="9" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>9</b> SQL</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>8.1</b> CREATE</a></li>
-<li class="chapter" data-level="8.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>8.2</b> DROP</a></li>
-<li class="chapter" data-level="8.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>8.3</b> ALTER</a></li>
-<li class="chapter" data-level="8.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>8.4</b> TRUNCATE</a></li>
-<li class="chapter" data-level="8.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>8.5</b> Guided Exercise: Create table and insert data</a></li>
-<li class="chapter" data-level="8.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>8.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
-<li class="chapter" data-level="8.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>8.7</b> Guided Exercise: TRUNCATE</a></li>
-<li class="chapter" data-level="8.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>8.8</b> Guided Exercise: DROP</a></li>
-<li class="chapter" data-level="8.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>8.9</b> Exercise: String Patterns</a>
+<li class="chapter" data-level="9.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>9.1</b> CREATE</a></li>
+<li class="chapter" data-level="9.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>9.2</b> DROP</a></li>
+<li class="chapter" data-level="9.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>9.3</b> ALTER</a></li>
+<li class="chapter" data-level="9.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>9.4</b> TRUNCATE</a></li>
+<li class="chapter" data-level="9.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>9.5</b> Guided Exercise: Create table and insert data</a></li>
+<li class="chapter" data-level="9.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>9.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
+<li class="chapter" data-level="9.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>9.7</b> Guided Exercise: TRUNCATE</a></li>
+<li class="chapter" data-level="9.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>9.8</b> Guided Exercise: DROP</a></li>
+<li class="chapter" data-level="9.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>9.9</b> Exercise: String Patterns</a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>8.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
-<li class="chapter" data-level="8.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>8.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
-<li class="chapter" data-level="8.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>8.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
+<li class="chapter" data-level="9.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>9.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
+<li class="chapter" data-level="9.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>9.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
+<li class="chapter" data-level="9.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>9.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="8.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>8.10</b> Exercise: Sorting</a>
+<li class="chapter" data-level="9.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>9.10</b> Exercise: Sorting</a>
 <ul>
-<li class="chapter" data-level="8.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>8.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
-<li class="chapter" data-level="8.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
-<li class="chapter" data-level="8.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>8.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="9.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>9.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
+<li class="chapter" data-level="9.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>9.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="9.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>9.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
 </ul></li>
-<li class="chapter" data-level="8.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>8.11</b> Exercise 3: Grouping</a>
+<li class="chapter" data-level="9.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>9.11</b> Exercise 3: Grouping</a>
 <ul>
-<li class="chapter" data-level="8.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>8.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
-<li class="chapter" data-level="8.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>8.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
-<li class="chapter" data-level="8.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>8.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
-<li class="chapter" data-level="8.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>8.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
-<li class="chapter" data-level="8.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>8.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
+<li class="chapter" data-level="9.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>9.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
+<li class="chapter" data-level="9.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>9.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
+<li class="chapter" data-level="9.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>9.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
+<li class="chapter" data-level="9.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>9.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
+<li class="chapter" data-level="9.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>9.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -326,15 +333,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p><strong>dplyr::case_when()</strong></p>
 <p>With <code>dplyr::case_when()</code> we can do it in the following way:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="helper-functions.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example data</span></span>
-<span id="cb62-2"><a href="helper-functions.html#cb62-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>))</span>
-<span id="cb62-3"><a href="helper-functions.html#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when() in action</span></span>
-<span id="cb62-4"><a href="helper-functions.html#cb62-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb62-5"><a href="helper-functions.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_cat =</span> <span class="fu">case_when</span>(</span>
-<span id="cb62-6"><a href="helper-functions.html#cb62-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Kids&quot;</span>,</span>
-<span id="cb62-7"><a href="helper-functions.html#cb62-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;18-30&quot;</span>,</span>
-<span id="cb62-8"><a href="helper-functions.html#cb62-8" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;31 and above&quot;</span></span>
-<span id="cb62-9"><a href="helper-functions.html#cb62-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="helper-functions.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example data</span></span>
+<span id="cb1-2"><a href="helper-functions.html#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">age =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>))</span>
+<span id="cb1-3"><a href="helper-functions.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># case_when() in action</span></span>
+<span id="cb1-4"><a href="helper-functions.html#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="helper-functions.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-6"><a href="helper-functions.html#cb1-6" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="st">&quot;Kids&quot;</span>,</span>
+<span id="cb1-7"><a href="helper-functions.html#cb1-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> age <span class="sc">&lt;</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;18-30&quot;</span>,</span>
+<span id="cb1-8"><a href="helper-functions.html#cb1-8" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">&gt;=</span> <span class="dv">31</span> <span class="sc">~</span> <span class="st">&quot;31 and above&quot;</span></span>
+<span id="cb1-9"><a href="helper-functions.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 2
 ##     age age_cat     
 ##   &lt;dbl&gt; &lt;chr&gt;       
@@ -350,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>np.select()</code></p></li>
 <li><p><code>pd.cut()</code></p></li>
 </ul>
-<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="helper-functions.html#cb64-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&#39;age&#39;</span>: [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>]})</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="helper-functions.html#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&#39;age&#39;</span>: [<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">18</span>, <span class="dv">21</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">45</span>]})</span></code></pre></div>
 <table class='table'>
 <tr>
 <th>
@@ -362,21 +369,21 @@ pd.cut()
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="helper-functions.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create conditions</span></span>
-<span id="cb65-2"><a href="helper-functions.html#cb65-2" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> [</span>
-<span id="cb65-3"><a href="helper-functions.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">18</span>)),</span>
-<span id="cb65-4"><a href="helper-functions.html#cb65-4" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">18</span>) <span class="op">&amp;</span> (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">31</span>))),</span>
-<span id="cb65-5"><a href="helper-functions.html#cb65-5" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">31</span>))</span>
-<span id="cb65-6"><a href="helper-functions.html#cb65-6" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb65-7"><a href="helper-functions.html#cb65-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-8"><a href="helper-functions.html#cb65-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign labels</span></span>
-<span id="cb65-9"><a href="helper-functions.html#cb65-9" aria-hidden="true" tabindex="-1"></a>cond_labs <span class="op">=</span> [</span>
-<span id="cb65-10"><a href="helper-functions.html#cb65-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>, <span class="st">&#39;30 and above&#39;</span></span>
-<span id="cb65-11"><a href="helper-functions.html#cb65-11" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb65-12"><a href="helper-functions.html#cb65-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-13"><a href="helper-functions.html#cb65-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: apply np.select()</span></span>
-<span id="cb65-14"><a href="helper-functions.html#cb65-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;age_cat&#39;</span>] <span class="op">=</span> np.select(cond, cond_labs)</span>
-<span id="cb65-15"><a href="helper-functions.html#cb65-15" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="helper-functions.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create conditions</span></span>
+<span id="cb4-2"><a href="helper-functions.html#cb4-2" aria-hidden="true" tabindex="-1"></a>cond <span class="op">=</span> [</span>
+<span id="cb4-3"><a href="helper-functions.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">18</span>)),</span>
+<span id="cb4-4"><a href="helper-functions.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">18</span>) <span class="op">&amp;</span> (df[<span class="st">&#39;age&#39;</span>].lt(<span class="dv">31</span>))),</span>
+<span id="cb4-5"><a href="helper-functions.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  (df[<span class="st">&#39;age&#39;</span>].ge(<span class="dv">31</span>))</span>
+<span id="cb4-6"><a href="helper-functions.html#cb4-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-7"><a href="helper-functions.html#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="helper-functions.html#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign labels</span></span>
+<span id="cb4-9"><a href="helper-functions.html#cb4-9" aria-hidden="true" tabindex="-1"></a>cond_labs <span class="op">=</span> [</span>
+<span id="cb4-10"><a href="helper-functions.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Kids&#39;</span>, <span class="st">&#39;18-30&#39;</span>, <span class="st">&#39;30 and above&#39;</span></span>
+<span id="cb4-11"><a href="helper-functions.html#cb4-11" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb4-12"><a href="helper-functions.html#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="helper-functions.html#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: apply np.select()</span></span>
+<span id="cb4-14"><a href="helper-functions.html#cb4-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;age_cat&#39;</span>] <span class="op">=</span> np.select(cond, cond_labs)</span>
+<span id="cb4-15"><a href="helper-functions.html#cb4-15" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    age       age_cat
 ## 0    9          Kids
 ## 1   10          Kids
@@ -387,28 +394,28 @@ pd.cut()
 ## 6   45  30 and above</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="helper-functions.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create bin condition</span></span>
-<span id="cb67-2"><a href="helper-functions.html#cb67-2" aria-hidden="true" tabindex="-1"></a>bin_cond <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">17</span>, <span class="dv">30</span>, np.inf] </span>
-<span id="cb67-3"><a href="helper-functions.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note: instead of 0, </span></span>
-<span id="cb67-4"><a href="helper-functions.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       -np.inf will also work</span></span>
-<span id="cb67-5"><a href="helper-functions.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  </span></span>
-<span id="cb67-6"><a href="helper-functions.html#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 0: greater than 0</span></span>
-<span id="cb67-7"><a href="helper-functions.html#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 17: upper limit is 17</span></span>
-<span id="cb67-8"><a href="helper-functions.html#cb67-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-9"><a href="helper-functions.html#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign bin labs</span></span>
-<span id="cb67-10"><a href="helper-functions.html#cb67-10" aria-hidden="true" tabindex="-1"></a>bin_labs <span class="op">=</span> [</span>
-<span id="cb67-11"><a href="helper-functions.html#cb67-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Kids&#39;</span>,</span>
-<span id="cb67-12"><a href="helper-functions.html#cb67-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;18-30&#39;</span>,</span>
-<span id="cb67-13"><a href="helper-functions.html#cb67-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;30 and above&#39;</span></span>
-<span id="cb67-14"><a href="helper-functions.html#cb67-14" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb67-15"><a href="helper-functions.html#cb67-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-16"><a href="helper-functions.html#cb67-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: apply pd.cut() </span></span>
-<span id="cb67-17"><a href="helper-functions.html#cb67-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;age_cat&quot;</span>] <span class="op">=</span> pd.cut(</span>
-<span id="cb67-18"><a href="helper-functions.html#cb67-18" aria-hidden="true" tabindex="-1"></a>  df[<span class="st">&quot;age&quot;</span>],</span>
-<span id="cb67-19"><a href="helper-functions.html#cb67-19" aria-hidden="true" tabindex="-1"></a>  bins <span class="op">=</span> bin_cond,</span>
-<span id="cb67-20"><a href="helper-functions.html#cb67-20" aria-hidden="true" tabindex="-1"></a>  labels <span class="op">=</span> bin_labs</span>
-<span id="cb67-21"><a href="helper-functions.html#cb67-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb67-22"><a href="helper-functions.html#cb67-22" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="helper-functions.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Create bin condition</span></span>
+<span id="cb6-2"><a href="helper-functions.html#cb6-2" aria-hidden="true" tabindex="-1"></a>bin_cond <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">17</span>, <span class="dv">30</span>, np.inf] </span>
+<span id="cb6-3"><a href="helper-functions.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note: instead of 0, </span></span>
+<span id="cb6-4"><a href="helper-functions.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#       -np.inf will also work</span></span>
+<span id="cb6-5"><a href="helper-functions.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  </span></span>
+<span id="cb6-6"><a href="helper-functions.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 0: greater than 0</span></span>
+<span id="cb6-7"><a href="helper-functions.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 17: upper limit is 17</span></span>
+<span id="cb6-8"><a href="helper-functions.html#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="helper-functions.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Assign bin labs</span></span>
+<span id="cb6-10"><a href="helper-functions.html#cb6-10" aria-hidden="true" tabindex="-1"></a>bin_labs <span class="op">=</span> [</span>
+<span id="cb6-11"><a href="helper-functions.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;Kids&#39;</span>,</span>
+<span id="cb6-12"><a href="helper-functions.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;18-30&#39;</span>,</span>
+<span id="cb6-13"><a href="helper-functions.html#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;30 and above&#39;</span></span>
+<span id="cb6-14"><a href="helper-functions.html#cb6-14" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb6-15"><a href="helper-functions.html#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="helper-functions.html#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: apply pd.cut() </span></span>
+<span id="cb6-17"><a href="helper-functions.html#cb6-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&quot;age_cat&quot;</span>] <span class="op">=</span> pd.cut(</span>
+<span id="cb6-18"><a href="helper-functions.html#cb6-18" aria-hidden="true" tabindex="-1"></a>  df[<span class="st">&quot;age&quot;</span>],</span>
+<span id="cb6-19"><a href="helper-functions.html#cb6-19" aria-hidden="true" tabindex="-1"></a>  bins <span class="op">=</span> bin_cond,</span>
+<span id="cb6-20"><a href="helper-functions.html#cb6-20" aria-hidden="true" tabindex="-1"></a>  labels <span class="op">=</span> bin_labs</span>
+<span id="cb6-21"><a href="helper-functions.html#cb6-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-22"><a href="helper-functions.html#cb6-22" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    age       age_cat
 ## 0    9          Kids
 ## 1   10          Kids
@@ -439,14 +446,14 @@ np.where()
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="helper-functions.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb69-2"><a href="helper-functions.html#cb69-2" aria-hidden="true" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>)</span>
-<span id="cb69-3"><a href="helper-functions.html#cb69-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">price =</span> prices)</span>
-<span id="cb69-4"><a href="helper-functions.html#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if_else in action</span></span>
-<span id="cb69-5"><a href="helper-functions.html#cb69-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb69-6"><a href="helper-functions.html#cb69-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_cat =</span> <span class="fu">if_else</span>(</span>
-<span id="cb69-7"><a href="helper-functions.html#cb69-7" aria-hidden="true" tabindex="-1"></a>    price <span class="sc">&lt;</span><span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
-<span id="cb69-8"><a href="helper-functions.html#cb69-8" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="helper-functions.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb8-2"><a href="helper-functions.html#cb8-2" aria-hidden="true" tabindex="-1"></a>prices <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>)</span>
+<span id="cb8-3"><a href="helper-functions.html#cb8-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">price =</span> prices)</span>
+<span id="cb8-4"><a href="helper-functions.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># if_else in action</span></span>
+<span id="cb8-5"><a href="helper-functions.html#cb8-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="helper-functions.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">price_cat =</span> <span class="fu">if_else</span>(</span>
+<span id="cb8-7"><a href="helper-functions.html#cb8-7" aria-hidden="true" tabindex="-1"></a>    price <span class="sc">&lt;</span><span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
+<span id="cb8-8"><a href="helper-functions.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   price price_cat 
 ##   &lt;dbl&gt; &lt;chr&gt;     
@@ -458,16 +465,16 @@ np.where()
 ## 6   125 Expenseive</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb71"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb71-1"><a href="helper-functions.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb71-2"><a href="helper-functions.html#cb71-2" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> {</span>
-<span id="cb71-3"><a href="helper-functions.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;price&#39;</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>]</span>
-<span id="cb71-4"><a href="helper-functions.html#cb71-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb71-5"><a href="helper-functions.html#cb71-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(prices)</span>
-<span id="cb71-6"><a href="helper-functions.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="co"># np.where() in action</span></span>
-<span id="cb71-7"><a href="helper-functions.html#cb71-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;price_cat&#39;</span>] <span class="op">=</span> np.where(</span>
-<span id="cb71-8"><a href="helper-functions.html#cb71-8" aria-hidden="true" tabindex="-1"></a>  df.price <span class="op">&lt;</span> <span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
-<span id="cb71-9"><a href="helper-functions.html#cb71-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb71-10"><a href="helper-functions.html#cb71-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="helper-functions.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb10-2"><a href="helper-functions.html#cb10-2" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> {</span>
+<span id="cb10-3"><a href="helper-functions.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;price&#39;</span>: [<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">45</span>, <span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">125</span>]</span>
+<span id="cb10-4"><a href="helper-functions.html#cb10-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-5"><a href="helper-functions.html#cb10-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(prices)</span>
+<span id="cb10-6"><a href="helper-functions.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># np.where() in action</span></span>
+<span id="cb10-7"><a href="helper-functions.html#cb10-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;price_cat&#39;</span>] <span class="op">=</span> np.where(</span>
+<span id="cb10-8"><a href="helper-functions.html#cb10-8" aria-hidden="true" tabindex="-1"></a>  df.price <span class="op">&lt;</span> <span class="dv">50</span>, <span class="st">&quot;Cheap&quot;</span>, <span class="st">&quot;Expenseive&quot;</span></span>
+<span id="cb10-9"><a href="helper-functions.html#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-10"><a href="helper-functions.html#cb10-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    price   price_cat
 ## 0     25       Cheap
 ## 1     30       Cheap
@@ -519,20 +526,20 @@ Python
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="helper-functions.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb73-2"><a href="helper-functions.html#cb73-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb73-3"><a href="helper-functions.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># country code</span></span>
-<span id="cb73-4"><a href="helper-functions.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">code =</span> <span class="fu">c</span>(</span>
-<span id="cb73-5"><a href="helper-functions.html#cb73-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
-<span id="cb73-6"><a href="helper-functions.html#cb73-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
-<span id="cb73-7"><a href="helper-functions.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb73-8"><a href="helper-functions.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># capital</span></span>
-<span id="cb73-9"><a href="helper-functions.html#cb73-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">capital =</span> <span class="fu">c</span>(</span>
-<span id="cb73-10"><a href="helper-functions.html#cb73-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
-<span id="cb73-11"><a href="helper-functions.html#cb73-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
-<span id="cb73-12"><a href="helper-functions.html#cb73-12" aria-hidden="true" tabindex="-1"></a>  ) </span>
-<span id="cb73-13"><a href="helper-functions.html#cb73-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb73-14"><a href="helper-functions.html#cb73-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="helper-functions.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb12-2"><a href="helper-functions.html#cb12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb12-3"><a href="helper-functions.html#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># country code</span></span>
+<span id="cb12-4"><a href="helper-functions.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">code =</span> <span class="fu">c</span>(</span>
+<span id="cb12-5"><a href="helper-functions.html#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
+<span id="cb12-6"><a href="helper-functions.html#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
+<span id="cb12-7"><a href="helper-functions.html#cb12-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb12-8"><a href="helper-functions.html#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># capital</span></span>
+<span id="cb12-9"><a href="helper-functions.html#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">capital =</span> <span class="fu">c</span>(</span>
+<span id="cb12-10"><a href="helper-functions.html#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
+<span id="cb12-11"><a href="helper-functions.html#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
+<span id="cb12-12"><a href="helper-functions.html#cb12-12" aria-hidden="true" tabindex="-1"></a>  ) </span>
+<span id="cb12-13"><a href="helper-functions.html#cb12-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-14"><a href="helper-functions.html#cb12-14" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   code  capital
 ##   &lt;chr&gt; &lt;chr&gt;  
@@ -540,9 +547,9 @@ Python
 ## 2 PT    Lisbon 
 ## 3 ES    Madrid 
 ## 4 FR    Paris</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="helper-functions.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% in action</span></span>
-<span id="cb75-2"><a href="helper-functions.html#cb75-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb75-3"><a href="helper-functions.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="helper-functions.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% in action</span></span>
+<span id="cb14-2"><a href="helper-functions.html#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="helper-functions.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(code <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   code  capital
 ##   &lt;chr&gt; &lt;chr&gt;  
@@ -550,45 +557,45 @@ Python
 ## 2 PT    Lisbon</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb77"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb77-1"><a href="helper-functions.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb77-2"><a href="helper-functions.html#cb77-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
-<span id="cb77-3"><a href="helper-functions.html#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># country code</span></span>
-<span id="cb77-4"><a href="helper-functions.html#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;code&#39;</span>:[</span>
-<span id="cb77-5"><a href="helper-functions.html#cb77-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
-<span id="cb77-6"><a href="helper-functions.html#cb77-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
-<span id="cb77-7"><a href="helper-functions.html#cb77-7" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb77-8"><a href="helper-functions.html#cb77-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># capital</span></span>
-<span id="cb77-9"><a href="helper-functions.html#cb77-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;capital&#39;</span>:[</span>
-<span id="cb77-10"><a href="helper-functions.html#cb77-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
-<span id="cb77-11"><a href="helper-functions.html#cb77-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
-<span id="cb77-12"><a href="helper-functions.html#cb77-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb77-13"><a href="helper-functions.html#cb77-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb77-14"><a href="helper-functions.html#cb77-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb77-15"><a href="helper-functions.html#cb77-15" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="helper-functions.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb16-2"><a href="helper-functions.html#cb16-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {</span>
+<span id="cb16-3"><a href="helper-functions.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># country code</span></span>
+<span id="cb16-4"><a href="helper-functions.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;code&#39;</span>:[</span>
+<span id="cb16-5"><a href="helper-functions.html#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>,</span>
+<span id="cb16-6"><a href="helper-functions.html#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;ES&quot;</span>, <span class="st">&quot;FR&quot;</span></span>
+<span id="cb16-7"><a href="helper-functions.html#cb16-7" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb16-8"><a href="helper-functions.html#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># capital</span></span>
+<span id="cb16-9"><a href="helper-functions.html#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;capital&#39;</span>:[</span>
+<span id="cb16-10"><a href="helper-functions.html#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Dhaka&quot;</span>, <span class="st">&quot;Lisbon&quot;</span>,</span>
+<span id="cb16-11"><a href="helper-functions.html#cb16-11" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Madrid&quot;</span>, <span class="st">&quot;Paris&quot;</span></span>
+<span id="cb16-12"><a href="helper-functions.html#cb16-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb16-13"><a href="helper-functions.html#cb16-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-14"><a href="helper-functions.html#cb16-14" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb16-15"><a href="helper-functions.html#cb16-15" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##   code capital
 ## 0   BD   Dhaka
 ## 1   PT  Lisbon
 ## 2   ES  Madrid
 ## 3   FR   Paris</code></pre>
 <p><strong>isin</strong></p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb79-1"><a href="helper-functions.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># isin in action</span></span>
-<span id="cb79-2"><a href="helper-functions.html#cb79-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&quot;code&quot;</span>].isin([<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>])]</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="helper-functions.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># isin in action</span></span>
+<span id="cb18-2"><a href="helper-functions.html#cb18-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&quot;code&quot;</span>].isin([<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>])]</span></code></pre></div>
 <pre><code>##   code capital
 ## 0   BD   Dhaka
 ## 1   PT  Lisbon</code></pre>
 <p><strong><code>@</code></strong></p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb81-1"><a href="helper-functions.html#cb81-1" aria-hidden="true" tabindex="-1"></a>country_list <span class="op">=</span> [<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>]</span>
-<span id="cb81-2"><a href="helper-functions.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># @ in action</span></span>
-<span id="cb81-3"><a href="helper-functions.html#cb81-3" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code == @country_list&#39;</span>)</span>
-<span id="cb81-4"><a href="helper-functions.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note: you must create a list first</span></span>
-<span id="cb81-5"><a href="helper-functions.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   @[&quot;BD&quot;, &quot;PT&quot;] doesn&#39;t work</span></span>
-<span id="cb81-6"><a href="helper-functions.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   but, @list([&quot;BD&quot;, &quot;PT&quot;] works</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="helper-functions.html#cb20-1" aria-hidden="true" tabindex="-1"></a>country_list <span class="op">=</span> [<span class="st">&quot;BD&quot;</span>, <span class="st">&quot;PT&quot;</span>]</span>
+<span id="cb20-2"><a href="helper-functions.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># @ in action</span></span>
+<span id="cb20-3"><a href="helper-functions.html#cb20-3" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code == @country_list&#39;</span>)</span>
+<span id="cb20-4"><a href="helper-functions.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note: you must create a list first</span></span>
+<span id="cb20-5"><a href="helper-functions.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   @[&quot;BD&quot;, &quot;PT&quot;] doesn&#39;t work</span></span>
+<span id="cb20-6"><a href="helper-functions.html#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   but, @list([&quot;BD&quot;, &quot;PT&quot;] works</span></span></code></pre></div>
 <pre><code>##   code capital
 ## 0   BD   Dhaka
 ## 1   PT  Lisbon</code></pre>
 <p><strong>in</strong></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="helper-functions.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in in action</span></span>
-<span id="cb83-2"><a href="helper-functions.html#cb83-2" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code in [&quot;BD&quot;, &quot;PT&quot;]&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="helper-functions.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in in action</span></span>
+<span id="cb22-2"><a href="helper-functions.html#cb22-2" aria-hidden="true" tabindex="-1"></a>df.query(<span class="st">&#39;code in [&quot;BD&quot;, &quot;PT&quot;]&#39;</span>)</span></code></pre></div>
 <pre><code>##   code capital
 ## 0   BD   Dhaka
 ## 1   PT  Lisbon</code></pre>
@@ -641,19 +648,19 @@ Python <code>str.contains()</code>
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="helper-functions.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb85-2"><a href="helper-functions.html#cb85-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb85-3"><a href="helper-functions.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">info =</span> <span class="fu">c</span>(</span>
-<span id="cb85-4"><a href="helper-functions.html#cb85-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2020&quot;</span>,</span>
-<span id="cb85-5"><a href="helper-functions.html#cb85-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Cash Deposit&quot;</span>,</span>
-<span id="cb85-6"><a href="helper-functions.html#cb85-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ATM&quot;</span>,</span>
-<span id="cb85-7"><a href="helper-functions.html#cb85-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Fee 2021&quot;</span>,</span>
-<span id="cb85-8"><a href="helper-functions.html#cb85-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2021&quot;</span></span>
-<span id="cb85-9"><a href="helper-functions.html#cb85-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb85-10"><a href="helper-functions.html#cb85-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">amount =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>) <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb85-11"><a href="helper-functions.html#cb85-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb85-12"><a href="helper-functions.html#cb85-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-13"><a href="helper-functions.html#cb85-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="helper-functions.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb24-2"><a href="helper-functions.html#cb24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb24-3"><a href="helper-functions.html#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">info =</span> <span class="fu">c</span>(</span>
+<span id="cb24-4"><a href="helper-functions.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2020&quot;</span>,</span>
+<span id="cb24-5"><a href="helper-functions.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Cash Deposit&quot;</span>,</span>
+<span id="cb24-6"><a href="helper-functions.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ATM&quot;</span>,</span>
+<span id="cb24-7"><a href="helper-functions.html#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Fee 2021&quot;</span>,</span>
+<span id="cb24-8"><a href="helper-functions.html#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2021&quot;</span></span>
+<span id="cb24-9"><a href="helper-functions.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb24-10"><a href="helper-functions.html#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">amount =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb24-11"><a href="helper-functions.html#cb24-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-12"><a href="helper-functions.html#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="helper-functions.html#cb24-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   info             amount
 ##   &lt;chr&gt;             &lt;dbl&gt;
@@ -663,13 +670,13 @@ Python <code>str.contains()</code>
 ## 4 XYZ Fee 2021          3
 ## 5 XYZ Deposit 2021      4</code></pre>
 <p><strong>Keep:</strong></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="helper-functions.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_detect() in action</span></span>
-<span id="cb87-2"><a href="helper-functions.html#cb87-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb87-3"><a href="helper-functions.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="co"># keeps</span></span>
-<span id="cb87-4"><a href="helper-functions.html#cb87-4" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
-<span id="cb87-5"><a href="helper-functions.html#cb87-5" aria-hidden="true" tabindex="-1"></a>      info, <span class="st">&quot;XYZ&quot;</span></span>
-<span id="cb87-6"><a href="helper-functions.html#cb87-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb87-7"><a href="helper-functions.html#cb87-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="helper-functions.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_detect() in action</span></span>
+<span id="cb26-2"><a href="helper-functions.html#cb26-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="helper-functions.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="co"># keeps</span></span>
+<span id="cb26-4"><a href="helper-functions.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
+<span id="cb26-5"><a href="helper-functions.html#cb26-5" aria-hidden="true" tabindex="-1"></a>      info, <span class="st">&quot;XYZ&quot;</span></span>
+<span id="cb26-6"><a href="helper-functions.html#cb26-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb26-7"><a href="helper-functions.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   info             amount
 ##   &lt;chr&gt;             &lt;dbl&gt;
@@ -677,13 +684,13 @@ Python <code>str.contains()</code>
 ## 2 XYZ Fee 2021          3
 ## 3 XYZ Deposit 2021      4</code></pre>
 <p><strong>Drop:</strong></p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="helper-functions.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_detect() in action</span></span>
-<span id="cb89-2"><a href="helper-functions.html#cb89-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb89-3"><a href="helper-functions.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="co"># drops</span></span>
-<span id="cb89-4"><a href="helper-functions.html#cb89-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
-<span id="cb89-5"><a href="helper-functions.html#cb89-5" aria-hidden="true" tabindex="-1"></a>      info, <span class="st">&quot;XYZ&quot;</span></span>
-<span id="cb89-6"><a href="helper-functions.html#cb89-6" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb89-7"><a href="helper-functions.html#cb89-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="helper-functions.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str_detect() in action</span></span>
+<span id="cb28-2"><a href="helper-functions.html#cb28-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="helper-functions.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>( <span class="co"># drops</span></span>
+<span id="cb28-4"><a href="helper-functions.html#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span> stringr<span class="sc">::</span><span class="fu">str_detect</span>(</span>
+<span id="cb28-5"><a href="helper-functions.html#cb28-5" aria-hidden="true" tabindex="-1"></a>      info, <span class="st">&quot;XYZ&quot;</span></span>
+<span id="cb28-6"><a href="helper-functions.html#cb28-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb28-7"><a href="helper-functions.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   info         amount
 ##   &lt;chr&gt;         &lt;dbl&gt;
@@ -691,19 +698,19 @@ Python <code>str.contains()</code>
 ## 2 ATM               2</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb91"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb91-1"><a href="helper-functions.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb91-2"><a href="helper-functions.html#cb91-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb91-3"><a href="helper-functions.html#cb91-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;info&#39;</span>:</span>
-<span id="cb91-4"><a href="helper-functions.html#cb91-4" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb91-5"><a href="helper-functions.html#cb91-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2020&quot;</span>,</span>
-<span id="cb91-6"><a href="helper-functions.html#cb91-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Cash Deposit&quot;</span>,</span>
-<span id="cb91-7"><a href="helper-functions.html#cb91-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ATM&quot;</span>,</span>
-<span id="cb91-8"><a href="helper-functions.html#cb91-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Fee 2021&quot;</span>,</span>
-<span id="cb91-9"><a href="helper-functions.html#cb91-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2021&quot;</span></span>
-<span id="cb91-10"><a href="helper-functions.html#cb91-10" aria-hidden="true" tabindex="-1"></a>],</span>
-<span id="cb91-11"><a href="helper-functions.html#cb91-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;amount&#39;</span>: np.arange(<span class="dv">5</span>)    </span>
-<span id="cb91-12"><a href="helper-functions.html#cb91-12" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb91-13"><a href="helper-functions.html#cb91-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="helper-functions.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb30-2"><a href="helper-functions.html#cb30-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb30-3"><a href="helper-functions.html#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;info&#39;</span>:</span>
+<span id="cb30-4"><a href="helper-functions.html#cb30-4" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb30-5"><a href="helper-functions.html#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2020&quot;</span>,</span>
+<span id="cb30-6"><a href="helper-functions.html#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Cash Deposit&quot;</span>,</span>
+<span id="cb30-7"><a href="helper-functions.html#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;ATM&quot;</span>,</span>
+<span id="cb30-8"><a href="helper-functions.html#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Fee 2021&quot;</span>,</span>
+<span id="cb30-9"><a href="helper-functions.html#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;XYZ Deposit 2021&quot;</span></span>
+<span id="cb30-10"><a href="helper-functions.html#cb30-10" aria-hidden="true" tabindex="-1"></a>],</span>
+<span id="cb30-11"><a href="helper-functions.html#cb30-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;amount&#39;</span>: np.arange(<span class="dv">5</span>)    </span>
+<span id="cb30-12"><a href="helper-functions.html#cb30-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb30-13"><a href="helper-functions.html#cb30-13" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##                info  amount
 ## 0  XYZ Deposit 2020       0
 ## 1      Cash Deposit       1
@@ -711,18 +718,213 @@ Python <code>str.contains()</code>
 ## 3      XYZ Fee 2021       3
 ## 4  XYZ Deposit 2021       4</code></pre>
 <p><strong>Keep:</strong></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb93-1"><a href="helper-functions.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains in action: keep</span></span>
-<span id="cb93-2"><a href="helper-functions.html#cb93-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&#39;info&#39;</span>].<span class="bu">str</span>.contains(<span class="st">&quot;XYZ&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="helper-functions.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains in action: keep</span></span>
+<span id="cb32-2"><a href="helper-functions.html#cb32-2" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&#39;info&#39;</span>].<span class="bu">str</span>.contains(<span class="st">&quot;XYZ&quot;</span>)]</span></code></pre></div>
 <pre><code>##                info  amount
 ## 0  XYZ Deposit 2020       0
 ## 3      XYZ Fee 2021       3
 ## 4  XYZ Deposit 2021       4</code></pre>
 <p><strong>Drop:</strong></p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="helper-functions.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains in action: drop</span></span>
-<span id="cb95-2"><a href="helper-functions.html#cb95-2" aria-hidden="true" tabindex="-1"></a>df[<span class="op">~</span> df[<span class="st">&#39;info&#39;</span>].<span class="bu">str</span>.contains(<span class="st">&quot;XYZ&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="helper-functions.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># str.contains in action: drop</span></span>
+<span id="cb34-2"><a href="helper-functions.html#cb34-2" aria-hidden="true" tabindex="-1"></a>df[<span class="op">~</span> df[<span class="st">&#39;info&#39;</span>].<span class="bu">str</span>.contains(<span class="st">&quot;XYZ&quot;</span>)]</span></code></pre></div>
 <pre><code>##            info  amount
 ## 1  Cash Deposit       1
 ## 2           ATM       2</code></pre>
+</td>
+<tr>
+</table>
+</div>
+<div id="distinct-vs-unique" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> <code>distinct()</code> vs <code>unique()</code></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">2020</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">2020</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="right">2020</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">2021</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">2021</td>
+</tr>
+<tr class="even">
+<td align="left">D</td>
+<td align="right">2021</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:blue"> <em>What are the distinct names?</em></p>
+<table class='table'>
+<tr>
+<th>
+dplyr::distinct()
+</th>
+<th>
+pd.unique()
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="helper-functions.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb36-2"><a href="helper-functions.html#cb36-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb36-3"><a href="helper-functions.html#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">c</span>(</span>
+<span id="cb36-4"><a href="helper-functions.html#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>,</span>
+<span id="cb36-5"><a href="helper-functions.html#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;D&#39;</span></span>
+<span id="cb36-6"><a href="helper-functions.html#cb36-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb36-7"><a href="helper-functions.html#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">c</span>(</span>
+<span id="cb36-8"><a href="helper-functions.html#cb36-8" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>,</span>
+<span id="cb36-9"><a href="helper-functions.html#cb36-9" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span></span>
+<span id="cb36-10"><a href="helper-functions.html#cb36-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb36-11"><a href="helper-functions.html#cb36-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="helper-functions.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::distinct in action</span></span>
+<span id="cb37-2"><a href="helper-functions.html#cb37-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(name)</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 1
+##   name 
+##   &lt;chr&gt;
+## 1 A    
+## 2 B    
+## 3 C    
+## 4 D</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="helper-functions.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you want to count</span></span>
+<span id="cb39-2"><a href="helper-functions.html#cb39-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(name) <span class="sc">%&gt;%</span> <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##       n
+##   &lt;int&gt;
+## 1     4</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="helper-functions.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb41-2"><a href="helper-functions.html#cb41-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb41-3"><a href="helper-functions.html#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;name&#39;</span>:[</span>
+<span id="cb41-4"><a href="helper-functions.html#cb41-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;C&#39;</span>,</span>
+<span id="cb41-5"><a href="helper-functions.html#cb41-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;D&#39;</span></span>
+<span id="cb41-6"><a href="helper-functions.html#cb41-6" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb41-7"><a href="helper-functions.html#cb41-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;year&#39;</span>:[</span>
+<span id="cb41-8"><a href="helper-functions.html#cb41-8" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2020</span>, <span class="dv">2020</span>, <span class="dv">2020</span>,</span>
+<span id="cb41-9"><a href="helper-functions.html#cb41-9" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2021</span>, <span class="dv">2021</span>, <span class="dv">2021</span></span>
+<span id="cb41-10"><a href="helper-functions.html#cb41-10" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb41-11"><a href="helper-functions.html#cb41-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="helper-functions.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pd.unique() in action</span></span>
+<span id="cb42-2"><a href="helper-functions.html#cb42-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">&#39;name&#39;</span>].unique()</span></code></pre></div>
+<pre><code>## array([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;], dtype=object)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="helper-functions.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you want to count</span></span>
+<span id="cb44-2"><a href="helper-functions.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(df[<span class="st">&#39;name&#39;</span>].unique())</span></code></pre></div>
+<pre><code>## 4</code></pre>
+</td>
+<tr>
+</table>
+</div>
+<div id="slice-vs-iloc" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> <code>slice()</code> vs <code>iloc()</code></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="right">age</th>
+<th align="right">id</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">21</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">22</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">23</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">24</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:blue"> <em>How to slice single or multiple rows?</em></p>
+<table class='table'>
+<tr>
+<th>
+dplyr::slice()
+</th>
+<th>
+pd.iloc()
+</th>
+<tr>
+<tr>
+<td>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="helper-functions.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb46-2"><a href="helper-functions.html#cb46-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb46-3"><a href="helper-functions.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">age =</span> <span class="fu">seq</span>(<span class="dv">20</span>,<span class="dv">24</span>),</span>
+<span id="cb46-4"><a href="helper-functions.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>)</span>
+<span id="cb46-5"><a href="helper-functions.html#cb46-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-6"><a href="helper-functions.html#cb46-6" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 2
+##     age    id
+##   &lt;int&gt; &lt;int&gt;
+## 1    20     1
+## 2    21     2
+## 3    22     3
+## 4    23     4
+## 5    24     5</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="helper-functions.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># slice row 1</span></span>
+<span id="cb48-2"><a href="helper-functions.html#cb48-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##     age    id
+##   &lt;int&gt; &lt;int&gt;
+## 1    20     1</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="helper-functions.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># slice rows 3 and 4</span></span>
+<span id="cb50-2"><a href="helper-functions.html#cb50-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##     age    id
+##   &lt;int&gt; &lt;int&gt;
+## 1    22     3
+## 2    23     4</code></pre>
+</td>
+<td>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="helper-functions.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb52-2"><a href="helper-functions.html#cb52-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb52-3"><a href="helper-functions.html#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;age&#39;</span> : np.arange(<span class="dv">20</span>, <span class="dv">25</span>),</span>
+<span id="cb52-4"><a href="helper-functions.html#cb52-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;id&#39;</span>: np.arange(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb52-5"><a href="helper-functions.html#cb52-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb52-6"><a href="helper-functions.html#cb52-6" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    age  id
+## 0   20   1
+## 1   21   2
+## 2   22   3
+## 3   23   4
+## 4   24   5</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="helper-functions.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># slice row 1</span></span>
+<span id="cb54-2"><a href="helper-functions.html#cb54-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">0</span>:<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>##    age  id
+## 0   20   1</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="helper-functions.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># slice row 3 and 4</span></span>
+<span id="cb56-2"><a href="helper-functions.html#cb56-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">2</span>:<span class="dv">4</span>]</span></code></pre></div>
+<pre><code>##    age  id
+## 2   22   3
+## 3   23   4</code></pre>
 </td>
 <tr>
 </table>

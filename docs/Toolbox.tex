@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-09-17}
+\date{2021-09-20}
 
 \begin{document}
 \maketitle
@@ -1282,8 +1282,8 @@ Python \texttt{str.contains()}
 \hypertarget{join-and-bind}{%
 \chapter{Join and Bind}\label{join-and-bind}}
 
-\hypertarget{join-_join-vs-merge}{%
-\section{\texorpdfstring{Join (\texttt{*\_join} vs \texttt{merge()})}{Join (*\_join vs merge())}}\label{join-_join-vs-merge}}
+\hypertarget{join-data-frames-_join-vs-merge}{%
+\section{\texorpdfstring{Join Data Frames: \texttt{*\_join} vs \texttt{merge()}}{Join Data Frames: *\_join vs merge()}}\label{join-data-frames-_join-vs-merge}}
 
 \textbf{Toy Data}
 
@@ -1540,6 +1540,116 @@ pandas::merge(how = ``outer'')
 ## 2   bbP      Penny          NaN
 ## 3  bbSC    Sheldon       Cooper
 ## 4  bbLH        NaN   Hofstadter
+\end{verbatim}
+
+\hypertarget{bind-rows-bind_rows-vs-append}{%
+\section{\texorpdfstring{Bind Rows: \texttt{bind\_rows()} vs \texttt{append()}}{Bind Rows: bind\_rows() vs append()}}\label{bind-rows-bind_rows-vs-append}}
+
+\textbf{df1:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+first\_name & last\_name \\
+\midrule
+\endhead
+Steve & Vai \\
+Joe & Satriani \\
+\bottomrule
+\end{longtable}
+
+\textbf{df2:}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+first\_name & last\_name \\
+\midrule
+\endhead
+Paul & Gilbert \\
+Eric & Johnson \\
+\bottomrule
+\end{longtable}
+
+\textbf{How do we combine the rows of \texttt{df1} and \texttt{df2}?}
+
+dplyr::bind\_rows()
+
+pandas::append()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df1 }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+    \AttributeTok{first\_name =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Steve\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Joe\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{last\_name =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Vai\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Satriani\textquotesingle{}}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{df2 }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+    \AttributeTok{first\_name =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Paul\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Eric\textquotesingle{}}\NormalTok{),}
+    \AttributeTok{last\_name =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Gilbert\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Johnson\textquotesingle{}}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# bind\_rows() in action}
+\FunctionTok{bind\_rows}\NormalTok{(df1, df2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   first_name last_name
+##   <chr>      <chr>    
+## 1 Steve      Vai      
+## 2 Joe        Satriani 
+## 3 Paul       Gilbert  
+## 4 Eric       Johnson
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df1 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}first\_name\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Steve\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Joe\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}last\_name\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Vai\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Satriani\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+
+\NormalTok{df2 }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}first\_name\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Paul\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Eric\textquotesingle{}}\NormalTok{],}
+    \StringTok{\textquotesingle{}last\_name\textquotesingle{}}\NormalTok{: [}\StringTok{\textquotesingle{}Gilbert\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Johnson\textquotesingle{}}\NormalTok{]}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# append in action: ignoring the index}
+\NormalTok{df1.append(df2, ignore\_index }\OperatorTok{=} \VariableTok{True}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   first_name last_name
+## 0      Steve       Vai
+## 1        Joe  Satriani
+## 2       Paul   Gilbert
+## 3       Eric   Johnson
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# append in action: maintaining the index}
+\NormalTok{df1.append(df2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   first_name last_name
+## 0      Steve       Vai
+## 1        Joe  Satriani
+## 0       Paul   Gilbert
+## 1       Eric   Johnson
 \end{verbatim}
 
 \hypertarget{reshape-tidyr-vs-pandas}{%
@@ -2052,7 +2162,7 @@ pandas::pivot()
 \end{Shaded}
 
 \begin{verbatim}
-## <map object at 0x000000000468B2B0>
+## <map object at 0x000000003091F160>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2176,7 +2286,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <enumerate object at 0x000000000468E948>
+## <enumerate object at 0x0000000030921990>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2217,7 +2327,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Lilly': [], 'Marshall': [], 'Robin': [], 'Barney': [], 'Ted': []}
+## {'Ted': [], 'Lilly': [], 'Marshall': [], 'Barney': [], 'Robin': []}
 \end{verbatim}
 
 \begin{Shaded}
@@ -2230,8 +2340,54 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Lilly': [4], 'Marshall': [5], 'Robin': [0, 2, 6], 'Barney': [1, 8], 'Ted': [3, 7]}
+## {'Ted': [3, 7], 'Lilly': [4], 'Marshall': [5], 'Barney': [1, 8], 'Robin': [0, 2, 6]}
 \end{verbatim}
+
+\hypertarget{graphics}{%
+\chapter{Graphics}\label{graphics}}
+
+\hypertarget{base-r-vs-matplotlib}{%
+\section{Base R vs Matplotlib}\label{base-r-vs-matplotlib}}
+
+dplyr::bind\_rows()
+
+pandas::append()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#}
+\CommentTok{\#}
+\FunctionTok{plot}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{Toolbox_files/figure-latex/unnamed-chunk-76-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ np.arange(}\DecValTok{11}\NormalTok{)}
+\NormalTok{y }\OperatorTok{=}\NormalTok{ np.exp(np.arange(}\DecValTok{11}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# basic plot: line(default)}
+\NormalTok{plt.plot(x, y, color }\OperatorTok{=} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=1\linewidth]{Toolbox_files/figure-latex/lib-py-1}
 
 \hypertarget{scikit-learn}{%
 \chapter{\texorpdfstring{\texttt{scikit-learn}}{scikit-learn}}\label{scikit-learn}}
@@ -2310,7 +2466,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x0000000006DA0CF8>
+## <matplotlib.collections.PathCollection object at 0x0000000041BF2F98>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2319,7 +2475,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-1.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-3.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2502,7 +2658,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x0000000006D6F048>
+## <matplotlib.collections.PathCollection object at 0x000000003958FAC8>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2512,7 +2668,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x0000000006E62860>]
+## [<matplotlib.lines.Line2D object at 0x000000003958FDA0>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2521,7 +2677,7 @@ Alternative? Try the following
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-3.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-5.pdf}
 
 \hypertarget{residual-plot}{%
 \subsection{Residual Plot}\label{residual-plot}}
@@ -2556,7 +2712,7 @@ Alternative? Try the following
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-5.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-7.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2565,7 +2721,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x00000000082F42E8>]
+## [<matplotlib.lines.Line2D object at 0x00000000395F8E10>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2574,7 +2730,7 @@ Alternative? Try the following
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-6.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-8.pdf}
 
 \hypertarget{train-test}{%
 \section{Train-Test}\label{train-test}}
@@ -2884,7 +3040,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-9.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-11.pdf}
 
 \textbf{Create a hold-out set using train-test split}
 
@@ -2952,7 +3108,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-11.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-13.pdf}
 
 \textbf{Use only the training data to try out possible models}
 
@@ -3046,7 +3202,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000000804F5F8>
+## <matplotlib.collections.PathCollection object at 0x00000000201846D8>
 \end{verbatim}
 
 \begin{Shaded}
@@ -3055,7 +3211,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Toolbox_files/figure-latex/lib-py-13.pdf}
+\includegraphics{Toolbox_files/figure-latex/lib-py-15.pdf}
 
 \hypertarget{cross-validation}{%
 \section{Cross Validation}\label{cross-validation}}
