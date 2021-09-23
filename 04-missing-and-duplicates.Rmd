@@ -1,0 +1,86 @@
+# Missing Values and Duplicates
+
+## Missing Values 
+
+
+### `tidyr::drop_na()` vs `pd.dropna() and pd.notpna()`
+
+```{r , include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r , echo = FALSE}
+library(tidyverse)
+library(reticulate)
+```
+
+```{python , echo = FALSE}
+import pandas as pd
+import numpy as np
+```
+
+|name | age|
+|:----|---:|
+|A    |  21|
+|B    |  NA|
+|NA   |  NA|
+|D    |  40|
+
+
+<span style="color:blue"> *How to drop missing rows or columns?*
+
+<table class='table'>
+<tr> <th>tidyr::drop_na()</th> <th>pd.dropna() and pd.notna()</th> <tr>
+<tr>
+<td>
+
+```{r}
+# toy data
+df <- tibble(
+  name = c('A', 'B',
+           NA, 'D'),
+  age  =  c(21, NA,
+           NA, 40)
+)
+df
+```
+
+```{r}
+# drop missing rows
+df %>% drop_na()
+```
+```{r}
+# drop specific variable
+# with NaN
+df %>% drop_na(name)
+```
+</td>
+<td>
+
+```{python}
+# toy data
+df = pd.DataFrame({
+    'name': [
+        'A', 'B', np.nan, 'D'
+    ],
+    'age': [
+        21, np.nan, np.nan, 40
+    ]    
+})
+df
+```
+
+```{python}
+# drop missing rows
+df.dropna()
+```
+
+```{python}
+# drop specific variable
+# with NaN
+df[df['name'].notna()]
+```
+</td>
+<tr>
+</table>
+

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Graphics | Toolbox</title>
-  <meta name="description" content="7 Graphics | Toolbox" />
+  <title>5 Missing Values and Duplicates | Toolbox</title>
+  <meta name="description" content="5 Missing Values and Duplicates | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Graphics | Toolbox" />
+  <meta property="og:title" content="5 Missing Values and Duplicates | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Graphics | Toolbox" />
+  <meta name="twitter:title" content="5 Missing Values and Duplicates | Toolbox" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="base-python.html"/>
-<link rel="next" href="scikit-learn.html"/>
+<link rel="prev" href="reshape-tidyr-vs-pandas.html"/>
+<link rel="next" href="base-python.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -289,56 +289,115 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="graphics" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Graphics</h1>
-<div id="base-r-vs-matplotlib" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Base R vs Matplotlib</h2>
+<div id="missing-values-and-duplicates" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Missing Values and Duplicates</h1>
+<div id="missing-values" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Missing Values</h2>
+<div id="tidyrdrop_na-vs-pd.dropna-and-pd.notpna" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> <code>tidyr::drop_na()</code> vs <code>pd.dropna() and pd.notpna()</code></h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">D</td>
+<td align="right">40</td>
+</tr>
+</tbody>
+</table>
+<p><span style="color:blue"> <em>How to drop missing rows or columns?</em></p>
 <table class='table'>
 <tr>
 <th>
-plot()
+tidyr::drop_na()
 </th>
 <th>
-plt.plot()
+pd.dropna() and pd.notna()
 </th>
 <tr>
 <tr>
 <td>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="graphics.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb223-2"><a href="graphics.html#cb223-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>)</span>
-<span id="cb223-3"><a href="graphics.html#cb223-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">exp</span>(x)</span></code></pre></div>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="graphics.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># default &quot;type&quot; is &quot;p&quot;</span></span>
-<span id="cb224-2"><a href="graphics.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb224-3"><a href="graphics.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  x, y,</span>
-<span id="cb224-4"><a href="graphics.html#cb224-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
-<span id="cb224-5"><a href="graphics.html#cb224-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb224-6"><a href="graphics.html#cb224-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># title</span></span>
-<span id="cb224-7"><a href="graphics.html#cb224-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Base R line plot&quot;</span>,</span>
-<span id="cb224-8"><a href="graphics.html#cb224-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb224-9"><a href="graphics.html#cb224-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="st">&quot;y = e&quot;</span><span class="sc">^</span><span class="st">&quot;x&quot;</span>)</span>
-<span id="cb224-10"><a href="graphics.html#cb224-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># latex2exp package offers more</span></span>
-<span id="cb224-11"><a href="graphics.html#cb224-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="Toolbox_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="missing-values-and-duplicates.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb1-2"><a href="missing-values-and-duplicates.html#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-3"><a href="missing-values-and-duplicates.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>,</span>
+<span id="cb1-4"><a href="missing-values-and-duplicates.html#cb1-4" aria-hidden="true" tabindex="-1"></a>           <span class="cn">NA</span>, <span class="st">&#39;D&#39;</span>),</span>
+<span id="cb1-5"><a href="missing-values-and-duplicates.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">age  =</span>  <span class="fu">c</span>(<span class="dv">21</span>, <span class="cn">NA</span>,</span>
+<span id="cb1-6"><a href="missing-values-and-duplicates.html#cb1-6" aria-hidden="true" tabindex="-1"></a>           <span class="cn">NA</span>, <span class="dv">40</span>)</span>
+<span id="cb1-7"><a href="missing-values-and-duplicates.html#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="missing-values-and-duplicates.html#cb1-8" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   name    age
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 A        21
+## 2 B        NA
+## 3 &lt;NA&gt;     NA
+## 4 D        40</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="missing-values-and-duplicates.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop missing rows</span></span>
+<span id="cb3-2"><a href="missing-values-and-duplicates.html#cb3-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   name    age
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 A        21
+## 2 D        40</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="missing-values-and-duplicates.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop specific variable</span></span>
+<span id="cb5-2"><a href="missing-values-and-duplicates.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with NaN</span></span>
+<span id="cb5-3"><a href="missing-values-and-duplicates.html#cb5-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>(name)</span></code></pre></div>
+<pre><code>## # A tibble: 3 x 2
+##   name    age
+##   &lt;chr&gt; &lt;dbl&gt;
+## 1 A        21
+## 2 B        NA
+## 3 D        40</code></pre>
 </td>
 <td>
-<div class="sourceCode" id="cb225"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb225-1"><a href="graphics.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
-<span id="cb225-2"><a href="graphics.html#cb225-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">11</span>)</span>
-<span id="cb225-3"><a href="graphics.html#cb225-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.exp(np.arange(<span class="dv">11</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb226"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb226-1"><a href="graphics.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># default &#39;kind&#39; is &#39;line&#39;</span></span>
-<span id="cb226-2"><a href="graphics.html#cb226-2" aria-hidden="true" tabindex="-1"></a>plt.plot(</span>
-<span id="cb226-3"><a href="graphics.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  x, y,</span>
-<span id="cb226-4"><a href="graphics.html#cb226-4" aria-hidden="true" tabindex="-1"></a>  color <span class="op">=</span> <span class="st">&#39;blue&#39;</span></span>
-<span id="cb226-5"><a href="graphics.html#cb226-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># titles are added separately</span></span>
-<span id="cb226-6"><a href="graphics.html#cb226-6" aria-hidden="true" tabindex="-1"></a>)<span class="op">;</span></span>
-<span id="cb226-7"><a href="graphics.html#cb226-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Matplotlib line plot&#39;</span>)<span class="op">;</span></span>
-<span id="cb226-8"><a href="graphics.html#cb226-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;x&#39;</span>)<span class="op">;</span></span>
-<span id="cb226-9"><a href="graphics.html#cb226-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;$y = e^x$&#39;</span>)<span class="op">;</span></span>
-<span id="cb226-10"><a href="graphics.html#cb226-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="Toolbox_files/figure-html/lib-py-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="missing-values-and-duplicates.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy data</span></span>
+<span id="cb7-2"><a href="missing-values-and-duplicates.html#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb7-3"><a href="missing-values-and-duplicates.html#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;name&#39;</span>: [</span>
+<span id="cb7-4"><a href="missing-values-and-duplicates.html#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;A&#39;</span>, <span class="st">&#39;B&#39;</span>, np.nan, <span class="st">&#39;D&#39;</span></span>
+<span id="cb7-5"><a href="missing-values-and-duplicates.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb7-6"><a href="missing-values-and-duplicates.html#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;age&#39;</span>: [</span>
+<span id="cb7-7"><a href="missing-values-and-duplicates.html#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="dv">21</span>, np.nan, np.nan, <span class="dv">40</span></span>
+<span id="cb7-8"><a href="missing-values-and-duplicates.html#cb7-8" aria-hidden="true" tabindex="-1"></a>    ]    </span>
+<span id="cb7-9"><a href="missing-values-and-duplicates.html#cb7-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-10"><a href="missing-values-and-duplicates.html#cb7-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   name   age
+## 0    A  21.0
+## 1    B   NaN
+## 2  NaN   NaN
+## 3    D  40.0</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="missing-values-and-duplicates.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop missing rows</span></span>
+<span id="cb9-2"><a href="missing-values-and-duplicates.html#cb9-2" aria-hidden="true" tabindex="-1"></a>df.dropna()</span></code></pre></div>
+<pre><code>##   name   age
+## 0    A  21.0
+## 3    D  40.0</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="missing-values-and-duplicates.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop specific variable</span></span>
+<span id="cb11-2"><a href="missing-values-and-duplicates.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with NaN</span></span>
+<span id="cb11-3"><a href="missing-values-and-duplicates.html#cb11-3" aria-hidden="true" tabindex="-1"></a>df[df[<span class="st">&#39;name&#39;</span>].notna()]</span></code></pre></div>
+<pre><code>##   name   age
+## 0    A  21.0
+## 1    B   NaN
+## 3    D  40.0</code></pre>
 </td>
 <tr>
 </table>
 
+</div>
 </div>
 </div>
             </section>
@@ -346,8 +405,8 @@ plt.plot()
           </div>
         </div>
       </div>
-<a href="base-python.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="scikit-learn.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reshape-tidyr-vs-pandas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="base-python.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -399,20 +458,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

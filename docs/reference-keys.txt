@@ -17,6 +17,8 @@ case_when-vs-pd.cut-and-np.select
 if_else-vs-np.where
 in-vs-isin-and-in
 stringrstr_detect-vs-str.contains
+distinct-vs-unique
+slice-vs-iloc
 join-and-bind
 join-data-frames-_join-vs-merge
 inner-join
@@ -31,6 +33,9 @@ pivot_wider-vs-pivot
 example-life-expectancy-data-in-long-format
 pandas-stack
 pandas-unstack
+missing-values-and-duplicates
+missing-values
+tidyrdrop_na-vs-pd.dropna-and-pd.notpna
 base-python
 map
 zip
@@ -77,5 +82,3 @@ for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-a
 label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary..
 in-the-previous-sql-problem-order-the-result-set-by-average-salary..
 in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees..
-distinct-vs-unique
-slice-vs-iloc

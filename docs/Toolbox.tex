@@ -6,8 +6,8 @@
 ]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{ifxetex,ifluatex}
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+\usepackage{iftex}
+\ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
@@ -116,7 +116,7 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
-\ifluatex
+\ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[]{natbib}
@@ -124,7 +124,7 @@
 
 \title{Toolbox}
 \author{Bhaswar Chakma}
-\date{2021-09-20}
+\date{2021-09-23}
 
 \begin{document}
 \maketitle
@@ -1279,6 +1279,232 @@ Python \texttt{str.contains()}
 ## 2           ATM       2
 \end{verbatim}
 
+\hypertarget{distinct-vs-unique}{%
+\section{\texorpdfstring{\texttt{distinct()} vs \texttt{unique()}}{distinct() vs unique()}}\label{distinct-vs-unique}}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+name & year \\
+\midrule
+\endhead
+A & 2020 \\
+B & 2020 \\
+C & 2020 \\
+A & 2021 \\
+B & 2021 \\
+D & 2021 \\
+\bottomrule
+\end{longtable}
+
+\emph{What are the distinct names?}
+
+dplyr::distinct()
+
+pd.unique()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+    \AttributeTok{name =} \FunctionTok{c}\NormalTok{(}
+        \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}D\textquotesingle{}}
+\NormalTok{    ),}
+    \AttributeTok{year =} \FunctionTok{c}\NormalTok{(}
+        \DecValTok{2020}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2020}\NormalTok{,}
+        \DecValTok{2021}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2021}
+\NormalTok{    )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# dplyr::distinct in action}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 1
+##   name 
+##   <chr>
+## 1 A    
+## 2 B    
+## 3 C    
+## 4 D
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# if you want to count}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{distinct}\NormalTok{(name) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 1
+##       n
+##   <int>
+## 1     4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{:[}
+        \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}C\textquotesingle{}}\NormalTok{,}
+        \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}D\textquotesingle{}}
+\NormalTok{    ],}
+    \StringTok{\textquotesingle{}year\textquotesingle{}}\NormalTok{:[}
+        \DecValTok{2020}\NormalTok{, }\DecValTok{2020}\NormalTok{, }\DecValTok{2020}\NormalTok{,}
+        \DecValTok{2021}\NormalTok{, }\DecValTok{2021}\NormalTok{, }\DecValTok{2021}
+\NormalTok{    ]}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# pd.unique() in action}
+\NormalTok{df[}\StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{].unique()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## array(['A', 'B', 'C', 'D'], dtype=object)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# if you want to count}
+\BuiltInTok{len}\NormalTok{(df[}\StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{].unique())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 4
+\end{verbatim}
+
+\hypertarget{slice-vs-iloc}{%
+\section{\texorpdfstring{\texttt{slice()} vs \texttt{iloc()}}{slice() vs iloc()}}\label{slice-vs-iloc}}
+
+\begin{longtable}[]{@{}rr@{}}
+\toprule
+age & id \\
+\midrule
+\endhead
+20 & 1 \\
+21 & 1 \\
+22 & 1 \\
+23 & 1 \\
+24 & 1 \\
+\bottomrule
+\end{longtable}
+
+\emph{How to slice single or multiple rows?}
+
+dplyr::slice()
+
+pd.iloc()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{age =} \FunctionTok{seq}\NormalTok{(}\DecValTok{20}\NormalTok{,}\DecValTok{24}\NormalTok{),}
+  \AttributeTok{id =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##     age    id
+##   <int> <int>
+## 1    20     1
+## 2    21     2
+## 3    22     3
+## 4    23     4
+## 5    24     5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# slice row 1}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{slice}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##     age    id
+##   <int> <int>
+## 1    20     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# slice rows 3 and 4}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{slice}\NormalTok{(}\DecValTok{3}\SpecialCharTok{:}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##     age    id
+##   <int> <int>
+## 1    22     3
+## 2    23     4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{ : np.arange(}\DecValTok{20}\NormalTok{, }\DecValTok{25}\NormalTok{),}
+    \StringTok{\textquotesingle{}id\textquotesingle{}}\NormalTok{: np.arange(}\DecValTok{1}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{\})}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    age  id
+## 0   20   1
+## 1   21   2
+## 2   22   3
+## 3   23   4
+## 4   24   5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# slice row 1}
+\NormalTok{df.iloc[}\DecValTok{0}\NormalTok{:}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    age  id
+## 0   20   1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# slice row 3 and 4}
+\NormalTok{df.iloc[}\DecValTok{2}\NormalTok{:}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    age  id
+## 2   22   3
+## 3   23   4
+\end{verbatim}
+
 \hypertarget{join-and-bind}{%
 \chapter{Join and Bind}\label{join-and-bind}}
 
@@ -2120,6 +2346,140 @@ pandas::pivot()
 ## 1  2020  15.0  20.0
 \end{verbatim}
 
+\hypertarget{missing-values-and-duplicates}{%
+\chapter{Missing Values and Duplicates}\label{missing-values-and-duplicates}}
+
+\hypertarget{missing-values}{%
+\section{Missing Values}\label{missing-values}}
+
+\hypertarget{tidyrdrop_na-vs-pd.dropna-and-pd.notpna}{%
+\subsection{\texorpdfstring{\texttt{tidyr::drop\_na()} vs \texttt{pd.dropna()\ and\ pd.notpna()}}{tidyr::drop\_na() vs pd.dropna() and pd.notpna()}}\label{tidyrdrop_na-vs-pd.dropna-and-pd.notpna}}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+name & age \\
+\midrule
+\endhead
+A & 21 \\
+B & NA \\
+NA & NA \\
+D & 40 \\
+\bottomrule
+\end{longtable}
+
+\emph{How to drop missing rows or columns?}
+
+tidyr::drop\_na()
+
+pd.dropna() and pd.notpna()
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{name =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{,}
+           \ConstantTok{NA}\NormalTok{, }\StringTok{\textquotesingle{}D\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{age  =}  \FunctionTok{c}\NormalTok{(}\DecValTok{21}\NormalTok{, }\ConstantTok{NA}\NormalTok{,}
+           \ConstantTok{NA}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   name    age
+##   <chr> <dbl>
+## 1 A        21
+## 2 B        NA
+## 3 <NA>     NA
+## 4 D        40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# drop missing rows}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   name    age
+##   <chr> <dbl>
+## 1 A        21
+## 2 D        40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# drop specific variable}
+\CommentTok{\# with NaN}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{drop\_na}\NormalTok{(name)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   name    age
+##   <chr> <dbl>
+## 1 A        21
+## 2 B        NA
+## 3 D        40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# toy data}
+\CommentTok{\# toy data}
+\NormalTok{df }\OperatorTok{=}\NormalTok{ pd.DataFrame(\{}
+    \StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{: [}
+        \StringTok{\textquotesingle{}A\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}B\textquotesingle{}}\NormalTok{, np.nan, }\StringTok{\textquotesingle{}D\textquotesingle{}}
+\NormalTok{    ],}
+    \StringTok{\textquotesingle{}age\textquotesingle{}}\NormalTok{: [}
+        \DecValTok{21}\NormalTok{, np.nan, np.nan, }\DecValTok{40}
+\NormalTok{    ]    }
+\NormalTok{\})}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   name   age
+## 0    A  21.0
+## 1    B   NaN
+## 2  NaN   NaN
+## 3    D  40.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# drop missing rows}
+\NormalTok{df.dropna()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   name   age
+## 0    A  21.0
+## 3    D  40.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# drop specific variable}
+\CommentTok{\# with NaN}
+\NormalTok{df[df[}\StringTok{\textquotesingle{}name\textquotesingle{}}\NormalTok{].notna()]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   name   age
+## 0    A  21.0
+## 1    B   NaN
+## 3    D  40.0
+\end{verbatim}
+
 \hypertarget{base-python}{%
 \chapter{Base Python}\label{base-python}}
 
@@ -2162,7 +2522,7 @@ pandas::pivot()
 \end{Shaded}
 
 \begin{verbatim}
-## <map object at 0x000000003091F160>
+## <map object at 0x0000000030945E80>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2286,7 +2646,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## <enumerate object at 0x0000000030921990>
+## <enumerate object at 0x000000003094F630>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2327,7 +2687,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Ted': [], 'Lilly': [], 'Marshall': [], 'Barney': [], 'Robin': []}
+## {'Marshall': [], 'Barney': [], 'Robin': [], 'Ted': [], 'Lilly': []}
 \end{verbatim}
 
 \begin{Shaded}
@@ -2340,7 +2700,7 @@ Use \texttt{zip()} to iterables into tuples
 \end{Shaded}
 
 \begin{verbatim}
-## {'Ted': [3, 7], 'Lilly': [4], 'Marshall': [5], 'Barney': [1, 8], 'Robin': [0, 2, 6]}
+## {'Marshall': [5], 'Barney': [1, 8], 'Robin': [0, 2, 6], 'Ted': [3, 7], 'Lilly': [4]}
 \end{verbatim}
 
 \hypertarget{graphics}{%
@@ -2349,9 +2709,9 @@ Use \texttt{zip()} to iterables into tuples
 \hypertarget{base-r-vs-matplotlib}{%
 \section{Base R vs Matplotlib}\label{base-r-vs-matplotlib}}
 
-dplyr::bind\_rows()
+plot()
 
-pandas::append()
+plt.plot()
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2363,13 +2723,21 @@ pandas::append()
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#}
-\CommentTok{\#}
-\FunctionTok{plot}\NormalTok{(x, y)}
+\CommentTok{\# default "type" is "p"}
+\FunctionTok{plot}\NormalTok{(}
+\NormalTok{  x, y,}
+  \AttributeTok{type =} \StringTok{"l"}\NormalTok{,}
+  \AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
+  \CommentTok{\# title}
+  \AttributeTok{main =} \StringTok{"Base R line plot"}\NormalTok{,}
+  \AttributeTok{xlab =} \StringTok{"x"}\NormalTok{,}
+  \AttributeTok{ylab =} \FunctionTok{expression}\NormalTok{(}\StringTok{"y = e"}\SpecialCharTok{\^{}}\StringTok{"x"}\NormalTok{)}
+  \CommentTok{\# latex2exp package offers more}
+\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=1\linewidth]{Toolbox_files/figure-latex/unnamed-chunk-76-1}
+\includegraphics{Toolbox_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2381,13 +2749,20 @@ pandas::append()
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# basic plot: line(default)}
-\NormalTok{plt.plot(x, y, color }\OperatorTok{=} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\CommentTok{\# default \textquotesingle{}kind\textquotesingle{} is \textquotesingle{}line\textquotesingle{}}
+\NormalTok{plt.plot(}
+\NormalTok{  x, y,}
+\NormalTok{  color }\OperatorTok{=} \StringTok{\textquotesingle{}blue\textquotesingle{}}
+  \CommentTok{\# titles are added separately}
+\NormalTok{)}\OperatorTok{;}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}Matplotlib line plot\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}$y = e\^{}x$\textquotesingle{}}\NormalTok{)}\OperatorTok{;}
 \NormalTok{plt.show()}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=1\linewidth]{Toolbox_files/figure-latex/lib-py-1}
+\includegraphics{Toolbox_files/figure-latex/lib-py-1.pdf}
 
 \hypertarget{scikit-learn}{%
 \chapter{\texorpdfstring{\texttt{scikit-learn}}{scikit-learn}}\label{scikit-learn}}
@@ -2466,7 +2841,7 @@ pandas::append()
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x0000000041BF2F98>
+## <matplotlib.collections.PathCollection object at 0x0000000042BE7DD8>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2658,7 +3033,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x000000003958FAC8>
+## <matplotlib.collections.PathCollection object at 0x0000000042C51D30>
 \end{verbatim}
 
 \begin{Shaded}
@@ -2668,7 +3043,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x000000003958FDA0>]
+## [<matplotlib.lines.Line2D object at 0x0000000042C63048>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -2721,7 +3096,7 @@ Alternative? Try the following
 \end{Shaded}
 
 \begin{verbatim}
-## [<matplotlib.lines.Line2D object at 0x00000000395F8E10>]
+## [<matplotlib.lines.Line2D object at 0x0000000042D047F0>]
 \end{verbatim}
 
 \begin{Shaded}
@@ -3202,7 +3577,7 @@ For this purpose, we previously created \texttt{z}.
 \end{Shaded}
 
 \begin{verbatim}
-## <matplotlib.collections.PathCollection object at 0x00000000201846D8>
+## <matplotlib.collections.PathCollection object at 0x00000000056067F0>
 \end{verbatim}
 
 \begin{Shaded}

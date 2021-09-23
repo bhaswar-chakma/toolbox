@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 Base Python | Toolbox</title>
-  <meta name="description" content="5 Base Python | Toolbox" />
+  <title>6 Base Python | Toolbox</title>
+  <meta name="description" content="6 Base Python | Toolbox" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 Base Python | Toolbox" />
+  <meta property="og:title" content="6 Base Python | Toolbox" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 Base Python | Toolbox" />
+  <meta name="twitter:title" content="6 Base Python | Toolbox" />
   
   
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Bhaswar Chakma" />
 
 
-<meta name="date" content="2021-09-20" />
+<meta name="date" content="2021-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="reshape-tidyr-vs-pandas.html"/>
+<link rel="prev" href="missing-values-and-duplicates.html"/>
 <link rel="next" href="graphics.html"/>
 <script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
@@ -170,6 +170,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="helper-functions.html"><a href="helper-functions.html#if_else-vs-np.where"><i class="fa fa-check"></i><b>2.2</b> <code>if_else()</code> vs <code>np.where()</code></a></li>
 <li class="chapter" data-level="2.3" data-path="helper-functions.html"><a href="helper-functions.html#in-vs-isin-and-in"><i class="fa fa-check"></i><b>2.3</b> <code>%in%</code> vs <code>isin</code>, <code>@</code>, and <code>in</code></a></li>
 <li class="chapter" data-level="2.4" data-path="helper-functions.html"><a href="helper-functions.html#stringrstr_detect-vs-str.contains"><i class="fa fa-check"></i><b>2.4</b> <code>stringr::str_detect()</code> vs <code>str.contains()</code></a></li>
+<li class="chapter" data-level="2.5" data-path="helper-functions.html"><a href="helper-functions.html#distinct-vs-unique"><i class="fa fa-check"></i><b>2.5</b> <code>distinct()</code> vs <code>unique()</code></a></li>
+<li class="chapter" data-level="2.6" data-path="helper-functions.html"><a href="helper-functions.html#slice-vs-iloc"><i class="fa fa-check"></i><b>2.6</b> <code>slice()</code> vs <code>iloc()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="join-and-bind.html"><a href="join-and-bind.html"><i class="fa fa-check"></i><b>3</b> Join and Bind</a>
 <ul>
@@ -195,72 +197,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-stack"><i class="fa fa-check"></i><b>4.3</b> pandas:: <code>stack()</code></a></li>
 <li class="chapter" data-level="4.4" data-path="reshape-tidyr-vs-pandas.html"><a href="reshape-tidyr-vs-pandas.html#pandas-unstack"><i class="fa fa-check"></i><b>4.4</b> pandas:: <code>unstack()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>5</b> Base Python</a>
+<li class="chapter" data-level="5" data-path="missing-values-and-duplicates.html"><a href="missing-values-and-duplicates.html"><i class="fa fa-check"></i><b>5</b> Missing Values and Duplicates</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="base-python.html"><a href="base-python.html#map"><i class="fa fa-check"></i><b>5.1</b> <code>map()</code></a></li>
-<li class="chapter" data-level="5.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>5.2</b> <code>zip()</code></a></li>
-<li class="chapter" data-level="5.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>5.3</b> <code>enumerate()</code></a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>6</b> Graphics</a>
+<li class="chapter" data-level="5.1" data-path="missing-values-and-duplicates.html"><a href="missing-values-and-duplicates.html#missing-values"><i class="fa fa-check"></i><b>5.1</b> Missing Values</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="graphics.html"><a href="graphics.html#base-r-vs-matplotlib"><i class="fa fa-check"></i><b>6.1</b> Base R vs Matplotlib</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>7</b> <code>scikit-learn</code></a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>7.1</b> Linear Model</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>7.1.1</b> Prepare X</a></li>
-<li class="chapter" data-level="7.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>7.1.2</b> Prepare y</a></li>
-<li class="chapter" data-level="7.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>7.1.3</b> Fit</a></li>
-<li class="chapter" data-level="7.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>7.1.4</b> Prediction</a></li>
-<li class="chapter" data-level="7.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>7.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
-<li class="chapter" data-level="7.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>7.1.6</b> Residual Plot</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>7.2</b> Train-Test</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>7.2.1</b> Example</a></li>
-<li class="chapter" data-level="7.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>7.2.2</b> Another Example</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>7.3</b> Cross Validation</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>8</b> R Strings</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>8.1</b> String Manupulation with Base R Functions</a></li>
-<li class="chapter" data-level="8.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>8.2</b> <code>stringr</code></a></li>
-<li class="chapter" data-level="8.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>8.3</b> Regular Expressions</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>8.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
+<li class="chapter" data-level="5.1.1" data-path="missing-values-and-duplicates.html"><a href="missing-values-and-duplicates.html#tidyrdrop_na-vs-pd.dropna-and-pd.notpna"><i class="fa fa-check"></i><b>5.1.1</b> <code>tidyr::drop_na()</code> vs <code>pd.dropna() and pd.notpna()</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>9</b> SQL</a>
+<li class="chapter" data-level="6" data-path="base-python.html"><a href="base-python.html"><i class="fa fa-check"></i><b>6</b> Base Python</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>9.1</b> CREATE</a></li>
-<li class="chapter" data-level="9.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>9.2</b> DROP</a></li>
-<li class="chapter" data-level="9.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>9.3</b> ALTER</a></li>
-<li class="chapter" data-level="9.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>9.4</b> TRUNCATE</a></li>
-<li class="chapter" data-level="9.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>9.5</b> Guided Exercise: Create table and insert data</a></li>
-<li class="chapter" data-level="9.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>9.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
-<li class="chapter" data-level="9.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>9.7</b> Guided Exercise: TRUNCATE</a></li>
-<li class="chapter" data-level="9.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>9.8</b> Guided Exercise: DROP</a></li>
-<li class="chapter" data-level="9.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>9.9</b> Exercise: String Patterns</a>
-<ul>
-<li class="chapter" data-level="9.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>9.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
-<li class="chapter" data-level="9.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>9.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
-<li class="chapter" data-level="9.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>9.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
+<li class="chapter" data-level="6.1" data-path="base-python.html"><a href="base-python.html#map"><i class="fa fa-check"></i><b>6.1</b> <code>map()</code></a></li>
+<li class="chapter" data-level="6.2" data-path="base-python.html"><a href="base-python.html#zip"><i class="fa fa-check"></i><b>6.2</b> <code>zip()</code></a></li>
+<li class="chapter" data-level="6.3" data-path="base-python.html"><a href="base-python.html#enumerate"><i class="fa fa-check"></i><b>6.3</b> <code>enumerate()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="9.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>9.10</b> Exercise: Sorting</a>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a>
 <ul>
-<li class="chapter" data-level="9.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>9.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
-<li class="chapter" data-level="9.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>9.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
-<li class="chapter" data-level="9.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>9.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base-r-vs-matplotlib"><i class="fa fa-check"></i><b>7.1</b> Base R vs Matplotlib</a></li>
 </ul></li>
-<li class="chapter" data-level="9.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>9.11</b> Exercise 3: Grouping</a>
+<li class="chapter" data-level="8" data-path="scikit-learn.html"><a href="scikit-learn.html"><i class="fa fa-check"></i><b>8</b> <code>scikit-learn</code></a>
 <ul>
-<li class="chapter" data-level="9.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>9.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
-<li class="chapter" data-level="9.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>9.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
-<li class="chapter" data-level="9.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>9.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
-<li class="chapter" data-level="9.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>9.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
-<li class="chapter" data-level="9.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>9.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
+<li class="chapter" data-level="8.1" data-path="scikit-learn.html"><a href="scikit-learn.html#linear-model"><i class="fa fa-check"></i><b>8.1</b> Linear Model</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-x"><i class="fa fa-check"></i><b>8.1.1</b> Prepare X</a></li>
+<li class="chapter" data-level="8.1.2" data-path="scikit-learn.html"><a href="scikit-learn.html#prepare-y"><i class="fa fa-check"></i><b>8.1.2</b> Prepare y</a></li>
+<li class="chapter" data-level="8.1.3" data-path="scikit-learn.html"><a href="scikit-learn.html#fit"><i class="fa fa-check"></i><b>8.1.3</b> Fit</a></li>
+<li class="chapter" data-level="8.1.4" data-path="scikit-learn.html"><a href="scikit-learn.html#prediction"><i class="fa fa-check"></i><b>8.1.4</b> Prediction</a></li>
+<li class="chapter" data-level="8.1.5" data-path="scikit-learn.html"><a href="scikit-learn.html#scatter-plot-actual-vs-fitted"><i class="fa fa-check"></i><b>8.1.5</b> Scatter Plot: Actual vs Fitted</a></li>
+<li class="chapter" data-level="8.1.6" data-path="scikit-learn.html"><a href="scikit-learn.html#residual-plot"><i class="fa fa-check"></i><b>8.1.6</b> Residual Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="scikit-learn.html"><a href="scikit-learn.html#train-test"><i class="fa fa-check"></i><b>8.2</b> Train-Test</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="scikit-learn.html"><a href="scikit-learn.html#example"><i class="fa fa-check"></i><b>8.2.1</b> Example</a></li>
+<li class="chapter" data-level="8.2.2" data-path="scikit-learn.html"><a href="scikit-learn.html#another-example"><i class="fa fa-check"></i><b>8.2.2</b> Another Example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="scikit-learn.html"><a href="scikit-learn.html#cross-validation"><i class="fa fa-check"></i><b>8.3</b> Cross Validation</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="r-strings.html"><a href="r-strings.html"><i class="fa fa-check"></i><b>9</b> R Strings</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="r-strings.html"><a href="r-strings.html#string-manupulation-with-base-r-functions"><i class="fa fa-check"></i><b>9.1</b> String Manupulation with Base R Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="r-strings.html"><a href="r-strings.html#stringr"><i class="fa fa-check"></i><b>9.2</b> <code>stringr</code></a></li>
+<li class="chapter" data-level="9.3" data-path="r-strings.html"><a href="r-strings.html#regular-expressions"><i class="fa fa-check"></i><b>9.3</b> Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="r-strings.html"><a href="r-strings.html#stringr-functions-for-regular-expressions"><i class="fa fa-check"></i><b>9.3.1</b> <code>stringr</code> Functions for Regular Expressions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sql.html"><a href="sql.html"><i class="fa fa-check"></i><b>10</b> SQL</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sql.html"><a href="sql.html#create"><i class="fa fa-check"></i><b>10.1</b> CREATE</a></li>
+<li class="chapter" data-level="10.2" data-path="sql.html"><a href="sql.html#drop"><i class="fa fa-check"></i><b>10.2</b> DROP</a></li>
+<li class="chapter" data-level="10.3" data-path="sql.html"><a href="sql.html#alter"><i class="fa fa-check"></i><b>10.3</b> ALTER</a></li>
+<li class="chapter" data-level="10.4" data-path="sql.html"><a href="sql.html#truncate"><i class="fa fa-check"></i><b>10.4</b> TRUNCATE</a></li>
+<li class="chapter" data-level="10.5" data-path="sql.html"><a href="sql.html#guided-exercise-create-table-and-insert-data"><i class="fa fa-check"></i><b>10.5</b> Guided Exercise: Create table and insert data</a></li>
+<li class="chapter" data-level="10.6" data-path="sql.html"><a href="sql.html#guided-exercise-use-the-alter-statement-to-add-delete-or-modify-columns-in-two-of-the-existing-tables-created-in-the-previous-exercise."><i class="fa fa-check"></i><b>10.6</b> Guided Exercise: Use the <code>ALTER</code> statement to add, delete, or modify columns in two of the existing tables created in the previous exercise.</a></li>
+<li class="chapter" data-level="10.7" data-path="sql.html"><a href="sql.html#guided-exercise-truncate"><i class="fa fa-check"></i><b>10.7</b> Guided Exercise: TRUNCATE</a></li>
+<li class="chapter" data-level="10.8" data-path="sql.html"><a href="sql.html#guided-exercise-drop"><i class="fa fa-check"></i><b>10.8</b> Guided Exercise: DROP</a></li>
+<li class="chapter" data-level="10.9" data-path="sql.html"><a href="sql.html#exercise-string-patterns"><i class="fa fa-check"></i><b>10.9</b> Exercise: String Patterns</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="sql.html"><a href="sql.html#retrieve-all-employees-whose-address-is-in-elginil."><i class="fa fa-check"></i><b>10.9.1</b> <em>Retrieve all employees whose address is in Elgin,IL</em>.</a></li>
+<li class="chapter" data-level="10.9.2" data-path="sql.html"><a href="sql.html#retrieve-all-employees-who-were-born-during-the-1970s.."><i class="fa fa-check"></i><b>10.9.2</b> <em>Retrieve all employees who were born during the 1970’s.</em>.</a></li>
+<li class="chapter" data-level="10.9.3" data-path="sql.html"><a href="sql.html#retrieve-all-employees-in-department-5-whose-salary-is-between-60000-and-70000.."><i class="fa fa-check"></i><b>10.9.3</b> <em>Retrieve all employees in department 5 whose salary is between 60000 and 70000.</em>.</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="sql.html"><a href="sql.html#exercise-sorting"><i class="fa fa-check"></i><b>10.10</b> Exercise: Sorting</a>
+<ul>
+<li class="chapter" data-level="10.10.1" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-by-department-id.."><i class="fa fa-check"></i><b>10.10.1</b> <em>Retrieve a list of employees ordered by department ID.</em>.</a></li>
+<li class="chapter" data-level="10.10.2" data-path="sql.html"><a href="sql.html#retrieve-a-list-of-employees-ordered-in-descending-order-by-department-id-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>10.10.2</b> <em>Retrieve a list of employees ordered in descending order by department ID and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+<li class="chapter" data-level="10.10.3" data-path="sql.html"><a href="sql.html#in-the-previous-problem-use-department-name-instead-of-department-id.-retrieve-a-list-of-employees-ordered-by-department-name-and-within-each-department-ordered-alphabetically-in-descending-order-by-last-name.."><i class="fa fa-check"></i><b>10.10.3</b> <em>In the previous problem, use department name instead of department ID. Retrieve a list of employees ordered by department name, and within each department ordered alphabetically in descending order by last name.</em>.</a></li>
+</ul></li>
+<li class="chapter" data-level="10.11" data-path="sql.html"><a href="sql.html#exercise-3-grouping"><i class="fa fa-check"></i><b>10.11</b> Exercise 3: Grouping</a>
+<ul>
+<li class="chapter" data-level="10.11.1" data-path="sql.html"><a href="sql.html#for-each-department-id-retrieve-the-number-of-employees-in-the-department.."><i class="fa fa-check"></i><b>10.11.1</b> <em>For each department ID retrieve the number of employees in the department.</em>.</a></li>
+<li class="chapter" data-level="10.11.2" data-path="sql.html"><a href="sql.html#for-each-department-retrieve-the-number-of-employees-in-the-department-and-the-average-employee-salary-in-the-department.."><i class="fa fa-check"></i><b>10.11.2</b> <em>For each department retrieve the number of employees in the department, and the average employee salary in the department.</em>.</a></li>
+<li class="chapter" data-level="10.11.3" data-path="sql.html"><a href="sql.html#label-the-computed-columns-in-the-result-set-of-the-last-sql-problem-as-num_employees-and-avg_salary.."><i class="fa fa-check"></i><b>10.11.3</b> <em>Label the computed columns in the result set of the last SQL problem as NUM_EMPLOYEES and AVG_SALARY.</em>.</a></li>
+<li class="chapter" data-level="10.11.4" data-path="sql.html"><a href="sql.html#in-the-previous-sql-problem-order-the-result-set-by-average-salary.."><i class="fa fa-check"></i><b>10.11.4</b> <em>In the previous SQL problem , order the result set by Average Salary.</em>.</a></li>
+<li class="chapter" data-level="10.11.5" data-path="sql.html"><a href="sql.html#in-sql-problem-4-exercise-3-problem-4-limit-the-result-to-departments-with-fewer-than-4-employees.."><i class="fa fa-check"></i><b>10.11.5</b> <em>In SQL problem 4 (Exercise 3 Problem 4), limit the result to departments with fewer than 4 employees.</em>.</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -280,98 +289,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="base-python" class="section level1" number="5">
-<h1><span class="header-section-number">5</span> Base Python</h1>
+<div id="base-python" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Base Python</h1>
 <center>
 <img src="https://www.python.org/static/img/python-logo@2x.png" width="300" alt="cognitiveclass.ai logo"  />
 </center>
-<div id="map" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> <code>map()</code></h2>
+<div id="map" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> <code>map()</code></h2>
 <p><code>map()</code> lets you apply a function to each element of a list.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb158-1"><a href="base-python.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy list</span></span>
-<span id="cb158-2"><a href="base-python.html#cb158-2" aria-hidden="true" tabindex="-1"></a>toy_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">200</span>, <span class="dv">3</span>, <span class="dv">400</span>]</span>
-<span id="cb158-3"><a href="base-python.html#cb158-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-4"><a href="base-python.html#cb158-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy function</span></span>
-<span id="cb158-5"><a href="base-python.html#cb158-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smaller_than_100(k):</span>
-<span id="cb158-6"><a href="base-python.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> k <span class="op">&lt;</span> <span class="dv">100</span>:</span>
-<span id="cb158-7"><a href="base-python.html#cb158-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
-<span id="cb158-8"><a href="base-python.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
-<span id="cb158-9"><a href="base-python.html#cb158-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">False</span></span></code></pre></div>
-<div class="sourceCode" id="cb159"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb159-1"><a href="base-python.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test the function</span></span>
-<span id="cb159-2"><a href="base-python.html#cb159-2" aria-hidden="true" tabindex="-1"></a>smaller_than_100(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb192-1"><a href="base-python.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># toy list</span></span>
+<span id="cb192-2"><a href="base-python.html#cb192-2" aria-hidden="true" tabindex="-1"></a>toy_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">200</span>, <span class="dv">3</span>, <span class="dv">400</span>]</span>
+<span id="cb192-3"><a href="base-python.html#cb192-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-4"><a href="base-python.html#cb192-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create toy function</span></span>
+<span id="cb192-5"><a href="base-python.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> smaller_than_100(k):</span>
+<span id="cb192-6"><a href="base-python.html#cb192-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> k <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb192-7"><a href="base-python.html#cb192-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb192-8"><a href="base-python.html#cb192-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb192-9"><a href="base-python.html#cb192-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">False</span></span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb193-1"><a href="base-python.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># test the function</span></span>
+<span id="cb193-2"><a href="base-python.html#cb193-2" aria-hidden="true" tabindex="-1"></a>smaller_than_100(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## True</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb161-1"><a href="base-python.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it to toy_list</span></span>
-<span id="cb161-2"><a href="base-python.html#cb161-2" aria-hidden="true" tabindex="-1"></a>mapped <span class="op">=</span> <span class="bu">map</span>(smaller_than_100, toy_list)</span>
-<span id="cb161-3"><a href="base-python.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mapped) <span class="co"># doesn&#39;t provide the desired output; use loop</span></span></code></pre></div>
-<pre><code>## &lt;map object at 0x0000000038B0AFD0&gt;</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb163-1"><a href="base-python.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> mapped:</span>
-<span id="cb163-2"><a href="base-python.html#cb163-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb195-1"><a href="base-python.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it to toy_list</span></span>
+<span id="cb195-2"><a href="base-python.html#cb195-2" aria-hidden="true" tabindex="-1"></a>mapped <span class="op">=</span> <span class="bu">map</span>(smaller_than_100, toy_list)</span>
+<span id="cb195-3"><a href="base-python.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mapped) <span class="co"># doesn&#39;t provide the desired output; use loop</span></span></code></pre></div>
+<pre><code>## &lt;map object at 0x0000000030AC5F98&gt;</code></pre>
+<div class="sourceCode" id="cb197"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb197-1"><a href="base-python.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> mapped:</span>
+<span id="cb197-2"><a href="base-python.html#cb197-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre></div>
 <pre><code>## True
 ## None
 ## True
 ## None</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb165-1"><a href="base-python.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract mapping into new list</span></span>
-<span id="cb165-2"><a href="base-python.html#cb165-2" aria-hidden="true" tabindex="-1"></a>mapped_list <span class="op">=</span> [<span class="op">*</span><span class="bu">map</span>(smaller_than_100, toy_list)]</span>
-<span id="cb165-3"><a href="base-python.html#cb165-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(mapped_list)</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb199-1"><a href="base-python.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract mapping into new list</span></span>
+<span id="cb199-2"><a href="base-python.html#cb199-2" aria-hidden="true" tabindex="-1"></a>mapped_list <span class="op">=</span> [<span class="op">*</span><span class="bu">map</span>(smaller_than_100, toy_list)]</span>
+<span id="cb199-3"><a href="base-python.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(mapped_list)</span></code></pre></div>
 <pre><code>## &lt;class &#39;list&#39;&gt;</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb167-1"><a href="base-python.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mapped_list)</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb201-1"><a href="base-python.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mapped_list)</span></code></pre></div>
 <pre><code>## [True, None, True, None]</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb169-1"><a href="base-python.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use map() with lambda function</span></span>
-<span id="cb169-2"><a href="base-python.html#cb169-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">100</span>, toy_list)]</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb203-1"><a href="base-python.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use map() with lambda function</span></span>
+<span id="cb203-2"><a href="base-python.html#cb203-2" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">map</span>(<span class="kw">lambda</span> x: x <span class="op">&lt;</span> <span class="dv">100</span>, toy_list)]</span></code></pre></div>
 <pre><code>## [True, False, True, False]</code></pre>
 </div>
-<div id="zip" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> <code>zip()</code></h2>
+<div id="zip" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> <code>zip()</code></h2>
 <p>Use <code>zip()</code> to iterables into tuples</p>
 <ul>
 <li><p>elementwise</p></li>
 <li><p>make separate lists into tuples</p></li>
 </ul>
-<div class="sourceCode" id="cb171"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb171-1"><a href="base-python.html#cb171-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
-<span id="cb171-2"><a href="base-python.html#cb171-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">49</span>, <span class="dv">81</span>]</span>
-<span id="cb171-3"><a href="base-python.html#cb171-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">zip</span>(x, y)]</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb205-1"><a href="base-python.html#cb205-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">9</span>]</span>
+<span id="cb205-2"><a href="base-python.html#cb205-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">49</span>, <span class="dv">81</span>]</span>
+<span id="cb205-3"><a href="base-python.html#cb205-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">zip</span>(x, y)]</span></code></pre></div>
 <pre><code>## [(1, 1), (3, 9), (7, 49), (9, 81)]</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb173-1"><a href="base-python.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can operate on more than two inputs</span></span>
-<span id="cb173-2"><a href="base-python.html#cb173-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>]</span>
-<span id="cb173-3"><a href="base-python.html#cb173-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">zip</span>(x, y, z)]</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb207-1"><a href="base-python.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can operate on more than two inputs</span></span>
+<span id="cb207-2"><a href="base-python.html#cb207-2" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>]</span>
+<span id="cb207-3"><a href="base-python.html#cb207-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">zip</span>(x, y, z)]</span></code></pre></div>
 <pre><code>## [(1, 1, 10), (3, 9, 11), (7, 49, 12), (9, 81, 13)]</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb175-1"><a href="base-python.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zip() will continue upto the length of the shortest input</span></span>
-<span id="cb175-2"><a href="base-python.html#cb175-2" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
-<span id="cb175-3"><a href="base-python.html#cb175-3" aria-hidden="true" tabindex="-1"></a>long_list <span class="op">=</span> [<span class="dv">16</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
-<span id="cb175-4"><a href="base-python.html#cb175-4" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">zip</span>(short_list, long_list)]</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb209-1"><a href="base-python.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># zip() will continue upto the length of the shortest input</span></span>
+<span id="cb209-2"><a href="base-python.html#cb209-2" aria-hidden="true" tabindex="-1"></a>short_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb209-3"><a href="base-python.html#cb209-3" aria-hidden="true" tabindex="-1"></a>long_list <span class="op">=</span> [<span class="dv">16</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]</span>
+<span id="cb209-4"><a href="base-python.html#cb209-4" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span><span class="bu">zip</span>(short_list, long_list)]</span></code></pre></div>
 <pre><code>## [(1, 16), (2, 7)]</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb177-1"><a href="base-python.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to keep all the items, use itertools.zip_longest()</span></span>
-<span id="cb177-2"><a href="base-python.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> zip_longest</span>
-<span id="cb177-3"><a href="base-python.html#cb177-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span>zip_longest(short_list, long_list, fillvalue <span class="op">=</span> <span class="va">None</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="base-python.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to keep all the items, use itertools.zip_longest()</span></span>
+<span id="cb211-2"><a href="base-python.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> zip_longest</span>
+<span id="cb211-3"><a href="base-python.html#cb211-3" aria-hidden="true" tabindex="-1"></a>[<span class="op">*</span>zip_longest(short_list, long_list, fillvalue <span class="op">=</span> <span class="va">None</span>)]</span></code></pre></div>
 <pre><code>## [(1, 16), (2, 7), (None, 8), (None, 9)]</code></pre>
 </div>
-<div id="enumerate" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> <code>enumerate()</code></h2>
+<div id="enumerate" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> <code>enumerate()</code></h2>
 <p><code>enumerate()</code> returns a sequence of tuples: (index, item).</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb179-1"><a href="base-python.html#cb179-1" aria-hidden="true" tabindex="-1"></a>toy_names <span class="op">=</span> [<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Barney&quot;</span>, <span class="st">&quot;Ted&quot;</span>, <span class="st">&quot;Lilly&quot;</span>, <span class="st">&quot;Marshall&quot;</span>]</span>
-<span id="cb179-2"><a href="base-python.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="bu">enumerate</span>(toy_names) <span class="co"># creates object</span></span></code></pre></div>
-<pre><code>## &lt;enumerate object at 0x0000000038B12990&gt;</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb181-1"><a href="base-python.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">enumerate</span>(toy_names)) <span class="co"># get a list of tuples</span></span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb213-1"><a href="base-python.html#cb213-1" aria-hidden="true" tabindex="-1"></a>toy_names <span class="op">=</span> [<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Barney&quot;</span>, <span class="st">&quot;Ted&quot;</span>, <span class="st">&quot;Lilly&quot;</span>, <span class="st">&quot;Marshall&quot;</span>]</span>
+<span id="cb213-2"><a href="base-python.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="bu">enumerate</span>(toy_names) <span class="co"># creates object</span></span></code></pre></div>
+<pre><code>## &lt;enumerate object at 0x0000000030AFD948&gt;</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb215-1"><a href="base-python.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">enumerate</span>(toy_names)) <span class="co"># get a list of tuples</span></span></code></pre></div>
 <pre><code>## [(0, &#39;Robin&#39;), (1, &#39;Barney&#39;), (2, &#39;Ted&#39;), (3, &#39;Lilly&#39;), (4, &#39;Marshall&#39;)]</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb183-1"><a href="base-python.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use enumerate() in a for loop</span></span>
-<span id="cb183-2"><a href="base-python.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">enumerate</span>(toy_names):</span>
-<span id="cb183-3"><a href="base-python.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i, j)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb217-1"><a href="base-python.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use enumerate() in a for loop</span></span>
+<span id="cb217-2"><a href="base-python.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">enumerate</span>(toy_names):</span>
+<span id="cb217-3"><a href="base-python.html#cb217-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(i, j)</span></code></pre></div>
 <pre><code>## 0 Robin
 ## 1 Barney
 ## 2 Ted
 ## 3 Lilly
 ## 4 Marshall</code></pre>
 <p><strong>Example: Suppose there are duplicates in a given list. You want to create a dictionary with names as keys; index numbers as values.</strong></p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb185-1"><a href="base-python.html#cb185-1" aria-hidden="true" tabindex="-1"></a>dup_names_list <span class="op">=</span> [<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Barney&quot;</span>,<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Ted&quot;</span>, <span class="st">&quot;Lilly&quot;</span>, <span class="st">&quot;Marshall&quot;</span>, <span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Ted&quot;</span>, <span class="st">&quot;Barney&quot;</span>]</span>
-<span id="cb185-2"><a href="base-python.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create dictionary, keys:names; values: empty</span></span>
-<span id="cb185-3"><a href="base-python.html#cb185-3" aria-hidden="true" tabindex="-1"></a>names_dic <span class="op">=</span> {name:[] <span class="cf">for</span> name <span class="kw">in</span> <span class="bu">set</span>(dup_names_list)}</span>
-<span id="cb185-4"><a href="base-python.html#cb185-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names_dic)</span></code></pre></div>
-<pre><code>## {&#39;Robin&#39;: [], &#39;Lilly&#39;: [], &#39;Marshall&#39;: [], &#39;Barney&#39;: [], &#39;Ted&#39;: []}</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb187-1"><a href="base-python.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use enumerate() to store the index for each occurence</span></span>
-<span id="cb187-2"><a href="base-python.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, name <span class="kw">in</span> <span class="bu">enumerate</span>(dup_names_list):</span>
-<span id="cb187-3"><a href="base-python.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  names_dic[name].append(index)</span>
-<span id="cb187-4"><a href="base-python.html#cb187-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names_dic)</span></code></pre></div>
-<pre><code>## {&#39;Robin&#39;: [0, 2, 6], &#39;Lilly&#39;: [4], &#39;Marshall&#39;: [5], &#39;Barney&#39;: [1, 8], &#39;Ted&#39;: [3, 7]}</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb219-1"><a href="base-python.html#cb219-1" aria-hidden="true" tabindex="-1"></a>dup_names_list <span class="op">=</span> [<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Barney&quot;</span>,<span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Ted&quot;</span>, <span class="st">&quot;Lilly&quot;</span>, <span class="st">&quot;Marshall&quot;</span>, <span class="st">&quot;Robin&quot;</span>, <span class="st">&quot;Ted&quot;</span>, <span class="st">&quot;Barney&quot;</span>]</span>
+<span id="cb219-2"><a href="base-python.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create dictionary, keys:names; values: empty</span></span>
+<span id="cb219-3"><a href="base-python.html#cb219-3" aria-hidden="true" tabindex="-1"></a>names_dic <span class="op">=</span> {name:[] <span class="cf">for</span> name <span class="kw">in</span> <span class="bu">set</span>(dup_names_list)}</span>
+<span id="cb219-4"><a href="base-python.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names_dic)</span></code></pre></div>
+<pre><code>## {&#39;Robin&#39;: [], &#39;Lilly&#39;: [], &#39;Barney&#39;: [], &#39;Ted&#39;: [], &#39;Marshall&#39;: []}</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb221-1"><a href="base-python.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use enumerate() to store the index for each occurence</span></span>
+<span id="cb221-2"><a href="base-python.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, name <span class="kw">in</span> <span class="bu">enumerate</span>(dup_names_list):</span>
+<span id="cb221-3"><a href="base-python.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  names_dic[name].append(index)</span>
+<span id="cb221-4"><a href="base-python.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names_dic)</span></code></pre></div>
+<pre><code>## {&#39;Robin&#39;: [0, 2, 6], &#39;Lilly&#39;: [4], &#39;Barney&#39;: [1, 8], &#39;Ted&#39;: [3, 7], &#39;Marshall&#39;: [5]}</code></pre>
 
 </div>
 </div>
@@ -380,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="reshape-tidyr-vs-pandas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-values-and-duplicates.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="graphics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
